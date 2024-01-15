@@ -1,9 +1,9 @@
-
+import Category from "../../Components/Category/Category"
 
 const Products = () => {
   return (
     <div>
-      productsssssssssssssssssssssssssssssssssssssssssssssssssss
+      <Category />
     </div>
   )
 }
