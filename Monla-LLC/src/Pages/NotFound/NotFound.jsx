@@ -1,9 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NotFound.module.css'
+import { Helmet } from 'react-helmet-async';
 
 function NotFound() {
   return (
+    <>
+    <Helmet>
+      <title>Page Not Found - Monla</title>
+      <meta
+        name="description"
+        content="Oops! The page you are looking for cannot be found. Check the URL or go back to the home page."
+      />
+      <meta name="keywords" content="404, page not found, error" />
+    </Helmet>
     <main className={styles.main}>
       <div className="container">
         <h1 className={styles.error}>Error</h1>
@@ -17,6 +27,7 @@ function NotFound() {
         </Link>
       </div>
     </main>
+    </>
   );
 }
 
