@@ -16,6 +16,7 @@ const ProductCart = ({ img, price, title, desc }) => {
       </div>
       <button className={Styles.btn}>ADD TO CART</button>
     </div>
+    
   );
 };
 
