@@ -13,11 +13,10 @@
 .content__wrapper {
   height: 100%;
   flex-basis: 50%;
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 12px 12px 0;
   border: 3px solid rgba(95, 131, 185, 0.00);
   background: rgba(77, 97, 136, 0.69);
   backdrop-filter: blur(4.5px);
-  border-radius: 12px;
 }
 .content {
   height: 100%;

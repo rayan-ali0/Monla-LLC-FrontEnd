@@ -66,7 +66,7 @@ const Login = () => {
     );
     if (response.data) {
       setUser(response.data);
-      localStorage.setItem("userData", JSON.stringify(true));
+      localStorage.setItem("userData", JSON.stringify(response.data));
       toast.success("Login successfully");
       setTimeout(() => {
         navigate("/", { replace: true });
@@ -81,8 +81,6 @@ const Login = () => {
     console.log(error);
   }
 };
-
-  console.log(user);
 
   return (
     <>

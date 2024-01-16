@@ -13,6 +13,11 @@ import Unauthorized from "../Pages/Unauthorized/Unauthorized.jsx"
 const Router = () => {
 
   const { user } = useContext(UserContext)
+  if(user) {
+    console.log("there is a user")
+  } else {
+    console.log("there is no user here baby")
+  }
 
   return (
     <div>
