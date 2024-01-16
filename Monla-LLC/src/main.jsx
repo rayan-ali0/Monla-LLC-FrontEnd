@@ -7,10 +7,10 @@ import { HelmetProvider } from 'react-helmet-async'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <UserProvider>
     <HelmetProvider>
-      <App />
+      <UserProvider>
+        <App />
+      </UserProvider>
     </HelmetProvider>
-    </UserProvider>
   </React.StrictMode>,
 )

@@ -65,8 +65,8 @@ const Login = () => {
       formData
     );
     if (response.data) {
-      setUser(response.data);
-      localStorage.setItem("userData", JSON.stringify(response.data));
+      setUser(response.data.user);
+      localStorage.setItem("userData", JSON.stringify(true));
       toast.success("Login successfully");
       setTimeout(() => {
         navigate("/", { replace: true });
