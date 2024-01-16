@@ -50,7 +50,7 @@ const Signup = () => {
     return;
   }
   if (!nameRegex.test(formData.name)) {
-    toast.error("Please enter a valid name without numbers.");
+    toast.error("Please enter a valid name.");
     return;
   }
   if (!formData.email) {

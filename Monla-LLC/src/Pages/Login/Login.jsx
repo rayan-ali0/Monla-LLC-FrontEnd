@@ -10,6 +10,7 @@ import hide from "../../assets/icons/hide.png";
 import { UserContext } from "../../UserContext/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
 
 const Login = () => {
@@ -20,6 +21,10 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+ // Regex validations
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^.{8,}$/;
 
   const visiblePassword = () => {
     setShowPassword(!showPassword);
@@ -42,11 +47,18 @@ const Login = () => {
     toast.error("Please enter your email.");
     return;
   }
+  if (!emailRegex.test(formData.email)) {
+    toast.error("Please enter a valid email address.");
+    return;
+  }
   if (!formData.password) {
     toast.error("Please enter your password.");
     return;
   }
-
+  if (!passwordRegex.test(formData.password)) {
+    toast.error("Password should be at least 8 characters.");
+    return;
+  }
   try {
     const response = await axios.post(
       "http://localhost:5000/login",
@@ -70,10 +82,12 @@ const Login = () => {
   }
 };
 
+  console.log(user);
+
   return (
     <>
     <Helmet>
-      <title>Sign In - Monla</title>
+      <title>Log In - Monla</title>
       <meta name="description" content="Securely sign in to your Monla account. Access personalized features and services designed for you. Log in now to enjoy a seamless experience!" />
       <meta name="keywords" content="sign in, login, user authentication" />
     </Helmet>
