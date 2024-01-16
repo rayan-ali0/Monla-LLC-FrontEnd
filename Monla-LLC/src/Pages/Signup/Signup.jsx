@@ -72,7 +72,7 @@ const Signup = () => {
     
     try {
       const response = await axios.post(
-        "http://localhost:5000/user/register",
+        `${import.meta.env.VITE_REACT_APP_BACKEND}/user/register`,
         formData
       );
   
@@ -84,8 +84,14 @@ const Signup = () => {
         }, 1000);
       }
     } catch (error) {
+      if (error.response.status === 401) {
+        toast.error("Incorrect email or password");
+      } else if (error.response.status === 400){
+        toast.error("Email already exists.");
+      } else {
+        toast.error("An error occurred. Please try again.");
+      }
       console.error("Error:", error);
-      toast.error("Signup failed. Please try again.");
     }
   };
 
