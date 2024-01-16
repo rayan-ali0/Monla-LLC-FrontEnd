@@ -6,6 +6,8 @@ import React from 'react'
 import { useContext } from "react"
 import { UserContext } from "../UserContext/UserContext.jsx"
 import Products from "../Pages/Products/Products.jsx"
+import Signup from "../Pages/Signup/Signup.jsx"
+import Login from "../Pages/Login/Login.jsx"
 
 const Router = () => {
 
@@ -17,6 +19,8 @@ const Router = () => {
         <Routes>
             <Route index path="/" element={<Home />} />
             <Route index path="/product" element={<Products />} />
+            <Route index path="/signup" element={<Signup />} />
+            <Route index path="/login" element={<Login />} />
 
             <Route element={<ProtectedRoute
                 isAllowed={user && user.role === "admin"}
