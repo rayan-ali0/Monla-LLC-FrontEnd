@@ -17,12 +17,13 @@ const Router = () => {
         <Routes>
             <Route index path="/" element={<Home />} />
             <Route index path="/product" element={<Products />} />
+            <Route path="/dashboard" element={<Dashboard />} />
 
             <Route element={<ProtectedRoute
                 isAllowed={user && user.role === "admin"}
                 redirectPath="/403"
               />} >
-            <Route path="/dashboard" element={<Dashboard />} />
+            
             </Route>
         </Routes>
       </BrowserRouter>
