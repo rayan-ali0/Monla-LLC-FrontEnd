@@ -32,7 +32,7 @@ const Router = () => {
                 isAllowed={user && user.role === "admin"}
                 redirectPath="/403"
               />} >
-            <Route path="/dashboard" element={<Dashboard />} />
+            
             </Route>
         </Routes>
       </BrowserRouter>
