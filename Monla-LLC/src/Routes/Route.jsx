@@ -10,6 +10,7 @@ import Signup from "../Pages/Signup/Signup.jsx"
 import Login from "../Pages/Login/Login.jsx"
 import Unauthorized from "../Pages/Unauthorized/Unauthorized.jsx"
 import NotFound from "../Pages/NotFound/NotFound.jsx"
+import ProductDetails from "../Pages/ProductDetails/ProductDetails.jsx"
 
 const Router = () => {
 
@@ -25,6 +26,7 @@ const Router = () => {
             <Route index path="/login" element={<Login />} />
             <Route index path="/403" element={<Unauthorized />} />
             <Route path="/*" element={<NotFound />} />
+            <Route path="/productdetails" element={<ProductDetails />} />
 
             <Route element={<ProtectedRoute
                 isAllowed={user && user.role === "admin"}

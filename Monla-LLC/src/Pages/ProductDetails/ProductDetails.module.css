@@ -1,0 +1,203 @@
+/* body {
+  display: block !important;
+} */
+.main {
+  padding-top: 150px;
+}
+.productView {
+  padding-bottom: var(--section-padding);
+}
+.productView .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.productView .wrapper .image {
+  flex-basis: 50%;
+}
+.productView .wrapper .image img {
+  width: 100%;
+}
+.productView .contentWrapper {
+  flex-basis: 50%;
+}
+.productView .contentWrapper .content {
+
+}
+.productView .product__title {
+  color: var(--balck-color, #000);
+  font-size: 28px;
+}
+.productView .check__stock {
+  /* color: var(--second-blue-color, #324BC2); */
+  color: var(--red-color);
+  font-family: Poppins;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.productView .price {
+  color: var(--black-color, #000);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.productView .description {
+  color: var(--balck-color, #000);
+  font-family: Poppins;
+  font-size: 17px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgb(202, 202, 202, 0.5);
+}
+.productView .details {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.productView .details > div {
+  color: var(--Black, #000);
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.productView .details .brand {
+  
+}
+.productView .details .model {
+  
+}
+.productView .details .year {
+  
+}
+.productView .purchase__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.productView .purchase__buttons .quantity__to__buy {
+  display: flex;
+}
+.productView .quantity__to__buy > span {
+
+}
+.productView .quantity__to__buy > span::selection {
+  background-color: transparent;
+}
+.productView .quantity__to__buy .decrease {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  cursor: pointer;
+  border-radius: 4px 0px 0px 4px;
+  font-size: 25px;
+  padding: 0px 17px;
+}
+.productView .quantity__to__buy .number {
+  padding: 8px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 47px;
+}
+.productView .quantity__to__buy .increase {
+  background-color: var(--button-background-color-red);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  cursor: pointer;
+  font-size: 25px;
+  padding: 0px 17px;
+  border-radius: 0px 4px 4px 0px;
+  border: 2px solid var(--button-background-color-red);
+}
+.productView .purchase__buttons .addToCart {
+
+}
+.productView .purchase__buttons .addToCart .button {
+  color: var(--whtie-color, #FFF);
+  background-color: var(--button-background-color-red);
+  font-family: Poppins;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 11px 50px;
+  transition: var(--second-transition);
+  border-radius: 4px
+}
+.productView .purchase__buttons .addToCart .button:hover {
+  background-color: var(--button-background-hover-color);
+}
+.productView .benefit {
+  display: flex;
+  gap: 15px;
+  padding: 30px 30px 30px 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-top: 30px;
+}
+.productView .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.productView .icon img {
+
+}
+.productView .benefit .benefitContent {
+  color: var(--Black, #000);
+  font-family: Poppins;
+}
+.productView .benefit .benefitContent .title {
+  font-size: 18px;
+}
+.productView .benefit .benefitContent .info {
+  font-size: 16px;
+}
+.similiar__Products__Section {
+  margin-bottom: 100px;
+}
+.similiar__Products__Section .wrapper {
+  
+}
+.related__Item__Wrapper {
+  margin-bottom: 50px;
+}
+.related__Item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+.related__Item .background {
+  width: 20px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: var(--button-background-color-red);
+}
+.related__Item .title {
+
+}
+.similiarProducts {
+
+}
+.similiarProducts .wrapper {
+  display: flex;
+  gap: 25px;
+
+}
+.similiarProducts .wrapper > div {
+  width: 48%;
+  text-align: center;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--red-color);
+  color: var(--black-color);
+}
