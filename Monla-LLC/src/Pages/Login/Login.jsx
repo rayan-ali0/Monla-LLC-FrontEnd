@@ -11,6 +11,7 @@ import { UserContext } from "../../UserContext/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
+import { useCookies } from "react-cookie";
 
 
 const Login = () => {
@@ -21,6 +22,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const [cookies, setCookie] = useCookies(["access_token"]);
 
  // Regex validations
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -65,13 +68,24 @@ const Login = () => {
       formData
     );
     if (response.data) {
+      const token = response.data.token;
+      console.log("token: ", token)
+      setCookie("access_token", token, {
+        path: "/",
+        maxAge: 24 * 60 * 60,
+        secure: true,
+        sameSite: "None",
+      });
       setUser(response.data.user);
+
       localStorage.setItem("userData", JSON.stringify(true));
+      localStorage.setItem("token",token)
+
       toast.success("Login successfully");
       setTimeout(() => {
         navigate("/", { replace: true });
       }, 1000);
-    }
+    } 
   } catch (error) {
     if (error.response.status === 401) {
       toast.error("Incorrect email or password");
