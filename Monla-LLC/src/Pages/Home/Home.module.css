@@ -1,0 +1,33 @@
+.container{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.search{
+    /* position: absolute; */
+    z-index: 1000;
+    top: 780px;
+    left: 20%;
+    bottom: 100px;
+    margin: 100px auto 0 auto;
+    width: 80%;
+    /* margin: ; */
+
+}
+.about{
+    /* position: absolute; */
+    z-index: 1000;
+    top: 580px;
+    left: 20%;
+    margin-top: 100px;
+    margin-left: 50px;
+
+}
+
+/* .product{
+margin-left: 200px;
+} */
+
+

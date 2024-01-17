@@ -1,0 +1,22 @@
+.view {
+    width: fit-content;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    background-color: #1E5DBC;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    margin-top: 2rem;
+    height: 11%;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 400px;
+    padding: 10px 36px;
+    transition: all .4s ease;
+}
+.view:hover{
+    color: #1E5DBC ;
+    border: 1px solid #1E5DBC;
+    background-color: transparent;
+
+}
