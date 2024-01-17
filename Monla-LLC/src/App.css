@@ -56,11 +56,11 @@ a {
   padding-left: 10px;
 }
 
-/* ::-webkit-scrollbar {
->>>>>>> Rachwan
+::-webkit-scrollbar {
+
   width: 12px;
   height: 12px;
-}*/
+}
 
 
 
