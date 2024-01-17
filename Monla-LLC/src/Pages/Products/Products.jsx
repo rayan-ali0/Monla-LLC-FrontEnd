@@ -58,49 +58,49 @@ const items=[
     desc:"Filter Uncatogarized"
   },
   {
-    id:1,
+    id:8,
     img:img,
     price:"$460.61",
     title:"high performance engine",
     desc:"Filter Uncatogarized"
   },
   {
-    id:2,
+    id:9,
     img:image,
     price:"$460.61",
     title:"high performance engine",
     desc:"Filter Uncatogarized"
   },
   {
-    id:3,
+    id:10,
     img:imge,
     price:"$460.61",
     title:"high performance engine",
     desc:"Filter Uncatogarized"
   },
   {
-    id:4,
+    id:11,
     img:bg,
     price:"$460.61",
     title:"high performance engine",
     desc:"Filter Uncatogarized"
   },
   {
-    id:5,
+    id:12,
     img:"https://p7.hiclipart.com/preview/266/884/893/motorcycle-accessories-goggles-automotive-design-car-drone-view.jpg",
     price:"$460.61",
     title:"high performance engine",
     desc:"Filter Uncatogarized"
   },
   {
-    id:6,
+    id:14,
     img:"https://p7.hiclipart.com/preview/266/884/893/motorcycle-accessories-goggles-automotive-design-car-drone-view.jpg",
     price:"$460.61",
     title:"thigh performance engineever",
     desc:"Filter Uncatogarized"
   },
   {
-    id:7,
+    id:15,
     img:"https://p7.hiclipart.com/preview/266/884/893/motorcycle-accessories-goggles-automotive-design-car-drone-view.jpg",
     price:"$460.61",
     title:"high performance engine",
