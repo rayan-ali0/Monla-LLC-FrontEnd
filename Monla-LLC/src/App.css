@@ -28,6 +28,7 @@
 
   /* Transitions */
   --main-transition: .3s;
+  --second-transition: .2s;
 
   /* Padding */
   --section-padding: 100px;
@@ -55,15 +56,19 @@ a {
   padding-left: 10px;
 } */
 
- ::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
+>>>>>>> Rachwan
   width: 12px;
   height: 12px;
-}
+}*/
 
 
 
 * {
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1
+} 
