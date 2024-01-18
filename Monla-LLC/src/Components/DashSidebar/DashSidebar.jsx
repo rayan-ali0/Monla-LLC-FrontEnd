@@ -18,6 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+// import Styles from "./DashSidebar.module.css"
 import "./DashSidebar.css"
 
 const drawerWidth = 240;
@@ -117,7 +118,7 @@ export default function MiniDrawer() {
               ...(open && { display: 'none' }),
             }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{color:"white"}} />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{display:"flex", justifyContent:"space-between" ,alignItems:"center",width:"100%", margin:"1rem" }}>
             <div className="profile">
@@ -130,9 +131,9 @@ export default function MiniDrawer() {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}  >
-        <DrawerHeader sx={{backgroundColor:"#163357"}} >
+        <DrawerHeader sx={{backgroundColor:"#134480", fontSize:"20px"}} >
           <h2 style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100%",fontSize:"20px", fontWeight:"1000",color:"white" }}>heyyy</h2>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} sx={{color:"white"}}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
@@ -152,6 +153,7 @@ export default function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color:"white"
                   }}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -177,6 +179,7 @@ export default function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color:"white"
                   }}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}

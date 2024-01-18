@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Styles from "./Category.module.css"
-import image from "../../../public/car.png"
-import img from "../../assets/carr.png"
-import bg from "../../assets/bg.png"
+import image from "../../assets/Images/car.png"
+import img from "../../assets/Images/carr.png"
+import bg from "../../assets/Images/bg.png"
 import axios from "axios"
 
 const category=[
