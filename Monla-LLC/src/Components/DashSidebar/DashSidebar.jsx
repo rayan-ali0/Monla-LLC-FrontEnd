@@ -18,6 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import "./DashSidebar.css"
 
 const drawerWidth = 240;
 
@@ -82,7 +83,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     ...(!open && {
       ...closedMixin(theme),
       '& .MuiDrawer-paper': closedMixin(theme),
+      
     }),
+    backgroundColor: "#163357",
+    color:"red"
   }),
 );
 
@@ -101,7 +105,7 @@ export default function MiniDrawer() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} sx={{backgroundColor:"#163357"}}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -115,19 +119,25 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" sx={{display:"flex", justifyContent:"space-between" ,alignItems:"center",width:"100%", margin:"1rem" }}>
+            <div className="profile">
+              <h3>Welcome Back</h3>
+            </div>
+            <div>
             Dashboard
+            </div>
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
+      <Drawer variant="permanent" open={open}  >
+        <DrawerHeader sx={{backgroundColor:"#163357"}} >
+          <h2 style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100%",fontSize:"20px", fontWeight:"1000",color:"white" }}>heyyy</h2>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        <List sx={{color:"white"}}>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -152,7 +162,7 @@ export default function MiniDrawer() {
           ))}
         </List>
         <Divider />
-        <List>
+        <List sx={{color:"white"}}>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
