@@ -64,7 +64,6 @@ const Searchfilter = () => {
     return (
         <div className={Styles.container}>
             <div>
-                <h6 className={Styles.h2}>Brand</h6>
                 <select
                     className={Styles.input} id="brandSelect" name="brands"
                     value={selectedBrand}
@@ -80,7 +79,7 @@ const Searchfilter = () => {
 
             </div>
             <div>
-                <h6 className={Styles.h2}>Model</h6>
+               
                 <select className={Styles.input} id="modukeSelect" name="module"
                     value={selectedModel}
                     onChange={(e) => setSelectedModel(e.target.value)}
@@ -94,18 +93,19 @@ const Searchfilter = () => {
                 </select>
             </div>
             <div>
-                <h6 className={Styles.h2}>Year</h6>
                 <select className={Styles.input} id="yearSelect" name="Year"
                     value={selectedYear}
                     onChange={(e) => setSelectedYear(e.target.value)}
                 >
                     <option className={Styles.option} value=''>Select Year</option>
                     {years.map((year) => (
-                        <option key={year._id} value={year.value}>
-                            {year.value}
+                        <option key={year._id} value={year.value.join('-')}>
+                            {year.value.join('-')}
                         </option>
                     ))}
                 </select>
+
+
 
             </div>
             <button className={Styles.btn}>Search</button>

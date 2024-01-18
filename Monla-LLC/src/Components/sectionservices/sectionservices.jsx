@@ -1,42 +1,39 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import car1 from '../../assets/car1.png';
-import car2 from '../../assets/car2.png';
-import car3 from '../../assets/car3.png';
-import Styles from '../sectionservices/servicesSection.module.css'
+// ServicesSection.js
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import styles from '../sectionservices/servicesSection.module.css';
+
 const ServicesSection = () => {
-  return (
-    <div style={{ marginTop:'50px' }}>
-    <h2>Our Services</h2>
-      
-      <div style={{ display: 'flex', gap: '7rem' }}>
-        {/* Service Card 1 */}
-        <div>
-          <img src={car1} alt="Service 1" style={{ width: '100%', height: 'auto' }} />
-          <h3>Service 1 Title</h3>
-        </div>
+    const [services, setServices] = useState([]);
 
-        {/* Service Card 2 */}
-        <div>
-          <img src={car2} alt="Service 2" style={{ width: '100%', height: 'auto' ,borderRadius:'10px'}} />
-          <h3>Service 2 Title</h3>
-        </div>
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/service/read/all');
+                setServices(response.data);
+            } catch (error) {
+                console.error('Error fetching services:', error.message);
+            }
+        };
 
-        {/* Service Card 3 */}
-        <div>
-          <img src={car3} alt="Service 3" style={{ width: '100%', height: 'auto' }} />
-          <h3>Service 3 Title</h3>
-        </div>
-      </div>
+        fetchServices();
+    }, []);
 
-      {/* View More Services Button */}
-      <div style={{ display: 'flex',marginLeft:'550px', marginTop: '2rem' }}>
-        <Link to="/services" className={Styles.view} >
-          View More Services
-        </Link>
-      </div>
-    </div>
-  );
+    return (
+        <div>
+            <h2>Explore below our best car services</h2>
+            <div className={styles.servicesContainer}>
+                {services.slice(0, 3).map(service => (
+                    <div key={service._id} className={styles.serviceCard}>
+                        <img src={`http://localhost:5000/${service.image}`} alt={service.title} />
+                        <h3>{service.title}</h3>
+                    </div>
+                ))}
+            </div>
+            <button className={styles.viewMoreButton}>View More Services</button>
+        </div>
+    );
 };
 
 export default ServicesSection;

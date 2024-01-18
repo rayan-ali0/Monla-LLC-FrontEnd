@@ -6,7 +6,7 @@ import style from '../sectionaboutus/sectionAbout.module.css'
 
 const Aboutus = ({ title, description }) => {
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div style={{ display: 'flex', alignItems: 'center' ,width:"100%"}}>
       <div style={{ flex: 1 }}>
         <h2 className={style.title}>{title}</h2>
         <p className={style.description}>{description}</p>
@@ -14,7 +14,7 @@ const Aboutus = ({ title, description }) => {
 
       </div>
       <div style={{ flex: 0.8 }}>
-        <img src={carImage} alt="Illustration" style={{ width: '80%', height: 'auto' ,marginLeft:'90px'}} />
+        <img src={carImage} alt="Illustration" style={{ width: '100%', height: 'auto' }} />
       </div>
     </div>
   );
