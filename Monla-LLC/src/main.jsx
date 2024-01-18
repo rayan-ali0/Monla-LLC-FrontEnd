@@ -4,10 +4,8 @@ import App from './App.jsx'
 import './index.css'
 import { UserProvider } from './UserContext/UserContext.jsx'
 import { HelmetProvider } from 'react-helmet-async'
-import { CookiesProvider } from "react-cookie";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <CookiesProvider>
     <React.StrictMode>
       <HelmetProvider>
         <UserProvider>
@@ -15,5 +13,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </UserProvider>
       </HelmetProvider>
     </React.StrictMode>
-  </CookiesProvider>,
 )
