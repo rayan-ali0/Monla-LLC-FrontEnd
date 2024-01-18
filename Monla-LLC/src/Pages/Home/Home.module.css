@@ -37,3 +37,14 @@ margin-left: 200px;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
 }
+.whatsappButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  

@@ -29,7 +29,7 @@ const ProductCarthome = () => {
         <div className={Styles.container} key={product._id}>
           <img src={heart} className={Styles.heart} alt="" />
           <div>
-            <img className={Styles.image} src={product.image} alt="" />
+            <img className={Styles.image} src={`http://localhost:5000/${product.image}`}  alt="" />
           </div>
           <div className={Styles.text}>
             <h2 className={Styles.price}>{product.price}</h2>
