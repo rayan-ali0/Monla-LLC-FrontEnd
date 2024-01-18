@@ -8,6 +8,7 @@ import { UserContext } from "../UserContext/UserContext.jsx"
 import Products from "../Pages/Products/Products.jsx"
 import Services from "../Pages/Services/Services.jsx"
 import Contact from "../Pages/Contact/ContactUs.jsx"
+import Cart from "../Pages/CartPage/Cart.jsx"
 
 const Router = () => {
 
@@ -21,6 +22,7 @@ const Router = () => {
             <Route index path="/product" element={<Products />} />
             <Route index path="/services" element={<Services />} />
             <Route index path="/contact" element={<Contact />} />
+            <Route index path="/cart" element={<Cart />} />
 
             <Route element={<ProtectedRoute
                 isAllowed={user && user.role === "admin"}
