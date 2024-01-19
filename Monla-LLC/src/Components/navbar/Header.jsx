@@ -15,6 +15,7 @@ const Header = () => {
   });
   
   const location = useLocation();
+  
 
   useEffect(() => {
     // Close the mobile menu when a NavLink is clicked
@@ -29,67 +30,72 @@ const Header = () => {
         <img src={logo} alt="/" />
 
         {/* Navigation Links */}
-        <nav>
-          <ul className={nav ? [styles.menu, styles.active].join(' ') : [styles.menu]}>
-            {/* NavLink for Home */}
-            <li>
-              <NavLink to='/' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/' ? styles.activeNavItem : ''}`}>
-                Home
-              </NavLink>
-            </li>
+        <div className={styles.whatever}>
+          <nav>
+            <ul className={nav ? [styles.menu, styles.active].join(' ') : [styles.menu]}>
+              {/* NavLink for Home */}
+              <li>
+                <NavLink to='/' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/' ? styles.activeNavItem : ''}`}>
+                  Home
+                </NavLink>
+              </li>
 
-            {/* NavLink for Services */}
-            <li>
-              <NavLink to='/services' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/services' ? styles.activeNavItem : ''}`}>
-                Services
-              </NavLink>
-            </li>
+              {/* NavLink for Services */}
+              <li>
+                <NavLink to='/services' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/services' ? styles.activeNavItem : ''}`}>
+                  Services
+                </NavLink>
+              </li>
 
-            {/* NavLink for Portfolio */}
-            <li>
-              <NavLink to='/products' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/portfolio' ? styles.activeNavItem : ''}`}>
-                Products
-              </NavLink>
-            </li>
+              {/* NavLink for Portfolio */}
+              <li>
+                <NavLink to='/products' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/portfolio' ? styles.activeNavItem : ''}`}>
+                  Products
+                </NavLink>
+              </li>
 
-            {/* NavLink for About Us */}
-            <li>
-              <NavLink to='/about' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/about' ? styles.activeNavItem : ''}`}>
-                About Us
-              </NavLink>
-            </li>
+              {/* NavLink for About Us */}
+              <li>
+                <NavLink to='/about' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/about' ? styles.activeNavItem : ''}`}>
+                  About 
+                </NavLink>
+              </li>
 
-            {/* NavLink for Contact Us */}
-            <li>
-              <NavLink to='/contact' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''}`}>
-                Contact Us
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/sginup' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/logout' ? styles.activeNavItem : ''}`}>
-               Register
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/logout' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/login' ? styles.activeNavItem : ''}`}>
-              login
-              </NavLink>
-            </li>
-            <li>
-  <NavLink to='/cart' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/cart' ? styles.activeNavItem : ''}`}>
-    <AiOutlineShoppingCart size={25} />
-  </NavLink>
-</li>
+              {/* NavLink for Contact Us */}
+              <li>
+                <NavLink to='/contact' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''}`}>
+                  Contact Us
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to='/sginup' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/logout' ? styles.activeNavItem : ''}`}>
+                SignUp
+                </NavLink>
+              </li>
+            
 
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+
+          <div onClick={() => setNav(!nav)} className={styles.mobile_btn}>
+            {nav ? <AiOutlineClose size={25} /> : <AiOutlineMenu size={25} />}
+          </div>
+
+          {/* Cart Icon */}
+          <div className={styles.cartIcon} >
+            <AiOutlineShoppingCart size={25} className={styles.shopIcon} />
+          </div>
+        </div>
 
         {/* Mobile Menu Button */}
-        <div onClick={() => setNav(!nav)} className={styles.mobile_btn}>
+
+        {/* <div onClick={() => setNav(!nav)} className={styles.mobile_btn}>
           {nav ? <AiOutlineClose size={25} /> : <AiOutlineMenu size={25} />}
-        </div>
+        </div> */}
       </div>
     </header>
+
+    
   );
 };
 
