@@ -350,49 +350,50 @@ export default function CategoryTable() {
           Toolbar: CustomToolbar,
         }}
         sx={{
-          color: "#0a213d",
+          color: "white",
           // border:"none",
           paddingTop: "1rem",
-          border: "1px solid #0a213d",
+          border: "1px solid white",
         //   borderRadius: "17px",
+        // margin:"10rem",
           "& .MuiDataGrid-root": {
-            backgroundColor: "#0a213d",
+            backgroundColor: "white",
           },
           "& .MuiDataGrid-columnHeader": {
             // Background color of column headers
-            color: "#0a213d",
+            color: "white",
             fontFamily: "Outfit",
             fontSize: "19px",
             // Text color of column headers
           },
           "& .MuiDataGrid-cell": {
             borderBottom: "1px solid #ccc", // Border between cells
-            color: "#0a213d",
+            color: "white",
             fontSize: "17px",
             // Text color of cells
           },
           "& .MuiTablePagination-root": {
-            color: "#0a213d", // Text color of pagination
+            color: "white", // Text color of pagination
           },
           "& .MuiDataGrid-toolbar": {
-            color: "#0a213d",
-            backgroundColor: "#0a213d", // Background color of the toolbar
+            color: "white",
+            backgroundColor: "white", // Background color of the toolbar
           },
           "& .MuiDataGrid-toolbarContainer": {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            color: "#0a213d",
+            color: "white",
             // color: 'blue',
           },
           "& .MuiButtonBase-root": {
-            color: "#0a213d", // Text color for buttons in the toolbar
+            color: "white", // Text color for buttons in the toolbar
           },
           "& .MuiPaginationItem-icon": {
-            color: "#0a213d", // Color of pagination icons
+            color: "white", // Color of pagination icons
           },
           "& .MuiSvgIcon-root": {
-            color: "#0a213d",
+            color: "white",
           },
           "& .MuiDataGrid-row , & .MuiDataGrid-cell": {
             maxHeight: "80px !important",

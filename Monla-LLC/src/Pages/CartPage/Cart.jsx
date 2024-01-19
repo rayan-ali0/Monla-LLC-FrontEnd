@@ -8,7 +8,6 @@ const Cart = () => {
 
 
         <div className={style.cartPage}>
-            {/* <PageHero/> */}
 <div className={style.cartNav}></div>  
 <div className={style.buyHistory}>
     <span className={style.historyBorder}>
@@ -21,7 +20,12 @@ const Cart = () => {
             <section className={`${style.cartRow} ${style.cartHeader}`}>
                 <span>Product</span>
                 <span>Price</span>
-                <span>Quantity</span>
+                <div className={style.quantity__to__buy1}> 
+                  <span className={style.decrease1} >-</span>
+                  <span className={style.number1}>3</span>
+                  <span className={style.increase1}>+</span>
+                
+                </div>
                 <span>Subtotal</span>
                 <span>Remove</span>
             </section>
