@@ -111,7 +111,7 @@ const Category = () => {
     <div className={Styles.container}>
         {!loading? (  data.map((item,index)=>(
             <div  key={index} className={Styles.category}>
-            <img src={`http://localhost:5000/${item.image}`}  className={Styles.image}/>
+            <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}${item.image}`}  className={Styles.image}/>
            <h3>{item.title}</h3>
             </div>
             ))): <h1> Loading</h1>}

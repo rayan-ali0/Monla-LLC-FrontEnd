@@ -1,3 +1,7 @@
+* {
+  /* box-sizing: content-box; */
+  /* box-sizing: initial; */
+}
 .container {
     /* max-width: 1466px; */
     /* background-color: rgb(131, 77, 77); */
@@ -15,6 +19,8 @@
     justify-content: center;
     align-items: flex-start;
     gap: 1rem;
+    width: 100%;
+
     /* justify-content: space-between; */
   }
   

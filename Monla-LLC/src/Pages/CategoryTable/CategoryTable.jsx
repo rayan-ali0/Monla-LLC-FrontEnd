@@ -319,7 +319,7 @@ export default function CategoryTable() {
         margin: "auto",
         height: "650px",
         marginBottom: "7rem",
-        marginBottom: "3rem",
+     
       }}
     >
       <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>
