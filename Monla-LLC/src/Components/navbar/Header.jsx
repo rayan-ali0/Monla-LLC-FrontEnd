@@ -49,7 +49,7 @@ const Header = () => {
 
               {/* NavLink for Portfolio */}
               <li>
-                <NavLink to='/products' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/portfolio' ? styles.activeNavItem : ''}`}>
+                <NavLink to='/product' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/portfolio' ? styles.activeNavItem : ''}`}>
                   Products
                 </NavLink>
               </li>

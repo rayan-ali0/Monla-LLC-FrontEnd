@@ -34,7 +34,7 @@ const Home = () => {
           `}
         </script>
       </Helmet>
-      <Header />
+      {/* <Header /> */}
       <div className={Style.newColor}>
         <div className={`conatiner ${Style.NewContainer}`}>
           {/* <div className={Style.hero}></div> */}

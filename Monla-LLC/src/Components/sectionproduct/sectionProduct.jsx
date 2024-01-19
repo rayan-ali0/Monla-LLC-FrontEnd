@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Styles from './sectionproduct.module.css';
-import heart from '../../assets/heart.png';
+import heart from '../../assets/Images/heart.png';
 
 const ProductCarthome = () => {
   const [products, setProducts] = useState([]);
