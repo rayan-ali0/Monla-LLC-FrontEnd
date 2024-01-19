@@ -1,0 +1,95 @@
+.contactPage {
+  width: 80%;
+  margin: 4em auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 5em;
+
+}
+
+.contactHolder {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.contactForm {
+  width: 47%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+}
+
+.contactDetails {
+  width: 47%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 1em;
+  padding-top: 2em;
+}
+
+.contactDetails p {
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.customButton {
+  background-color: var(--red-color);
+  color: var(--white-color);
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  font-size: 1.4em;
+  outline: none;
+
+}
+
+.customButton:focus {
+  outline: none;
+}
+
+.customButton:hover {
+  /* background-color: #e64d36; */
+    background-color: var(--button-background-hover-color);
+/*  */
+}
+
+.mapContainer {
+  height: 400px;
+}
+
+.icons {
+  width: 1.4em;
+  height: 100%;
+
+  margin-right: 5px;
+
+}
+
+.contactData {
+  display: flex;
+  font-size: 1.1em;
+
+}
+
+.contactInfo h2 {
+  font-weight: 500;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
