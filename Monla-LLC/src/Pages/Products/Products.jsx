@@ -6,6 +6,7 @@ import img from "../../assets/Images/carr.png"
 import imge from "../../assets/Images/motor.png"
 import bg from "../../assets/Images/bg.png"
 import ProductNav from "../../Components/ProductNav/ProductNav"
+import { useFetchData } from "../../CustomHook/GetData"
 
 const items=[
   {
@@ -109,7 +110,10 @@ const items=[
 ]
 
 
+
 const Products = () => {
+  const api=`${import.meta.env.VITE_REACT_APP_BACKEND}/product/read/all`
+  const {data,error, loading}=useFetchData(api)
   return (
     <div className={Styles.body}>
       <div className={Styles.nav}>
@@ -120,8 +124,10 @@ const Products = () => {
       <Category />
       </div>
       <div className={Styles.product}>
-        {items.map((item)=>(
-          <ProductCart key={item.id} price={item.price} img={item.img} title={item.title} desc={item.desc} />
+      {loading && <p>Loading...</p>}
+          {error && <p>Error: {error.message}</p>}
+        {data.map((item)=>(
+          <ProductCart key={item.id} price={item.price} img={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`} title={item.title} desc={item.description} />
 
         ))}
       </div>

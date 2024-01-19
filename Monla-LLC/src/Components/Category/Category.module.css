@@ -12,7 +12,7 @@
   
     /* Hide scrollbar */
     scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
+    scrollbar-color: black black;
   }
   
   
@@ -21,7 +21,7 @@
   }
   
   .container::-webkit-scrollbar-thumb {
-    background-color: transparent;
+    background-color: transparent ;
   }
   
   
