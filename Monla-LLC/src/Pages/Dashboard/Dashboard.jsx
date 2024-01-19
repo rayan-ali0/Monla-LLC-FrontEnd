@@ -1,10 +1,12 @@
 import React from 'react'
+import Styles from  "./Dashboard.module.css"
+import DashSidebar from '../../Components/DashSidebar/DashSidebar'
 
 const Dashboard = () => {
-  console.log("I am here")
   return (
-    <div>
-      Dashboardddd
+    <div className={Styles.container}>
+      <DashSidebar/>
+     
     </div>
   )
 }

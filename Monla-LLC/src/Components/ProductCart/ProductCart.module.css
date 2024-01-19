@@ -1,7 +1,7 @@
 .container{
     display: flex;
     flex-direction: column;
-    width: 16rem;
+    width: 18rem;
     /* border: 1px solid gray; */
     padding: 1rem;
     padding-bottom: 2rem;
@@ -23,6 +23,7 @@
     align-items: center;
     align-self: center;
     object-fit: cover;
+    max-width: 100%;
 }
 .heart{
     width: 30px;
