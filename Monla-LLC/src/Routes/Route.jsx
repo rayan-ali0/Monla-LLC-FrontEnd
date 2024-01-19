@@ -9,6 +9,7 @@ import Products from "../Pages/Products/Products.jsx"
 import Services from "../Pages/Services/Services.jsx"
 import Contact from "../Pages/Contact/ContactUs.jsx"
 import Cart from "../Pages/CartPage/Cart.jsx"
+import Summary from "../Components/orderSummary/Summary.jsx"
 
 const Router = () => {
 
@@ -23,6 +24,7 @@ const Router = () => {
             <Route index path="/services" element={<Services />} />
             <Route index path="/contact" element={<Contact />} />
             <Route index path="/cart" element={<Cart />} />
+            <Route index path="/summary" element={<Summary />} />
 
             <Route element={<ProtectedRoute
                 isAllowed={user && user.role === "admin"}

@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react'
 import style from './Cart.module.css'
 import axios from 'axios'
 import PageHero from '../../Components/PageHero/PageHero.jsx'
+import bin from '../../assets/bin.png'
 const Cart = () => {
     return (
 
 
         <div className={style.cartPage}>
+            {/* <PageHero/> */}
 <div className={style.cartNav}></div>  
 <div className={style.buyHistory}>
     <span className={style.historyBorder}>
-        </span>
-        </div>                            
+    </span>
+    MY CART
+        </div>       
+
 
 <div className={style.cartHolder}>
             <section className={`${style.cartRow} ${style.cartHeader}`}>
@@ -28,42 +32,42 @@ const Cart = () => {
                 <span>Price</span>
                 <span>Quantity</span>
                 <span>Subtotal</span>
-                <span>Remove</span>
+                <span><img src={bin} className={style.binIcon}/></span>
             </section>  
                   <section className={`${style.cartRow} ${style.cartLine}`}>
                 <span>Product</span>
                 <span>Price</span>
                 <span>Quantity</span>
                 <span>Subtotal</span>
-                <span>Remove</span>
+                <span><img src={bin} className={style.binIcon}/></span>
             </section>
             <section className={`${style.cartRow} ${style.cartLine}`}>
                 <span>Product</span>
                 <span>Price</span>
                 <span>Quantity</span>
                 <span>Subtotal</span>
-                <span>Remove</span>
+                <span><img src={bin} className={style.binIcon}/></span>
             </section>
             <section className={`${style.cartRow} ${style.cartLine}`}>
                 <span>Product</span>
                 <span>Price</span>
                 <span>Quantity</span>
                 <span>Subtotal</span>
-                <span>Remove</span>
+                <span><img src={bin} className={style.binIcon}/></span>
             </section>
             <section className={`${style.cartRow} ${style.cartLine}`}>
                 <span>Product</span>
                 <span>Price</span>
                 <span>Quantity</span>
                 <span>Subtotal</span>
-                <span>Remove</span>
+                <span><img src={bin} className={style.binIcon}/></span>
             </section>
             <section className={`${style.cartRow} ${style.cartLine}`}>
                 <span>Product</span>
                 <span>Price</span>
                 <span>Quantity</span>
                 <span>Subtotal</span>
-                <span>Remove</span>
+                <span><img src={bin} className={style.binIcon}/></span>
             </section>
             </div>
 
