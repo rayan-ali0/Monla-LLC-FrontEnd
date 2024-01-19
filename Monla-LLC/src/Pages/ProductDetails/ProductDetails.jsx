@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import styles from './ProductDetails.module.css';
 import densoImg from '../../assets/images/densoProduct.jpeg';
 import benifitIcon from '../../assets/icons/Icon-return.svg';
+import ProductCart from '../../Components/ProductCart/ProductCart';
+import carImage from "../../assets/carr.png"
 
 const ProductDetails = () => {
   const [count, setCount] = useState(1); 
@@ -85,10 +87,11 @@ const ProductDetails = () => {
           </div>
           <div className={styles.similiarProducts}>
             <div className={styles.wrapper}>
-              <div>component 1</div>
-              <div>component 2</div>
-              <div>component 3</div>
-              <div>component 4</div>
+              <div className={styles.single__product}><ProductCart img={carImage} price={15} title={"title"} desc={"desc"} single__product={true}/></div>
+              <div className={styles.single__product}><ProductCart img={carImage} price={15} title={"title"} desc={"desc"} single__product={true}/></div>
+              <div className={styles.single__product}><ProductCart img={carImage} price={15} title={"title"} desc={"desc"} single__product={true}/></div>
+              <div className={styles.single__product}><ProductCart img={carImage} price={15} title={"title"} desc={"desc"} single__product={true}/></div>
+              <div className={`${styles.single__product} ${styles.additional__product}`}><ProductCart img={carImage} price={15} title={"title"} desc={"desc"} single__product={true}/></div>
             </div>
           </div>
         </div>

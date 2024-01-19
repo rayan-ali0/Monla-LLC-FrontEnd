@@ -2,9 +2,10 @@ import React from 'react';
 import Styles from './ProductCart.module.css';
 import heart from "../../assets/heart.png"
 
-const ProductCart = ({ img, price, title, desc }) => {
+const ProductCart = ({ img, price, title, desc,  single__product = false }) => {
+
   return (
-    <div className={Styles.container}>
+    <div className={ single__product? Styles.single__container: Styles.container}>
         <img src={heart} className={Styles.heart} alt="" />
       <div>
         <img className={Styles.image} src={img} alt="" />
