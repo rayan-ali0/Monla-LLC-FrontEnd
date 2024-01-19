@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Styles from './ProductCart.module.css';
-import heart from "../../assets/Images/heart.png"
+import heart from '../../assets/heart.png';
 
 const ProductCart = ({ img, price, title, desc }) => {
   return (
     <div className={Styles.container}>
-        <img src={heart} className={Styles.heart} alt="" />
+      <img src={heart} className={Styles.heart} alt="" />
       <div>
         <img className={Styles.image} src={img} alt="" />
       </div>

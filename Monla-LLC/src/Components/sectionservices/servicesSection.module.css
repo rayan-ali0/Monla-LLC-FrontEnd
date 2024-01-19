@@ -1,0 +1,40 @@
+/* servicesSection.module.css */
+
+.servicesContainer {
+    display: flex;
+    gap: 7rem;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.serviceCard {
+    text-align: center;
+    width: 33%;
+}
+
+.serviceCard img {
+    width: 100%;
+    height: 80%;
+    border-radius: 10px;
+
+}
+
+.viewMoreButton {
+    margin: 20px auto;
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #1E5DBC;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.viewMoreButton:hover {
+    color: #1E5DBC;
+    border: 1px solid #1E5DBC;
+    background-color: transparent;
+
+}
