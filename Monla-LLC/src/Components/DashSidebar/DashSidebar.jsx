@@ -18,6 +18,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import CategoryTable from '../../Pages/CategoryTable/CategoryTable';
+
 // import Styles from "./DashSidebar.module.css"
 import "./DashSidebar.css"
 
@@ -191,6 +193,7 @@ export default function MiniDrawer() {
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <CategoryTable />
         <DrawerHeader />
    
       </Box>

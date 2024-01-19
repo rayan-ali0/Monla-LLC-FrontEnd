@@ -6,6 +6,7 @@ const Dashboard = () => {
   return (
     <div className={Styles.container}>
       <DashSidebar/>
+     
     </div>
   )
 }
