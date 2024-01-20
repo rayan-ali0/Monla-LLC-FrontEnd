@@ -6,7 +6,7 @@ import Brand from '../../Components/brands/brand'
 import Aboutus from '../../Components/sectionaboutus/setionABoutUs'
 import carImage from '../../assets/GettyImages-693170166-5a99f020c67335003717a070 1.jpg';
 import ServicesSection from '../../Components/sectionservices/sectionservices'
-import ProductCarthome from '../../Components/sectionproduct/sectionProduct'
+// import ProductCarthome from '../../Components/sectionproduct/sectionProduct'
 import Header from '../../Components/navbar/Header'
 import { FaWhatsapp } from 'react-icons/fa'; // Import WhatsApp icon
 import { Helmet } from 'react-helmet';
@@ -26,7 +26,7 @@ const Home = () => {
             {
               "@context": "http://schema.org",
               "@type": "AutomotiveBusiness",
-              "name": "Your Company Name",
+              "name": "Al Monla",
               "description": "Specializing in car AC products, repair services, and maintenance solutions.",
               "image": "URL_TO_YOUR_LOGO_IMAGE",
              
@@ -49,7 +49,7 @@ const Home = () => {
 
         <div className={Style.search}>
           <Brand />
-          <ProductCarthome />
+          {/* <ProductCarthome /> */}
         </div>
       </div>
 
