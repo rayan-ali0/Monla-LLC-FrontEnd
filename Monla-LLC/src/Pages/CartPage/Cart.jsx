@@ -20,12 +20,7 @@ const Cart = () => {
             <section className={`${style.cartRow} ${style.cartHeader}`}>
                 <span>Product</span>
                 <span>Price</span>
-                <div className={style.quantity__to__buy1}> 
-                  <span className={style.decrease1} >-</span>
-                  <span className={style.number1}>3</span>
-                  <span className={style.increase1}>+</span>
-                
-                </div>
+               <span>Quantity</span>
                 <span>Subtotal</span>
                 <span>Remove</span>
             </section>
@@ -34,11 +29,38 @@ const Cart = () => {
             <section className={`${style.cartRow} ${style.cartLine}`}>
                 <span>Product</span>
                 <span>Price</span>
-                <span>Quantity</span>
-                <span>Subtotal</span>
+                <div className={style.quantity__to__buy1}> 
+                  <span className={style.decrease1} >-</span>
+                  <span className={style.number1}>3</span>
+                  <span className={style.increase1}>+</span>
+                
+                </div>                <span>Subtotal</span>
                 <span><img src={bin} className={style.binIcon}/></span>
             </section>  
                   <section className={`${style.cartRow} ${style.cartLine}`}>
+                <span>Product</span>
+                <span>Price</span>
+                <div className={style.quantity__to__buy1}> 
+                  <span className={style.decrease1} >-</span>
+                  <span className={style.number1}>3</span>
+                  <span className={style.increase1}>+</span>
+                
+                </div>                <span>Subtotal</span>
+                <span><img src={bin} className={style.binIcon}/></span>
+            </section>
+            <section className={`${style.cartRow} ${style.cartLine}`}>
+                <span>Product</span>
+                <span>Price</span>
+                <div className={style.quantity__to__buy1}> 
+                  <span className={style.decrease1} >-</span>
+                  <span className={style.number1}>3</span>
+                  <span className={style.increase1}>+</span>
+                
+                </div>                <span>Subtotal</span>
+                <span><img src={bin} className={style.binIcon}/></span>
+            </section>
+            
+            <section className={`${style.cartRow} ${style.cartLine}`}>
                 <span>Product</span>
                 <span>Price</span>
                 <span>Quantity</span>
