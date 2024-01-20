@@ -4,7 +4,7 @@ import styles from './ProductDetails.module.css';
 import densoImg from '../../assets/images/densoProduct.jpeg';
 import benifitIcon from '../../assets/icons/Icon-return.svg';
 import ProductCart from '../../Components/ProductCart/ProductCart';
-import carImage from "../../assets/carr.png"
+import carImage from "../../assets/Images/carr.png"
 
 const ProductDetails = () => {
   const [count, setCount] = useState(1); 

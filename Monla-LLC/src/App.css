@@ -13,7 +13,7 @@
   --white-design-color: #FAF9FA;
   --black-color: #000000;
   --white-color: #FFFFFF;
-
+ 
   /* Backgound-colors */
   --background-color-white: #ffffff;
   --background-color-blue: #163357;
@@ -55,12 +55,10 @@ a {
   padding-right: 10px;
   padding-left: 10px;
 }
-
-/* ::-webkit-scrollbar {
->>>>>>> Rachwan
+::-webkit-scrollbar {
   width: 12px;
   height: 12px;
-}*/
+}
 
 
 
@@ -72,3 +70,4 @@ a {
 ::-webkit-scrollbar-track {
   background-color: #f1f1f1
 } 
+

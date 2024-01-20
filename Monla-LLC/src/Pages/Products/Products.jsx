@@ -1,10 +1,10 @@
 import Category from "../../Components/Category/Category"
 import ProductCart from "../../Components/ProductCart/ProductCart"
 import Styles from "./Products.module.css"
-import image from "../../../public/car.png"
-import img from "../../assets/carr.png"
-import imge from "../../assets/motor.png"
-import bg from "../../assets/bg.png"
+import image from "../../assets/Images/car.png"
+import img from "../../assets/Images/carr.png"
+import imge from "../../assets/Images/motor.png"
+import bg from "../../assets/Images/bg.png"
 import ProductNav from "../../Components/ProductNav/ProductNav"
 
 const items=[

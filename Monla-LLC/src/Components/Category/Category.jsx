@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
 import Styles from "./Category.module.css"
-import image from "../../../public/car.png"
-import img from "../../assets/carr.png"
-import bg from "../../assets/bg.png"
-import axios from "axios"
+import image from "../../assets/Images/car.png"
+import img from "../../assets/Images/carr.png"
+import bg from "../../assets/Images/bg.png"
+// import axios from "axios"
+import { useFetchData } from '../../CustomHook/GetData'
 
 const category=[
     {
@@ -102,40 +103,19 @@ const category=[
 ]
 
 const Category = () => {
-    const [data, setData] =useState([])
-    const [loading, setLoading] =useState(true)
-
-    const fetchCategory=async()=>{
-        try {
-            const response= await axios.get(`http://localhost:5000/category/readCategory`)
-            if(response){
-             
-                setData(response.data)
-                setLoading(false)
-                console.log(response.data)
-            }else{
-                setData([]);
-                setLoading(false);
-            }
-
-        } catch (error) {
-            console.log(error.message);
-            setLoading(false);
-        }
-    }
-    useEffect(()=>{
-        fetchCategory()
-    },[])
+    const api=`${import.meta.env.VITE_REACT_APP_BACKEND}/category/readCategory`
+    const {data, loading, error }=useFetchData(api)
 
   return (
 
     <div className={Styles.container}>
         {!loading? (  data.map((item,index)=>(
             <div  key={index} className={Styles.category}>
-            <img src={`http://localhost:5000/${item.image}`}  className={Styles.image}/>
+            <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`}  className={Styles.image}/>
            <h3>{item.title}</h3>
             </div>
             ))): <h1> Loading</h1>}
+            {error && <p>Error: {error.message}</p>}
       
    
           </div>

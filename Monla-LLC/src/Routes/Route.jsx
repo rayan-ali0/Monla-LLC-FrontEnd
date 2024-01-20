@@ -11,6 +11,11 @@ import Login from "../Pages/Login/Login.jsx";
 import Unauthorized from "../Pages/Unauthorized/Unauthorized.jsx";
 import NotFound from "../Pages/NotFound/NotFound.jsx";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails.jsx";
+import Services from "../Pages/Services/Services.jsx"
+import Contact from "../Pages/Contact/ContactUs.jsx"
+import Cart from "../Pages/CartPage/Cart.jsx"
+import Summary from "../Components/orderSummary/Summary.jsx"
+import Layout from "./Layout.jsx";
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
@@ -18,14 +23,21 @@ const Router = () => {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route index path="/" element={<Home />} />
+          <Route element={<Layout />} >
           <Route path="/" element={<Home />} />
           <Route path="/product" element={<Products />} />
+          <Route index path="/services" element={<Services />} />
+            <Route index path="/contact" element={<Contact />} />
+            <Route index path="/cart" element={<Cart />} />
+            <Route index path="/summary" element={<Summary />} />
+          </Route>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="/productdetails" element={<ProductDetails />} />
+        
+
 
           <Route
             element={
