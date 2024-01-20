@@ -16,6 +16,7 @@ import Contact from "../Pages/Contact/ContactUs.jsx"
 import Cart from "../Pages/CartPage/Cart.jsx"
 import Summary from "../Components/orderSummary/Summary.jsx"
 import Layout from "./Layout.jsx";
+import Checkout from "../Pages/Checkout/Checkout.jsx";
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
@@ -36,7 +37,7 @@ const Router = () => {
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="/productdetails" element={<ProductDetails />} />
-        
+          <Route path="/checkout" element={<Checkout />} />
 
 
           <Route
