@@ -102,15 +102,14 @@ const category=[
 
 ]
 
-const Category = () => {
-    const api=`${import.meta.env.VITE_REACT_APP_BACKEND}/category/readCategory`
-    const {data, loading, error }=useFetchData(api)
+const Category = ({data, error, loading:categoryLoading,onChange, selectedCategories}) => {
+
 
   return (
 
     <div className={Styles.container}>
-        {!loading? (  data.map((item,index)=>(
-            <div  key={index} className={Styles.category}>
+        {!categoryLoading? (  data.map((item,index)=>(
+            <div  key={index} className={Styles.category} onChange={()=>onChange(item.title)}>
             <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`}  className={Styles.image}/>
            <h3>{item.title}</h3>
             </div>
