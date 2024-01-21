@@ -3,12 +3,15 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import ModelForm from '../dashTableModel/modelform';
+import ModelAddForm from '../dashTableModel/modelAddForm';
 import { useState, useEffect } from 'react';
+import '../dashTableModel/tablemodel.css'
 
 export default function ModelsTable() {
   const [rows, setRows] = useState([]);
   const [selectedModel, setSelectedModel] = useState(null);
   const [isModelFormOpen, setIsModelFormOpen] = useState(false);
+  const [isAddFormOpen, setIsAddFormOpen] = useState(false);  // State for Add Form
   const [allBrands, setAllBrands] = useState([]);
 
   const fetchModels = async () => {
@@ -49,6 +52,16 @@ export default function ModelsTable() {
     }
   };
 
+  // Open the Add Form
+  const handleAddClick = () => {
+    setIsAddFormOpen(true);
+  };
+
+  // Close the Add Form
+  const handleAddFormClose = () => {
+    setIsAddFormOpen(false);
+  };
+
   const columns = [
     { field: '_id', headerName: 'ID', width: 90 },
     { field: 'name', headerName: 'Name', width: 150, editable: true },
@@ -65,15 +78,27 @@ export default function ModelsTable() {
       width: 150,
       renderCell: (params) => (
         <div>
-          <button onClick={() => handleEditClick(params.row)}>Edit</button>
-          <button onClick={() => handleDeleteClick(params.row._id)}>Delete</button>
+          <button style={{ backgroundColor: '#C62507', color: '#fff', padding: '8px 16px', marginRight: 8 }}
+
+            onClick={() => handleEditClick(params.row)}>Edit</button>
+          <button style={{ backgroundColor: '#C62507', color: '#fff', padding: '8px 16px', marginRight: 8 }}
+
+            onClick={() => handleDeleteClick(params.row._id)}>Delete</button>
         </div>
       ),
     },
   ];
 
   return (
-    <Box sx={{ height: 400, width: '100%' }}>
+<Box sx={{ height: 400, width: '50%', backgroundColor: '#f0f0f0', margin: '10% auto 0' }}>
+      {/* Add Button */}
+      <button
+        onClick={handleAddClick}
+        style={{ backgroundColor: '#C62507', color: '#fff', padding: '8px 16px', marginRight: 8 }}
+      >
+        Add
+      </button>
+
       <DataGrid
         rows={rows}
         columns={columns}
@@ -81,8 +106,11 @@ export default function ModelsTable() {
         checkboxSelection
         disableRowSelectionOnClick
         getRowId={(row) => row._id}
+        sx={{ '& .MuiDataGrid-cell': { borderBottom: '1px solid #e0e0e0' } }}
       />
+
       {isModelFormOpen && <ModelForm model={selectedModel} onClose={() => setIsModelFormOpen(false)} allBrands={allBrands} />}
+      {isAddFormOpen && <ModelAddForm onClose={handleAddFormClose} allBrands={allBrands} />}
     </Box>
   );
-}
+}  

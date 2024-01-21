@@ -1,0 +1,10 @@
+.css-icilas-MuiDataGrid-root .MuiDataGrid-withBorderColor {
+    border-color: #163357 !important;
+    background-color:  #163357 !important;
+    color:white ;
+}
+.css-rtrcn9-MuiTablePagination-root {
+    overflow: auto;
+    color: white !important;
+    font-size: 0.875rem;
+}

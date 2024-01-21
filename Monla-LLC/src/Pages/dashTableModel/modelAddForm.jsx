@@ -10,20 +10,18 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import { Input } from '@mui/material';
 
-const ModelForm = ({ model, onClose, allBrands }) => {
+const ModelAddForm = ({ onClose, allBrands }) => {
   const [formData, setFormData] = useState({
     name: '',
     brandId: '',
   });
 
   useEffect(() => {
-    if (model) {
-      setFormData({
-        name: model.name || '',
-        brandId: model.brandId ? model.brandId._id || '' : '',
-      });
-    }
-  }, [model]);
+    setFormData({
+      name: '',
+      brandId: '', // Default value for brandId when adding a new model
+    });
+  }, [allBrands]);
 
   const handleChange = (e) => {
     setFormData({
@@ -36,21 +34,21 @@ const ModelForm = ({ model, onClose, allBrands }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.put(`http://localhost:5000/model/${model._id}`, formData);
-      console.log('Model updated:', response.data);
+      const response = await axios.post('http://localhost:5000/model/create', formData);
+      console.log('Model added:', response.data);
 
-      // Close the form after successful update
+      // Close the form after successful add
       onClose();
     } catch (error) {
-      console.error('Error updating model:', error.response.data.error);
+      console.error('Error adding model:', error.response.data.error);
       // Handle error (show error message, etc.)
     }
   };
 
   return (
-    <Dialog open={!!model} onClose={onClose}>
+    <Dialog open={true} onClose={onClose}>
       <Box sx={{ p: 2, width: 400, backgroundColor: '#fff', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
-        <h2 style={{ color: '#163357' }}>Edit Model</h2>
+        <h2 style={{ color: '#163357' }}>Add Model</h2>
         <form onSubmit={handleSubmit}>
           <TextField
             label="Name"
@@ -82,7 +80,7 @@ const ModelForm = ({ model, onClose, allBrands }) => {
             onClick={handleSubmit}
             style={{ backgroundColor: '#163357', color: 'white', marginTop: '10px' }}
           >
-            Update Model
+            Add Model
           </Button>
         </form>
       </Box>
@@ -90,4 +88,4 @@ const ModelForm = ({ model, onClose, allBrands }) => {
   );
 };
 
-export default ModelForm;
+export default ModelAddForm;
