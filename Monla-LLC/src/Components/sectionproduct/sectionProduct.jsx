@@ -79,16 +79,22 @@
 import React, { useState, useEffect } from 'react';
 import Styles from './sectionproduct.module.css';
 import heart from '../../assets/Images/heart.png';
-
+import { useNavigate } from 'react-router-dom';
 const ProductCarthome = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+
+  const handleAddTocart = () => {
+    // Navigate to the services page
+    navigate('/cart');
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/product/read/all');
+        const response = await fetch('http://localhost:5000/product/related/five');
         const data = await response.json();
-        setProducts(data.slice(0, 4)); // Limit to the first 3 products
+        setProducts(data.slice(0, 4)); // Limit to the first 4 products
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -114,7 +120,7 @@ const ProductCarthome = () => {
             <p className={Styles.title}>{product.title}</p>
             <p className={Styles.desc}>{product.desc}</p>
           </div>
-          <button className={Styles.btn}>ADD TO CART</button>
+          <button className={Styles.btn} onClick={handleAddTocart} >ADD TO CART</button>
         </div>
       ))}
     </div>
