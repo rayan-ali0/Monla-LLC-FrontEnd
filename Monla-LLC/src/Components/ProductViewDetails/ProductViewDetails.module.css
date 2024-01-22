@@ -21,10 +21,9 @@
   font-size: 28px;
 }
 .productView .check__stock {
-  /* color: var(--second-blue-color, #324BC2); */
   color: var(--red-color);
   font-family: Poppins;
-  font-size: 14px;
+  font-size: 18px;
   margin-top: 10px;
   margin-bottom: 10px;
   font-weight: bold;
@@ -105,6 +104,7 @@
   padding: 11px 40px;
   transition: var(--second-transition);
   border-radius: 4px;
+  cursor: pointer;
 }
 .productView .purchase__buttons .addToCart .button:hover {
   background-color: var(--button-background-hover-color);
@@ -136,8 +136,14 @@
 
 
 @media (max-width: 767px) {
+  .productView .contentWrapper {
+    width: 100%;
+  }
   .productView .wrapper {
     flex-direction: column;
+  }
+  .productView .wrapper .image {
+    max-width: 500px;
   }
   .productView .product__title {
     font-size: 25px;

@@ -1,46 +1,45 @@
 import React, { useState, useEffect } from "react";
-import densoImg from "../../assets/images/densoProduct.jpeg";
 import benifitIcon from "../../assets/icons/Icon-return.svg";
 import styles from "./ProductViewDetails.module.css";
 import { useLocation } from "react-router-dom";
 
 const ProductViewDetails = ({ getCategoryId }) => {
   const location = useLocation();
-  const myItem = location.state && Location.state;
-  const [loading, setLoading] = useState(true);
-  const [count, setCount] = useState(1);
-  const [addedToCart, setAddedToCart] = useState(false);
-  const [stock, setStock] = useState(0);
+  const myItem = location.state && location.state;
+  const stock = myItem.stock
 
-  // const stock = productData.stock;
-  // const stock = 100
-  // const quality = 100;
+  const [loading, setLoading] = useState(true);
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  const [count, setCount] = useState(0);
+  const [max, setMax] = useState(myItem.stock)
 
   useEffect(() => {
-    setStock(myItem.stock || 0);
 
-    const storedQuantity = JSON.parse(localStorage.getItem(productData._id));
+    const storedQuantity = JSON.parse(localStorage.getItem(myItem._id));
     if (storedQuantity) {
-      setCount(storedQuantity);
+      setMax(stock - storedQuantity)
     }
 
-    // passing the id into Similair Product component
     if (!loading) {
       getCategoryId(myItem.category);
     }
   }, []);
 
   const updateStock = async () => {
-    if (count > stock) {
-      alert("Selected quantity exceeds available stock");
-      return;
-    }
 
     const storedQuantity = JSON.parse(localStorage.getItem(myItem._id)) || 0;
+    console.log(storedQuantity)
     localStorage.setItem(myItem._id, JSON.stringify(storedQuantity + count));
+    const quantity = JSON.parse(localStorage.getItem(myItem._id));
 
+    setMax(stock - quantity)
     setAddedToCart(true);
-    setCount(1);
+    setCount(0);
+
+    setTimeout(() => {
+      setAddedToCart(false);
+    }, 1000);
   };
 
   const decreaseOne = () => {
@@ -50,7 +49,7 @@ const ProductViewDetails = ({ getCategoryId }) => {
   };
 
   const increaseOne = () => {
-    if (count < stock) {
+    if (count < max) {
       setCount(count + 1);
     }
   };
@@ -59,7 +58,7 @@ const ProductViewDetails = ({ getCategoryId }) => {
     <section className={styles.productView}>
       <div className={`container ${styles.wrapper}`}>
         <div className={styles.image}>
-          <img src={densoImg} alt="" />
+          <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${myItem.image}`} alt="" />
         </div>
         <div className={styles.contentWrapper}>
           <div className={styles.content}>
@@ -76,7 +75,7 @@ const ProductViewDetails = ({ getCategoryId }) => {
             <div className={styles.details}>
               <div className={styles.brand}>
                 <pre>
-                  Brand: <span>{myItem.brand}</span>
+                  Brand: <span>{myItem.brand.brand}</span>
                 </pre>
                 {"  "}
               </div>
@@ -87,7 +86,7 @@ const ProductViewDetails = ({ getCategoryId }) => {
               </div>
               <div className={styles.year}>
                 <pre>
-                  Year: <span>{myItem.year}</span>
+                  Year: <span>{myItem.year.value[0]} - {myItem.year.value[1]}</span>
                 </pre>
               </div>
             </div>
