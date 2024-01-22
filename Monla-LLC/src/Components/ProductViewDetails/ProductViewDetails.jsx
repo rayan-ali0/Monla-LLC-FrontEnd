@@ -26,7 +26,6 @@ const ProductViewDetails = ({ myItem }) => {
   const updateStock = async () => {
 
     const storedQuantity = JSON.parse(localStorage.getItem(myItem._id)) || 0;
-    console.log(storedQuantity)
     localStorage.setItem(myItem._id, JSON.stringify(storedQuantity + count));
     const quantity = JSON.parse(localStorage.getItem(myItem._id));
 
@@ -83,7 +82,7 @@ const ProductViewDetails = ({ myItem }) => {
               </div>
               <div className={styles.year}>
                 <pre>
-                  Year: <span>{myItem.year.value[1]} - {myItem.year.value[1]}</span>
+                  Year: <span>{myItem.year.value[0]} - {myItem.year.value[1]}</span>
                 </pre>
               </div>
             </div>

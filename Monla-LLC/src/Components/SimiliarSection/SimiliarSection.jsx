@@ -21,7 +21,6 @@ const SimiliarSection = ({ myItem }) => {
         );
 
         if (response.data) {
-          console.log(response.data);
           setSimilarProducts(response.data);
         }
       } catch (error) {
@@ -47,6 +46,7 @@ const SimiliarSection = ({ myItem }) => {
           <div className={styles.wrapper}>
             {similiarProducts.map((product) => (
               <div className={styles.single__product} key={product._id}>
+                <Link to={`/productdetails/${product.slug}`} state={product}>
                   <ProductCart
                     img={`${import.meta.env.VITE_REACT_APP_BACKEND}/${
                       product.image
@@ -56,6 +56,7 @@ const SimiliarSection = ({ myItem }) => {
                     desc={product.desciption}
                     single__product={true}
                   />
+                </Link>
               </div>
             ))}
           </div>
