@@ -7,12 +7,14 @@
     overscroll-behavior-inline: contain;
     padding: 10px;
     font-size: 15px;
+    justify-content: center;
+    align-items: center;
 
 
   
     /* Hide scrollbar */
     scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
+    scrollbar-color: black black;
   }
   
   
@@ -21,14 +23,17 @@
   }
   
   .container::-webkit-scrollbar-thumb {
-    background-color: transparent;
+    background-color: transparent ;
   }
   
-  
+  .h3{
+    text-align: center;
+  }
+
   .image {
     width: 100px;
     height: 100px;
-    object-fit: cover;
+    object-fit: contain;
   }
   
   .category {
