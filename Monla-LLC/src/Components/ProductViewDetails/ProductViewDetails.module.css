@@ -9,9 +9,11 @@
 }
 .productView .wrapper .image {
   flex-basis: 50%;
+  text-align: center;
 }
 .productView .wrapper .image img {
   width: 100%;
+  max-width: 500px;
 }
 .productView .contentWrapper {
   flex-basis: 50%;

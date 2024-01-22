@@ -1,19 +1,17 @@
 import { React, useState } from "react";
-import { Link } from "react-router-dom";
 import styles from "./ProductDetails.module.css";
 import ProductViewDetails from "../../Components/ProductViewDetails/ProductViewDetails";
 import SimiliarSection from "../../Components/SimiliarSection/SimiliarSection";
+import { useLocation } from "react-router-dom";
 
 const ProductDetails = () => {
-  const[idCategory, setIdCategory] = useState(null)
-  const OnChange=(id)=>{
-    setIdCategory(id)
-  }
+  const location = useLocation();
+  const myItem = location.state && location.state;
 
   return (
     <main className={styles.main}>
-      <ProductViewDetails getCategoryId={OnChange}/>
-      <SimiliarSection similiarId={idCategory}/>
+      <ProductViewDetails myItem={myItem}/>
+      <SimiliarSection myItem={myItem}/>
     </main>
   );
 };

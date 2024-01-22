@@ -1,8 +1,6 @@
 .similiar__Products__Section {
   margin-bottom: 100px;
 }
-.similiar__Products__Section .wrapper {
-}
 .related__Item__Wrapper {
   margin-bottom: 50px;
 }
@@ -18,10 +16,6 @@
   border-radius: 4px;
   background-color: var(--button-background-color-red);
 }
-.related__Item .title {
-}
-.similiarProducts {
-}
 .similiarProducts .wrapper {
   display: flex;
   gap: 20px;
@@ -36,7 +30,7 @@
   .similiarProducts .wrapper .single__product {
     width: 25%;
   }
-  .similiarProducts .wrapper .additional__product {
+  .similiarProducts .wrapper .single__product:nth-child(5) {
     display: none;
   }
 }

@@ -1,9 +1,39 @@
-import React from "react";
-import ProductCart from '../../Components/ProductCart/ProductCart.jsx'
-import carImage from "../../assets/Images/carr.png";
-import styles from './SimiliarSection.module.css';
+import React, { useEffect, useState } from "react";
+import ProductCart from "../../Components/ProductCart/ProductCart.jsx";
+import styles from "./SimiliarSection.module.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-const SimiliarSection = ({ similiarId }) => {
+const SimiliarSection = ({ myItem }) => {
+  const [similiarProducts, setSimilarProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchSimilarProducts = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_REACT_APP_BACKEND}/product/related/five`,
+          {
+            params: {
+              category: myItem.category.category,
+              brand: myItem.brand.brand,
+            },
+          }
+        );
+
+        if (response.data) {
+          console.log(response.data);
+          setSimilarProducts(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching similar products:", error.message);
+      }
+    };
+
+    if (myItem.brand && myItem.brand.brand) {
+      fetchSimilarProducts();
+    }
+  }, [myItem]);
+
   return (
     <section className={styles.similiar__Products__Section}>
       <div className={`container ${styles.wrapper}`}>
@@ -15,52 +45,19 @@ const SimiliarSection = ({ similiarId }) => {
         </div>
         <div className={styles.similiarProducts}>
           <div className={styles.wrapper}>
-            <div className={styles.single__product}>
-              <ProductCart
-                img={carImage}
-                price={15}
-                title={"title"}
-                desc={"desc"}
-                single__product={true}
-              />
-            </div>
-            <div className={styles.single__product}>
-              <ProductCart
-                img={carImage}
-                price={15}
-                title={"title"}
-                desc={"desc"}
-                single__product={true}
-              />
-            </div>
-            <div className={styles.single__product}>
-              <ProductCart
-                img={carImage}
-                price={15}
-                title={"title"}
-                desc={"desc"}
-                single__product={true}
-              />
-            </div>
-            <div className={styles.single__product}>
-              <ProductCart
-                img={carImage}
-                price={15}
-                title={"title"}
-                desc={"desc"}
-                single__product={true}
-              />
-            </div>
-            <div
-              className={`${styles.single__product} ${styles.additional__product}`}>
-              <ProductCart
-                img={carImage}
-                price={15}
-                title={"title"}
-                desc={"desc"}
-                single__product={true}
-              />
-            </div>
+            {similiarProducts.map((product) => (
+              <div className={styles.single__product} key={product._id}>
+                  <ProductCart
+                    img={`${import.meta.env.VITE_REACT_APP_BACKEND}/${
+                      product.image
+                    }`}
+                    price={product.price}
+                    title={product.title}
+                    desc={product.desciption}
+                    single__product={true}
+                  />
+              </div>
+            ))}
           </div>
         </div>
       </div>

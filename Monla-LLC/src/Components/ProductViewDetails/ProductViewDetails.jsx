@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import benifitIcon from "../../assets/icons/Icon-return.svg";
 import styles from "./ProductViewDetails.module.css";
-import { useLocation } from "react-router-dom";
 
-const ProductViewDetails = ({ getCategoryId }) => {
-  const location = useLocation();
-  const myItem = location.state && location.state;
+const ProductViewDetails = ({ myItem }) => {
   const stock = myItem.stock
 
   const [loading, setLoading] = useState(true);
@@ -86,7 +83,7 @@ const ProductViewDetails = ({ getCategoryId }) => {
               </div>
               <div className={styles.year}>
                 <pre>
-                  Year: <span>{myItem.year.value[0]} - {myItem.year.value[1]}</span>
+                  Year: <span>{myItem.year.value[1]} - {myItem.year.value[1]}</span>
                 </pre>
               </div>
             </div>
