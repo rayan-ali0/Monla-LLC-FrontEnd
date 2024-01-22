@@ -35,7 +35,7 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/*" element={<NotFound />} />
-          <Route path="/productdetails" element={<ProductDetails />} />
+          <Route path="/productdetails/:slug" element={<ProductDetails />} />
         
 
 
