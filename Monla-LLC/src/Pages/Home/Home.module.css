@@ -1,0 +1,52 @@
+.NewContainer{
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.search{
+    z-index: 1000;
+    left: 20%;
+    margin: 10px auto 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-top: -6rem;
+    margin-bottom: 3rem;
+  
+
+}
+ .about{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    
+ }
+
+
+/* .product{
+margin-left: 200px;
+} */
+
+
+.newColor{
+    background-color: #F5F5F5;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+.whatsappButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.whatsappButton svg {
+    color: white !important; /* Set the color of the icon to white */
+}

@@ -1,7 +1,7 @@
 .mainC {
-    height: 98vh;
-    display: flex;
-    align-items: center;
+  height: 98vh;
+  display: flex;
+  align-items: center;
 }
 .content {
   display: flex;
@@ -35,10 +35,11 @@
   color: white;
   border-radius: 4px;
   padding: 15px 30px;
-  transition: .1s;
+  transition: 0.1s;
   border: none;
   outline: none;
   font-size: 20px;
+  cursor: pointer;
 }
 .button:hover {
   background: var(--button-background-hover-color);
@@ -52,7 +53,7 @@
   }
   .text {
     font-size: 20px;
-  };
+  }
 }
 @media (max-width: 768px) {
   .image {

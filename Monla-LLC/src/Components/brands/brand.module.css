@@ -1,0 +1,73 @@
+.container {
+    display: grid;
+    grid-auto-flow: column;
+    /* gap: var(--size-3); */
+    grid-auto-columns: 10.5%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 10px;
+    gap: 3px;
+
+/* border:1px solid red; */
+  
+    /* Hide scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+  
+  
+  .container::-webkit-scrollbar {
+    width: 4px; /* Adjust the width as needed */
+  }
+  
+  .container::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+  
+  
+  .image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+  
+  .category {
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    cursor: pointer;
+    transition: transform 0.3s ease; 
+    
+  }
+  .category:hover{
+    transform: scale(1.08);
+    transition: transform 0.3s ease;
+}
+  
+  @media screen and (max-width: 600px) {
+    .container {
+      grid-auto-columns: 20%; /* Adjust the percentage or other styles as needed for smaller screens */
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .container {
+      grid-auto-columns: 20%; /* Adjust the percentage or other styles as needed for smaller screens */
+    }
+  }
+  @media screen and (max-width: 1280px) {
+    .container {
+      grid-auto-columns: 17%; /* Adjust the percentage or other styles as needed for smaller screens */
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .container {
+      grid-auto-columns: 25%; /* Adjust the percentage or other styles as needed for smaller screens */
+    }
+  }
+  @media screen and (max-width: 470px) {
+    .container {
+      grid-auto-columns: 40%; /* Adjust the percentage or other styles as needed for smaller screens */
+    }
+  }
