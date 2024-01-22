@@ -6,7 +6,6 @@ import img from "../../assets/Images/carr.png"
 import imge from "../../assets/Images/motor.png"
 import bg from "../../assets/Images/bg.png"
 import ProductNav from "../../Components/ProductNav/ProductNav"
-
 const items=[
   {
     id:1,

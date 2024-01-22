@@ -6,9 +6,10 @@ import Brand from '../../Components/brands/brand'
 import Aboutus from '../../Components/sectionaboutus/setionABoutUs'
 import carImage from '../../assets/GettyImages-693170166-5a99f020c67335003717a070 1.jpg';
 import ServicesSection from '../../Components/sectionservices/sectionservices'
-import ProductCarthome from '../../Components/sectionproduct/sectionProduct'
 import { FaWhatsapp } from 'react-icons/fa'; // Import WhatsApp icon
 import { Helmet } from 'react-helmet';
+import ProductCart from '../../Components/ProductCart/ProductCart'
+import ProductCarthome from '../../Components/sectionproduct/sectionProduct'
 
 
 
