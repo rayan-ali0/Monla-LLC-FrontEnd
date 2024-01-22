@@ -1,4 +1,3 @@
-// import React , {useContext} from 'react';
 import style from "./OAuth.module.css";
 import googleIcon from "../assets/icons/google.png";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
@@ -25,30 +24,22 @@ export default function OAuth({ signup }) {
         console.error("Google authentication result is undefined");
         return;
       }
-  
-      console.log(result);
-  
-      const loadId = toast.loading("loading..");
       try {
         console.log("Before fetchGoogle");
         let data = await fetchGoogle(result);
-        console.log("After fetchGoogle", result);
-
-  
-        if (data && data.token && data.newUser) {
-          toast.success(`Hello ${data.newUser.email.split("@")[0]}!!`, {
-            id: loadId,
-          });
-          setUser(data.newUser);
+        if (data.data && data.token ) {
+          toast.success(`Hello ${data.data.name}!!`);
+          setUser(data.data);
           return navigate("/", { replace: true });
         } else {
-          toast.error("Can't continue with Googleee", { id: loadId });
+          toast.error("Can't continue with Googleee",);
         }
       } catch (error) {
         console.error(error);
-        toast.error("Can't continue with Google", { id: loadId });
+        toast.error("Can't continue with Google",);
       }
     } catch (error) {
+      toast.error("error loggimnn", error.message)
       console.error("Error during Google authentication:", error);
     }
   };

@@ -1,4 +1,4 @@
-import Category from "../../Components/Category/Category"
+import {Category} from "../../Components/Category/Category"
 import ProductCart from "../../Components/ProductCart/ProductCart"
 import Styles from "./Products.module.css"
 import image from "../../assets/Images/car.png"
