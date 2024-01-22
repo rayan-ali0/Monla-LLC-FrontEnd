@@ -19,6 +19,20 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import CategoryTable from '../../Pages/CategoryTable/CategoryTable';
+import PeopleIcon from '@mui/icons-material/People';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import StoreIcon from '@mui/icons-material/Store';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark';
+import CategoryIcon from '@mui/icons-material/Category';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PublicIcon from '@mui/icons-material/Public';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+
+
+
 
 // import Styles from "./DashSidebar.module.css"
 import "./DashSidebar.css"
@@ -92,6 +106,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     color:"red"
   }),
 );
+const menuItems = [
+  { text: 'Dashboard', icon: <DashboardIcon /> },
+  { text: 'People', icon: <PeopleIcon /> },
+  { text: 'Store', icon: <StoreIcon /> },
+  { text: 'Receipt', icon: <ReceiptIcon /> },
+  { text: 'Branding Watermark', icon: <BrandingWatermarkIcon /> },
+  { text: 'Category', icon: <CategoryIcon /> },
+  { text: 'Model Training', icon: <ModelTrainingIcon /> },
+  { text: 'Date Range', icon: <DateRangeIcon /> },
+  { text: 'Shopping Cart', icon: <ShoppingCartIcon /> },
+  { text: 'Public', icon: <PublicIcon /> },
+  { text: 'Local Shipping', icon: <LocalShippingIcon /> },
+];
 
 export default function MiniDrawer() {
   const theme = useTheme();
@@ -132,8 +159,8 @@ export default function MiniDrawer() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}  >
-        <DrawerHeader sx={{backgroundColor:"#134480", fontSize:"20px"}} >
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader sx={{backgroundColor:"#163357", fontSize:"20px"}} >
           <h2 style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100%",fontSize:"20px", fontWeight:"1000",color:"white" }}>heyyy</h2>
           <IconButton onClick={handleDrawerClose} sx={{color:"white"}}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -141,59 +168,37 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List sx={{color:"white"}}>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+          {menuItems.map((menuItem, index) => {
+            console.log('MenuItem:', menuItem);
+            return (
+              <ListItem key={menuItem.text} disablePadding sx={{ display: 'block' }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                    color:"white"
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List sx={{color:"white"}}>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                    color:"white"
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                      color:"white"
+                    }}
+                  >
+                    {menuItem.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={menuItem.text} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <CategoryTable />
+      
         <DrawerHeader />
    
       </Box>

@@ -1,18 +1,22 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
-import axios from 'axios';
+
+import React, { useState, useEffect } from "react";
+import  styles from '../dashTableModel/tablemodel.module.css'
+import axios from "axios";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useFetchData } from "../../CustomHook/GetData";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import ModelForm from '../dashTableModel/modelform';
 import ModelAddForm from '../dashTableModel/modelAddForm';
-import { useState, useEffect } from 'react';
-import '../dashTableModel/tablemodel.css'
-
 export default function ModelsTable() {
   const [rows, setRows] = useState([]);
   const [selectedModel, setSelectedModel] = useState(null);
   const [isModelFormOpen, setIsModelFormOpen] = useState(false);
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);  // State for Add Form
   const [allBrands, setAllBrands] = useState([]);
+
 
   const fetchModels = async () => {
     try {
@@ -37,7 +41,8 @@ export default function ModelsTable() {
     fetchAllBrands();
   }, []);
 
-  const handleEditClick = (model) => {
+
+    const handleEditClick = (model) => {
     setSelectedModel(model);
     setIsModelFormOpen(true);
   };
@@ -62,55 +67,142 @@ export default function ModelsTable() {
     setIsAddFormOpen(false);
   };
 
-  const columns = [
-    { field: '_id', headerName: 'ID', width: 90 },
-    { field: 'name', headerName: 'Name', width: 150, editable: true },
-    {
-      field: 'brandName',
-      headerName: 'Brand',
-      width: 150,
-      editable: true,
-      valueGetter: (params) => params.row.brandId ? params.row.brandId.brand : '',
-    },
-    {
-      field: 'actions',
-      headerName: 'Actions',
-      width: 150,
-      renderCell: (params) => (
-        <div>
-          <button style={{ backgroundColor: '#C62507', color: '#fff', padding: '8px 16px', marginRight: 8 }}
+const columns = [
+      { field: '_id', headerName: 'ID', width: 90 },
+      { field: 'name', headerName: 'Name', width: 150, editable: true },
+      {
+        field: 'brandName',
+        headerName: 'Brand',
+        width: 150,
+        editable: true,
+        valueGetter: (params) => params.row.brandId ? params.row.brandId.brand : '',
+      },
+      {
+        field: 'actions',
+        headerName: 'Actions',
+        width: 150,
+        renderCell: (params) => (
+          <div style={{ display: "flex" }}>
+            <div onClick={() => handleEditClick(params.row)} style={{ cursor: "pointer" }}>
+              <EditIcon />
+            </div>
+            <div onClick={() => handleDeleteClick(params.row._id)} style={{ cursor: "pointer" }}>
+              <DeleteIcon />
+            </div>
+          </div>
+        ),
+      },
+    ];
 
-            onClick={() => handleEditClick(params.row)}>Edit</button>
-          <button style={{ backgroundColor: '#C62507', color: '#fff', padding: '8px 16px', marginRight: 8 }}
 
-            onClick={() => handleDeleteClick(params.row._id)}>Delete</button>
-        </div>
-      ),
-    },
-  ];
+
+
+  
+
+
+
 
   return (
-<Box sx={{ height: 400, width: '50%', backgroundColor: '#f0f0f0', margin: '10% auto 0' }}>
-      {/* Add Button */}
+    <div
+      style={{
+        width: "90%",
+        float: "left",
+        margin: "auto",
+        height: "650px",
+        marginBottom: "7rem",
+     
+      }}
+    >
+      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>
+        Diet plans
+      </h1>
       <button
+        className={styles.btnAdd}
+        style={{
+          color: "white",
+          marginBottom: "1rem",
+          width: "7rem",
+          height: "2.5rem",
+          backgroundColor:"black",
+          borderRadius: "5px",
+          fontWeight: "bold",
+        }}
         onClick={handleAddClick}
-        style={{ backgroundColor: '#C62507', color: '#fff', padding: '8px 16px', marginRight: 8 }}
-      >
-        Add
-      </button>
-
+>
+        Add 
+    </button>
       <DataGrid
-        rows={rows}
+        rows={rows} 
         columns={columns}
+        pagination
         pageSize={5}
-        checkboxSelection
-        disableRowSelectionOnClick
-        getRowId={(row) => row._id}
-        sx={{ '& .MuiDataGrid-cell': { borderBottom: '1px solid #e0e0e0' } }}
+                getRowId={(row) => row._id}
+        rowsPerPageOptions={[5, 10, 20]}
+        components={{
+          Toolbar: CustomToolbar,
+        }}
+        sx={{
+          color: "#0a213d",
+          // border:"none",
+          paddingTop: "1rem",
+          border: "1px solid white",
+          padding:"20px",
+          borderRadius:"10px",
+        //   borderRadius: "17px",
+          "& .MuiDataGrid-root": {
+            backgroundColor: "white",
+          },
+          "& .MuiDataGrid-columnHeader": {
+            // Background color of column headers
+            color: "white",
+            fontFamily: "Outfit",
+            fontSize: "19px",
+            // Text color of column headers
+          },
+          "& .MuiDataGrid-cell": {
+            borderBottom: "1px solid #ccc", // Border between cells
+            color: "white",
+            fontSize: "17px",
+            // Text color of cells
+          },
+          "& .MuiTablePagination-root": {
+            color: "white", // Text color of pagination
+          },
+          "& .MuiDataGrid-toolbar": {
+            color: "white",
+            backgroundColor: "white", // Background color of the toolbar
+          },
+          "& .MuiDataGrid-toolbarContainer": {
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            color: "white",
+            // color: 'blue',
+          },
+          "& .MuiButtonBase-root": {
+            color: "white", // Text color for buttons in the toolbar
+          },
+          "& .MuiPaginationItem-icon": {
+            color: "white", // Color of pagination icons
+          },
+          "& .MuiSvgIcon-root": {
+            color: "white",
+          },
+          "& .MuiDataGrid-row , & .MuiDataGrid-cell": {
+            maxHeight: "80px !important",
+            height: "80px !important",
+          },
+        }}
       />
-
-      {isModelFormOpen && <ModelForm model={selectedModel} onClose={() => setIsModelFormOpen(false)} allBrands={allBrands} />}
+ {isModelFormOpen && <ModelForm model={selectedModel} onClose={() => setIsModelFormOpen(false)} allBrands={allBrands} />}
       {isAddFormOpen && <ModelAddForm onClose={handleAddFormClose} allBrands={allBrands} />}
-    </Box>
+      <ToastContainer />
+    </div>
   );
-}  
+}
+
+const CustomToolbar = () => {
+  return (
+    <GridToolbar>{/* Add any custom elements or styling here */}</GridToolbar>
+  );
+};

@@ -7,14 +7,10 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFetchData } from "../../CustomHook/GetData";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function CategoryTable() {
-  const [items, setItems] = useState(null);
-  const [selectedItemId, setSelectedItemId] = useState(null);
-  const [newName, setNewName] = useState("");
-  const [newDescription, setNewDescription] = useState("");
-  const [newImageFile, setNewImageFile] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [item, setItem] = useState([]);
   const [isloading, setIsLoading] = useState(true);
   const [isAddRegimeOpen, setIsAddRegimeOpen] = useState(false);
@@ -82,10 +78,12 @@ export default function CategoryTable() {
       width: 110,
       renderCell: (params) => (
         <img
-          src={`${import.meta.env.VITE_REACT_APP_PATH}${data.image}`}
+          src={`${import.meta.env.VITE_REACT_APP_PATH}/${params.value}`}
           alt="Image"
           style={{ width: 60, height: 60 }}
         />
+       
+
       ),
     },
 
@@ -94,27 +92,14 @@ export default function CategoryTable() {
     headerName: 'Actions',
     width: 140,
     renderCell: (params) => (
-      <div>
-        <button
-          className={`${styles.btn} ${styles}`}
-          style={{
-            marginRight: "0.5rem",
-            fontFamily: "bold",
-            fontSize: "16px",
-            "&:hover": { color: "green" },
-          }}
-          onClick={() => handleEditt(params.row.id)}
-        >
-          Edit
-        </button>
-
-          <button
-            className={styles.btn}
-            style={{ fontFamily: "bold", fontSize: "16px" }}
-            onClick={() => handleDeletee(params.row.id)}
-          >
-            Delete
-          </button>
+      <div style={{display :"flex"}}>
+        <div onClick={() => handleEditt(params.row.id)} style={{cursor:"pointer"}}>
+          <EditIcon />
+          </div>
+      
+          <div onClick={() => handleDeletee(params.row.id)} style={{cursor:"pointer"}}>
+          <DeleteIcon />
+          </div>
         </div>
       ),
     },
@@ -155,142 +140,7 @@ export default function CategoryTable() {
     }
   };
 
-  const myCustomData = [
-    {
-      id: 1,
-      title: "Item 1",
-      description:
-        "John Doe John DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn Doe",
-      image: "path-to-image-1.jpg",
-    },
-    {
-      id: 2,
-      title: "Item 2",
-      description:
-        "John Doe John DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJoh",
-      image: "path-to-image-2.jpg",
-    },
-    {
-      id: 3,
-      title: "Item 3",
-      description:
-        "JohnJohn Doe John DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJoh",
-      image: "path-to-image-3.jpg",
-    },
-    {
-      id: 4,
-      title: "Item 4",
-      description:
-        "John Doe John DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJoh",
-      image: "path-to-image-4.jpg",
-    },
-    {
-      id: 5,
-      title: "Item 5",
-      description:
-        "John DoeJohn Doe John DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJoh",
-      image: "path-to-image-5.jpg",
-    },
-    {
-      id: 6,
-      title: "Item 6",
-      description:
-        "John Doe John DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJohn DoeJoh",
-      image: "path-to-image-6.jpg",
-    },
-    // Add more rows as needed
-  ];
 
-  const resetFormFields = () => {
-    setNewName("");
-    setNewDescription("");
-    setNewImageFile(null);
-    setSelectedItemId(null);
-  };
-
-  // update regime plan
-  const handleEdit = (item) => {
-    setSelectedItemId(item._id);
-    setNewName(item.name);
-    setNewDescription(item.description);
-  };
-  const handleUpdate = async () => {
-    console.log("before", selectedItemId);
-    if (selectedItemId) {
-      console.log("after", newImageFile);
-
-      const dataToSend = {
-        id: selectedItemId,
-        name: newName,
-        description: newDescription,
-      };
-      console.log(dataToSend);
-      console.log(newImageFile);
-      await axios
-        .patch(
-          `${import.meta.env.VITE_REACT_APP_PATH}regime/update`,
-          { regimeImage: newImageFile, ...dataToSend },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-        .then((response) => {
-          if (response.data.message === "Updated Successfully") {
-            // If update is successful, update the items state with the updated data
-            setItems((prevItems) =>
-              prevItems.map((item) =>
-                item._id === selectedItemId
-                  ? {
-                      ...item,
-                      name: newName,
-                      description: newDescription,
-                      image: response.data.data.image,
-                    }
-                  : item
-              )
-            );
-            // Reset form fields and selectedItemId after update
-            setNewName("");
-            setNewDescription("");
-            setNewImageFile(null);
-            setSelectedItemId(null);
-            // You can also show a success message or perform other actions after successful update
-          } else {
-            // Handle the case when the backend API returns an error message
-            console.error(response.data.message);
-          }
-        })
-        .catch((error) => {
-          // Handle errors if the PATCH request fails
-          console.error("Error updating item:", error);
-        });
-    } else {
-      console.error("No selected item to update");
-    }
-  };
-  //   remove data
-
-  const handleDelete = async (id) => {
-    try {
-      const response = await axios.delete(
-        `${import.meta.env.VITE_REACT_APP_PATH}regime/delete`,
-        {
-          data: { id: id },
-        }
-      );
-
-      if (response.data.message === "Deleted Successfully") {
-        setItems((prevItems) => prevItems.filter((item) => item._id !== id));
-        console.log("Regime plan deleted successfully");
-      } else {
-        console.log(`No regime plan found with the id ${id}`);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
   // post data
   const handleAdd = (e) => {
     e.preventDefault();
@@ -301,10 +151,6 @@ export default function CategoryTable() {
     console.log("clickedd");
     e.preventDefault();
     setIsUpdateRegimeOpen(true);
-  };
-  const handlecancel = (e) => {
-    e.preventDefault();
-    setIsAddRegimeOpen(false);
   };
 
   const emptyRow = { id: -1, name: "Loading..." };
@@ -332,6 +178,7 @@ export default function CategoryTable() {
           marginBottom: "1rem",
           width: "7rem",
           height: "2.5rem",
+          backgroundColor:"black",
           borderRadius: "5px",
           fontWeight: "bold",
         }}
@@ -353,46 +200,48 @@ export default function CategoryTable() {
           color: "#0a213d",
           // border:"none",
           paddingTop: "1rem",
-          border: "1px solid #0a213d",
+          border: "1px solid white",
+          padding:"20px",
+          borderRadius:"10px",
         //   borderRadius: "17px",
           "& .MuiDataGrid-root": {
-            backgroundColor: "#0a213d",
+            backgroundColor: "white",
           },
           "& .MuiDataGrid-columnHeader": {
             // Background color of column headers
-            color: "#0a213d",
+            color: "white",
             fontFamily: "Outfit",
             fontSize: "19px",
             // Text color of column headers
           },
           "& .MuiDataGrid-cell": {
             borderBottom: "1px solid #ccc", // Border between cells
-            color: "#0a213d",
+            color: "white",
             fontSize: "17px",
             // Text color of cells
           },
           "& .MuiTablePagination-root": {
-            color: "#0a213d", // Text color of pagination
+            color: "white", // Text color of pagination
           },
           "& .MuiDataGrid-toolbar": {
-            color: "#0a213d",
-            backgroundColor: "#0a213d", // Background color of the toolbar
+            color: "white",
+            backgroundColor: "white", // Background color of the toolbar
           },
           "& .MuiDataGrid-toolbarContainer": {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            color: "#0a213d",
+            color: "white",
             // color: 'blue',
           },
           "& .MuiButtonBase-root": {
-            color: "#0a213d", // Text color for buttons in the toolbar
+            color: "white", // Text color for buttons in the toolbar
           },
           "& .MuiPaginationItem-icon": {
-            color: "#0a213d", // Color of pagination icons
+            color: "white", // Color of pagination icons
           },
           "& .MuiSvgIcon-root": {
-            color: "#0a213d",
+            color: "white",
           },
           "& .MuiDataGrid-row , & .MuiDataGrid-cell": {
             maxHeight: "80px !important",

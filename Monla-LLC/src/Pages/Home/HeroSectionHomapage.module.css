@@ -23,6 +23,7 @@
         font-size: 2.5vh;
         font-weight: 500;
         letter-spacing: 3px;
+
     
     }
 
@@ -34,6 +35,7 @@
         margin-left: 5rem;
         width: 42%;
 
+
     
     }
 
@@ -44,12 +46,13 @@
         height: 75%;
         width: 100%;
         letter-spacing: 3px;
+
     }
 
     .spann {
         font-weight: 800px;
         text-transform: uppercase;
-        color: #F3494A;
+        color: #C62507;
     }
 
     .button {
@@ -57,7 +60,7 @@
         text-align: center;
         color: white;
         text-decoration: none;
-        background-color: #F83739;
+        background-color: #C62507;
         border: 1px solid transparent;
         border-radius: 7px;
         margin-top: 2rem;
@@ -96,4 +99,36 @@
         padding: 0.5rem;
     } */
     
+}
+@media (max-width:375px) {
+    .button{
+        min-width: 170px;
+        height: 3rem; 
+    font-size: 15px;   }
+    .title{
+        font-size: 15px;
+    }
+    .Title {
+        font-size: 1.5vh;
+       
+    }
+}
+@media (max-width:280px) {
+    .button{
+        min-width: 150px;
+        height: 2rem; 
+    font-size: 10px;   }
+    .Title{
+        color: white;
+        font-size: 3.5vh;
+        font-weight: 500;
+        letter-spacing: 0px;
+        /* gap: 0; */
+        line-height: 30px;
+    }
+   
+    .content{
+        font-size: 1.5vh;
+
+    }
 }

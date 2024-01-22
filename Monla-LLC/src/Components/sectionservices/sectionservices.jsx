@@ -29,7 +29,7 @@ const ServicesSection = () => {
 
     return (
         <div>
-            <h2>Explore below our best car services</h2>
+            <h2 className={styles.title}>Explore below our best car services</h2>
             <div className={styles.servicesContainer}>
                 {services.slice(0, 3).map(service => (
                     <div key={service._id} className={styles.serviceCard}>

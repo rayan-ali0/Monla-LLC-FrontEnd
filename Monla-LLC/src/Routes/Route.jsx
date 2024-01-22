@@ -40,7 +40,7 @@ const Router = () => {
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="/productdetails" element={<ProductDetails />} />
-          {/* <Route  path="/Table" element={<ModelsTable/>} /> */}
+          <Route  path="/Table" element={<ModelsTable/>} />
 
         
 
