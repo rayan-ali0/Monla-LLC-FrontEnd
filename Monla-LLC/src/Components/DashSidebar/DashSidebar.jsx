@@ -30,12 +30,13 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PublicIcon from '@mui/icons-material/Public';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-
+import ModelsTable from '../../Pages/dashTableModel/TabelModel';
 
 
 
 // import Styles from "./DashSidebar.module.css"
 import "./DashSidebar.css"
+import YearsTable from '../../Pages/YearTable/yearTable';
 
 const drawerWidth = 240;
 
@@ -197,9 +198,8 @@ export default function MiniDrawer() {
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <CategoryTable />
-      
-        <DrawerHeader />
+<YearsTable/>    
+    <DrawerHeader />
    
       </Box>
     </Box>
