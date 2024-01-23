@@ -37,6 +37,7 @@ import ModelsTable from '../../Pages/dashTableModel/TabelModel';
 // import Styles from "./DashSidebar.module.css"
 import "./DashSidebar.css"
 import YearsTable from '../../Pages/YearTable/yearTable';
+import BrandsTable from '../../Pages/BrandTable/BrandTable';
 
 const drawerWidth = 240;
 
@@ -198,8 +199,8 @@ export default function MiniDrawer() {
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-<YearsTable/>    
-    <DrawerHeader />
+<BrandsTable/>  
+  <DrawerHeader />
    
       </Box>
     </Box>
