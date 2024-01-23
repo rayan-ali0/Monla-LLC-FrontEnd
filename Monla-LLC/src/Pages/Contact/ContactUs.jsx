@@ -88,7 +88,6 @@ else{
 useEffect(() => {
   console.log("Form data after setting:", formData);
 }, [formData]); 
-// const classes = useStyles();
 
 const styleField={
   '& .MuiOutlinedInput-root': {
@@ -99,7 +98,9 @@ const styleField={
     '&:hover .MuiOutlinedInput-notchedOutline': { // More specific selector for hover
       borderColor: 'darkgray',
     },
-    
+    '& .MuiInputLabel-root': {
+      color: 'black'
+    },
   },
   
     '& .MuiInputLabel-root': {

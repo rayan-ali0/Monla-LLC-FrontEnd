@@ -197,13 +197,14 @@ export default function CategoryTable() {
           Toolbar: CustomToolbar,
         }}
         sx={{
-          color: "#0a213d",
+          color: "white",
           // border:"none",
           paddingTop: "1rem",
           border: "1px solid white",
           padding:"20px",
           borderRadius:"10px",
         //   borderRadius: "17px",
+        // margin:"10rem",
           "& .MuiDataGrid-root": {
             backgroundColor: "white",
           },
