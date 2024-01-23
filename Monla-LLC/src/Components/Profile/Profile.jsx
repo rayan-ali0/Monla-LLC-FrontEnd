@@ -1,14 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styles from './Profile.module.css';
 import editIcon from "../../assets/icons/editing (1).png"
+import { UserContext } from "../../UserContext/UserContext.jsx";
+
+import axios from 'axios';
+
 const Profile = () => {
+    const { user, fetchUserData } = useContext(UserContext)
     const [isEditing, setIsEditing] = useState(false);
     const [text, setText] = useState('Click to edit me');
-const [fieldEdited,setFieldEdited]=useState()
-    const handleEditClick = (e,name) => {
-  e.preventDefault()
+    const [userData, setUserData] = useState({})
+    const [fieldEdited, setFieldEdited] = useState()
+    const [dataUpdated,setDataUpdated]=useState({})
+    const handleEditClick = (e, name) => {
+        // e.preventDefault()
+        console.log(name)
+        console.log(isEditing)
         setFieldEdited(name)
-        setIsEditing((prevIsEditing) => !prevIsEditing);
+        if(isEditing){
+// console.log(isEditing)
+            updateProfile()
+        }
+        else{
+            setIsEditing(true)
+            // console.log(isEditing)
+
+        }
+        // setIsEditing((prevIsEditing) => !prevIsEditing);
     };
 
     const handleBlur = () => {
@@ -16,8 +34,61 @@ const [fieldEdited,setFieldEdited]=useState()
     };
 
     const handleChange = (e) => {
-        setText(e.target.value);
+        // setText(e.target.value);
+        setDataUpdated({[e.target.name]:e.target.value})
+        
     };
+
+
+    const fetchUser = async () => {
+        try {
+            const res = await axios.get(`http://localhost:5000/user/65aeda9492d779d70d079f29`)
+            if (res) {
+                console.log(res.data)
+                setUserData(res.data)
+                console.log(userData)
+                setIsEditing(false)
+
+            }
+            else {
+                toast.error("Error fetching your Profile Data!");
+                console.log(res.data.message)
+                setIsEditing(false)
+
+            }
+        }
+        catch (error) {
+            console.log("Catching an error while Fetching your profile" + error.message)
+            setIsEditing(false)
+
+
+        }
+    }
+
+    const updateProfile = async (name, value) => {
+        // const data = { [name]: value }
+        try {
+            const res = await axios.put(`http://localhost:5000/user/65aeda9492d779d70d079f29`, dataUpdated)
+            if (res) {
+                console.log(res.data)
+                setUserData(res.data)
+                console.log(userData)
+            }
+            else {
+                toast.error("Error updating your Profile Data!");
+                console.log(res.data.message)
+            }
+        }
+        catch (error) {
+            console.log("Catching an error while Fetching your profile" + error.message)
+
+        }
+    }
+
+    useEffect(() => {
+        fetchUser()
+
+    }, [])
 
     return (
         <div className={styles.profilePage}>
@@ -25,55 +96,56 @@ const [fieldEdited,setFieldEdited]=useState()
 
             </nav>
             <h1 className={styles.profileTitle}> My Profile</h1>
+
             <div className={styles.profileContainer}>
 
                 <div className={styles.inputHolder}>
-
                     <label className={styles.field}>
                         <span className={styles.labelText}>Name</span>
-
-                        {isEditing && fieldEdited==="Name" ? (
+                        {isEditing && fieldEdited === "name" ? (
                             <input
                                 type="text"
-                                value={text}
+                                defaultValue={userData.name}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 autoFocus
                                 className={styles.textField}
+                                name="name"
                             />
                         ) : (
-                            <span >{text}</span>
+                            <span>{userData.name}</span>
                         )}
                     </label>
-                    <span onClick={(e)=>handleEditClick(e,"Name")} className={styles.editBtn}>
-                        <img src={editIcon} className={styles.editPng} /> Edit
+                    <span onClick={(e) => handleEditClick(e, "name")} className={styles.editBtn}>
+                        <img src={editIcon} className={styles.editPng} /><span>Edit</span>
                     </span>
                 </div>
 
-                {/* <div className={styles.inputHolder}>
+                <div className={styles.inputHolder}>
                     <label className={styles.field}>
                         <span className={styles.labelText}>Email</span>
-                        {isEditing ? (
+                        {isEditing && fieldEdited === "email" ? (
                             <input
                                 type="email"
-                                value={text}
+                                defaultValue={text}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 autoFocus
                                 className={styles.textField}
+                                name="email"
                             />
                         ) : (
-                            <span >{text}</span>
+                            <span >{userData.email}</span>
                         )}
                     </label>
-                    <span onClick={handleEditClick} className={styles.editBtn}>
-                        <img src={editIcon} className={styles.editPng} /> Edit </span>
-                </div> */}
+                    <span onClick={(e) => handleEditClick(e, "email")} className={styles.editBtn}>
+                        <img src={editIcon} className={styles.editPng} /> <span>Edit </span></span>
+                </div>
 
-                {/* <div className={styles.inputHolder}>
+                <div className={styles.inputHolder}>
                     <label className={styles.field}>
                         <span className={styles.labelText}>Password</span>
-                        {isEditing ? (
+                        {isEditing && fieldEdited === "password" ? (
                             <input
                                 type="password"
                                 value={text}
@@ -81,19 +153,20 @@ const [fieldEdited,setFieldEdited]=useState()
                                 onBlur={handleBlur}
                                 autoFocus
                                 className={styles.textField}
+                                name="password"
                             />
                         ) : (
                             <span >********</span>
                         )}
                     </label>
-                    <span onClick={handleEditClick} className={styles.editBtn}>
-                        <img src={editIcon} className={styles.editPng} /> Edit </span>
-                </div> */}
+                    <span onClick={(e) => handleEditClick(e, "password")} className={styles.editBtn}>
+                        <img src={editIcon} className={styles.editPng} /> <span>Edit </span></span>
+                </div>
 
-                {/* <div className={styles.inputHolder}>
+                <div className={styles.inputHolder}>
                     <label className={styles.field}>
                         <span className={styles.labelText}>Phone</span>
-                        {isEditing ? (
+                        {isEditing && fieldEdited === "number" ? (
                             <input
                                 type="text"
                                 value={text}
@@ -101,19 +174,20 @@ const [fieldEdited,setFieldEdited]=useState()
                                 onBlur={handleBlur}
                                 autoFocus
                                 className={styles.textField}
+                                name="number"
                             />
                         ) : (
-                            <span >{text}</span>
+                            <span >{userData.number ? userData.number : "N/A"}</span>
                         )}
                     </label>
-                    <span onClick={handleEditClick} className={styles.editBtn}>
-                        <img src={editIcon} className={styles.editPng} /> Edit </span>
-                </div> */}
+                    <span onClick={(e) => handleEditClick(e, "number")} className={styles.editBtn}>
+                        <img src={editIcon} className={styles.editPng} /> <span>Edit </span></span>
+                </div>
 
-                {/* <div className={styles.inputHolder}>
+                <div className={styles.inputHolder}>
                     <label className={styles.field}>
                         <span className={styles.labelText}>Address</span>
-                        {isEditing ? (
+                        {isEditing && fieldEdited === "address" ? (
                             <input
                                 type="text"
                                 value={text}
@@ -121,14 +195,17 @@ const [fieldEdited,setFieldEdited]=useState()
                                 onBlur={handleBlur}
                                 autoFocus
                                 className={styles.textField}
+                                name="address"
                             />
                         ) : (
-                            <span >{text}</span>
+                            <span >{userData.address ? userData.address : "N/A"}</span>
                         )}
                     </label>
-                    <span onClick={handleEditClick} className={styles.editBtn}>
-                        <img src={editIcon} className={styles.editPng} /> Edit </span>
-                </div> */}
+                    <span onClick={(e) => handleEditClick(e, "address")} className={styles.editBtn}>
+                        <img src={editIcon} className={styles.editPng} /> <span>Edit </span></span>
+                </div>
+
+
 
             </div>
         </div>
