@@ -3,10 +3,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from '../sectionservices/servicesSection.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const ServicesSection = () => {
     const [services, setServices] = useState([]);
+    const navigate = useNavigate();
 
+  const handleViewMoreClick = () => {
+    // Navigate to the services page
+    navigate('/services');
+  };
+    
     useEffect(() => {
         const fetchServices = async () => {
             try {
@@ -22,7 +29,7 @@ const ServicesSection = () => {
 
     return (
         <div>
-            <h2>Explore below our best car services</h2>
+            <h2 className={styles.title}>Explore below our best car services</h2>
             <div className={styles.servicesContainer}>
                 {services.slice(0, 3).map(service => (
                     <div key={service._id} className={styles.serviceCard}>
@@ -31,7 +38,7 @@ const ServicesSection = () => {
                     </div>
                 ))}
             </div>
-            <button className={styles.viewMoreButton}>View More Services</button>
+            <button className={styles.viewMoreButton} onClick={handleViewMoreClick}>View More Services</button>
         </div>
     );
 };

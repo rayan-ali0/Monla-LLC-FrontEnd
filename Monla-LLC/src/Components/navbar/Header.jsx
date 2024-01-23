@@ -1,22 +1,25 @@
-// Header.js - File where the Header component is defined
 
 import React, { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import logo from '../../assets/images/logo.svg';
 import { AiOutlineMenu, AiOutlineClose, AiOutlineShoppingCart } from 'react-icons/ai';
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation ,useNavigate} from "react-router-dom";
 
 
-// Header Component Definition
 const Header = () => {
   const [nav, setNav] = useState({
     isOpen: false,
-    isCartOpen: false, // Add this property
+    isCartOpen: false,
   });
   
   const location = useLocation();
   
+  const navigate = useNavigate();
 
+  const handleCartIconClick = () => {
+    // Navigate to the cart page
+    navigate('/cart');
+  };
   useEffect(() => {
     // Close the mobile menu when a NavLink is clicked
     setNav(false);
@@ -47,9 +50,9 @@ const Header = () => {
                 </NavLink>
               </li>
 
-              {/* NavLink for Portfolio */}
+              {/* NavLink for Product page */}
               <li>
-                <NavLink to='/product' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/portfolio' ? styles.activeNavItem : ''}`}>
+                <NavLink to='/product' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/product' ? styles.activeNavItem : ''}`}>
                   Products
                 </NavLink>
               </li>
@@ -68,7 +71,7 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/sginup' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/logout' ? styles.activeNavItem : ''}`}>
+                <NavLink to='/signup' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''}`}>
                 SignUp
                 </NavLink>
               </li>
@@ -82,16 +85,13 @@ const Header = () => {
           </div>
 
           {/* Cart Icon */}
-          <div className={styles.cartIcon} >
+          <div className={styles.cartIcon} onClick={handleCartIconClick}>
             <AiOutlineShoppingCart size={25} className={styles.shopIcon} />
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
 
-        {/* <div onClick={() => setNav(!nav)} className={styles.mobile_btn}>
-          {nav ? <AiOutlineClose size={25} /> : <AiOutlineMenu size={25} />}
-        </div> */}
+      
       </div>
     </header>
 
