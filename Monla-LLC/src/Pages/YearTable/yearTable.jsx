@@ -101,7 +101,7 @@ export default function YearsTable() {
           marginBottom: "1rem",
           width: "7rem",
           height: "2.5rem",
-          backgroundColor: "white",
+          backgroundColor: "blue",
           borderRadius: "5px",
           fontWeight: "bold",
         }}
@@ -110,19 +110,66 @@ export default function YearsTable() {
         Add
       </button>
       <DataGrid
-        rows={rows}
+        rows={rows} 
         columns={columns}
         pagination
         pageSize={5}
-        getRowId={(row) => row._id}
+                getRowId={(row) => row._id}
         rowsPerPageOptions={[5, 10, 20]}
-        components={{ Toolbar: CustomToolbar }}
+        components={{
+          Toolbar: CustomToolbar,
+        }}
         sx={{
-          color: "white",
+          color: "#0a213d",
+          // border:"none",
           paddingTop: "1rem",
           border: "1px solid white",
-          padding: "20px",
-          borderRadius: "10px",
+          padding:"20px",
+          borderRadius:"10px",
+        //   borderRadius: "17px",
+          "& .MuiDataGrid-root": {
+            backgroundColor: "white",
+          },
+          "& .MuiDataGrid-columnHeader": {
+            // Background color of column headers
+            color: "white",
+            fontFamily: "Outfit",
+            fontSize: "19px",
+            // Text color of column headers
+          },
+          "& .MuiDataGrid-cell": {
+            borderBottom: "1px solid #ccc", // Border between cells
+            color: "white",
+            fontSize: "17px",
+            // Text color of cells
+          },
+          "& .MuiTablePagination-root": {
+            color: "white", // Text color of pagination
+          },
+          "& .MuiDataGrid-toolbar": {
+            color: "white",
+            backgroundColor: "white", // Background color of the toolbar
+          },
+          "& .MuiDataGrid-toolbarContainer": {
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            color: "white",
+            // color: 'blue',
+          },
+          "& .MuiButtonBase-root": {
+            color: "white", // Text color for buttons in the toolbar
+          },
+          "& .MuiPaginationItem-icon": {
+            color: "white", // Color of pagination icons
+          },
+          "& .MuiSvgIcon-root": {
+            color: "white",
+          },
+          "& .MuiDataGrid-row , & .MuiDataGrid-cell": {
+            maxHeight: "80px !important",
+            height: "80px !important",
+          },
         }}
       />
       {isYearFormOpen && <YearForm year={selectedYear} onClose={() => setIsYearFormOpen(false)} allModels={allModels} />}

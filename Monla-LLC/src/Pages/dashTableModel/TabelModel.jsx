@@ -124,7 +124,7 @@ const columns = [
           marginBottom: "1rem",
           width: "7rem",
           height: "2.5rem",
-          backgroundColor:"black",
+          backgroundColor:"blue",
           borderRadius: "5px",
           fontWeight: "bold",
         }}
