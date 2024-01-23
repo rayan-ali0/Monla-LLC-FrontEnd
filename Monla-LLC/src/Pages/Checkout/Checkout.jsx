@@ -42,14 +42,22 @@ const Checkout = () => {
     const selectedLocationObject = data.find(
       (location) => location._id === selectedId
     );
-    const locationInformData = selectedLocationObject.location;
-    setFormData({
-      ...formData,
-      location: locationInformData,
-    });
-    setSelectedLocation(selectedLocationObject);
-  };
 
+    if (selectedLocationObject) {
+      const locationInformData = selectedLocationObject.location;
+      setFormData({
+        ...formData,
+        location: locationInformData,
+      });
+      setSelectedLocation(selectedLocationObject);
+    } else {
+      setFormData({
+        ...formData,
+        location: null,
+      });
+      setSelectedLocation(null);
+    }
+  }
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -90,7 +98,7 @@ const Checkout = () => {
       return;
     }
     /* ---- */
-    if (formData.location == '') {
+    if (formData.location == null) {
       toast.error("Please select your location.");
       return;
     }
@@ -102,25 +110,19 @@ const Checkout = () => {
     console.log(formData)
     // try {
     //   const response = await axios.post(
-    //     `${import.meta.env.VITE_REACT_APP_BACKEND}/user/register`,
+    //     `${import.meta.env.VITE_REACT_APP_BACKEND}/order/create`,
     //     formData
     //   );
 
     //   if (response.data) {
     //     setUser(response.data)
-    //     toast.success("Signup successfully!");
+    //     toast.success("Order created successfully!");
     //     setTimeout(() => {
-    //       navigate("/", { replace: true });
+    //       navigate("/product", { replace: true });
     //     }, 1000);
     //   }
     // } catch (error) {
-    //   if (error.response.status === 401) {
-    //     toast.error("Incorrect email or password");
-    //   } else if (error.response.status === 400){
-    //     toast.error("Email already exists.");
-    //   } else {
-    //     toast.error("An error occurred. Please try again.");
-    //   }
+    //   toast.error("Error while create your order.");
     //   console.error("Error:", error);
     // }
   };
