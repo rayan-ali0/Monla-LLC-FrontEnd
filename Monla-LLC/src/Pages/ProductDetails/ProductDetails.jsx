@@ -8,32 +8,11 @@ import axios from "axios";
 const ProductDetails = () => {
   const location = useLocation();
   const myItem = location.state && location.state;
-  const myItemID = myItem?._id;
-  const [productData, setProductData] = useState(myItem || {});
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        if (myItemID) {
-          const response = await axios.get(
-            `${import.meta.env.VITE_REACT_APP_BACKEND}/product/${myItemID}`
-          );
-
-          if (response.data) {
-            setProductData(response.data);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching product:", error.message);
-      }
-    };
-    fetchProduct();
-  }, [myItemID]);
 
   return (
     <main className={styles.main}>
-      <ProductViewDetails myItem={productData}/>
-      <SimiliarSection myItem={productData}/>
+      <ProductViewDetails myItem={myItem}/>
+      <SimiliarSection myItem={myItem}/>
     </main>
   );
 };

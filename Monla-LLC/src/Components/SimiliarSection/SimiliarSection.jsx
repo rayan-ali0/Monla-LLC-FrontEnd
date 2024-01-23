@@ -14,7 +14,7 @@ const SimiliarSection = ({ myItem }) => {
           `${import.meta.env.VITE_REACT_APP_BACKEND}/product/related/five`,
           {
             params: {
-              category: myItem.category.category,
+              category: myItem.category.title,
               brand: myItem.brand.brand,
             },
           }

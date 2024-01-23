@@ -17,10 +17,6 @@ const ProductViewDetails = ({ myItem }) => {
     if (storedQuantity) {
       setMax(stock - storedQuantity)
     }
-
-    if (!loading) {
-      getCategoryId(myItem.category);
-    }
   }, []);
 
   const updateStock = async () => {
@@ -77,7 +73,7 @@ const ProductViewDetails = ({ myItem }) => {
               </div>
               <div className={styles.model}>
                 <pre>
-                  Model: <span>{myItem.model}</span>
+                  Model: <span>{myItem.model.title}</span>
                 </pre>
               </div>
               <div className={styles.year}>
@@ -107,7 +103,7 @@ const ProductViewDetails = ({ myItem }) => {
                       : "var(--button-background-color-red)",
                   }}
                   onClick={() => updateStock()}>
-                  {addedToCart ? "Added to Cart!" : "Add to Cart"}
+                  {(addedToCart) ? "Added to Cart!" : "Add to Cart"}
                 </button>
               </div>
             </div>
