@@ -9,16 +9,50 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.minimal.css";
 import { Link } from "react-router-dom";
 
+/*
+  userName,
+  userEmail,
+  shippingId,
+  userPhone,
+  address,
+  orderNumber: count,
+  status: 'pending',
+  total,
+  userId,
+  productsOrdered
+*/
 const Checkout = () => {
   const [data, setData] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    location: "",
-    address: "",
+    // name: "",
+    // email: "",
+    // phone: "",
+    // location: "",
+    // address: "",
+    //------
+            // userName,
+            // userEmail,
+            // shippingId,
+            // userPhone,
+            // address,
+            // orderNumber: count,
+            // status: 'pending',
+            // total,
+            // userId,
+            // productsOrdered
+    //-------
+    userName: '',
+    userEmail: '',
+    shippingId: '',
+    userPhone: '',
+    address: '',
+    orderNumber: '',
+    status: 'pending',
+    total: '',
+    userId: '',
+    productsOrdered: ''
   });
 
   // Regex validations
@@ -57,7 +91,7 @@ const Checkout = () => {
       });
       setSelectedLocation(null);
     }
-  }
+  };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -71,29 +105,29 @@ const Checkout = () => {
     event.preventDefault();
 
     // Validate the form fields
-    if (!formData.name) {
+    if (!formData.userName) {
       toast.error("Please enter your name.");
       return;
     }
-    if (!nameRegex.test(formData.name)) {
+    if (!nameRegex.test(formData.userName)) {
       toast.error("Please enter a valid name.");
       return;
     }
     /* ---- */
-    if (!formData.email) {
+    if (!formData.userEmail) {
       toast.error("Please enter your email.");
       return;
     }
-    if (!emailRegex.test(formData.email)) {
+    if (!emailRegex.test(formData.userEmail)) {
       toast.error("Please enter a valid email address.");
       return;
     }
     /* ---- */
-    if (!formData.phone) {
+    if (!formData.userPhone) {
       toast.error("Please enter your phone number.");
       return;
     }
-    if (!phoneRegex.test(formData.phone)) {
+    if (!phoneRegex.test(formData.userPhone)) {
       toast.error("Invalid Phone number.");
       return;
     }
@@ -107,7 +141,7 @@ const Checkout = () => {
       toast.error("Please enter your address.");
       return;
     }
-    console.log(formData)
+    console.log(formData);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_REACT_APP_BACKEND}/order/create`,
@@ -115,7 +149,7 @@ const Checkout = () => {
       );
 
       if (response.data) {
-        setUser(response.data)
+        setUser(response.data);
         toast.success("Order created successfully!");
         setTimeout(() => {
           navigate("/", { replace: true });
@@ -150,9 +184,9 @@ const Checkout = () => {
                     <label htmlFor="na">Name*</label>
                     <input
                       type="text"
-                      name="name"
+                      name="userName"
                       id="na"
-                      value={formData.name}
+                      value={formData.userName}
                       onChange={handleInputChange}
                       placeholder="Your Name"
                     />
@@ -161,8 +195,8 @@ const Checkout = () => {
                     <label htmlFor="na">Email*</label>
                     <input
                       type="email"
-                      name="email"
-                      value={formData.email}
+                      name="userEmail"
+                      value={formData.userEmail}
                       onChange={handleInputChange}
                       id="em"
                       placeholder="Your Email"
@@ -175,9 +209,9 @@ const Checkout = () => {
                     <input
                       type="tel"
                       id="ph"
-                      name="phone"
+                      name="userPhone"
                       pattern="[0-9]{8}"
-                      value={formData.phone}
+                      value={formData.userPhone}
                       onChange={handleInputChange}
                       placeholder="Phone"
                       required
