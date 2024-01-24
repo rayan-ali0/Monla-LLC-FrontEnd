@@ -50,3 +50,9 @@ margin-left: 200px;
 .whatsappButton svg {
     color: white !important; /* Set the color of the icon to white */
 }
+@media (max-width:930px) {
+    .search{
+        width: 100%;
+        padding: 0 20px;
+    }
+}

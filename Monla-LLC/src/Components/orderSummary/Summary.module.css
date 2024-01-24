@@ -1,71 +1,69 @@
 .summaryHolder {
-    /* border: 2px solid red; */
-    width: 500px;
-    padding: 10px;
-    height: 600px;
-    margin: 50px;
-    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.05), -2px -2px 4px 0px rgba(0, 0, 0, 0.05);
+height: 650px;
+overflow: hidden;
+  padding: 20px;
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.05),
+    -2px -2px 4px 0px rgba(0, 0, 0, 0.05);
 }
 
 .summaryRow {
-    height: 4em;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 15px;
-    /* margin: 10px 0; */
-    /* box-shadow:2px 0px 0px 0px rgba(0, 0, 0, 0.05) */
-    border-top: 1px solid #EDEEF2;
-
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+  border-top: 1px solid #edeef2;
 }
 
 .summaryTitle {
-    height: 7%;
+  margin-bottom: 10px;
 }
 
 .cartItems {
-    overflow-y: scroll;
-    height: 60%;
-    margin: 0;
-
+  overflow-y: scroll;
+  height: 62%;
+  margin: 0;
 }
 
 .cartCosts {
-    height: 30%;
-
+  height: 30%;
 }
 
 .cartItems::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 
 /* Track */
 .cartItems::-webkit-scrollbar-track {
-    background: var(--second-grey-color);
+  background: var(--second-grey-color);
 }
 
 /* Handle */
 .cartItems::-webkit-scrollbar-thumb {
-    background: var(--red-color);
+  background: var(--red-color);
 }
 
 /* Handle on hover */
 .cartItems::-webkit-scrollbar-thumb:hover {
-    background: var(--button-background-hover-color);
+  background: var(--button-background-hover-color);
 }
 
 .rowD {
-    height: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    width: 40%;
-    gap:10px
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
 }
 
 .rowD img {
-    height: 70%;
-    width: 3em;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 
+@media (max-width: 767px) {
+    .summaryTitle {
+        font-size: 20px;
+    }
 }

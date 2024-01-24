@@ -1,10 +1,14 @@
 import Router from './Routes/Route.jsx'
 import { ToastContainer } from 'react-toastify';
 import './App.css'
+// import QueryComponent from './CustomHook/UseQuery.jsx';
+import { QueryClient, QueryClientProvider } from 'react-query';
 // import { ToastContainer } from 'react-toastify';
 function App() {
+  const  queryClient = new QueryClient()
   return (
     <>
+    <QueryClientProvider client={queryClient}>
     <ToastContainer     
       position="top-right"
       autoClose={5000}
@@ -18,6 +22,7 @@ function App() {
       pauseOnHover={false}
       theme="light"/>
       <Router />
+      </QueryClientProvider>
     </>
   )
 }

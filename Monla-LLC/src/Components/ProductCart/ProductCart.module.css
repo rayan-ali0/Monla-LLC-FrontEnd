@@ -64,3 +64,18 @@
     cursor: pointer;
     /* letter-spacing: 0; */
 }
+
+/* single product page styles */
+.single__container {
+    padding: 1rem;
+    padding-bottom: 2rem;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    /**/
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    text-align: center; 
+}

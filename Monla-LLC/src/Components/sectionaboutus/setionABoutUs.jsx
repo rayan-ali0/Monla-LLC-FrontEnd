@@ -6,7 +6,7 @@ import style from '../sectionaboutus/sectionAbout.module.css'
 
 const Aboutus = ({ title, description }) => {
   return (
-    <div style={{ display: 'flex', alignItems: 'center' ,width:"100%"}}>
+    <div  className={style.Aboutcontainer}>
       <div style={{ flex: 1 }}>
         <h2 className={style.title}>{title}</h2>
         <p className={style.description}>{description}</p>

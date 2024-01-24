@@ -1,0 +1,187 @@
+.productView {
+  padding-bottom: var(--section-padding);
+}
+.productView .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.productView .wrapper .image {
+  flex-basis: 50%;
+  text-align: center;
+}
+.productView .wrapper .image img {
+  width: 100%;
+  max-width: 500px;
+}
+.productView .contentWrapper {
+  flex-basis: 50%;
+}
+.productView .product__title {
+  color: var(--balck-color, #000);
+  font-size: 28px;
+}
+.productView .check__stock {
+  color: var(--red-color);
+  font-family: Poppins;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.productView .price {
+  color: var(--black-color, #000);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.productView .description {
+  color: var(--balck-color, #000);
+  font-family: Poppins;
+  font-size: 17px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgb(202, 202, 202, 0.5);
+}
+.productView .details {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.productView .details > div {
+  color: var(--Black, #000);
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.productView .purchase__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.productView .purchase__buttons .quantity__to__buy {
+  display: flex;
+}
+.productView .quantity__to__buy > span::selection {
+  background-color: transparent;
+}
+.productView .quantity__to__buy .decrease {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  cursor: pointer;
+  border-radius: 4px 0px 0px 4px;
+  font-size: 25px;
+  padding: 0px 17px;
+}
+.productView .quantity__to__buy .number {
+  padding: 8px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 47px;
+}
+.productView .quantity__to__buy .increase {
+  background-color: var(--button-background-color-red);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  cursor: pointer;
+  font-size: 25px;
+  padding: 0px 17px;
+  border-radius: 0px 4px 4px 0px;
+  border: 2px solid var(--button-background-color-red);
+}
+.productView .purchase__buttons .addToCart .button {
+  color: var(--whtie-color, #fff);
+  background-color: var(--button-background-color-red);
+  font-family: Poppins;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 11px 40px;
+  transition: var(--second-transition);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.productView .purchase__buttons .addToCart .button:hover {
+  background-color: var(--button-background-hover-color);
+}
+.productView .benefit {
+  display: flex;
+  gap: 15px;
+  padding: 30px 30px 30px 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-top: 30px;
+}
+.productView .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.productView .benefit .benefitContent {
+  color: var(--Black, #000);
+  font-family: Poppins;
+}
+.productView .benefit .benefitContent .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.productView .benefit .benefitContent .info {
+  font-size: 16px;
+}
+
+
+@media (max-width: 767px) {
+  .productView .contentWrapper {
+    width: 100%;
+  }
+  .productView .wrapper {
+    flex-direction: column;
+  }
+  .productView .wrapper .image {
+    max-width: 500px;
+  }
+  .productView .product__title {
+    font-size: 25px;
+  }
+  .productView .description {
+    font-size: 16px;
+  }
+  .productView .details {
+    margin-bottom: 22px;
+  }
+  .productView .details > div {
+    font-size: 18px;
+  }
+  .productView .quantity__to__buy .decrease {
+    font-size: 25px;
+    padding: 0px 14px;
+    height: 40px;
+  }
+  .productView .quantity__to__buy .number {
+    width: 45px;
+    height: 40px;
+  }
+  .productView .quantity__to__buy .increase {
+    font-size: 25px;
+    padding: 0px 14px;
+    height: 40px;
+  }
+  .productView .purchase__buttons .addToCart .button {
+    padding: 10px 20px;
+  }
+  .productView .benefit {
+    display: flex;
+    gap: 10px;
+    padding: 20px 20px 20px 15px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-top: 25px;
+  }
+}

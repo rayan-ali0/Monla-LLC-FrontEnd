@@ -62,9 +62,7 @@
 }
 
 .customButton:hover {
-  /* background-color: #e64d36; */
-    background-color: var(--button-background-hover-color);
-/*  */
+  background-color: var(--button-background-hover-color);
 }
 
 .mapContainer {
@@ -73,8 +71,7 @@
 
 .icons {
   width: 1.4em;
-  height: 100%;
-
+  height: 1.4em;
   margin-right: 5px;
 
 }
@@ -82,7 +79,7 @@
 .contactData {
   display: flex;
   font-size: 1.1em;
-
+  align-items: start;
 }
 
 .contactInfo h2 {
@@ -92,4 +89,50 @@
 .map {
   width: 100%;
   height: 100%;
+}
+
+@media (max-width:700px) {
+
+  .contactDetails p,
+  .contactData {
+    font-size: 1.1em;
+    font-weight: 300;
+  }
+
+  .contactPage {
+    width: 90%;
+  }
+
+  .contactDetails {
+    padding-top: 0.8em;
+  }
+
+  .icons {
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+@media (max-width:470px) {
+  .contactDetails {
+    padding-top: 0.2em;
+  }
+
+}
+
+
+@media (max-width:516px) {
+  .contactPage {
+    margin-top: 0em;
+  }
+
+  .contactHolder {
+    flex-direction: column-reverse;
+    gap: 1em
+  }
+
+  .contactHolder>section {
+    width: 100%;
+    margin: 0 auto;
+  }
 }
