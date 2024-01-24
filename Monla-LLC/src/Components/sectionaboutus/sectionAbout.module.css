@@ -41,3 +41,17 @@ font-size: 20px;   }
 margin-bottom: 13px;}
 
 }
+@media (max-width:712px) {
+    .Aboutcontainer{
+ display: block;
+}
+.NewContainer {
+    height: 75vh;
+    }
+}
+@media (max-width:768px) {
+    .Aboutcontainer{
+ display: block;
+}
+
+}

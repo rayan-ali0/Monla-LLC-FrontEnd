@@ -56,3 +56,18 @@ margin-left: 200px;
         padding: 0 20px;
     }
 }
+@media (max-width:712px) {
+
+.NewContainer {
+    height: 75vh;
+}
+}
+@media (max-width:768px) {
+
+.NewContainer {
+    height: 85vh;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+}

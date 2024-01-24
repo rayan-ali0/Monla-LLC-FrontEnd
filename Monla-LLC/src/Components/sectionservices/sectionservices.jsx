@@ -29,6 +29,8 @@ const ServicesSection = () => {
 
     return (
         <div>
+            {/* <div className={styles.productlinewrapper}> */}
+        {/* <div className={styles.productlinecontainer}> */}
             <h2 className={styles.title}>Explore below our best car services</h2>
             <div className={styles.servicesContainer}>
                 {services.slice(0, 3).map(service => (
@@ -40,6 +42,9 @@ const ServicesSection = () => {
             </div>
             <button className={styles.viewMoreButton} onClick={handleViewMoreClick}>View More Services</button>
         </div>
+        // </div>
+        // </div>
+
     );
 };
 
