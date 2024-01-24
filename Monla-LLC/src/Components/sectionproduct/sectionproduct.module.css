@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 300px;
     padding: 1rem;
     padding-bottom: 2rem;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
@@ -62,22 +63,39 @@
     cursor: pointer;
 }
 
-/* Add a container to hold the product cards in the same line */
-.productlinecontainer {
-    display: flex;
-    gap:3rem;
-    margin-top: 7%;
-    justify-content: space-between;
-    /* align-items: center; */
-}
-@media (max-width:390px) {
-    .productlinecontainer {
-        display: flex;
-        gap:3rem;
-        margin-top: 7%;
-        justify-content: space-between;
-        flex-wrap:wrap ;
-        align-items: center;
-    }
+
+
+/* Add a container to hold the product cards and make it scrollable horizontally */
+.productlinewrapper {
+    overflow-x: auto;
+    overflow-y: hidden; /* Ensure only horizontal scrollbar is shown */
+    white-space: nowrap;
+    position: relative;
+    padding-right: 15px; /* Adjust the padding as needed */
 }
 
+/* Add a scrollbar and indicate scrollability */
+.productlinewrapper::-webkit-scrollbar {
+    height: 10px;
+}
+
+.productlinewrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.productlinewrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.productlinecontainer {
+    display: flex;
+    gap: 3rem;
+    margin: 25px 10px;
+    justify-content: space-between;
+    transition: transform 0.3s ease; /* Added transition for smooth scrolling effect */
+}
+
+
+
+/* Rest of your existing styles... */
