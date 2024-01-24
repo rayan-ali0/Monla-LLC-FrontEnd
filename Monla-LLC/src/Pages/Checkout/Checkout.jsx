@@ -108,23 +108,23 @@ const Checkout = () => {
       return;
     }
     console.log(formData)
-    // try {
-    //   const response = await axios.post(
-    //     `${import.meta.env.VITE_REACT_APP_BACKEND}/order/create`,
-    //     formData
-    //   );
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_REACT_APP_BACKEND}/order/create`,
+        formData
+      );
 
-    //   if (response.data) {
-    //     setUser(response.data)
-    //     toast.success("Order created successfully!");
-    //     setTimeout(() => {
-    //       navigate("/product", { replace: true });
-    //     }, 1000);
-    //   }
-    // } catch (error) {
-    //   toast.error("Error while create your order.");
-    //   console.error("Error:", error);
-    // }
+      if (response.data) {
+        setUser(response.data)
+        toast.success("Order created successfully!");
+        setTimeout(() => {
+          navigate("/", { replace: true });
+        }, 1000);
+      }
+    } catch (error) {
+      toast.error("Error while create your order.");
+      console.error("Error:", error);
+    }
   };
 
   return (
