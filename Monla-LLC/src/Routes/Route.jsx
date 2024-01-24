@@ -12,6 +12,7 @@ import Unauthorized from "../Pages/Unauthorized/Unauthorized.jsx";
 import NotFound from "../Pages/NotFound/NotFound.jsx";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails.jsx";
 import Services from "../Pages/Services/Services.jsx"
+import Aboutus from "../Pages/Aboutus/Aboutus.jsx";
 import Contact from "../Pages/Contact/ContactUs.jsx"
 import Cart from "../Pages/CartPage/Cart.jsx"
 import Summary from "../Components/orderSummary/Summary.jsx"
@@ -43,7 +44,9 @@ const Router = () => {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/productdetails/:slug" element={<ProductDetails />} />
           <Route path="/productdetails" element={<ProductDetails />} />
-          <Route  path="/Table" element={<ModelsTable/>} />
+          <Route path="/about" element={<Aboutus />} />
+        
+
 
           <Route
             element={
