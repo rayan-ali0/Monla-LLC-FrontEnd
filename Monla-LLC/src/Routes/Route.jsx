@@ -17,6 +17,8 @@ import Cart from "../Pages/CartPage/Cart.jsx"
 import Summary from "../Components/orderSummary/Summary.jsx"
 import Layout from "./Layout.jsx";
 import Checkout from "../Pages/Checkout/Checkout.jsx";
+import ModelsTable from "../Pages/dashTableModel/TabelModel.jsx";
+import Profile from "../Components/Profile/Profile.jsx";
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
@@ -31,6 +33,8 @@ const Router = () => {
             <Route index path="/contact" element={<Contact />} />
             <Route index path="/cart" element={<Cart />} />
             <Route index path="/summary" element={<Summary />} />
+            <Route index path="/profile" element={<Profile />}></Route>
+
           </Route>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
@@ -38,6 +42,8 @@ const Router = () => {
           <Route path="/*" element={<NotFound />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/productdetails/:slug" element={<ProductDetails />} />
+          <Route path="/productdetails" element={<ProductDetails />} />
+          <Route  path="/Table" element={<ModelsTable/>} />
 
           <Route
             element={

@@ -1,0 +1,61 @@
+/* .css-icilas-MuiDataGrid-root .MuiDataGrid-withBorderColor {
+    border-color: #163357 !important;
+    background-color:  #163357 !important;
+    color:white ;
+}
+.css-rtrcn9-MuiTablePagination-root {
+    overflow: auto;
+    color: white !important;
+    font-size: 0.875rem;
+}
+.css-p4lcj1 {
+    background-color: transparent !important;
+}
+.css-1cbo4wc{
+    background-color: transparent !important;
+
+}
+.css-ojj1mg {
+    height: 400px;
+    width: 50%;
+    background-color: transparent !important;
+    margin: 10% auto 0;
+    border: 50px solid white;}
+
+    .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon{
+        color: white !important;
+    }
+
+    .css-icilas-MuiDataGrid-root .MuiDataGrid-columnSeparator--sideRight{
+        color: white;
+    } */
+
+
+.btn{
+    border-radius: 15px;
+    color: aliceblue !important;
+  }
+  .btnAdd{
+  background-color: red;
+  border: none;
+  }
+  .btnAdd:hover{
+   background-color: rgb(182, 2, 2);
+  }
+  .btn:first-of-type{
+    background-color:darkgreen;
+    border: none;
+  }
+  
+  .btn:first-of-type:hover{
+    background-color: rgb(0, 69, 0);
+  }
+  .btn:last-of-type{
+    background-color: red;
+    border: none;
+  }
+  .btn:last-of-type:hover{
+    background-color: rgb(182, 2, 2);
+  }
+  
+    

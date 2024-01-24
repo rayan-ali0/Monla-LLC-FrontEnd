@@ -18,6 +18,8 @@
     border-radius: 10px;
 
 }
+.title {
+    font-size: 30px;}
 
 .viewMoreButton {
     margin: 20px auto;
@@ -36,5 +38,22 @@
     color: #1E5DBC;
     border: 1px solid #1E5DBC;
     background-color: transparent;
+
+}
+@media (max-width:390px) {
+    .servicesContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;  
+        gap: 3rem;
+  
+    }
+  
+.serviceCard{
+    text-align: center;
+    width: 100%;
+ }
+
 
 }

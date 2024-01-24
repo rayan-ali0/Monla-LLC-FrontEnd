@@ -1,62 +1,159 @@
-.servicePage{
+.servicePage {
     height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap:1.3em;
+    gap: 1.3em;
 }
 
-.service{
+.service {
     width: 80%;
     height: 28em;
     display: flex;
     padding: 1.1em;
     margin: 0 auto;
     justify-content: space-between;
-    background-color: #f8f6f6 ;
+    background-color: #f8f6f6;
     flex-direction: row;
 }
+
 .service:nth-child(even) {
     flex-direction: row-reverse;
-  }
+}
 
-.serviceEven{
+.serviceEven {
     width: 80%;
     height: 28em;
     display: flex;
     padding: 1.1em;
     margin: 0 auto;
     justify-content: space-between;
-    /* background-color: #f8f6f6 ; */
     background-color: var(--second-grey-color);
     flex-direction: row-reverse;
 }
 
-.serviceImage{
+.serviceImage {
     height: 100%;
     width: 47%;
 
 }
-.serviceImage img{
+
+.serviceImage img {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
-.serviceDetails{
+
+.serviceDetails {
     width: 50%;
     display: flex;
     height: 80%;
     margin: auto 0;
     flex-direction: column;
-    gap:2em
+    gap: 2em;
 }
 
-.serviceTitle{
-    color: var(--second-blue-color);
-    font-size: 2em;
-}
-.serviceText{
+
+.serviceText {
     font-size: 1.3em;
     padding-right: 0.5em;
     width: 95%;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.serviceText::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+.serviceText::-webkit-scrollbar-track {
+    background: var(--text-color-grey);
+}
+
+/* Handle */
+.serviceText::-webkit-scrollbar-thumb {
+    background: var(--second-grey-color);
+}
+
+/* Handle on hover */
+.serviceText::-webkit-scrollbar-thumb:hover {
+    /* background: var(--button-background-hover-color); */
+}
+
+.serviceTitle {
+    color: var(--second-blue-color);
+    font-size: 2em;
+}
+
+
+
+@media (max-width:1150px) {
+    .serviceDetails {
+        height: 100%;
+        gap: 0.8em
+    }
+
+    .serviceTitle {
+        font-size: 1.6em;
+    }
+
+    .serviceText {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width:980px) {
+    .service {
+        width: 90%;
+    }
+
+    .serviceImage img {
+        object-fit: fill;
+    }
+}
+
+
+@media (max-width:770px) {
+    .serviceTitle {
+        font-size: 1.4em;
+    }
+
+    .serviceText {
+        font-size: 1em;
+    }
+}
+
+
+@media (max-width:600px) {
+    .service {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .service:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .service {
+        height: auto;
+        gap: 1em
+    }
+
+    .serviceImage {
+        width: 100%;
+    }
+
+    .serviceDetails {
+        width: 100%;
+    }
+}
+
+@media (max-width:440px) {
+    .serviceTitle {
+        font-size: 1.2em;
+    }
+    .serviceText {
+        font-size: 0.9em;
+    }
 }
