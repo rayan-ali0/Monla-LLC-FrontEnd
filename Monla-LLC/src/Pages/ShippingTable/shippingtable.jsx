@@ -1,46 +1,67 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import styles from "./shipping.module.css";
+import ShippingAddForm from "./addshipping";
+import EditShippingForm from "./editshipping";
 
-export default function ContactsTable() {
-  const [contacts, setContacts] = useState([]);
-  const [selectedContact, setSelectedContact] = useState(null);
+export default function ShippingsTable() {
+  const [rows, setRows] = useState([]);
+  const [selectedShipping, setSelectedShipping] = useState(null);
+  const [isAddFormOpen, setIsAddFormOpen] = useState(false);
+  const [isShippingFormOpen, setIsShippingFormOpen] = useState(false);
 
   useEffect(() => {
-    const fetchContacts = async () => {
+    const fetchShippings = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/contact/all");
-        setContacts(response.data);
+        const response = await axios.get("http://localhost:5000/shipping/all");
+        setRows(response.data);
       } catch (error) {
-        console.error("Error fetching contacts:", error.response.data);
+        console.error("Error fetching shippings:", error.response.data);
       }
     };
 
-    fetchContacts();
+    fetchShippings();
   }, []);
 
-  const handleDeleteClick = async (contactId) => {
+  const handleEditClick = (shipping) => {
+    setIsShippingFormOpen(true);
+    setSelectedShipping(shipping);
+  };
+
+  const handleDeleteClick = async (shippingId) => {
     try {
-      await axios.delete(`http://localhost:5000/contact/${contactId}`);
-      fetchContacts(); // Refresh the contacts after deleting
+      await axios.delete(`http://localhost:5000/shipping/${shippingId}`);
+      fetchShippings();
     } catch (error) {
-      console.error("Error deleting contact:", error.response.data);
+      console.error("Error deleting shipping:", error.response.data);
     }
+  };
+
+  const handleAddClick = () => {
+    setIsAddFormOpen(true);
+  };
+
+  const handleAddFormClose = () => {
+    setIsAddFormOpen(false);
   };
 
   const columns = [
     { field: "_id", headerName: "ID", flex: 1 },
-    { field: "Name", headerName: "Name", flex: 1 },
-    { field: "Email", headerName: "Email", flex: 1 },
-    { field: "Phone", headerName: "Phone", flex: 1 },
+    { field: "location", headerName: "Location", flex: 1 },
     { field: "message", headerName: "Message", flex: 1 },
+    { field: "cost", headerName: "Cost", flex: 1 },
     {
       field: "actions",
       headerName: "Actions",
       flex: 1,
       renderCell: (params) => (
         <div style={{ display: "flex" }}>
+          <div onClick={() => handleEditClick(params.row)} style={{ cursor: "pointer" }}>
+            <EditIcon />
+          </div>
           <div onClick={() => handleDeleteClick(params.row._id)} style={{ cursor: "pointer" }}>
             <DeleteIcon />
           </div>
@@ -51,9 +72,24 @@ export default function ContactsTable() {
 
   return (
     <div style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Contacts</h1>
+      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Shippings</h1>
+      <button
+        className={styles.btnAdd}
+        style={{
+          color: "white",
+          marginBottom: "1rem",
+          width: "7rem",
+          height: "2.5rem",
+          backgroundColor: "blue",
+          borderRadius: "5px",
+          fontWeight: "bold",
+        }}
+        onClick={handleAddClick}
+      >
+        Add
+      </button>
       <DataGrid
-        rows={contacts}
+        rows={rows}
         columns={columns}
         pagination
         pageSize={5}
@@ -115,6 +151,10 @@ export default function ContactsTable() {
             },
           }}
         />
+      {isShippingFormOpen && (
+        <EditShippingForm shipping={selectedShipping} onClose={() => setIsShippingFormOpen(false)} />
+      )}
+      {isAddFormOpen && <ShippingAddForm onClose={handleAddFormClose} />}
     </div>
   );
 }
