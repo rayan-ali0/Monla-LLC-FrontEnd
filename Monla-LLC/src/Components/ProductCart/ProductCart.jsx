@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Styles from './ProductCart.module.css';
 import heart from '../../assets/Images/heart.png';
 
-const ProductCart = ({ item }) => {
+const ProductCart = ({ item, single__product = false }) => {
   return (
     <div className={ single__product? Styles.single__container: Styles.container}>
         <img src={heart} className={Styles.heart} alt="" />
