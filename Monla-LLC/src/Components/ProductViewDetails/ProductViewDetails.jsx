@@ -9,14 +9,9 @@ const ProductViewDetails = ({ myItem }) => {
   const [addedToCart, setAddedToCart] = useState(false);
 
   const [count, setCount] = useState(0);
-  const [max, setMax] = useState(myItem.stock);
 
-  useEffect(() => {
-    const storedQuantity = JSON.parse(localStorage.getItem(myItem));
-    if (storedQuantity) {
-      setMax(stock - storedQuantity);
-    }
-  }, []);
+  const storedQuantity = JSON.parse(localStorage.getItem(JSON.stringify(myItem))) || 0;
+  const [max, setMax] = useState(myItem.stock - storedQuantity);
 
   const updateStock = async () => {
     const storedQuantity = JSON.parse(localStorage.getItem(JSON.stringify(myItem))) || 0;
@@ -72,7 +67,7 @@ const ProductViewDetails = ({ myItem }) => {
               </div>
               <div className={styles.model}>
                 <pre>
-                  Model: <span>{myItem.model.title}</span>
+                  Model: <span>{myItem.model.name}</span>
                 </pre>
               </div>
               <div className={styles.year}>
