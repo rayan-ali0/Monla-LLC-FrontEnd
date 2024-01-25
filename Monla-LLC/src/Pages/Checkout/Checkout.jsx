@@ -7,14 +7,18 @@ import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.minimal.css";
-import { UserContext } from "../../UserContext/UserContext";
 
 const Checkout = () => {
-  const { user } = useContext(UserContext);
   const [data, setData] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const navigate = useNavigate();
   const [locationBoolean, setLocationBoolean] = useState(false);
+  const [shippingCost, setShippingCost] = useState(0)
+
+  const [arr, setArr] = useState([]);
+  const [idsArr, setIdsArr] = useState([])
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const [formData, setFormData] = useState({
     userName: "",
     userEmail: "",
@@ -44,28 +48,32 @@ const Checkout = () => {
 
   useEffect(() => {
     let totalPrice = Number(0);
-    let arr = [];
+    let dataArr = [];
     let idsArr = [];
 
     for (let i = 0; i < localStorage.length; i++) {
       const product = JSON.parse(localStorage.key(i));
       const quantityValue = localStorage.getItem(localStorage.key(i));
       totalPrice += product.price * quantityValue;
-      arr.push(product);
+      dataArr.push(product);
       idsArr.push({ productId: product._id, quantity: quantityValue });
     }
+    console.log(dataArr)
 
     setFormData({
       ...formData,
       productsOrdered: idsArr,
       total: totalPrice,
     });
-  }, [localStorage.length]);
+    setArr(dataArr);
+    setIdsArr(idsArr);
+    setTotalPrice(totalPrice);
+  }, [localStorage]);
 
   const handleLocationChange = (e) => {
     const selectedId = e.target.value;
     const selectedLocationObject = data.find(
-      (location) => location._id === selectedId
+      (location) => location._id === selectedId,
     );
     console.log(formData);
     setFormData({
@@ -76,6 +84,7 @@ const Checkout = () => {
     if (selectedLocationObject) {
       setLocationBoolean(true);
       setSelectedLocation(selectedLocationObject);
+      setShippingCost(selectedLocationObject.cost)
     } else {
       setSelectedLocation(null);
     }
@@ -130,7 +139,6 @@ const Checkout = () => {
       toast.error("Please enter your address.");
       return;
     }
-    console.log(formData);
 
     try {
       const response = await axios.post(
@@ -149,7 +157,7 @@ const Checkout = () => {
       console.error("Error:", error);
     }
   };
-
+  console.log(shippingCost)
   return (
     <main className={styles.main}>
       <Helmet>
@@ -268,7 +276,7 @@ const Checkout = () => {
             </div>
           </div>
           <div className={styles.order__summary}>
-            <Summary />
+          <Summary products={arr} totalPrice={totalPrice} shipping={shippingCost} idsArr={idsArr}/>
           </div>
         </div>
       </div>
