@@ -3,7 +3,6 @@ import styles from "./ProductDetails.module.css";
 import ProductViewDetails from "../../Components/ProductViewDetails/ProductViewDetails";
 import SimiliarSection from "../../Components/SimiliarSection/SimiliarSection";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 
 const ProductDetails = () => {
   const location = useLocation();

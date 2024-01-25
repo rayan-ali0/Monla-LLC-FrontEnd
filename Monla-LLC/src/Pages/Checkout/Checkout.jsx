@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./Checkout.module.css";
 import axios from "axios";
 import Summary from "../../Components/orderSummary/Summary.jsx";
@@ -8,51 +8,24 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.minimal.css";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../UserContext/UserContext";
 
-/*
-  userName,
-  userEmail,
-  shippingId,
-  userPhone,
-  address,
-  orderNumber: count,
-  status: 'pending',
-  total,
-  userId,
-  productsOrdered
-*/
 const Checkout = () => {
+  const { user } = useContext(UserContext);
   const [data, setData] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const navigate = useNavigate();
+  const [locationBoolean, setLocationBoolean] = useState(false);
+console.log(user)
   const [formData, setFormData] = useState({
-    // name: "",
-    // email: "",
-    // phone: "",
-    // location: "",
-    // address: "",
-    //------
-            // userName,
-            // userEmail,
-            // shippingId,
-            // userPhone,
-            // address,
-            // orderNumber: count,
-            // status: 'pending',
-            // total,
-            // userId,
-            // productsOrdered
-    //-------
-    userName: '',
-    userEmail: '',
-    shippingId: '',
-    userPhone: '',
-    address: '',
-    orderNumber: '',
-    status: 'pending',
-    total: '',
-    userId: '',
-    productsOrdered: ''
+    userName: "",
+    userEmail: "",
+    userPhone: "",
+    address: "",
+    status: "pending",
+    total: 0,
+    shippingId: "",
+    productsOrdered: [],
   });
 
   // Regex validations
@@ -71,27 +44,45 @@ const Checkout = () => {
       });
   }, []);
 
+  useEffect(() => {
+    let totalPrice = Number(0);
+    let arr = [];
+    let idsArr = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const product = JSON.parse(localStorage.key(i));
+      const quantityValue = localStorage.getItem(localStorage.key(i));
+      totalPrice += product.price * quantityValue;
+      arr.push(product);
+      idsArr.push({ productId: product._id, quantity: quantityValue });
+    }
+
+    setFormData({ 
+      ...formData, 
+      productsOrdered: idsArr,
+      total: totalPrice
+    });
+  }, []);
+
   const handleLocationChange = (e) => {
     const selectedId = e.target.value;
     const selectedLocationObject = data.find(
       (location) => location._id === selectedId
     );
+    console.log(formData);
+    setFormData({
+      ...formData,
+      shippingId: selectedId,
+    });
 
     if (selectedLocationObject) {
-      const locationInformData = selectedLocationObject.location;
-      setFormData({
-        ...formData,
-        location: locationInformData,
-      });
+      setLocationBoolean(true);
       setSelectedLocation(selectedLocationObject);
     } else {
-      setFormData({
-        ...formData,
-        location: null,
-      });
       setSelectedLocation(null);
     }
   };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -132,7 +123,7 @@ const Checkout = () => {
       return;
     }
     /* ---- */
-    if (formData.location == null) {
+    if (!locationBoolean) {
       toast.error("Please select your location.");
       return;
     }
@@ -142,19 +133,19 @@ const Checkout = () => {
       return;
     }
     console.log(formData);
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_REACT_APP_BACKEND}/order/create`,
         formData
       );
-
       if (response.data) {
-        setUser(response.data);
         toast.success("Order created successfully!");
         setTimeout(() => {
           navigate("/", { replace: true });
         }, 1000);
       }
+      localStorage.clear();
     } catch (error) {
       toast.error("Error while create your order.");
       console.error("Error:", error);

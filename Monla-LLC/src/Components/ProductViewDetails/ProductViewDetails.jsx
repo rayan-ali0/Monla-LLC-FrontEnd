@@ -3,29 +3,27 @@ import benifitIcon from "../../assets/icons/Icon-return.svg";
 import styles from "./ProductViewDetails.module.css";
 
 const ProductViewDetails = ({ myItem }) => {
-  const stock = myItem.stock
+  const stock = myItem.stock;
 
   const [loading, setLoading] = useState(true);
   const [addedToCart, setAddedToCart] = useState(false);
 
   const [count, setCount] = useState(0);
-  const [max, setMax] = useState(myItem.stock)
+  const [max, setMax] = useState(myItem.stock);
 
   useEffect(() => {
-
-    const storedQuantity = JSON.parse(localStorage.getItem(myItem._id));
+    const storedQuantity = JSON.parse(localStorage.getItem(myItem));
     if (storedQuantity) {
-      setMax(stock - storedQuantity)
+      setMax(stock - storedQuantity);
     }
   }, []);
 
   const updateStock = async () => {
+    const storedQuantity = JSON.parse(localStorage.getItem(JSON.stringify(myItem))) || 0;
+    localStorage.setItem(JSON.stringify(myItem), JSON.stringify(storedQuantity + count));
+    const quantity = JSON.parse(localStorage.getItem(JSON.stringify(myItem)));
 
-    const storedQuantity = JSON.parse(localStorage.getItem(myItem._id)) || 0;
-    localStorage.setItem(myItem._id, JSON.stringify(storedQuantity + count));
-    const quantity = JSON.parse(localStorage.getItem(myItem._id));
-
-    setMax(stock - quantity)
+    setMax(stock - quantity);
     setAddedToCart(true);
     setCount(0);
 
@@ -50,7 +48,10 @@ const ProductViewDetails = ({ myItem }) => {
     <section className={styles.productView}>
       <div className={`container ${styles.wrapper}`}>
         <div className={styles.image}>
-          <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${myItem.image}`} alt="" />
+          <img
+            src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${myItem.image}`}
+            alt=""
+          />
         </div>
         <div className={styles.contentWrapper}>
           <div className={styles.content}>
@@ -61,9 +62,7 @@ const ProductViewDetails = ({ myItem }) => {
               {stock !== 0 ? "In Stock" : "Out of Stock"}
             </p>
             <p className={styles.price}>${myItem.price}</p>
-            <div className={styles.description}>
-              {myItem.description}
-            </div>
+            <div className={styles.description}>{myItem.description}</div>
             <div className={styles.details}>
               <div className={styles.brand}>
                 <pre>
@@ -78,7 +77,10 @@ const ProductViewDetails = ({ myItem }) => {
               </div>
               <div className={styles.year}>
                 <pre>
-                  Year: <span>{myItem.year.value[0]} - {myItem.year.value[1]}</span>
+                  Year:{" "}
+                  <span>
+                    {myItem.year.value[0]} - {myItem.year.value[1]}
+                  </span>
                 </pre>
               </div>
             </div>
@@ -103,7 +105,7 @@ const ProductViewDetails = ({ myItem }) => {
                       : "var(--button-background-color-red)",
                   }}
                   onClick={() => updateStock()}>
-                  {(addedToCart) ? "Added to Cart!" : "Add to Cart"}
+                  {addedToCart ? "Added to Cart!" : "Add to Cart"}
                 </button>
               </div>
             </div>
