@@ -36,7 +36,7 @@ const ServicesSection = () => {
                 {services.slice(0, 3).map(service => (
                     <div key={service._id} className={styles.serviceCard}>
                         <img src={`http://localhost:5000/${service.image}`} alt={service.title} />
-                        <h3>{service.title}</h3>
+                        <h3 className={styles.title}>{service.title}</h3>
                     </div>
                 ))}
             </div>

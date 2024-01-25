@@ -21,7 +21,7 @@
 
 }
 .title {
-    font-size: 30px;}
+    font-size: 25px;}
 
 .viewMoreButton {
     margin: 20px auto;
@@ -42,6 +42,37 @@
     background-color: transparent;
 
 }
+@media (max-width:768px) {
+
+    .servicesContainer{
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        justify-content: center;
+        align-items: center;
+    }
+    .serviceCard {
+        text-align: center;
+        width: 100%;
+    }
+    .title {
+        font-size: 30px;
+    }
+    }
+
+
+@media (max-width:412px) {
+    .servicesContainer {
+        display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    }
+    .serviceCard{
+        text-align: center;
+        width: 100%;
+     }
+}
 @media (max-width:390px) {
     .servicesContainer {
         display: flex;
@@ -59,49 +90,9 @@
 .viewMoreButton{
     width: 103%;
 }
+.title{
+    font-size:20px;
+}
 
 }
 
-
-@media (max-width:412px) {
-    .servicesContainer {
-        display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-    }
-    .serviceCard{
-        text-align: center;
-        width: 100%;
-     }
-}
-@media (max-width:768px) {
-
-.productlinewrapper {
-    overflow-x: auto;
-    overflow-y: hidden; /* Ensure only horizontal scrollbar is shown */
-    white-space: nowrap;
-    position: relative;
-    padding-right: 15px; /* Adjust the padding as needed */
-}
-
-/* Add a scrollbar and indicate scrollability */
-.productlinewrapper::-webkit-scrollbar {
-    height: 10px;
-}
-
-.productlinewrapper::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-}
-
-.productlinewrapper::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.productlinecontainer {
-   
-    margin: 25px 10px;
-    transition: transform 0.3s ease; /* Added transition for smooth scrolling effect */
-}
-}
