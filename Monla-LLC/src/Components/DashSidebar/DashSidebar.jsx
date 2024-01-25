@@ -41,6 +41,7 @@ import BrandsTable from '../../Pages/BrandTable/BrandTable';
 import ServicesTable from '../../Pages/ServicesTable/serviceTable';
 import ContactsTable from '../../Pages/ContactTable/contactTable';
 import ShippingsTable from '../../Pages/ShippingTable/shippingtable';
+import OrdersTable from '../../Pages/tableOrder/tableOrder';
 
 const drawerWidth = 240;
 
@@ -202,7 +203,7 @@ export default function MiniDrawer() {
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <ShippingsTable/>
+        <OrdersTable/>
   <DrawerHeader />
    
       </Box>
