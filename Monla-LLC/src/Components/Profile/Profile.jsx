@@ -1,42 +1,23 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styles from './Profile.module.css';
-import editIcon from "../../assets/icons/editing (1).png"
+import editIcon from "../../assets/icons/editing (2).png"
 import { UserContext } from "../../UserContext/UserContext.jsx";
 
 import axios from 'axios';
 
 const Profile = () => {
-    const { user, fetchUserData } = useContext(UserContext)
-    const [isEditing, setIsEditing] = useState(false);
-    const [text, setText] = useState('Click to edit me');
+    const { user, fetchUserData, logger } = useContext(UserContext)
     const [userData, setUserData] = useState({})
     const [fieldEdited, setFieldEdited] = useState()
-    const [dataUpdated,setDataUpdated]=useState({})
-    const handleEditClick = (e, name) => {
-        // e.preventDefault()
-        console.log(name)
-        console.log(isEditing)
-        setFieldEdited(name)
-        if(isEditing){
-// console.log(isEditing)
-            updateProfile()
-        }
-        else{
-            setIsEditing(true)
-            // console.log(isEditing)
-
-        }
-        // setIsEditing((prevIsEditing) => !prevIsEditing);
-    };
-
-    const handleBlur = () => {
-        setIsEditing(false);
-    };
+    const [dataUpdated, setDataUpdated] = useState({})
+    const [loading, setLoading] = useState(true)
+    const [editLoading, setEditLoading] = useState(false)
 
     const handleChange = (e) => {
-        // setText(e.target.value);
-        setDataUpdated({[e.target.name]:e.target.value})
-        
+        setDataUpdated((prevdata) => ({
+            ...prevdata,
+            [e.target.name]: e.target.value
+        }))
     };
 
 
@@ -46,166 +27,149 @@ const Profile = () => {
             if (res) {
                 console.log(res.data)
                 setUserData(res.data)
-                console.log(userData)
-                setIsEditing(false)
-
+                setLoading(false)
             }
             else {
                 toast.error("Error fetching your Profile Data!");
                 console.log(res.data.message)
-                setIsEditing(false)
-
+                setLoading(false)
             }
         }
         catch (error) {
             console.log("Catching an error while Fetching your profile" + error.message)
-            setIsEditing(false)
-
-
+            setLoading(false)
         }
     }
 
     const updateProfile = async (name, value) => {
-        // const data = { [name]: value }
+        setEditLoading(true)
         try {
             const res = await axios.put(`http://localhost:5000/user/65aeda9492d779d70d079f29`, dataUpdated)
             if (res) {
                 console.log(res.data)
                 setUserData(res.data)
                 console.log(userData)
+                setEditLoading(false)
+
             }
             else {
                 toast.error("Error updating your Profile Data!");
                 console.log(res.data.message)
+                setEditLoading(false)
+
             }
         }
         catch (error) {
             console.log("Catching an error while Fetching your profile" + error.message)
+            setEditLoading(false)
+
 
         }
     }
 
+    console.log(loading)
+
+
     useEffect(() => {
         fetchUser()
-
     }, [])
 
     return (
         <div className={styles.profilePage}>
-            <nav className={styles.navHolder}>
-
-            </nav>
             <h1 className={styles.profileTitle}> My Profile</h1>
 
             <div className={styles.profileContainer}>
+                {!loading ? (
+                    <>
 
-                <div className={styles.inputHolder}>
-                    <label className={styles.field}>
-                        <span className={styles.labelText}>Name</span>
-                        {isEditing && fieldEdited === "name" ? (
-                            <input
-                                type="text"
-                                defaultValue={userData.name}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                autoFocus
-                                className={styles.textField}
-                                name="name"
-                            />
-                        ) : (
-                            <span>{userData.name}</span>
-                        )}
-                    </label>
-                    <span onClick={(e) => handleEditClick(e, "name")} className={styles.editBtn}>
-                        <img src={editIcon} className={styles.editPng} /><span>Edit</span>
-                    </span>
-                </div>
+                        <div className={styles.inputHolder}>
+                            <label className={styles.field}>
+                                <span className={styles.labelText}>Name</span>
+                                <input
+                                    type="text"
+                                    onChange={handleChange}
+                                    autoFocus
+                                    className={styles.textField}
+                                    name="name"
+                                    defaultValue={userData.name ? userData.name : "N/A"}
+                                />
 
-                <div className={styles.inputHolder}>
-                    <label className={styles.field}>
-                        <span className={styles.labelText}>Email</span>
-                        {isEditing && fieldEdited === "email" ? (
-                            <input
-                                type="email"
-                                defaultValue={text}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                autoFocus
-                                className={styles.textField}
-                                name="email"
-                            />
-                        ) : (
-                            <span >{userData.email}</span>
-                        )}
-                    </label>
-                    <span onClick={(e) => handleEditClick(e, "email")} className={styles.editBtn}>
-                        <img src={editIcon} className={styles.editPng} /> <span>Edit </span></span>
-                </div>
+                            </label>
 
-                <div className={styles.inputHolder}>
-                    <label className={styles.field}>
-                        <span className={styles.labelText}>Password</span>
-                        {isEditing && fieldEdited === "password" ? (
-                            <input
-                                type="password"
-                                value={text}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                autoFocus
-                                className={styles.textField}
-                                name="password"
-                            />
-                        ) : (
-                            <span >********</span>
-                        )}
-                    </label>
-                    <span onClick={(e) => handleEditClick(e, "password")} className={styles.editBtn}>
-                        <img src={editIcon} className={styles.editPng} /> <span>Edit </span></span>
-                </div>
+                        </div>
 
-                <div className={styles.inputHolder}>
-                    <label className={styles.field}>
-                        <span className={styles.labelText}>Phone</span>
-                        {isEditing && fieldEdited === "number" ? (
-                            <input
-                                type="text"
-                                value={text}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                autoFocus
-                                className={styles.textField}
-                                name="number"
-                            />
-                        ) : (
-                            <span >{userData.number ? userData.number : "N/A"}</span>
-                        )}
-                    </label>
-                    <span onClick={(e) => handleEditClick(e, "number")} className={styles.editBtn}>
-                        <img src={editIcon} className={styles.editPng} /> <span>Edit </span></span>
-                </div>
+                        <div className={styles.inputHolder}>
+                            <label className={styles.field}>
+                                <span className={styles.labelText}>Email</span>
+                                <input
+                                    type="email"
+                                    onChange={handleChange}
+                                    autoFocus
+                                    className={styles.textField}
+                                    name="email"
+                                    defaultValue={userData.email}
 
-                <div className={styles.inputHolder}>
-                    <label className={styles.field}>
-                        <span className={styles.labelText}>Address</span>
-                        {isEditing && fieldEdited === "address" ? (
-                            <input
-                                type="text"
-                                value={text}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                autoFocus
-                                className={styles.textField}
-                                name="address"
-                            />
-                        ) : (
-                            <span >{userData.address ? userData.address : "N/A"}</span>
-                        )}
-                    </label>
-                    <span onClick={(e) => handleEditClick(e, "address")} className={styles.editBtn}>
-                        <img src={editIcon} className={styles.editPng} /> <span>Edit </span></span>
-                </div>
+                                />
 
+                            </label>
 
+                        </div>
+
+                        <div className={styles.inputHolder}>
+                            <label className={styles.field}>
+                                <span className={styles.labelText}>Password</span>
+                                <input
+                                    type="password"
+                                    onChange={handleChange}
+                                    autoFocus
+                                    className={styles.textField}
+                                    name="password"
+                                />
+
+                            </label>
+                        </div>
+
+                        <div className={styles.inputHolder}>
+                            <label className={styles.field}>
+                                <span className={styles.labelText}>Phone</span>
+                                <input
+                                    type="text"
+                                    onChange={handleChange}
+                                    autoFocus
+                                    className={styles.textField}
+                                    name="number"
+                                    defaultValue={userData.number ? userData.number : "N/A"}
+
+                                />
+
+                            </label>
+
+                        </div>
+
+                        <div className={`${styles.addressField}`}>
+                            <label className={styles.field}>
+                                <span className={styles.labelText}>Address</span>
+                                <input
+                                    type="textarea"
+                                    onChange={handleChange}
+                                    className={`${styles.textField} ${styles.fieldWidth}`}
+                                    name="address"
+                                    defaultValue={userData.address ? userData.address : "N/A"}
+                                    rows={4}
+                                    cols={50}
+                                />
+
+                            </label>
+
+                        </div>
+                        <div className={`${styles.inputHolder} ${styles.btnHolder}`}>
+                            <span onClick={updateProfile} className={styles.editBtn}>
+                                <img src={editIcon} className={styles.editPng} /> <span>{editLoading ? "loading" : "Edit"} </span></span>
+                        </div>
+                    </>
+                ) : (
+                    <h1>laoding.</h1>
+                )}
 
             </div>
         </div>
