@@ -7,7 +7,6 @@ import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.minimal.css";
-import { Link } from "react-router-dom";
 import { UserContext } from "../../UserContext/UserContext";
 
 const Checkout = () => {
@@ -16,7 +15,6 @@ const Checkout = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const navigate = useNavigate();
   const [locationBoolean, setLocationBoolean] = useState(false);
-console.log(user)
   const [formData, setFormData] = useState({
     userName: "",
     userEmail: "",
@@ -57,12 +55,12 @@ console.log(user)
       idsArr.push({ productId: product._id, quantity: quantityValue });
     }
 
-    setFormData({ 
-      ...formData, 
+    setFormData({
+      ...formData,
       productsOrdered: idsArr,
-      total: totalPrice
+      total: totalPrice,
     });
-  }, []);
+  }, [localStorage.length]);
 
   const handleLocationChange = (e) => {
     const selectedId = e.target.value;
@@ -154,6 +152,14 @@ console.log(user)
 
   return (
     <main className={styles.main}>
+      <Helmet>
+        <title>Checkout - Monla</title>
+        <meta
+          name="description"
+          content="Complete your order seamlessly by providing your shipping details, contact information, and preferred payment method. Enjoy a hassle-free transaction as you confirm your purchase and get ready to receive your high-quality products. Shop confidently with our straightforward checkout, making online shopping a breeze."
+        />
+        <meta name="keywords" content="checkout, order, products, payment" />
+      </Helmet>
       <div className={`container ${styles.wrapper}`}>
         <div className={styles.checkout__Wrapper}>
           <div className={styles.checkout}>
