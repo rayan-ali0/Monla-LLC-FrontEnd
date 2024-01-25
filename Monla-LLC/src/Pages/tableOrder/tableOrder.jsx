@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import styles from './tableorder.module.css';
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { toast } from "react-toastify";
+
 
 
 import EditOrderForm from "./editorder";
@@ -28,12 +30,27 @@ export default function OrdersTable() {
 
     fetchOrders();
   }, []);
-  
-  const handleDeleteClick = async (orderId) => {
+
+
+  const handleDeleteClick = async (orderId, orderStatus) => {
     try {
+      // Check if the order status is not "delivered" or "rejected"
+      if (orderStatus !== "delivered" && orderStatus !== "rejected") {
+        toast.error("You can only delete delivered or rejected orders.", {
+          position: "top-right",
+          autoClose: 3000, // Close the notification after 3 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        return;
+      }
+
       // Make axios delete request
       const response = await axios.delete(`http://localhost:5000/order/delete/${orderId}`);
-      
+
       // Log the response and update the rows
       console.log('Order deleted:', response.data);
       setRows((prevRows) => prevRows.filter((row) => row._id !== orderId));
@@ -41,6 +58,7 @@ export default function OrdersTable() {
       console.error('Error deleting order:', error.response.data);
     }
   };
+
   const columns = [
     { field: '_id', headerName: 'ID', flex: 1 },
     { field: 'orderNumber', headerName: 'Order Number', flex: 1 },
@@ -68,22 +86,23 @@ export default function OrdersTable() {
     { field: 'createdAt', headerName: 'Created At', flex: 1 },
     { field: 'updatedAt', headerName: 'Updated At', flex: 1 },
     {
-        field: 'actions',
-        headerName: 'Actions',
-        flex: 1,
-        renderCell: (params) => (
-          <div style={{ display: "flex" }}>
-            <div onClick={() => handleEditClick(params.row)} style={{ cursor: "pointer" }}>
-              <EditIcon />
-            </div>
-            <div onClick={() => handleDeleteClick(params.row._id)} style={{ cursor: "pointer" }}>
-              <DeleteIcon />
-            </div>
+      field: 'actions',
+      headerName: 'Actions',
+      flex: 1,
+      renderCell: (params) => (
+        <div style={{ display: "flex" }}>
+          <div onClick={() => handleEditClick(params.row)} style={{ cursor: "pointer" }}>
+            <EditIcon />
           </div>
-        ),
-      },
-    ];
-  
+          <div onClick={() => handleDeleteClick(params.row._id, params.row.status)} style={{ cursor: "pointer" }}>
+            <DeleteIcon />
+          </div>
+
+        </div>
+      ),
+    },
+  ];
+
 
   const handleEditClick = (order) => {
     setIsOrderFormOpen(true);
@@ -91,8 +110,8 @@ export default function OrdersTable() {
   };
 
   return (
-    <div style={{ width: "90%", float: "left", margin: "auto", height: "750px", marginBottom: "10rem" }}>
-      {/* ... your existing code */}
+    <div style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
+      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Orders</h1>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -104,58 +123,58 @@ export default function OrdersTable() {
           Toolbar: CustomToolbar,
         }}
         sx={{
-            color: "#0a213d",
-            // border:"none",
-            // paddingTop: "1rem",
-            border: "1px solid white",
-            padding:"20px",
-            borderRadius:"10px",
+          color: "#0a213d",
+          // border:"none",
+          // paddingTop: "1rem",
+          border: "1px solid white",
+          padding: "20px",
+          borderRadius: "10px",
           //   borderRadius: "17px",
-            "& .MuiDataGrid-root": {
-              backgroundColor: "white",
-            },
-            "& .MuiDataGrid-columnHeader": {
-              // Background color of column headers
-              color: "white",
-              fontFamily: "Outfit",
-              fontSize: "19px",
-              // Text color of column headers
-            },
-            "& .MuiDataGrid-cell": {
-              borderBottom: "1px solid #ccc", // Border between cells
-              color: "white",
-              fontSize: "17px",
-              // Text color of cells
-            },
-            "& .MuiTablePagination-root": {
-              color: "white", // Text color of pagination
-            },
-            "& .MuiDataGrid-toolbar": {
-              color: "white",
-              backgroundColor: "white", // Background color of the toolbar
-            },
-            "& .MuiDataGrid-toolbarContainer": {
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              color: "white",
-              // color: 'blue',
-            },
-            "& .MuiButtonBase-root": {
-              color: "white", // Text color for buttons in the toolbar
-            },
-            "& .MuiPaginationItem-icon": {
-              color: "white", // Color of pagination icons
-            },
-            "& .MuiSvgIcon-root": {
-              color: "white",
-            },
-            "& .MuiDataGrid-row , & .MuiDataGrid-cell": {
-              maxHeight: "80px !important",
-              height: "80px !important",
-            },
-          }}
-        />
+          "& .MuiDataGrid-root": {
+            backgroundColor: "white",
+          },
+          "& .MuiDataGrid-columnHeader": {
+            // Background color of column headers
+            color: "white",
+            fontFamily: "Outfit",
+            fontSize: "19px",
+            // Text color of column headers
+          },
+          "& .MuiDataGrid-cell": {
+            borderBottom: "1px solid #ccc", // Border between cells
+            color: "white",
+            fontSize: "17px",
+            // Text color of cells
+          },
+          "& .MuiTablePagination-root": {
+            color: "white", // Text color of pagination
+          },
+          "& .MuiDataGrid-toolbar": {
+            color: "white",
+            backgroundColor: "white", // Background color of the toolbar
+          },
+          "& .MuiDataGrid-toolbarContainer": {
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            color: "white",
+            // color: 'blue',
+          },
+          "& .MuiButtonBase-root": {
+            color: "white", // Text color for buttons in the toolbar
+          },
+          "& .MuiPaginationItem-icon": {
+            color: "white", // Color of pagination icons
+          },
+          "& .MuiSvgIcon-root": {
+            color: "white",
+          },
+          "& .MuiDataGrid-row , & .MuiDataGrid-cell": {
+            maxHeight: "80px !important",
+            height: "80px !important",
+          },
+        }}
+      />
       {isOrderFormOpen && <EditOrderForm order={selectedOrder} onClose={() => setIsOrderFormOpen(false)} />}
 
       <ToastContainer />
@@ -165,8 +184,8 @@ export default function OrdersTable() {
 
 const CustomToolbar = () => {
   return (
-    <GridToolbar>{/* Add any custom elements or styling here */}</GridToolbar>
+    <GridToolbar></GridToolbar>
   );
 };
 
-     
+

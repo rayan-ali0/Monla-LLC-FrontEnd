@@ -36,7 +36,7 @@ const EditOrderForm = ({ order, onClose }) => {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:5000/order/update/${order._id}`, {
+            const response = await axios.patch(`http://localhost:5000/order/update/${order._id}`, {
                 status: formData.status,
             });
 
