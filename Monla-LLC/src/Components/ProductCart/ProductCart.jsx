@@ -3,7 +3,6 @@ import Styles from './ProductCart.module.css';
 import heart from '../../assets/Images/heart.png';
 import { motion } from "framer-motion"
 
-
 const variant={
   initial:{
    y:20,
@@ -18,7 +17,8 @@ animate:{
     },
 }
 }
-const ProductCart = ({ item  ,single__product=false}) => {
+const ProductCart = ({ item, single__product = false }) => {
+
   return (
     <motion.div  className={ single__product? Styles.single__container: Styles.container}whileHover={{opacity:0.7}} variants={variant} initial="initial"  animate="animate">
         <img src={heart} className={Styles.heart} alt="" />
