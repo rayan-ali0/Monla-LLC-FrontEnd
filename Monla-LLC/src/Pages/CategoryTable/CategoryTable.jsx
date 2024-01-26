@@ -70,8 +70,8 @@ const api="http://localhost:5000/category/readCategory"
   }, []);
 
   const columns = [
-    { field: '_id', headerName: 'id', flex:1 },
-    { field: "title", headerName: "Title",flex:1 },
+    { field: '_id', headerName: 'id', width:250 },
+    { field: "title", headerName: "Title",width:250 },
     {
       field: "image",
       headerName: "Image",
@@ -164,9 +164,7 @@ const api="http://localhost:5000/category/readCategory"
      
       }}
     >
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>
-        Diet plans
-      </h1>
+ 
       <button
         className={styles.btnAdd}
         style={{
@@ -199,6 +197,7 @@ const api="http://localhost:5000/category/readCategory"
           border: "1px solid white",
           padding:"20px",
           borderRadius:"10px",
+          height:"90%",
         //   borderRadius: "17px",
         // margin:"10rem",
           "& .MuiDataGrid-root": {
