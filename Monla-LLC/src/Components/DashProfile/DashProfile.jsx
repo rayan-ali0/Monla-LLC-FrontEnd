@@ -35,6 +35,7 @@ const DashProfile = () => {
           `${import.meta.env.VITE_REACT_APP_BACKEND}/user/one/${user._id}`
         );
         setFormData(response.data);
+        console.log("response.data: ", response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -77,50 +78,60 @@ const DashProfile = () => {
       return;
     }
 
-    // Check old password
+    if (!formData.password) {
+      toast.error("Please enter your new password.");
+      return;
+    }
+
     if (!passwordRegex.test(formData.password)) {
-      toast.error("Your old password should be at least 8 characters.");
-      return;
-    }
-    if (formData.password !== user.password) {
-      toast.error("Your old password is not correct.");
+      toast.error("Your new password should be at least 8 characters.");
       return;
     }
 
-    // Validate new password
-    if (!newPassword) {
-      toast.error("Enter your new password.");
-      return;
-    }
+    // Check old password
+    // if (!passwordRegex.test(formData.password)) {
+    //   toast.error("Your old password should be at least 8 characters.");
+    //   return;
+    // }
+    // if (formData.password !== user.password) {
+    //   toast.error("Your old password is not correct.");
+    //   return;
+    // }
 
-    if (!passwordRegex.test(newPassword)) {
-      toast.error("New password should be at least 8 characters.");
-      return;
-    }
+    // // Validate new password
+    // if (!newPassword) {
+    //   toast.error("Enter your new password.");
+    //   return;
+    // }
 
-    if (!verifyPassword) {
-      toast.error("Enter your verfiy password.");
-      return;
-    }
+    // if (!passwordRegex.test(newPassword)) {
+    //   toast.error("New password should be at least 8 characters.");
+    //   return;
+    // }
 
-    if (!passwordRegex.test(verifyPassword)) {
-      toast.error("Verfiy password should be at least 8 characters.");
-      return;
-    }
+    // if (!verifyPassword) {
+    //   toast.error("Enter your verfiy password.");
+    //   return;
+    // }
 
-    if (newPassword !== verifyPassword) {
-      toast.error("Passwords do not match.");
-      return;
-    }
-    console.log(newPassword);
-    console.log(verifyPassword);
-    console.log(formData.password);
+    // if (!passwordRegex.test(verifyPassword)) {
+    //   toast.error("Verfiy password should be at least 8 characters.");
+    //   return;
+    // }
+
+    // if (newPassword !== verifyPassword) {
+    //   toast.error("Passwords do not match.");
+    //   return;
+    // }
+    // console.log(newPassword);
+    // console.log(verifyPassword);
+    console.log(formData);
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_REACT_APP_BACKEND}/user/${user._id}`,
         formData
       );
-      console.log(response.data)
+      console.log(response.data);
       if (response.data) {
         toast.success("Data updated successfully!");
       }
@@ -170,7 +181,7 @@ const DashProfile = () => {
         </div>
 
         {/* Old Password check */}
-        <div className={style.input}>
+        {/* <div className={style.input}>
           <label htmlFor="oldPassword" className={style.label}>
             Old Password:
           </label>
@@ -187,7 +198,7 @@ const DashProfile = () => {
             alt="Hide and Show an Eye"
             onClick={() => setShowPassword1(!showPassword1)}
           />
-        </div>
+        </div> */}
 
         {/* New Password */}
         <div className={style.input}>
@@ -196,10 +207,11 @@ const DashProfile = () => {
           </label>
           <input
             type={showPassword2 ? "text" : "password"}
-            name="newPassword"
+            name="password"
             id="newPassword"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            value={formData.password}
+            // onChange={(e) => setNewPassword(e.target.value)}
+            onChange={handleInputChange}
           />
           <img
             src={showPassword2 ? hide : eye}
@@ -210,7 +222,7 @@ const DashProfile = () => {
         </div>
 
         {/* Verify Password */}
-        <div className={style.input}>
+        {/* <div className={style.input}>
           <label htmlFor="verifyPassword" className={style.label}>
             Verify Password:
           </label>
@@ -227,7 +239,7 @@ const DashProfile = () => {
             alt="Hide and Show an Eye"
             onClick={() => setShowPassword3(!showPassword3)}
           />
-        </div>
+        </div> */}
 
         <div className={style.buttons}>
           <button type="reset" className={style.reset}>
