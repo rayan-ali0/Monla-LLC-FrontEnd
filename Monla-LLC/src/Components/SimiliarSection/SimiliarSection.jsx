@@ -32,6 +32,10 @@ const SimiliarSection = ({ myItem }) => {
     }
   }, [myItem]);
 
+  const handleClick = () => {
+    window.location.reload();
+  }
+
   return (
     <section className={styles.similiar__Products__Section}>
       <div className={`container ${styles.wrapper}`}>
@@ -44,7 +48,7 @@ const SimiliarSection = ({ myItem }) => {
         <div className={styles.similiarProducts}>
           <div className={styles.wrapper}>
             {similiarProducts.map((item) => (
-              <div className={styles.single__product} key={item._id}>
+              <div className={styles.single__product} key={item._id} onClick={handleClick}>
                 <Link to={`/productdetails/${item.slug}`} state={item}>
                   <ProductCart
                     item={item}
