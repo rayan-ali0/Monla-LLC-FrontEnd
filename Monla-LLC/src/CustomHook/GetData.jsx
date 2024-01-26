@@ -27,5 +27,5 @@ export const useFetchData=(api)=>{
     fetchData();
   }, []);
 
-  return { data, loading, error };
+  return { data, loading, error, setData };
 }

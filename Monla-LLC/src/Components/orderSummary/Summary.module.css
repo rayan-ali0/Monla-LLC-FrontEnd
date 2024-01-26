@@ -17,12 +17,15 @@ overflow: hidden;
 
 .summaryTitle {
   margin-bottom: 10px;
+  font-weight: normal;
 }
 
 .cartItems {
   overflow-y: scroll;
   height: 62%;
   margin: 0;
+  border-top: 1px solid var(--red-color);
+  border-bottom: 1px solid var(--red-color);
 }
 
 .cartCosts {

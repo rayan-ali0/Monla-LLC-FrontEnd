@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./Checkout.module.css";
 import axios from "axios";
 import Summary from "../../Components/orderSummary/Summary.jsx";
@@ -7,18 +7,27 @@ import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.minimal.css";
-import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const [data, setData] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const navigate = useNavigate();
+  const [locationBoolean, setLocationBoolean] = useState(false);
+  const [shippingCost, setShippingCost] = useState(0)
+
+  const [arr, setArr] = useState([]);
+  const [idsArr, setIdsArr] = useState([])
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    location: "",
+    userName: "",
+    userEmail: "",
+    userPhone: "",
     address: "",
+    status: "pending",
+    total: 0,
+    shippingId: "",
+    productsOrdered: [],
   });
 
   // Regex validations
@@ -37,17 +46,48 @@ const Checkout = () => {
       });
   }, []);
 
+  useEffect(() => {
+    let totalPrice = Number(0);
+    let dataArr = [];
+    let idsArr = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const product = JSON.parse(localStorage.key(i));
+      const quantityValue = localStorage.getItem(localStorage.key(i));
+      totalPrice += product.price * quantityValue;
+      dataArr.push(product);
+      idsArr.push({ productId: product._id, quantity: quantityValue });
+    }
+    console.log(dataArr)
+
+    setFormData({
+      ...formData,
+      productsOrdered: idsArr,
+      total: totalPrice,
+    });
+    setArr(dataArr);
+    setIdsArr(idsArr);
+    setTotalPrice(totalPrice);
+  }, [localStorage]);
+
   const handleLocationChange = (e) => {
     const selectedId = e.target.value;
     const selectedLocationObject = data.find(
-      (location) => location._id === selectedId
+      (location) => location._id === selectedId,
     );
-    const locationInformData = selectedLocationObject.location;
+    console.log(formData);
     setFormData({
       ...formData,
-      location: locationInformData,
+      shippingId: selectedId,
     });
-    setSelectedLocation(selectedLocationObject);
+
+    if (selectedLocationObject) {
+      setLocationBoolean(true);
+      setSelectedLocation(selectedLocationObject);
+      setShippingCost(selectedLocationObject.cost)
+    } else {
+      setSelectedLocation(null);
+    }
   };
 
   const handleInputChange = (event) => {
@@ -63,34 +103,34 @@ const Checkout = () => {
     event.preventDefault();
 
     // Validate the form fields
-    if (!formData.name) {
+    if (!formData.userName) {
       toast.error("Please enter your name.");
       return;
     }
-    if (!nameRegex.test(formData.name)) {
+    if (!nameRegex.test(formData.userName)) {
       toast.error("Please enter a valid name.");
       return;
     }
     /* ---- */
-    if (!formData.email) {
+    if (!formData.userEmail) {
       toast.error("Please enter your email.");
       return;
     }
-    if (!emailRegex.test(formData.email)) {
+    if (!emailRegex.test(formData.userEmail)) {
       toast.error("Please enter a valid email address.");
       return;
     }
     /* ---- */
-    if (!formData.phone) {
+    if (!formData.userPhone) {
       toast.error("Please enter your phone number.");
       return;
     }
-    if (!phoneRegex.test(formData.phone)) {
+    if (!phoneRegex.test(formData.userPhone)) {
       toast.error("Invalid Phone number.");
       return;
     }
     /* ---- */
-    if (formData.location == '') {
+    if (!locationBoolean) {
       toast.error("Please select your location.");
       return;
     }
@@ -99,34 +139,35 @@ const Checkout = () => {
       toast.error("Please enter your address.");
       return;
     }
-    console.log(formData)
-    // try {
-    //   const response = await axios.post(
-    //     `${import.meta.env.VITE_REACT_APP_BACKEND}/user/register`,
-    //     formData
-    //   );
 
-    //   if (response.data) {
-    //     setUser(response.data)
-    //     toast.success("Signup successfully!");
-    //     setTimeout(() => {
-    //       navigate("/", { replace: true });
-    //     }, 1000);
-    //   }
-    // } catch (error) {
-    //   if (error.response.status === 401) {
-    //     toast.error("Incorrect email or password");
-    //   } else if (error.response.status === 400){
-    //     toast.error("Email already exists.");
-    //   } else {
-    //     toast.error("An error occurred. Please try again.");
-    //   }
-    //   console.error("Error:", error);
-    // }
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_REACT_APP_BACKEND}/order/create`,
+        formData
+      );
+      if (response.data) {
+        toast.success("Order created successfully!");
+        setTimeout(() => {
+          navigate("/", { replace: true });
+        }, 1000);
+      }
+      localStorage.clear();
+    } catch (error) {
+      toast.error("Error while create your order.");
+      console.error("Error:", error);
+    }
   };
-
+  console.log(shippingCost)
   return (
     <main className={styles.main}>
+      <Helmet>
+        <title>Checkout - Monla</title>
+        <meta
+          name="description"
+          content="Complete your order seamlessly by providing your shipping details, contact information, and preferred payment method. Enjoy a hassle-free transaction as you confirm your purchase and get ready to receive your high-quality products. Shop confidently with our straightforward checkout, making online shopping a breeze."
+        />
+        <meta name="keywords" content="checkout, order, products, payment" />
+      </Helmet>
       <div className={`container ${styles.wrapper}`}>
         <div className={styles.checkout__Wrapper}>
           <div className={styles.checkout}>
@@ -148,9 +189,9 @@ const Checkout = () => {
                     <label htmlFor="na">Name*</label>
                     <input
                       type="text"
-                      name="name"
+                      name="userName"
                       id="na"
-                      value={formData.name}
+                      value={formData.userName}
                       onChange={handleInputChange}
                       placeholder="Your Name"
                     />
@@ -159,8 +200,8 @@ const Checkout = () => {
                     <label htmlFor="na">Email*</label>
                     <input
                       type="email"
-                      name="email"
-                      value={formData.email}
+                      name="userEmail"
+                      value={formData.userEmail}
                       onChange={handleInputChange}
                       id="em"
                       placeholder="Your Email"
@@ -173,9 +214,9 @@ const Checkout = () => {
                     <input
                       type="tel"
                       id="ph"
-                      name="phone"
+                      name="userPhone"
                       pattern="[0-9]{8}"
-                      value={formData.phone}
+                      value={formData.userPhone}
                       onChange={handleInputChange}
                       placeholder="Phone"
                       required
@@ -235,7 +276,7 @@ const Checkout = () => {
             </div>
           </div>
           <div className={styles.order__summary}>
-            <Summary />
+          <Summary products={arr} totalPrice={totalPrice} shipping={shippingCost} idsArr={idsArr}/>
           </div>
         </div>
       </div>

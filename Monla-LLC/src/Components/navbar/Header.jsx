@@ -1,12 +1,21 @@
 
 import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast"
 import styles from "./Header.module.css";
 import logo from '../../assets/images/logo.svg';
 import { AiOutlineMenu, AiOutlineClose, AiOutlineShoppingCart } from 'react-icons/ai';
 import { NavLink, useLocation ,useNavigate} from "react-router-dom";
+import { UserContext } from "../../UserContext/UserContext";
+import { useContext } from "react";
+import axios from 'axios';
+import { useFetchData } from "../../CustomHook/GetData";
+
 
 
 const Header = () => {
+  // const api=`http://localhost:5000/logout`
+  // const {data, } =useFetchData(api)
+  const {user, setUser}=useContext(UserContext)
   const [nav, setNav] = useState({
     isOpen: false,
     isCartOpen: false,
@@ -17,6 +26,38 @@ const Header = () => {
   
   const navigate = useNavigate();
 
+
+  const logout = async () => {
+    try {
+      console.log("before")
+       const action = await axios.post('http://localhost:5000/logout',{},{withCredentials:true});
+      if(action) {
+        setUser(null);
+        toast.success("Logout successful!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        console.log(user)
+      
+        console.log("after")
+      
+    }} catch (error) {
+      console.error("Logout error:", error);
+      toast.error("An unexpected error occurred. Please try again.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
+  
   const handleCartIconClick = () => {
     // Navigate to the cart page
     navigate('/cart');
@@ -36,7 +77,7 @@ console.log(location.pathname==='/profile')
 
         {/* Navigation Links */}
         <div className={styles.whatever}>
-          <nav>
+          <nav style={{display:"flex", gap:"2rem"}}>
             <ul className={nav ? [styles.menu, styles.active].join(' ') : [styles.menu]}>
               {/* NavLink for Home */}
               <li>
@@ -84,6 +125,12 @@ console.log(location.pathname==='/profile')
             
 
             </ul>
+                {user ? (<button onClick={logout} type="submit" className={styles.button}>
+                Logout
+                </button>) :(<li>
+                  <NavLink to='/signup' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''}`}>
+                SignUp
+                </NavLink></li>)}
           </nav>
 
           <div onClick={() => setNav(!nav)} className={location.pathname==="/profile"|| location.pathname==="/cart"? styles.mobile_btn_blue:styles.mobile_btn}>

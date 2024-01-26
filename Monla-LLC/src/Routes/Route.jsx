@@ -22,6 +22,10 @@ import Profile from "../Components/Profile/Profile.jsx";
 import Numbers from "../Components/Numbers/Numbers.jsx";
 import Overview from "../Pages/Overview/Overview.jsx";
 import Productstable from "../Pages/ProductsTable/ProductsTable.jsx";
+import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
+import MiniDrawer from "../Components/DashSidebar/DashSidebar.jsx";
+import Overview from "../Pages/Overview/Overview.jsx";
+
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
   return (
@@ -54,8 +58,11 @@ const Router = () => {
                 redirectPath="/unauthorized"
               />
             }>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} >
+              <Route path="category" index element={< CategoryTable/>} />
+              <Route path="" index element={< Overview />} />
 
+            </Route>
           </Route>
           <Route path="/overview" element={<Overview/>}/>
 

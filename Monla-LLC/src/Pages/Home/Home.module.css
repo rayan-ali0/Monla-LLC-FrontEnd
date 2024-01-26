@@ -56,3 +56,28 @@ margin-left: 200px;
         padding: 0 20px;
     }
 }
+@media (max-width:712px) {
+
+.NewContainer {
+    height: 75vh;
+}
+}
+@media (max-width:768px) {
+
+.NewContainer {
+    height: 85vh;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+}
+@media (max-width:1211px) {
+    .about{
+        width: 65%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+ 
+}

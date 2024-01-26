@@ -4,3 +4,15 @@
     width: 100%;
     color: white;
 }   
+.outlet{
+    width: 90%;
+    float: right;
+}
+
+@media screen and (max-width: 390px) {
+    .outlet {
+      width: 80%;
+      float: right;
+      height: 100%;
+    }
+  }
