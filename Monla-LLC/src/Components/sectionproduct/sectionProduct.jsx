@@ -108,7 +108,9 @@ const ProductCarthome = () => {
   }
 
   return (
-    <div className={Styles.productlinecontainer}>
+    <div className={Styles.productlinewrapper}>
+        <div className={Styles.productlinecontainer}>
+          
       {products.map((product) => (
         <div className={Styles.container} key={product._id}>
           <img src={heart} className={Styles.heart} alt="" />
@@ -123,6 +125,7 @@ const ProductCarthome = () => {
           <button className={Styles.btn} onClick={handleAddTocart} >ADD TO CART</button>
         </div>
       ))}
+    </div>
     </div>
   );
 };

@@ -41,3 +41,45 @@ font-size: 20px;   }
 margin-bottom: 13px;}
 
 }
+@media (max-width:712px) {
+    .Aboutcontainer{
+ display: block;
+}
+.NewContainer {
+    height: 75vh;
+    }
+}
+@media (max-width:768px) {
+    /* .Aboutcontainer{
+       
+} */
+
+}
+
+
+/* Rachwan */
+/* Tabet */
+@media (max-width: 1211px) {
+    .Aboutcontainer{
+        display: block;
+        align-items: center;
+        width: 100%;
+    }
+    .description{
+        font-size: 18px;
+    }
+    .title{
+        font-size: 25px;
+    }
+}
+
+/*
+767
+768
+
+967
+968
+
+1900
+1200
+*/
