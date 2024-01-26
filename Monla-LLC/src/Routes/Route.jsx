@@ -24,7 +24,6 @@ import Overview from "../Pages/Overview/Overview.jsx";
 import Productstable from "../Pages/ProductsTable/ProductsTable.jsx";
 import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
 import MiniDrawer from "../Components/DashSidebar/DashSidebar.jsx";
-import Overview from "../Pages/Overview/Overview.jsx";
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);

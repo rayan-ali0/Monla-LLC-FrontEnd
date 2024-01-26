@@ -6,11 +6,11 @@ import { UserContext } from "../../UserContext/UserContext.jsx";
 import axios from 'axios';
 
 const Profile = () => {
-    const { user, fetchUserData, logger } = useContext(UserContext)
-    const [userData, setUserData] = useState({})
+    const { user, fetchUserData } = useContext(UserContext)
+    const [userData, setUserData] = useState(user || {})
     const [fieldEdited, setFieldEdited] = useState()
     const [dataUpdated, setDataUpdated] = useState({})
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [editLoading, setEditLoading] = useState(false)
 
     const handleChange = (e) => {
@@ -20,10 +20,15 @@ const Profile = () => {
         }))
     };
 
+    useEffect(() => {
+        // Fetch user data when the user state changes
+        fetchUserData();
+    }, [user])
 
+console.log(user)
     const fetchUser = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/user/65aeda9492d779d70d079f29`)
+            const res = await axios.get(`http://localhost:5000/user/${user._id}`)
             if (res) {
                 console.log(res.data)
                 setUserData(res.data)
@@ -47,9 +52,10 @@ const Profile = () => {
             const res = await axios.put(`http://localhost:5000/user/65aeda9492d779d70d079f29`, dataUpdated)
             if (res) {
                 console.log(res.data)
-                setUserData(res.data)
-                console.log(userData)
+                // setUserData(res.data)
+                // console.log(userData)
                 setEditLoading(false)
+                fetchUserData()
 
             }
             else {
@@ -70,9 +76,9 @@ const Profile = () => {
     console.log(loading)
 
 
-    useEffect(() => {
-        fetchUser()
-    }, [])
+    // useEffect(() => {
+    //     fetchUser()
+    // }, [])
 
     return (
         <div className={styles.profilePage}>
