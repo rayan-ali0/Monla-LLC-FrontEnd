@@ -73,7 +73,8 @@ const Signup = () => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_REACT_APP_BACKEND}/user/register`,
-        formData
+        formData,
+        {withCredentials:true}
       );
   
       if (response.data) {

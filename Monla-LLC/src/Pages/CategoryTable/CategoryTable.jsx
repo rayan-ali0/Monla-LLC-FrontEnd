@@ -16,8 +16,8 @@ export default function CategoryTable() {
   const [isAddRegimeOpen, setIsAddRegimeOpen] = useState(false);
   const [isUpdateRegimeOpen, setIsUpdateRegimeOpen] = useState(false);
 
-  const api=`${import.meta.env.VITE_REACT_APP_BACKEND}/category/readCategory`
 
+const api="http://localhost:5000/category/readCategory"
   const {data,loading, error }=useFetchData(api)
 
   const [formData, setFormData] = useState({
@@ -70,12 +70,12 @@ export default function CategoryTable() {
   }, []);
 
   const columns = [
-    // { field: 'id', headerName: 'id', width: 80 },
-    { field: "title", headerName: "Title", width: 140 },
+    { field: '_id', headerName: 'id', flex:1 },
+    { field: "title", headerName: "Title",flex:1 },
     {
       field: "image",
       headerName: "Image",
-      width: 110,
+      flex:1 ,
       renderCell: (params) => (
         <img
           src={`${import.meta.env.VITE_REACT_APP_PATH}/${params.value}`}
@@ -147,11 +147,7 @@ export default function CategoryTable() {
     setIsAddRegimeOpen(true);
   };
 
-  const handleUpdates = (e) => {
-    console.log("clickedd");
-    e.preventDefault();
-    setIsUpdateRegimeOpen(true);
-  };
+
 
   const emptyRow = { id: -1, name: "Loading..." };
 
@@ -178,7 +174,7 @@ export default function CategoryTable() {
           marginBottom: "1rem",
           width: "7rem",
           height: "2.5rem",
-          backgroundColor:"black",
+          // backgroundColor:"black",
           borderRadius: "5px",
           fontWeight: "bold",
         }}
@@ -187,8 +183,8 @@ export default function CategoryTable() {
         Add Plan
       </button>
       <DataGrid
-        // getRowId={getRowId}
-        rows={rowsWithEmptyRow}
+        getRowId={(data)=>data._id}
+        rows={data}
         columns={columns}
         pagination
         pageSize={5}

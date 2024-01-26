@@ -30,7 +30,7 @@ const Brand = () => {
     <div className={Styles.container}>
       {brands.map(brand => (
         <Link to={`/product?brand=${brand._id}`} key={brand._id} className={Styles.category}>
-          {console.log(brand.image)}
+          {/* {console.log(brand.image)} */}
           {brand.image && <img src={`http://localhost:5000/${brand.image}`} alt={brand.brand} className={Styles.image} />}
           {!brand.image && <div className={Styles.noImage}>No Image Available</div>}
           <h3>{brand.brand}</h3>

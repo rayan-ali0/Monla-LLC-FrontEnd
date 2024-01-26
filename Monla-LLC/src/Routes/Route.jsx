@@ -19,6 +19,9 @@ import Layout from "./Layout.jsx";
 import Checkout from "../Pages/Checkout/Checkout.jsx";
 import ModelsTable from "../Pages/dashTableModel/TabelModel.jsx";
 import Profile from "../Components/Profile/Profile.jsx";
+import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
+import MiniDrawer from "../Components/DashSidebar/DashSidebar.jsx";
+import Overview from "../Pages/Overview/Overview.jsx";
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
@@ -52,7 +55,11 @@ const Router = () => {
                 redirectPath="/unauthorized"
               />
             }>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} >
+              <Route path="category" index element={< CategoryTable/>} />
+              <Route path="" index element={< Overview />} />
+
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
