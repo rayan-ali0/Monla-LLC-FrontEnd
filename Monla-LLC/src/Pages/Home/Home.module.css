@@ -71,3 +71,13 @@ margin-left: 200px;
     position: relative;
 }
 }
+@media (max-width:1211px) {
+    .about{
+        width: 65%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+ 
+}
