@@ -39,6 +39,11 @@ import { NavLink, useLocation } from "react-router-dom";
 // import Styles from "./DashSidebar.module.css"
 import "./DashSidebar.css"
 import YearsTable from '../../Pages/YearTable/yearTable';
+import BrandsTable from '../../Pages/BrandTable/BrandTable';
+import ServicesTable from '../../Pages/ServicesTable/serviceTable';
+import ContactsTable from '../../Pages/ContactTable/contactTable';
+import ShippingsTable from '../../Pages/ShippingTable/shippingtable';
+import OrdersTable from '../../Pages/tableOrder/tableOrder';
 
 const drawerWidth = 240;
 

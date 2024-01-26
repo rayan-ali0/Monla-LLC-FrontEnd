@@ -29,17 +29,22 @@ const ServicesSection = () => {
 
     return (
         <div>
+            {/* <div className={styles.productlinewrapper}> */}
+        {/* <div className={styles.productlinecontainer}> */}
             <h2 className={styles.title}>Explore below our best car services</h2>
             <div className={styles.servicesContainer}>
                 {services.slice(0, 3).map(service => (
                     <div key={service._id} className={styles.serviceCard}>
                         <img src={`http://localhost:5000/${service.image}`} alt={service.title} />
-                        <h3>{service.title}</h3>
+                        <h3 className={styles.title}>{service.title}</h3>
                     </div>
                 ))}
             </div>
             <button className={styles.viewMoreButton} onClick={handleViewMoreClick}>View More Services</button>
         </div>
+        // </div>
+        // </div>
+
     );
 };
 
