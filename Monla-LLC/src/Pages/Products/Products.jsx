@@ -71,7 +71,7 @@ const Products = () => {
         ))}
       </div>
       </div>
-      {/* <Stack spacing={2}>
+      <Stack spacing={2}>
          <Pagination
               count={Math.ceil(10)}
               page={currentPage}
@@ -79,7 +79,7 @@ const Products = () => {
               variant="outlined"
            />
      
-    </Stack> */}
+    </Stack>
     </div>
   )
 }
