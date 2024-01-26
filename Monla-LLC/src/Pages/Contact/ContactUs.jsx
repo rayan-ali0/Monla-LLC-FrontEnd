@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react'
+import React, { useState , useEffect, useRef} from 'react'
 import style from './ContactUs.module.css'
 import TextField from '@mui/material/TextField';
 import locationIcon from '../../assets/pin.png'
@@ -9,6 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-toastify/dist/ReactToastify.minimal.css';
 import axios from 'axios'
+import emailjs from '@emailjs/browser';
 // import { styled } from "@mui/system";
 // import { makeStyles } from '@mui/styles';
 
@@ -38,6 +39,9 @@ const[errorMessage,setErrorMessage]=useState()
 //   },
 // });
 
+// EmailJs
+const form = useRef();
+
 const handleInputChange=(e)=>{
   setErrorMessage()
   const{name,value}=e.target
@@ -56,7 +60,7 @@ const submitForm=async(e)=>{
     toast.error('Invalid email format!!')
     return;
   }
-  if (!/^\d{8}$/.test(Phone)) {
+  if (/^\d{8}$/.test(Phone)) {
     toast.error('Phone number must be 8 digits of numbers!');
     return;
   }
@@ -65,6 +69,16 @@ const submitForm=async(e)=>{
 const res=await axios.post(`http://localhost:5000/contact/create`,formData)
 if(res){
   console.log(res.data)
+
+  emailjs.sendForm('service_a1ici9n', 'template_c9ol4x8', form.current, 'xIFwmGqn0WceR1X-b')
+  .then((result) => {
+      console.log(result.text);
+      console.log("Message send");
+  }, (error) => {
+      console.log(error.text);
+      console.log("Message Failed");
+  });
+
   toast.success('You Message has been send successfully. Thank You!')
   setFormData({
     Name:'',
@@ -116,7 +130,7 @@ const styleField={
       <PageHero title={"Contact Us"}/>
       <main className={style.contactPage}>
         <div className={style.contactHolder}>
-          <section className={style.contactForm} >
+        <form ref={form} onSubmit={submitForm}  className={style.contactForm}>
             <TextField id="name" label="Your Name" name="Name"  variant="outlined"  value={formData.Name} required onChange={handleInputChange}       sx={styleField}
 />
             <TextField id="email" label="Your Email" name="Email" placeholder='Ex: email@gmail.com' value={formData.Email}   type="email" variant="outlined" required onChange={handleInputChange}       sx={styleField}
@@ -128,7 +142,7 @@ const styleField={
 
       />
             <button className={style.customButton} onClick={submitForm}>Send Message</button>
-          </section>
+          </form>
 
           <section className={style.contactDetails}>
             <h1>Get In Touch</h1>
