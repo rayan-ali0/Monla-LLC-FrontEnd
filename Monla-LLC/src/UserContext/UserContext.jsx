@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
         { withCredentials: true }
       );
       setUser(response.data.user);
-      console.log(user)
+      console.log(response.data.user)
     } catch (err) {
       setUser(null);
       console.log(err);
