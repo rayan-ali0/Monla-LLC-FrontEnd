@@ -155,8 +155,8 @@ const Profile = () => {
                                     className={`${styles.textField} ${styles.fieldWidth}`}
                                     name="address"
                                     defaultValue={userData.address ? userData.address : "N/A"}
-                                    rows={4}
-                                    cols={50}
+                                    // rows={4}
+                                    // cols={50}
                                 />
 
                             </label>

@@ -19,7 +19,9 @@ import Layout from "./Layout.jsx";
 import Checkout from "../Pages/Checkout/Checkout.jsx";
 import ModelsTable from "../Pages/dashTableModel/TabelModel.jsx";
 import Profile from "../Components/Profile/Profile.jsx";
-
+import Numbers from "../Components/Numbers/Numbers.jsx";
+import Overview from "../Pages/Overview/Overview.jsx";
+import Productstable from "../Pages/ProductsTable/ProductsTable.jsx";
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
   return (
@@ -44,7 +46,7 @@ const Router = () => {
           <Route path="/productdetails/:slug" element={<ProductDetails />} />
           <Route path="/productdetails" element={<ProductDetails />} />
           <Route  path="/Table" element={<ModelsTable/>} />
-
+          <Route path="/PP" element={<Productstable/>}/>
           <Route
             element={
               <ProtectedRoute
@@ -53,7 +55,10 @@ const Router = () => {
               />
             }>
             <Route path="/dashboard" element={<Dashboard />} />
+
           </Route>
+          <Route path="/overview" element={<Overview/>}/>
+
         </Routes>
       </BrowserRouter>
     </div>

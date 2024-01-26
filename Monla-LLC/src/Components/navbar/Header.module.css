@@ -79,6 +79,9 @@ color:white
   left: 0;
 }
 
+.mobile_btn_blue{
+ display: none;
+}
 .cartIcon {
   display: flex;
   justify-content: center;

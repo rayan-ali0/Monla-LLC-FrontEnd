@@ -37,7 +37,8 @@ import ModelsTable from '../../Pages/dashTableModel/TabelModel';
 // import Styles from "./DashSidebar.module.css"
 import "./DashSidebar.css"
 import YearsTable from '../../Pages/YearTable/yearTable';
-
+import Productstable from '../../Pages/ProductsTable/ProductsTable';
+import AddEditProduct from '../../Pages/ProductsTable/AddEditProduct.jsx'
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -198,10 +199,10 @@ export default function MiniDrawer() {
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-<YearsTable/>    
-    <DrawerHeader />
-   
+   {/* <Productstable/> */}
+   <AddEditProduct/>
       </Box>
+    <DrawerHeader />
     </Box>
   );
 }
