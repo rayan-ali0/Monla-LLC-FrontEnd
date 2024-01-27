@@ -1,5 +1,5 @@
 import { React, useState, useEffect, useContext } from "react";
-import { UserContext } from "../../UserContext/UserContext";
+import { UserContext } from "../../UserContext/UserContext.jsx";
 import style from "./DashProfile.module.css";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
@@ -10,41 +10,21 @@ import eye from "../../assets/icons/eye.png";
 import hide from "../../assets/icons/hide.png";
 
 const DashProfile = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [newPassword, setNewPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const [showPassword3, setShowPassword3] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    name: user.name,
+    email: user.email,
     password: "",
   });
-
-  const [loading, setLoading] = useState(true);
 
   const nameRegex = /^[A-Za-z\s]+$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^.{8,}$/;
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_REACT_APP_BACKEND}/user/one/${user._id}`
-        );
-        setFormData(response.data);
-        console.log("response.data: ", response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchUserData();
-  }, [user._id]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -57,6 +37,7 @@ const DashProfile = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     // Validate the form fields
     if (!formData.name) {
@@ -78,76 +59,62 @@ const DashProfile = () => {
       return;
     }
 
-    if (!formData.password) {
-      toast.error("Please enter your new password.");
+    // Validate new password
+    if (!newPassword) {
+      toast.error("Enter your new password.");
       return;
     }
 
-    if (!passwordRegex.test(formData.password)) {
-      toast.error("Your new password should be at least 8 characters.");
+    if (!passwordRegex.test(newPassword)) {
+      toast.error("New password should be at least 8 characters.");
       return;
     }
 
-    // Check old password
-    // if (!passwordRegex.test(formData.password)) {
-    //   toast.error("Your old password should be at least 8 characters.");
-    //   return;
-    // }
-    // if (formData.password !== user.password) {
-    //   toast.error("Your old password is not correct.");
-    //   return;
-    // }
+    if (!verifyPassword) {
+      toast.error("Enter your verfiy password.");
+      return;
+    }
 
-    // // Validate new password
-    // if (!newPassword) {
-    //   toast.error("Enter your new password.");
-    //   return;
-    // }
+    if (!passwordRegex.test(verifyPassword)) {
+      toast.error("Verfiy password should be at least 8 characters.");
+      return;
+    }
 
-    // if (!passwordRegex.test(newPassword)) {
-    //   toast.error("New password should be at least 8 characters.");
-    //   return;
-    // }
+    if (newPassword !== verifyPassword) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+    console.log(newPassword);
+    console.log(verifyPassword);
+    console.log(formData.password);
 
-    // if (!verifyPassword) {
-    //   toast.error("Enter your verfiy password.");
-    //   return;
-    // }
-
-    // if (!passwordRegex.test(verifyPassword)) {
-    //   toast.error("Verfiy password should be at least 8 characters.");
-    //   return;
-    // }
-
-    // if (newPassword !== verifyPassword) {
-    //   toast.error("Passwords do not match.");
-    //   return;
-    // }
-    // console.log(newPassword);
-    // console.log(verifyPassword);
-    console.log(formData);
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_REACT_APP_BACKEND}/user/${user._id}`,
-        formData
+        { ...formData, password: newPassword }
       );
-      console.log(response.data);
       if (response.data) {
+        console.log(response.data);
+        setUser(response.data);
         toast.success("Data updated successfully!");
+        setNewPassword("");
+        setVerifyPassword("");
+        // window.location.reload();
       }
     } catch (error) {
       console.error(error);
       toast.error("Error updating user data.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
+  useEffect(() => {
+    // This effect runs whenever 'user' changes
+    console.log("User updated:", user);
+  }, [user]);
 
-  return loading ? (
-    <div>Loading...</div>
-  ) : (
+  return (
     <main className={style.main}>
       <form
         className={style.form}
@@ -156,7 +123,7 @@ const DashProfile = () => {
         {/* Display existing user info */}
         <div className={style.input}>
           <label htmlFor="nameLabel" className={style.label}>
-            Name:
+            Name
           </label>
           <input
             type="text"
@@ -169,7 +136,7 @@ const DashProfile = () => {
 
         <div className={style.input}>
           <label htmlFor="emailLabel" className={style.label}>
-            Email:
+            Email
           </label>
           <input
             type="email"
@@ -203,15 +170,34 @@ const DashProfile = () => {
         {/* New Password */}
         <div className={style.input}>
           <label htmlFor="newPassword" className={style.label}>
-            New Password:
+            New Password
+          </label>
+          <input
+            type={showPassword1 ? "text" : "password"}
+            name="password"
+            id="newPassword"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <img
+            src={showPassword1 ? hide : eye}
+            className={style.icon}
+            alt="Hide and Show an Eye"
+            onClick={() => setShowPassword1(!showPassword1)}
+          />
+        </div>
+
+        {/* Verify Password */}
+        <div className={style.input}>
+          <label htmlFor="verifyPassword" className={style.label}>
+            Verify Password
           </label>
           <input
             type={showPassword2 ? "text" : "password"}
-            name="password"
-            id="newPassword"
-            value={formData.password}
-            // onChange={(e) => setNewPassword(e.target.value)}
-            onChange={handleInputChange}
+            name="verifyPassword"
+            id="verifyPassword"
+            value={verifyPassword}
+            onChange={(e) => setVerifyPassword(e.target.value)}
           />
           <img
             src={showPassword2 ? hide : eye}
@@ -221,32 +207,12 @@ const DashProfile = () => {
           />
         </div>
 
-        {/* Verify Password */}
-        {/* <div className={style.input}>
-          <label htmlFor="verifyPassword" className={style.label}>
-            Verify Password:
-          </label>
-          <input
-            type={showPassword3 ? "text" : "password"}
-            name="verifyPassword"
-            id="verifyPassword"
-            value={verifyPassword}
-            onChange={(e) => setVerifyPassword(e.target.value)}
-          />
-          <img
-            src={showPassword3 ? hide : eye}
-            className={style.icon}
-            alt="Hide and Show an Eye"
-            onClick={() => setShowPassword3(!showPassword3)}
-          />
-        </div> */}
-
         <div className={style.buttons}>
           <button type="reset" className={style.reset}>
             Reset
           </button>
-          <button type="submit" className={style.submit}>
-            Update Info
+          <button type="submit" className={style.submit} disabled={loading}>
+            {loading ? "Updating..." : "Update Info"}
           </button>
         </div>
       </form>
