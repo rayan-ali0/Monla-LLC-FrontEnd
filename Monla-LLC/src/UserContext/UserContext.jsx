@@ -17,12 +17,14 @@ export const UserProvider = ({ children }) => {
   const fetchUserData = async () => {
     try {
       setCheckUser(true);
+
       const response = await axios.get(
         `${import.meta.env.VITE_REACT_APP_BACKEND}/logged-in-user`,
         { withCredentials: true }
       );
       setUser(response.data.user);
       console.log(user)
+     
     } catch (err) {
       setUser(null);
       console.log(err);

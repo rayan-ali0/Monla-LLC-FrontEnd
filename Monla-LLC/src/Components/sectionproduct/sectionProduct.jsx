@@ -80,6 +80,7 @@ import React, { useState, useEffect } from 'react';
 import Styles from './sectionproduct.module.css';
 import heart from '../../assets/Images/heart.png';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 const ProductCarthome = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
@@ -110,7 +111,7 @@ const ProductCarthome = () => {
   return (
     <div className={Styles.productlinecontainer}>
       {products.map((product) => (
-        <div className={Styles.container} key={product._id}>
+        <motion.div className={Styles.container} key={product._id} initial={{ opacity:0.1}} whileInView={{ opacity:1}} transition={{duration:0.8}}>
           <img src={heart} className={Styles.heart} alt="" />
           <div>
             <img className={Styles.image} src={`http://localhost:5000/${product.image}`}  alt="" />
@@ -121,7 +122,7 @@ const ProductCarthome = () => {
             <p className={Styles.desc}>{product.desc}</p>
           </div>
           <button className={Styles.btn} onClick={handleAddTocart} >ADD TO CART</button>
-        </div>
+        </motion.div>
       ))}
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Styles from '../searchfilter/searchfilter.module.css';
+import {motion} from "framer-motion"
 
 const Searchfilter = () => {
     const navigate = useNavigate();
@@ -63,8 +64,8 @@ const Searchfilter = () => {
   };
 
   return (
-    <div className={Styles.container}>
-      <div>
+    <motion.div className={Styles.container} >
+      <motion.div initial={{opacity:0.5, scale:0.7}} animate={{opacity:1, scale:1}} transition={{duration:0.5}}>
         <select
           className={Styles.input}
           id="brandSelect"
@@ -79,8 +80,8 @@ const Searchfilter = () => {
             </option>
           ))}
         </select>
-      </div>
-      <div>
+      </motion.div>
+      <motion.div initial={{opacity:0.5, scale:0.7}} animate={{opacity:1, scale:1}} transition={{duration:0.3}}>
         <select
           className={Styles.input}
           id="modukeSelect"
@@ -95,8 +96,8 @@ const Searchfilter = () => {
             </option>
           ))}
         </select>
-      </div>
-      <div>
+      </motion.div>
+      <motion.div initial={{opacity:0.5, scale:0.7}} animate={{opacity:1, scale:1}} transition={{duration:0.5}}>
         <select
           className={Styles.input}
           id="yearSelect"
@@ -111,11 +112,11 @@ const Searchfilter = () => {
             </option>
           ))}
         </select>
-      </div>
-      <button className={Styles.btn} onClick={handleSearch}>
+      </motion.div>
+      <motion.button className={Styles.btn} onClick={handleSearch} initial={{opacity:0.7, scale:0.5}} animate={{opacity:1, scale:1}} transition={{duration:0.5}}>
         Search
-      </button>
-    </div>
+      </motion.button>
+    </motion.div>
   );
 };
 

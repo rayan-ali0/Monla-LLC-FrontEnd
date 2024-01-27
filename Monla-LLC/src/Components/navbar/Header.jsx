@@ -9,6 +9,7 @@ import { UserContext } from "../../UserContext/UserContext";
 import { useContext } from "react";
 import axios from 'axios';
 import { useFetchData } from "../../CustomHook/GetData";
+import {motion} from "framer-motion"
 
 
 
@@ -28,9 +29,10 @@ const Header = () => {
 
   const logout = async () => {
     try {
-      console.log("before")
+      // console.log("before")
        const action = await axios.post('http://localhost:5000/logout',{},{withCredentials:true});
       if(action) {
+        localStorage.removeItem('token')
         setUser(null);
         toast.success("Logout successful!", {
           position: "top-center",
@@ -40,9 +42,9 @@ const Header = () => {
           pauseOnHover: true,
           draggable: true,
         });
-        console.log(user)
+        // console.log(user)
       
-        console.log("after")
+        // console.log("after")
       
     }} catch (error) {
       console.error("Logout error:", error);
@@ -68,15 +70,15 @@ const Header = () => {
 
   return (
     // Header Container
-    <header className={styles.headerContainer}>
-      <div className={styles.navbar}>
+    <header className={styles.headerContainer} >
+      <motion.div className={styles.navbar} >
         {/* Logo */}
-        <img src={logo} alt="/" />
+        <motion.img src={logo} alt="/" initial={{opacity:0, scale:0.5}} animate={{opacity:1, scale:1}} transition={{duration:0.5}} />
 
         {/* Navigation Links */}
         <div className={styles.whatever}>
           <nav style={{display:"flex", gap:"2rem"}}>
-            <ul className={nav ? [styles.menu, styles.active].join(' ') : [styles.menu]}>
+            <motion.ul className={nav ? [styles.menu, styles.active].join(' ') : [styles.menu]} initial={{opacity:0, scale:0.5}} animate={{opacity:1, scale:1}} transition={{duration:0.5}}>
               {/* NavLink for Home */}
               <li>
                 <NavLink to='/' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/' ? styles.activeNavItem : ''}`}>
@@ -112,18 +114,18 @@ const Header = () => {
                 </NavLink>
               </li>
 
-              
-                
-              
-            
-
-            </ul>
                 {user ? (<button onClick={logout} type="submit" className={styles.button}>
                 Logout
                 </button>) :(<li>
                   <NavLink to='/signup' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''}`}>
                 SignUp
                 </NavLink></li>)}
+              
+                
+              
+            
+
+            </motion.ul>
           </nav>
 
           <div onClick={() => setNav(!nav)} className={styles.mobile_btn}>
@@ -138,7 +140,7 @@ const Header = () => {
 
 
       
-      </div>
+      </motion.div>
     </header>
 
     

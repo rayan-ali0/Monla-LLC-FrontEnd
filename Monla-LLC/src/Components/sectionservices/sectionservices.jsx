@@ -4,6 +4,22 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from '../sectionservices/servicesSection.module.css';
 import { useNavigate } from 'react-router-dom';
+import { animate, motion } from 'framer-motion';
+
+const serviceVariants={
+    initial:{
+        y:50,
+        opacity:0,
+    },
+    animate:{
+        y:0,
+        opacity:1,
+        transition:{
+            duration:1,
+            staggerChildren:0.2
+        },
+    },
+  }
 
 const ServicesSection = () => {
     const [services, setServices] = useState([]);
@@ -28,18 +44,18 @@ const ServicesSection = () => {
     }, []);
 
     return (
-        <div>
-            <h2 className={styles.title}>Explore below our best car services</h2>
-            <div className={styles.servicesContainer}>
+        <motion.div variants={serviceVariants} initial="initial" whileInView="animate">
+            <motion.h2 className={styles.title} variants={serviceVariants}>Explore below our best car services</motion.h2>
+            <motion.div className={styles.servicesContainer} variants={serviceVariants}>
                 {services.slice(0, 3).map(service => (
-                    <div key={service._id} className={styles.serviceCard}>
-                        <img src={`http://localhost:5000/${service.image}`} alt={service.title} />
-                        <h3>{service.title}</h3>
-                    </div>
+                    <motion.div key={service._id} className={styles.serviceCard} variants={serviceVariants}>
+                        <motion.img src={`http://localhost:5000/${service.image}`} alt={service.title} variants={serviceVariants} />
+                        <motion.h3 variants={serviceVariants}>{service.title}</motion.h3>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
             <button className={styles.viewMoreButton} onClick={handleViewMoreClick}>View More Services</button>
-        </div>
+        </motion.div>
     );
 };
 
