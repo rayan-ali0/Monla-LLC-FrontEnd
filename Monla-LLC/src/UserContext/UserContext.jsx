@@ -6,7 +6,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [checkUser, setCheckUser] = useState(true);
-  // const [userUpdated, setUserserUpdated] = useState(false);
+  const [userUpdated, setUserserUpdated] = useState(false);
 
   useEffect(() => {
     if (!user) {
