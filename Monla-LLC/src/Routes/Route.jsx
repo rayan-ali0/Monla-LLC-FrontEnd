@@ -22,6 +22,7 @@ import Profile from "../Components/Profile/Profile.jsx";
 import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
 import MiniDrawer from "../Components/DashSidebar/DashSidebar.jsx";
 import Overview from "../Pages/Overview/Overview.jsx";
+import ConfirmationPage from "../Pages/confimationOrder/confimeOrder.jsx";
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
@@ -31,12 +32,16 @@ const Router = () => {
         <Routes>
           <Route element={<Layout />} >
           <Route path="/" element={<Home />} />
+          <Route index path="/confirme" element={<ConfirmationPage/>} />
           <Route path="/product" element={<Products />} />
           <Route index path="/services" element={<Services />} />
             <Route index path="/contact" element={<Contact />} />
             <Route index path="/cart" element={<Cart />} />
             <Route index path="/summary" element={<Summary />} />
-            <Route index path="/profile" element={<Profile />}></Route>
+            <Route index path="/profile" element={<Profile />}>
+
+            </Route>
+          
 
           </Route>
           <Route path="/signup" element={<Signup />} />
