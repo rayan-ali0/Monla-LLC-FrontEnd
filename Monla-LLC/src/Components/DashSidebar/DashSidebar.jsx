@@ -31,12 +31,19 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PublicIcon from '@mui/icons-material/Public';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ModelsTable from '../../Pages/dashTableModel/TabelModel';
+import { NavLink, useLocation } from "react-router-dom";
+
 
 
 
 // import Styles from "./DashSidebar.module.css"
 import "./DashSidebar.css"
 import YearsTable from '../../Pages/YearTable/yearTable';
+import BrandsTable from '../../Pages/BrandTable/BrandTable';
+import ServicesTable from '../../Pages/ServicesTable/serviceTable';
+import ContactsTable from '../../Pages/ContactTable/contactTable';
+import ShippingsTable from '../../Pages/ShippingTable/shippingtable';
+import OrdersTable from '../../Pages/tableOrder/tableOrder';
 
 const drawerWidth = 240;
 
@@ -108,8 +115,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 const menuItems = [
-  { text: 'Dashboard', icon: <DashboardIcon /> },
-  { text: 'People', icon: <PeopleIcon /> },
+  { text: '', color:"white",icon: <DashboardIcon /> },
+  { text: 'category', icon: <PeopleIcon /> },
   { text: 'Store', icon: <StoreIcon /> },
   { text: 'Receipt', icon: <ReceiptIcon /> },
   { text: 'Branding Watermark', icon: <BrandingWatermarkIcon /> },
@@ -122,6 +129,8 @@ const menuItems = [
 ];
 
 export default function MiniDrawer() {
+  const location = useLocation();
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -170,14 +179,16 @@ export default function MiniDrawer() {
         <Divider />
         <List sx={{color:"white"}}>
           {menuItems.map((menuItem, index) => {
-            console.log('MenuItem:', menuItem);
+            // console.log('MenuItem:', menuItem);
             return (
-              <ListItem key={menuItem.text} disablePadding sx={{ display: 'block' }}>
+              <ListItem key={menuItem.text} disablePadding sx={{ display: 'block'}}>
+                <NavLink to={`/dashboard/${menuItem.text.toLowerCase()}`} >
                 <ListItemButton
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
                     px: 2.5,
+                    color:"white"
                   }}
                 >
                   <ListItemIcon
@@ -192,14 +203,15 @@ export default function MiniDrawer() {
                   </ListItemIcon>
                   <ListItemText primary={menuItem.text} sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
+                </NavLink>
               </ListItem>
             );
           })}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-<YearsTable/>    
     <DrawerHeader />
+{/* <YearsTable/>     */}
    
       </Box>
     </Box>
