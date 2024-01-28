@@ -24,6 +24,7 @@ import Overview from "../Pages/Overview/Overview.jsx";
 import Productstable from "../Pages/ProductsTable/ProductsTable.jsx";
 import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
 import MiniDrawer from "../Components/DashSidebar/DashSidebar.jsx";
+import AddEditProduct from "../Pages/ProductsTable/AddEditProduct.jsx";
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
@@ -50,20 +51,23 @@ const Router = () => {
           <Route path="/productdetails" element={<ProductDetails />} />
           <Route  path="/Table" element={<ModelsTable/>} />
           <Route path="/PP" element={<Productstable/>}/>
-          <Route
+          {/* <Route
             element={
               <ProtectedRoute
-                isAllowed={user && user.role === "admin"}
+                isAllowed={user && user.role === "admin" }
                 redirectPath="/unauthorized"
               />
-            }>
+            }> */}
             <Route path="/dashboard" element={<Dashboard />} >
               <Route path="category" index element={< CategoryTable/>} />
-              <Route path="" index element={< Overview />} />
+              <Route path="Product/:action" index element={< AddEditProduct/>} />
+              <Route path="Products" element={<Productstable/>}/>
+
+              {/* <Route path="" index element={< Overview />} /> */}
 
             </Route>
-          </Route>
-          <Route path="/overview" element={<Overview/>}/>
+          {/* </Route> */}
+          {/* <Route path="/overview" element={<Overview/>}/> */}
 
         </Routes>
       </BrowserRouter>

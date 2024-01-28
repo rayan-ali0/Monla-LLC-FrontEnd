@@ -8,12 +8,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-toastify";
 // import EditOrderForm from "./editorder";
-
+import { useNavigate } from "react-router-dom";
 export default function Productstable() {
   const [rows, setRows] = useState([]);
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
-
+const navigate=useNavigate()
 
   const fetchProducts = async () => {
     try {
@@ -56,7 +56,16 @@ export default function Productstable() {
     { field: 'price', headerName: 'Price', flex: 1 },
     { field: 'stock', headerName: 'Stock', flex: 1 },
     { field: 'origin', headerName: 'Origin', flex: 1 },
-    { field: 'createdAt', headerName: 'Created At', flex: 1 },
+    { field: 'createdAt', headerName: 'Created At', flex: 1 , 
+    renderCell: (params) => {
+      // Check if value is present before splitting
+      if (params.value) {
+        return params.value.split('T')[0];
+      }
+      return ''; // or handle it differently based on your requirements
+    }
+  
+  },
     // { field: 'updatedAt', headerName: 'Updated At', flex: 1 },
     {
       field: 'actions',
@@ -77,11 +86,14 @@ export default function Productstable() {
   ];
 
 
-  const handleEditClick = (order) => {
-    setIsOrderFormOpen(true);
-    setSelectedOrder(order);
+  const handleEditClick = (product) => {
+    navigate('/dashboard/Product/Edit',{state:product})
+
   };
 
+  const handleAddClick=()=>{
+    navigate('/dashboard/Product/Add')
+  }
   return (
     <div style={{ width: "95%",  margin: "auto", height: "82vh",marginTop:"5rem"}}>
       {/* <div style={{display:"flex", border:'1px solid red' , justifyContent:"space-between",alignItems:"center"}}> */}
@@ -98,14 +110,14 @@ export default function Productstable() {
           fontWeight: "bold",
           fontSize:"1.2em"
         }}
-        // onClick={handleAddClick}
+        onClick={handleAddClick}
       >
         Add
       </button>
       {/* </div> */}
    
       <DataGrid
-        rows={rows}
+        rows={rows ? rows : []}
         columns={columns}
         pagination
         pageSize={5}

@@ -1,7 +1,42 @@
 .addProductPage{
-    border: 3px solid red;
- height: 82vh;
- margin-top:5rem ;
+    /* border: 3px solid red; */
+ height: 87vh;
+ margin-top:4rem ;
  /* width: 100%; */
- padding: 2em;
+ padding: 1.8em;
+ display: flex;
+}
+
+.form1 , .formDisplay{
+/* border: 1px solid white; */
+width: 50%;
+flex-direction: column;
+align-items: center;
+margin: 0 auto;
+height: 100%;
+
+}
+.form1{
+    justify-content: space-between;
+    display: flex;
+
+}
+.form2{
+    display: none;
+}
+
+.formDisplay{
+display: flex;
+justify-content: space-around;
+
+}
+.inputs{
+    width: 80%;
+}
+.volumeInput{
+    width: 100%;
+}
+
+.displayVolum{
+    display: none;
 }

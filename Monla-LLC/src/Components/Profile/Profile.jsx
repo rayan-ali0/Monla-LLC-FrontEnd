@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Profile = () => {
     const { user, fetchUserData } = useContext(UserContext)
-    const [userData, setUserData] = useState(user || {})
+    const [userData, setUserData] = useState(user)
     const [fieldEdited, setFieldEdited] = useState()
     const [dataUpdated, setDataUpdated] = useState({})
     const [loading, setLoading] = useState(false)
@@ -23,9 +23,9 @@ const Profile = () => {
     useEffect(() => {
         // Fetch user data when the user state changes
         fetchUserData();
-    }, [user])
+    }, [])
 
-console.log(user)
+console.log(userData)
     const fetchUser = async () => {
         try {
             const res = await axios.get(`http://localhost:5000/user/${user._id}`)
@@ -49,10 +49,10 @@ console.log(user)
     const updateProfile = async (name, value) => {
         setEditLoading(true)
         try {
-            const res = await axios.put(`http://localhost:5000/user/65aeda9492d779d70d079f29`, dataUpdated)
+            const res = await axios.put(`http://localhost:5000/user/${userData._id}`, dataUpdated)
             if (res) {
                 console.log(res.data)
-                // setUserData(res.data)
+                setUserData(res.data)
                 // console.log(userData)
                 setEditLoading(false)
                 fetchUserData()
