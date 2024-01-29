@@ -10,12 +10,11 @@ import eye from "../../assets/icons/eye.png";
 import hide from "../../assets/icons/hide.png";
 
 const DashProfile = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, setUserUpdated } = useContext(UserContext);
   const [newPassword, setNewPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: user.name,
     email: user.email,
@@ -37,7 +36,6 @@ const DashProfile = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
 
     // Validate the form fields
     if (!formData.name) {
@@ -84,9 +82,10 @@ const DashProfile = () => {
       toast.error("Passwords do not match.");
       return;
     }
-    console.log(newPassword);
-    console.log(verifyPassword);
-    console.log(formData.password);
+
+    console.log("newPassword", newPassword);
+    console.log("verifyPassword", verifyPassword);
+    console.log("formData.password",formData.password);
 
     try {
       const response = await axios.put(
@@ -94,25 +93,41 @@ const DashProfile = () => {
         { ...formData, password: newPassword }
       );
       if (response.data) {
-        console.log(response.data);
+        console.log("response.data indside the put that will set in the user: ", response.data);
         setUser(response.data);
         toast.success("Data updated successfully!");
         setNewPassword("");
         setVerifyPassword("");
+        setUserUpdated(true);
         // window.location.reload();
       }
     } catch (error) {
       console.error(error);
       toast.error("Error updating user data.");
-    } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
-    // This effect runs whenever 'user' changes
-    console.log("User updated:", user);
-  }, [user]);
+    const updateUserInContext = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_REACT_APP_BACKEND}/logged-in-user`,
+          { withCredentials: true }
+        );
+        console.log("response.data.user inside the new function: ", response.data.user)
+        setUser(response.data.user);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    updateUserInContext(); // Call this function immediately after the component renders
+
+    // Use the cleanup function to run this after the component unmounts
+    return () => {
+      updateUserInContext();
+    };
+  }, [setUser]);
 
   return (
     <main className={style.main}>
@@ -211,8 +226,8 @@ const DashProfile = () => {
           <button type="reset" className={style.reset}>
             Reset
           </button>
-          <button type="submit" className={style.submit} disabled={loading}>
-            {loading ? "Updating..." : "Update Info"}
+          <button type="submit" className={style.submit}>
+            Update Info
           </button>
         </div>
       </form>
