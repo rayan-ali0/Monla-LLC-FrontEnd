@@ -24,7 +24,6 @@ const DashProfile = () => {
   });
 
   const nameRegex = /^[A-Za-z\s]+$/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^.{8,}$/;
 
   const handleInputChange = (event) => {
@@ -39,63 +38,47 @@ const DashProfile = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Validate the form fields
-    if (!formData.name) {
-      toast.error("Please enter your name.");
-      return;
-    }
-    if (!nameRegex.test(formData.name)) {
-      toast.error("Please enter a valid name.");
-      return;
-    }
+// Validate the form fields
+if (formData.name && !nameRegex.test(formData.name)) {
+  toast.error("Please enter a valid name.");
+  return;
+}
 
-    if (!formData.email) {
-      toast.error("Please enter your email address.");
-      return;
-    }
+// Validate new password
+if (newPassword || verifyPassword) {
+  if (!newPassword) {
+    toast.error("Enter your new password.");
+    return;
+  }
 
-    if (!emailRegex.test(formData.email)) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
+  if (!passwordRegex.test(newPassword)) {
+    toast.error("New password should be at least 8 characters.");
+    return;
+  }
 
-    // Validate new password
-    if (!newPassword) {
-      toast.error("Enter your new password.");
-      return;
-    }
+  if (!verifyPassword) {
+    toast.error("Enter your verify password.");
+    return;
+  }
 
-    if (!passwordRegex.test(newPassword)) {
-      toast.error("New password should be at least 8 characters.");
-      return;
-    }
+  if (!passwordRegex.test(verifyPassword)) {
+    toast.error("Verify password should be at least 8 characters.");
+    return;
+  }
 
-    if (!verifyPassword) {
-      toast.error("Enter your verfiy password.");
-      return;
-    }
-
-    if (!passwordRegex.test(verifyPassword)) {
-      toast.error("Verfiy password should be at least 8 characters.");
-      return;
-    }
-
-    if (newPassword !== verifyPassword) {
-      toast.error("Passwords do not match.");
-      return;
-    }
-
-    console.log("newPassword", newPassword);
-    console.log("verifyPassword", verifyPassword);
-    console.log("formData.password",formData.password);
+  if (newPassword !== verifyPassword) {
+    toast.error("Passwords do not match.");
+    return;
+  }
+}
 
     try {
       const response = await axios.put(
         `${import.meta.env.VITE_REACT_APP_BACKEND}/user/${user._id}`,
-        { ...formData, password: newPassword }
+        { ...formData, password: newPassword },
+        { withCredentials: true }
       );
       if (response.data) {
-        console.log("response.data indside the put that will set in the user: ", response.data);
         setUser(response.data);
         toast.success("Data updated successfully!");
         setNewPassword("");
@@ -119,7 +102,6 @@ const DashProfile = () => {
           `${import.meta.env.VITE_REACT_APP_BACKEND}/logged-in-user`,
           { withCredentials: true }
         );
-        console.log("response.data.user inside the new function: ", response.data.user)
         setUser(response.data.user);
       } catch (err) {
         console.log(err);
@@ -163,6 +145,7 @@ const DashProfile = () => {
             id="emailLabel"
             value={formData.email}
             onChange={handleInputChange}
+            readOnly
           />
         </div>
 
@@ -227,9 +210,6 @@ const DashProfile = () => {
         </div>
 
         <div className={style.buttons}>
-          <button type="reset" className={style.reset}>
-            Reset
-          </button>
           <button type="submit" className={style.submit}>
             Update Info
           </button>
