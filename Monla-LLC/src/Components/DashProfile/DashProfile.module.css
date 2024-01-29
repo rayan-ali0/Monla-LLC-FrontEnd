@@ -76,19 +76,18 @@
 }
 
 .buttons {
-  display: flex;
-  margin-top: 20px;
-  margin-right: 20px;
+  margin-top: 30px;
 }
 .submit {
-  background-color: var(--third-green);
-  color: var(--white);
+  background-color: #0A213D;
+  color: white;
   padding: 10px 12px;
   border: none;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  border: 1px solid white;
 }
 .reset {
   margin-right: 15px;
