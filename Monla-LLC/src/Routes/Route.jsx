@@ -60,6 +60,9 @@ const Router = () => {
               <Route path="category" index element={< CategoryTable/>} />
               <Route path="" index element={< Overview />} />
               <Route path="yeardash" index element={< YearsTable />} />
+              <Route path="model" index element={< ModelsTable/>} />
+
+
 
             </Route>
           </Route>

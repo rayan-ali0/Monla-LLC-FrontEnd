@@ -10,13 +10,14 @@ import { useFetchData } from "../../CustomHook/GetData";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CategoryAdd from "./CategoryAdd";
-import CategoryUpdate from "./CategoryUpdate";
-
+ import UpdateCategory from "./CategoryUpdate";
 export default function CategoryTable() {
   const [item, setItem] = useState([]);
   const [isloading, setIsLoading] = useState(true);
   const [isAddCategoryOpen, setIsAddCategoryOpen] = useState(false);
   const [isUpdateCategoryOpen, setIsUpdateCategoryOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
 
 
 
@@ -72,8 +73,10 @@ const api="http://localhost:5000/category/readCategory"
     // handleDeletee();
   }, []);
 
-  const handleEdit=()=>{
+  const handleEdit=(category)=>{
     setIsUpdateCategoryOpen(true)
+    setSelectedCategory(category);
+    console.log("clicked")
   }
 
   const handleAddFormClose = () => {
@@ -101,7 +104,7 @@ const api="http://localhost:5000/category/readCategory"
     width: 140,
     renderCell: (params) => (
       <div style={{display :"flex"}}>
-        <div onClick={() => handleEdit(params.row.id)} style={{cursor:"pointer"}}>
+        <div onClick={() => handleEdit(params.row)} style={{cursor:"pointer"}}>
           <EditIcon />
           </div>
       
@@ -113,12 +116,12 @@ const api="http://localhost:5000/category/readCategory"
     },
   ];
 
-  const handleEditt = (rowId) => {
-    console.log(`Edit clicked for item with ID: ${rowId}`);
-    setIsUpdateRegimeOpen(true)
-    const selectedRow= item.find((row)=>row.id===rowId)
-    setItem(selectedRow)
-  };
+  // const handleEditt = (rowId) => {
+  //   console.log(`Edit clicked for item with ID: ${rowId}`);
+  //   setIsUpdateRegimeOpen(true)
+  //   const selectedRow= item.find((row)=>row.id===rowId)
+  //   setItem(selectedRow)
+  // };
 
   const handleDeletee = async (id) => {
     try {
@@ -250,9 +253,12 @@ Category      </h1>
         />
       )}
       {isUpdateCategoryOpen && (
-        <CategoryUpdate 
-        onClose={handleAddFormClose}
+        < UpdateCategory
+        onClose={() => setIsUpdateCategoryOpen(false)}
+        category={selectedCategory}
         data={data}
+
+        // data={data}
         />
       )}
       {/* {isAddRegimeOpen && (
