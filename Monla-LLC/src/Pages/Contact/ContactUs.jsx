@@ -66,7 +66,7 @@ const submitForm=async(e)=>{
   }
 
   try{
-const res=await axios.post(`http://localhost:5000/contact/create`,formData)
+const res=await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/contact/create`,formData)
 if(res){
   console.log(res.data)
 
