@@ -23,6 +23,7 @@ import Profile from "../Components/Profile/Profile.jsx";
 import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
 import MiniDrawer from "../Components/DashSidebar/DashSidebar.jsx";
 import Overview from "../Pages/Overview/Overview.jsx";
+import User from '../Pages/UserTable/UserTable.jsx'
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
@@ -60,6 +61,7 @@ const Router = () => {
             }>
             <Route path="/dashboard" element={<Dashboard />} >
               <Route path="category" index element={< CategoryTable/>} />
+              <Route path='user' index element={<User />} />
               <Route path="" index element={< Overview />} />
 
             </Route>

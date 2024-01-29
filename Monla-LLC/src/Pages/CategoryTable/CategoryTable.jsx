@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./CategoryTable.module.css";
+import styles from "../CategoryTable/CategoryTable.module.css";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 // import AddRegime from "../../components/AddRegime/AddRegime";
