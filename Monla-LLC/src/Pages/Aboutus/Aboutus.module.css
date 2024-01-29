@@ -1,0 +1,127 @@
+@media only screen and (min-width: 770px) {
+    .aboutusContainer {
+        height: 100vh;
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 10rem;
+        display: flex;
+        flex-direction: column;
+        gap: 10rem;
+        margin-bottom: 30rem;
+    }
+
+    .aboutusFeatures {
+        height: 50%;
+        display: flex;
+        gap: 4rem;
+    }
+
+    .aboutusFeaturesContent {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .aboutusFeaturesContentIcon {
+        height: 10rem;
+        width: 10rem;
+    }
+
+    .aboutusFeaturesContentTitle {
+        text-transform: capitalize;
+        font-size: 4rem;
+    }
+
+    .aboutusFeaturesContentDescription {
+        font-size: 1.5rem;
+        opacity: 0.6;
+    }
+
+    .aboutusTestimonial {
+        height: auto;
+        display: flex;
+        gap: 6rem;
+    }
+
+    .testimonialDescription {
+        height: 75%;
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    .testimonialDescriptionIcon {
+        font-size:7rem;
+        margin-top: 1rem;
+        color: #324BC2;
+    }
+
+    .testimonialDescriptionText {
+        font-size: 1.5rem;
+        opacity: 0.7;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .aboutusContainer {
+        height: 200vh;
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 7rem;
+    }
+
+    .aboutusFeatures {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .aboutusFeaturesContent {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .aboutusFeaturesContentTitle {
+        text-transform: capitalize;
+        font-size: 2.4rem;
+    }
+
+    .aboutusFeaturesContentDescription {
+        font-size: 1.1rem;
+        opacity: 0.6;
+        text-align: center;
+    }
+
+    .aboutusTestimonial {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .testimonialPicture {
+        height: 20rem;
+        width: 20rem;
+    }
+
+    .testimonialDescriptionIcon {
+        display: none;
+    }
+
+    .testimonialDescriptionText {
+        font-size: 1.2rem;
+        opacity: 0.7;
+        text-align: center;
+    }
+}
