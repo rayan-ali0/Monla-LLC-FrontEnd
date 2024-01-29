@@ -53,7 +53,7 @@ const EditBrandForm = ({ brand, onClose, allCategories }) => {
             formDataToSend.append('categoryId', formData.categoryId);
             formDataToSend.append('image', formData.image);
 
-            const response = await axios.put(`http://localhost:5000/brand/${brand._id}`, formDataToSend);
+            const response = await axios.put(`http://localhost:5000/brand/updateBrand/${brand._id}`, formDataToSend);
 
             console.log('Brand updated:', response.data);
 

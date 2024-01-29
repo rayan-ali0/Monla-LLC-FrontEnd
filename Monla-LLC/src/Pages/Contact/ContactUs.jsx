@@ -15,6 +15,12 @@ import axios from 'axios'
 
 
 const Contact = () => {
+  const [companyInfo, setCompanyInfo] = useState({
+    email: '',
+    number: '',
+    location: '',
+
+  });
 const[formData,setFormData]=useState({
   Name:'',
   Email:'',
@@ -22,7 +28,18 @@ const[formData,setFormData]=useState({
   message:''
 })
 const[errorMessage,setErrorMessage]=useState()
+useEffect(() => {
+  const fetchCompanyInfo = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/company/`);
+      setCompanyInfo(res.data);
+    } catch (error) {
+      console.error('Error fetching company information:', error.message);
+    }
+  };
 
+  fetchCompanyInfo();
+}, []);
 // const useStyles = makeStyles({
 //   focused: {
 //     '& .MuiOutlinedInput-root': {
@@ -137,9 +154,12 @@ const styleField={
             </p>
             <article className={style.contactInfo}>
               <h2>Contact Info</h2>
-              <span className={style.contactData}> <img src={phoneIcon} className={style.icons} /> +961 03 000 000</span>
-              <span className={style.contactData}><img src={emailIcon} className={style.icons} />monla@gmail.com</span>
-              <span className={style.contactData}> <img src={locationIcon} className={style.icons} />Tripoli , Bab AL ramel , XX Street </span>
+              <span className={style.contactData}> <img src={phoneIcon} className={style.icons} />{companyInfo.number}
+</span>
+              <span className={style.contactData}><img src={emailIcon} className={style.icons} />{companyInfo.email}
+</span>
+              <span className={style.contactData}> <img src={locationIcon} className={style.icons} /> {companyInfo.location}
+ </span>
             </article>
           </section>
         </div>
