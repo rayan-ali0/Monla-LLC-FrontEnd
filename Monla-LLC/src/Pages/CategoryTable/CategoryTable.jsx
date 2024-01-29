@@ -9,12 +9,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { useFetchData } from "../../CustomHook/GetData";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CategoryAdd from "./CategoryAdd";
+import CategoryUpdate from "./CategoryUpdate";
 
 export default function CategoryTable() {
   const [item, setItem] = useState([]);
   const [isloading, setIsLoading] = useState(true);
-  const [isAddRegimeOpen, setIsAddRegimeOpen] = useState(false);
-  const [isUpdateRegimeOpen, setIsUpdateRegimeOpen] = useState(false);
+  const [isAddCategoryOpen, setIsAddCategoryOpen] = useState(false);
+  const [isUpdateCategoryOpen, setIsUpdateCategoryOpen] = useState(false);
+
 
 
 const api="http://localhost:5000/category/readCategory"
@@ -65,10 +68,18 @@ const api="http://localhost:5000/category/readCategory"
 
   useEffect(() => {
     // fetchRegime();
-    handleSubmit();
-    handleDeletee();
+    // handleSubmit();
+    // handleDeletee();
   }, []);
 
+  const handleEdit=()=>{
+    setIsUpdateCategoryOpen(true)
+  }
+
+  const handleAddFormClose = () => {
+    setIsAddCategoryOpen(false);
+    setIsUpdateCategoryOpen(false)
+  };
   const columns = [
     { field: '_id', headerName: 'id', width:250 },
     { field: "title", headerName: "Title",width:250 },
@@ -82,22 +93,19 @@ const api="http://localhost:5000/category/readCategory"
           alt="Image"
           style={{ width: 60, height: 60 }}
         />
-       
-
       ),
     },
-
     {
       field: 'Action',
     headerName: 'Actions',
     width: 140,
     renderCell: (params) => (
       <div style={{display :"flex"}}>
-        <div onClick={() => handleEditt(params.row.id)} style={{cursor:"pointer"}}>
+        <div onClick={() => handleEdit(params.row.id)} style={{cursor:"pointer"}}>
           <EditIcon />
           </div>
       
-          <div onClick={() => handleDeletee(params.row.id)} style={{cursor:"pointer"}}>
+          <div onClick={() => handleDeletee(params.row._id)} style={{cursor:"pointer"}}>
           <DeleteIcon />
           </div>
         </div>
@@ -116,15 +124,11 @@ const api="http://localhost:5000/category/readCategory"
     try {
       console.log("Deleting item with ID:", id);
       const response = await axios.delete(
-        `${process.env.REACT_APP_PATH}regime/delete`,
-        {
-          data: { id: id },
-        }
+        `http://localhost:5000/category/deleteCategory/${id}`,
       );
-      if (response.data.message === "Deleted Successfully") {
-        setItem((prevItems) => prevItems.filter((item) => item.id !== id));
-        console.log("Regime plan deleted successfully");
-        toast.success("Regime plan deleted successfully", {
+  
+        console.log("category plan deleted successfully");
+        toast.success("category plan deleted successfully", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -132,9 +136,7 @@ const api="http://localhost:5000/category/readCategory"
           pauseOnHover: true,
           draggable: true,
         });
-      } else {
-        console.log(response.data.message);
-      }
+    
     } catch (error) {
       console.error("Error deleting item:", error.message);
     }
@@ -144,15 +146,11 @@ const api="http://localhost:5000/category/readCategory"
   // post data
   const handleAdd = (e) => {
     e.preventDefault();
-    setIsAddRegimeOpen(true);
+    setIsAddCategoryOpen(true)
   };
-
-
-
   const emptyRow = { id: -1, name: "Loading..." };
 
   const rowsWithEmptyRow = isloading ? [emptyRow] : data;
-
   return (
     <div
       style={{
@@ -160,16 +158,17 @@ const api="http://localhost:5000/category/readCategory"
         float: "left",
         margin: "auto",
         height: "650px",
-        marginBottom: "7rem",
-     
-      }}
-    >
- 
+        marginBottom: "7rem",    
+      }} >
+
+      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>
+Category      </h1>
       <button
         className={styles.btnAdd}
         style={{
           color: "white",
           marginBottom: "1rem",
+          cursor:"pointer",
           width: "7rem",
           height: "2.5rem",
           // backgroundColor:"black",
@@ -245,6 +244,18 @@ const api="http://localhost:5000/category/readCategory"
           },
         }}
       />
+
+      {isAddCategoryOpen && (
+        <CategoryAdd
+        onClose={handleAddFormClose}
+        />
+      )}
+      {isUpdateCategoryOpen && (
+        <CategoryUpdate 
+        onClose={handleAddFormClose}
+        data={data}
+        />
+      )}
       {/* {isAddRegimeOpen && (
         <AddRegime
           formData={formData}

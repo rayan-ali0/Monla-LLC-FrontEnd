@@ -28,7 +28,7 @@ const Products = () => {
     queryKey:["productData", currentPage, selectedCategory],
     queryFn:async()=>{
       try {
-        const response= await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/read/all?&categoryId=${selectedCategory}`)
+        const response= await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/read/all?pageNumber=${currentPage}&pageSize=${4}&categoryId=${selectedCategory}`)
         // console.log(response.data)
         return response.data
       } catch (error) {

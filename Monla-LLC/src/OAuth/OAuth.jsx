@@ -3,10 +3,11 @@ import googleIcon from "../assets/icons/google.png";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { app } from '../firebase/firebase';
 import {toast} from "react-toastify"
-import { fetchGoogle } from '../db/authData';
+// import { fetchGoogle } from '../db/authData';
 import {  useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from '../UserContext/UserContext';
+import axios from "axios";
 
 
 export default function OAuth({ signup }) {
@@ -24,20 +25,26 @@ export default function OAuth({ signup }) {
         console.error("Google authentication result is undefined");
         return;
       }
-      try {
         console.log("Before fetchGoogle");
-        let data = await fetchGoogle(result);
-        if (data.data && data.token ) {
-          toast.success(`Hello ${data.data.name}!!`);
-          setUser(data.data);
-          return navigate("/", { replace: true });
+        const data = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/google`, {
+          name: result.user.displayName.split(" ")[0],
+          email: result.user.email,
+          },
+          {withCredentials:true}
+          );
+        if (data.data ) {
+          setUser(data.data)
+          console.log(data.data)
+          toast.success(`Hello ${data.data.data.name}!!`);
+          navigate("/", { replace: true });
+          
+          console.log(data.data)
+          // console.log(data.data.token)
+
         } else {
           toast.error("Can't continue with Googleee",);
         }
-      } catch (error) {
-        console.error(error);
-        toast.error("Can't continue with Google",);
-      }
+      
     } catch (error) {
       toast.error("error loggimnn", error.message)
       console.error("Error during Google authentication:", error);
