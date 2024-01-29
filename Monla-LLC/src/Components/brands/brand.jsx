@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Styles from '../brands/brand.module.css';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Brand = () => {
   const [brands, setBrands] = useState([]);
@@ -27,16 +28,18 @@ const Brand = () => {
   }, []);
 
   return (
-    <div className={Styles.container}>
+    <motion.div className={Styles.container} >
       {brands.map(brand => (
+       <motion.div key={brand._id} initial={{ scale:0.5,opacity:0.1}} whileInView={{scale:1, opacity:1}} transition={{duration:0.8}}>
         <Link to={`/product?brand=${brand._id}`} key={brand._id} className={Styles.category}>
           {/* {console.log(brand.image)} */}
           {brand.image && <img src={`http://localhost:5000/${brand.image}`} alt={brand.brand} className={Styles.image} />}
           {!brand.image && <div className={Styles.noImage}>No Image Available</div>}
           <h3>{brand.brand}</h3>
         </Link>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,27 +1,43 @@
 // Importing necessary dependencies and styles
 import React from "react";
 import HeroSectionHomepageCss from "./HeroSectionHomapage.module.css";
+import { motion } from "framer-motion"
 
 // Functional component for the hero section on the homepage
+const textVariants={
+  initial:{
+      x:-500,
+      opacity:0,
+  },
+  animate:{
+      x:0,
+      opacity:1,
+      transition:{
+          duration:1,
+          staggerChildren:0.2
+      },
+  },
+}
+
 const HeroSectionHomepage = () => {
   return (
-    <div className={HeroSectionHomepageCss.containerHero}>
+    <div className={HeroSectionHomepageCss.containerHero} >
       {/* Background image container */}
       <div className={HeroSectionHomepageCss.backgroundImage}>
         {/* Content container */}
-        <div className={HeroSectionHomepageCss.content}>
+        <motion.div className={HeroSectionHomepageCss.content} variants={textVariants} initial="initial" animate="animate">
           {/* Main title */}
-          <h1 className={HeroSectionHomepageCss.title}>
+          <motion.h1 className={HeroSectionHomepageCss.title} variants={textVariants}>
    Rent A Car & Travel <span className={HeroSectionHomepageCss.spann}>Endless</span>
-          </h1>
-          <h2 className={HeroSectionHomepageCss.Title}>No reservation costs. Great rates.
-Find What You Need actually.</h2>
+          </motion.h1>
+          <motion.h2 className={HeroSectionHomepageCss.Title} variants={textVariants}>No reservation costs. Great rates.
+Find What You Need actually.</motion.h2>
           
           {/* Button linking to the contact page */}
-          <a href="/contact" className={HeroSectionHomepageCss.button}>
+          <motion.a href="/contmotion.act" className={HeroSectionHomepageCss.button} >
             contact us
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </div>
     </div>
   );
