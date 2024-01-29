@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Helmet } from "react-helmet-async";
 
 export default function ContactsTable() {
   const [contacts, setContacts] = useState([]);
@@ -50,8 +51,14 @@ export default function ContactsTable() {
   ];
 
   return (
-    <div style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
+     <div>
+    <Helmet>
+    <title>contact</title>
+    <meta name="contact" content="contact table" />
+  </Helmet>
+    <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>   
       <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Contacts</h1>
+      <section>
       <DataGrid
         rows={contacts}
         columns={columns}
@@ -115,6 +122,8 @@ export default function ContactsTable() {
             },
           }}
         />
+        </section>
+        </main>
     </div>
   );
 }

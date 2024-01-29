@@ -25,6 +25,11 @@ import MiniDrawer from "../Components/DashSidebar/DashSidebar.jsx";
 import Overview from "../Pages/Overview/Overview.jsx";
 import ConfirmationPage from "../Pages/confimationOrder/confimeOrder.jsx";
 import YearsTable from "../Pages/YearTable/yearTable.jsx";
+import BrandsTable from "../Pages/BrandTable/BrandTable.jsx";
+import ShippingsTable from "../Pages/ShippingTable/shippingtable.jsx";
+import ContactsTable from "../Pages/ContactTable/contactTable.jsx";
+import OrdersTable from "../Pages/tableOrder/tableOrder.jsx";
+import ServicesTable from "../Pages/ServicesTable/serviceTable.jsx";
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
   return (
@@ -56,21 +61,33 @@ const Router = () => {
         
 
 
-          <Route
+          {/* <Route
             element={
               <ProtectedRoute
                 isAllowed={user && user.role === "admin"}
                 redirectPath="/unauthorized"
               />
-            }>
+            }> */}
             <Route path="/dashboard" element={<Dashboard />} >
               <Route path="category" index element={< CategoryTable/>} />
-              <Route path='user' index element={<User />} />
-              <Route path="" index element={< Overview />} />
-              <Route path="yeardash" index element={< YearsTable />} />
+              <Route path="overview" index element={< Overview />} />
+              <Route path="Year" index element={< YearsTable />} />
+              <Route path="Model" index element={< ModelsTable />} />
+              <Route path="Brand" index element={< BrandsTable />} />
+              <Route path="Shipping" index element={<ShippingsTable/>} />
+              <Route path="contact" index element={<ContactsTable/>} />
+              <Route path="Orders" index element={<OrdersTable/>} />
+              <Route path="Services" index element={<ServicesTable/>} />
+
+
+
+
+
+
+
 
             </Route>
-          </Route>
+          {/* </Route> */}
         </Routes>
       </BrowserRouter>
     </div>

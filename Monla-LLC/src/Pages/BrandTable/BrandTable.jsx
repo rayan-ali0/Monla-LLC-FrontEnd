@@ -8,6 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditBrandForm from "./BrandFormEdit";
 import BrandAddForm from './BrandAddForm';
 import styles from './tablebrand.module.css';
+import { Helmet } from "react-helmet-async";
 
 export default function BrandsTable() {
     const [rows, setRows] = useState([]);
@@ -103,8 +104,14 @@ export default function BrandsTable() {
       
   
     return (
-      <div style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
-        <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Brands</h1>
+      <div>
+      <Helmet>
+      <title>Brand</title>
+      <meta name="Brand" content="Brand table" />
+    </Helmet>
+      <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
+        <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Brand table</h1>
+        <section>
         <button
           className={styles.btnAdd}
           style={{
@@ -120,6 +127,8 @@ export default function BrandsTable() {
         >
           Add
         </button>
+        </section>
+        <section>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -183,10 +192,15 @@ export default function BrandsTable() {
             },
           }}
         />
+        </section>
+        <section>
       {isBrandFormOpen && <EditBrandForm brand={selectedBrand} onClose={() => setIsBrandFormOpen(false)} allCategories={allCategories} />}
         {isAddFormOpen && <BrandAddForm onClose={handleAddFormClose} allCategories={allCategories}/>}
-
+        </section>
+        <section>
         <ToastContainer />
+        </section>
+        </main>
       </div>
     );
   }

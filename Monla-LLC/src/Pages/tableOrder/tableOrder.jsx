@@ -7,7 +7,7 @@ import styles from './tableorder.module.css';
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-toastify";
-
+import { Helmet } from "react-helmet-async";
 
 
 import EditOrderForm from "./editorder";
@@ -110,8 +110,15 @@ export default function OrdersTable() {
   };
 
   return (
-    <div style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Orders</h1>
+    <div>
+    <Helmet>
+    <title>Orders</title>
+    <meta name="Orders" content="Orders table" />
+  </Helmet>
+    <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>
+      Orders Table      </h1>
+      <section>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -175,9 +182,12 @@ export default function OrdersTable() {
           },
         }}
       />
+      </section>
+      <section>
       {isOrderFormOpen && <EditOrderForm order={selectedOrder} onClose={() => setIsOrderFormOpen(false)} />}
-
+      </section>
       <ToastContainer />
+      </main>
     </div>
   );
 }

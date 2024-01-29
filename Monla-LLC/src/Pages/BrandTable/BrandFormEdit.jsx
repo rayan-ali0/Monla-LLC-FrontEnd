@@ -46,17 +46,17 @@ const EditBrandForm = ({ brand, onClose, allCategories }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
             const formDataToSend = new FormData();
             formDataToSend.append('brand', formData.brand);  // Update to "brand" instead of "name"
             formDataToSend.append('categoryId', formData.categoryId);
             formDataToSend.append('image', formData.image);
-
-            const response = await axios.put(`http://localhost:5000/brand/updateBrand/${brand._id}`, formDataToSend);
-
+    
+            const response = await axios.put(`http://localhost:5000/brand/${brand._id}`, formDataToSend);
+    
             console.log('Brand updated:', response.data);
-
+    
             // Close the form after successful update
             onClose();
         } catch (error) {
@@ -64,6 +64,7 @@ const EditBrandForm = ({ brand, onClose, allCategories }) => {
             // Handle error (show error message, etc.)
         }
     };
+    
 
     return (
         <Dialog open={!!brand} onClose={onClose}>

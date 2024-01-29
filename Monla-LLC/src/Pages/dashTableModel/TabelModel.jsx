@@ -10,6 +10,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModelForm from '../dashTableModel/modelform';
 import ModelAddForm from '../dashTableModel/modelAddForm';
+import { Helmet } from "react-helmet-async";
 
 export default function ModelsTable() {
   const [rows, setRows] = useState([]);
@@ -104,19 +105,15 @@ const columns = [
 
 
   return (
-    <div
-      style={{
-        width: "90%",
-        float: "left",
-        margin: "auto",
-        height: "650px",
-        marginBottom: "7rem",
-     
-      }}
-    >
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>
-        Diet plans
-      </h1>
+    <div>
+    <Helmet>
+    <title>Model</title>
+    <meta name="Model" content="Model table" />
+  </Helmet>
+    <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>
+      Model Table      </h1>
+      <section>
       <button
         className={styles.btnAdd}
         style={{
@@ -132,6 +129,8 @@ const columns = [
 >
         Add 
     </button>
+    </section>
+    <section>
       <DataGrid
         rows={rows} 
         columns={columns}
@@ -194,10 +193,16 @@ const columns = [
             height: "80px !important",
           },
         }}
-      />
+      /> 
+      </section>
+      <section>
  {isModelFormOpen && <ModelForm model={selectedModel} onClose={() => setIsModelFormOpen(false)} allBrands={allBrands} />}
       {isAddFormOpen && <ModelAddForm onClose={handleAddFormClose} allBrands={allBrands} />}
+      </section>
+      <section>
       <ToastContainer />
+      </section>
+      </main>
     </div>
   );
 }
