@@ -15,10 +15,12 @@ const DashProfile = () => {
   const [verifyPassword, setVerifyPassword] = useState("");
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [showPassword3, setShowPassword3] = useState(false);
   const [formData, setFormData] = useState({
     name: user.name,
     email: user.email,
     password: "",
+    oldPasswordInput: '',
   });
 
   const nameRegex = /^[A-Za-z\s]+$/;
@@ -99,11 +101,14 @@ const DashProfile = () => {
         setNewPassword("");
         setVerifyPassword("");
         setUserUpdated(true);
-        // window.location.reload();
       }
     } catch (error) {
+      if(error.response.status === 401) {
+        toast.error("Your old password is not correct.");
+      } else {
       console.error(error);
       toast.error("Error updating user data.");
+      }
     }
   };
 
@@ -121,9 +126,8 @@ const DashProfile = () => {
       }
     };
 
-    updateUserInContext(); // Call this function immediately after the component renders
+    updateUserInContext(); 
 
-    // Use the cleanup function to run this after the component unmounts
     return () => {
       updateUserInContext();
     };
@@ -163,36 +167,16 @@ const DashProfile = () => {
         </div>
 
         {/* Old Password check */}
-        {/* <div className={style.input}>
-          <label htmlFor="oldPassword" className={style.label}>
+        <div className={style.input}>
+          <label htmlFor="oldPasswordInput" className={style.label}>
             Old Password:
           </label>
           <input
             type={showPassword1 ? "text" : "password"}
-            name="password"
-            id="oldPassword"
-            value={formData.password}
+            name="oldPasswordInput"
+            id="oldPasswordInput"
+            value={formData.oldPasswordInput}
             onChange={handleInputChange}
-          />
-          <img
-            src={showPassword1 ? hide : eye}
-            className={style.icon}
-            alt="Hide and Show an Eye"
-            onClick={() => setShowPassword1(!showPassword1)}
-          />
-        </div> */}
-
-        {/* New Password */}
-        <div className={style.input}>
-          <label htmlFor="newPassword" className={style.label}>
-            New Password
-          </label>
-          <input
-            type={showPassword1 ? "text" : "password"}
-            name="password"
-            id="newPassword"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
           />
           <img
             src={showPassword1 ? hide : eye}
@@ -202,23 +186,43 @@ const DashProfile = () => {
           />
         </div>
 
-        {/* Verify Password */}
+        {/* New Password */}
         <div className={style.input}>
-          <label htmlFor="verifyPassword" className={style.label}>
-            Verify Password
+          <label htmlFor="newPassword" className={style.label}>
+            New Password
           </label>
           <input
             type={showPassword2 ? "text" : "password"}
-            name="verifyPassword"
-            id="verifyPassword"
-            value={verifyPassword}
-            onChange={(e) => setVerifyPassword(e.target.value)}
+            name="password"
+            id="newPassword"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
           />
           <img
             src={showPassword2 ? hide : eye}
             className={style.icon}
             alt="Hide and Show an Eye"
             onClick={() => setShowPassword2(!showPassword2)}
+          />
+        </div>
+
+        {/* Verify Password */}
+        <div className={style.input}>
+          <label htmlFor="verifyPassword" className={style.label}>
+            Verify Password
+          </label>
+          <input
+            type={showPassword3 ? "text" : "password"}
+            name="verifyPassword"
+            id="verifyPassword"
+            value={verifyPassword}
+            onChange={(e) => setVerifyPassword(e.target.value)}
+          />
+          <img
+            src={showPassword3 ? hide : eye}
+            className={style.icon}
+            alt="Hide and Show an Eye"
+            onClick={() => setShowPassword3(!showPassword3)}
           />
         </div>
 
