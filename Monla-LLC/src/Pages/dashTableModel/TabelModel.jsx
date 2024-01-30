@@ -146,6 +146,7 @@ const columns = [
           // border:"none",
           paddingTop: "1rem",
           border: "1px solid white",
+          height:"650px",
           padding:"20px",
           borderRadius:"10px",
         //   borderRadius: "17px",

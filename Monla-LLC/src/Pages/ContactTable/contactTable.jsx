@@ -76,6 +76,7 @@ export default function ContactsTable() {
             border: "1px solid white",
             padding:"20px",
             borderRadius:"10px",
+            height:"650px",
           //   borderRadius: "17px",
             "& .MuiDataGrid-root": {
               backgroundColor: "white",

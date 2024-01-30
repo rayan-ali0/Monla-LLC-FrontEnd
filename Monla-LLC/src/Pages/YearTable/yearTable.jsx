@@ -132,6 +132,7 @@ export default function YearsTable() {
         }}
         sx={{
           color: "#0a213d",
+          height:"650px",
           // border:"none",
           paddingTop: "1rem",
           border: "1px solid white",

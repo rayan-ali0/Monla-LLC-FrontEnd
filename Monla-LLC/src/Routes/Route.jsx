@@ -69,13 +69,13 @@ const Router = () => {
         
 
 
-          <Route
+          {/* <Route
             element={
               <ProtectedRoute
                 isAllowed={user && user.role === "admin" }
                 redirectPath="/unauthorized"
               />
-            }>
+            }> */}
             <Route path="/dashboard" element={<Dashboard />} >
               <Route path="category" index element={< CategoryTable/>} />
               <Route path="profile" index element={<DashProfile />} />
@@ -94,7 +94,7 @@ const Router = () => {
               <Route path="User" index element={<UserTable/>} />
 
             </Route>
-          </Route> 
+          {/* </Route>  */}
 
 
 
