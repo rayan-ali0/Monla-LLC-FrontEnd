@@ -20,11 +20,7 @@ export const UserProvider = ({ children }) => {
 
       const response = await axios.get(
         `${import.meta.env.VITE_REACT_APP_BACKEND}/logged-in-user`,
-        { withCredentials: true ,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        }
+        { withCredentials: true }
       );
       setUser(response.data.user);
       console.log("Fetched user data:", response.data.user); // Add this line
@@ -43,7 +39,15 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, logOut, fetchUserData, checkUser, setUserUpdated }}>
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        logOut,
+        fetchUserData,
+        checkUser,
+        setUserUpdated,
+      }}>
       {children}
     </UserContext.Provider>
   );

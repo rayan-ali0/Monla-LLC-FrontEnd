@@ -20,7 +20,7 @@ const DashProfile = () => {
     name: user.name,
     email: user.email,
     password: "",
-    oldPasswordInput: '',
+    oldPasswordInput: "",
   });
 
   const nameRegex = /^[A-Za-z\s]+$/;
@@ -38,39 +38,48 @@ const DashProfile = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-// Validate the form fields
-if (formData.name && !nameRegex.test(formData.name)) {
-  toast.error("Please enter a valid name.");
-  return;
-}
+    // Validate the form fields
+    if (formData.name && !nameRegex.test(formData.name)) {
+      toast.error("Please enter a valid name.");
+      return;
+    }
 
-// Validate new password
-if (newPassword || verifyPassword) {
-  if (!newPassword) {
-    toast.error("Enter your new password.");
-    return;
-  }
+    // Validate old password if it's provided
+    if (
+      formData.oldPasswordInput &&
+      !passwordRegex.test(formData.oldPasswordInput)
+    ) {
+      toast.error("Old password should be at least 8 characters.");
+      return;
+    }
 
-  if (!passwordRegex.test(newPassword)) {
-    toast.error("New password should be at least 8 characters.");
-    return;
-  }
+    // Validate new password and verify password
+    if (newPassword !== "" || verifyPassword !== "") {
+      if (newPassword === "") {
+        toast.error("Enter your new password.");
+        return;
+      }
 
-  if (!verifyPassword) {
-    toast.error("Enter your verify password.");
-    return;
-  }
+      if (!passwordRegex.test(newPassword)) {
+        toast.error("New password should be at least 8 characters.");
+        return;
+      }
 
-  if (!passwordRegex.test(verifyPassword)) {
-    toast.error("Verify password should be at least 8 characters.");
-    return;
-  }
+      if (verifyPassword === "") {
+        toast.error("Enter your verify password.");
+        return;
+      }
 
-  if (newPassword !== verifyPassword) {
-    toast.error("Passwords do not match.");
-    return;
-  }
-}
+      if (!passwordRegex.test(verifyPassword)) {
+        toast.error("Verify password should be at least 8 characters.");
+        return;
+      }
+
+      if (newPassword !== verifyPassword) {
+        toast.error("Passwords do not match.");
+        return;
+      }
+    }
 
     try {
       const response = await axios.put(
@@ -86,11 +95,11 @@ if (newPassword || verifyPassword) {
         setUserUpdated(true);
       }
     } catch (error) {
-      if(error.response.status === 401) {
+      if (error.response.status === 401) {
         toast.error("Your old password is not correct.");
       } else {
-      console.error(error);
-      toast.error("Error updating user data.");
+        console.error(error);
+        toast.error("Error updating user data.");
       }
     }
   };
@@ -108,7 +117,7 @@ if (newPassword || verifyPassword) {
       }
     };
 
-    updateUserInContext(); 
+    updateUserInContext();
 
     return () => {
       updateUserInContext();
@@ -178,8 +187,11 @@ if (newPassword || verifyPassword) {
             type={showPassword2 ? "text" : "password"}
             name="password"
             id="newPassword"
-            value={formData.password}
-            onChange={(e) => setNewPassword(e.target.value)}
+            value={newPassword}
+            onChange={(e) => {
+              setNewPassword(e.target.value);
+              handleInputChange(e);
+            }}
           />
           <img
             src={showPassword2 ? hide : eye}
