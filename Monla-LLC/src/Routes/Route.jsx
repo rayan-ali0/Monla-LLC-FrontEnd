@@ -49,15 +49,10 @@ const Router = () => {
           <Route index path="/services" element={<Services />} />
             <Route index path="/contact" element={<Contact />} />
             <Route index path="/cart" element={<Cart />} />
-            {/* <Route index path="/summary" element={<Summary />} /> */}
-            <Route index path="/profile" element={<Profile />}></Route>
-            <Route index path="/summary" element={<Summary />} />
-            <Route index path="/profile" element={<Profile />}>
+            <Route index path="/profile" element={<Profile />} />
 
             </Route>
           
-
-          </Route>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
@@ -69,13 +64,13 @@ const Router = () => {
         
 
 
-          {/* <Route
+          <Route
             element={
               <ProtectedRoute
                 isAllowed={user && user.role === "admin" }
                 redirectPath="/unauthorized"
               />
-            }> */}
+            }>
             <Route path="/dashboard" element={<Dashboard />} >
               <Route path="category" index element={< CategoryTable/>} />
               <Route path='user' index element={<User />} />
@@ -101,19 +96,8 @@ const Router = () => {
               <Route path="User" index element={<UserTable/>} />
 
             </Route>
-          {/* </Route>  */}
-
-
-
-
-
-
-
-
-
+          </Route> 
             </Routes>
-          {/* </Route> */}
-        {/* </Routes> */}
       </BrowserRouter>
     </div>
   );
