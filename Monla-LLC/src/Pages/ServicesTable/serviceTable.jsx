@@ -98,7 +98,7 @@ export default function ServicesTable() {
           marginBottom: "1rem",
           width: "7rem",
           height: "2.5rem",
-          backgroundColor: "blue",
+          backgroundColor: "#C62507",
           borderRadius: "5px",
           fontWeight: "bold",
         }}
@@ -125,6 +125,7 @@ export default function ServicesTable() {
             border: "1px solid white",
             padding:"20px",
             borderRadius:"10px",
+            height:"650px",
           //   borderRadius: "17px",
             "& .MuiDataGrid-root": {
               backgroundColor: "white",

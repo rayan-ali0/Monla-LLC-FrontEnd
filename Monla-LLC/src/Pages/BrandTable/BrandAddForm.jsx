@@ -14,7 +14,6 @@ import { Input } from '@mui/material';
 const BrandAddForm = ({ onClose, allCategories }) => {
     const [formData, setFormData] = useState({
         name: '',
-        categoryId: '',
         image: null,
     });
 
@@ -38,7 +37,6 @@ const BrandAddForm = ({ onClose, allCategories }) => {
         try {
             const formDataToSend = new FormData();
             formDataToSend.append('name', formData.name);
-            formDataToSend.append('categoryId', formData.categoryId);
             formDataToSend.append('image', formData.image);
 
             const response = await axios.post('http://localhost:5000/brand/addBrand', formDataToSend);
@@ -69,24 +67,7 @@ const BrandAddForm = ({ onClose, allCategories }) => {
                         placeholder="Enter brand name"
                     />
 
-                    <FormControl fullWidth margin="normal">
-                        <InputLabel>Category</InputLabel>
-                        <Select
-                            name="categoryId"
-                            value={formData.categoryId || ''}
-                            onChange={handleChange}
-                            input={<Input />}
-                        >
-                            <MenuItem value="">Select a Category</MenuItem>
-                            {allCategories &&
-                                allCategories.map((category) => (
-                                    <MenuItem key={category._id} value={category._id}>
-                                        {category.title}
-                                    </MenuItem>
-                                ))}
-                        </Select>
-
-                    </FormControl>
+                    
 
                     <input
                         accept="image/*"
