@@ -92,9 +92,11 @@
 .textField:hover {
     border-bottom: 1px solid #666;
 }
-
-.editBtn , .textField{
+.textField{
     border: 1px solid var(--first-blue-color);
+
+}
+.editBtn , .textField{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,11 +110,30 @@
 
 .editBtn{
     width: 35%;
-    background:  var(--first-blue-color);
+    background:  var(--button-background-color-red);
     color :white;
-
-
 }
+.related__ItemP {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    width: 50%;
+    margin: 20px auto;
+  }
+
+  .related__ItemP .backgroundP {
+    width: 20px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: var(--button-background-color-red);
+  }
+  
+
+.editBtn:hover{
+    background: var(--button-background-hover-color);
+}
+
 .btnHolder{
     justify-content: center;
 
@@ -159,3 +180,16 @@
         width: 1.2em;
     }
 }
+
+
+@media (max-width: 767px) {
+    .related__ItemP .backgroundP {
+      width: 15px;
+      height: 30px;
+    }
+    .related__ItemP .titleP {
+      font-size: 24px;
+    }
+  
+   
+  }

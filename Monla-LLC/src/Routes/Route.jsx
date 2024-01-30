@@ -50,6 +50,8 @@ const Router = () => {
             <Route index path="/contact" element={<Contact />} />
             <Route index path="/cart" element={<Cart />} />
             <Route index path="/profile" element={<Profile />} />
+            <Route path="/productdetails/:slug" element={<ProductDetails />} />
+            <Route path="/about" element={<Aboutus />} />
 
             </Route>
           
@@ -58,9 +60,6 @@ const Router = () => {
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/productdetails/:slug" element={<ProductDetails />} />
-          <Route path="/productdetails" element={<ProductDetails />} />
-          <Route path="/about" element={<Aboutus />} />
         
 
 
