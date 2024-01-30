@@ -18,6 +18,8 @@ const Checkout = () => {
   const [arr, setArr] = useState([]);
   const [idsArr, setIdsArr] = useState([])
   const [totalPrice, setTotalPrice] = useState(0);
+  const [orderNumber, setOrderNumber] = useState(null);
+  const [dateOfOrder, setDateOfOrder] = useState(null)
 
   const [formData, setFormData] = useState({
     userName: "",
@@ -58,7 +60,6 @@ const Checkout = () => {
       dataArr.push(product);
       idsArr.push({ productId: product._id, quantity: quantityValue });
     }
-    console.log(dataArr)
 
     setFormData({
       ...formData,
@@ -146,9 +147,20 @@ const Checkout = () => {
         formData
       );
       if (response.data) {
+        console.log("formData: ", formData)
+        console.log("response.data: ", response.data)
+        setOrderNumber(response.data.Order.orderNumber)
+        setDateOfOrder(response.data.Order.createdAt)
+        console.log(response.data.Order.orderNumber)
+        console.log(response.data.Order.createdAt)
         toast.success("Order created successfully!");
         setTimeout(() => {
-          navigate("/", { replace: true });
+          navigate("/confirmed", {
+            state: {
+              orderNumber: response.data.Order.orderNumber,
+              dateOfOrder: response.data.Order.createdAt,
+            },
+          });
         }, 1000);
       }
       localStorage.clear();
@@ -157,7 +169,6 @@ const Checkout = () => {
       console.error("Error:", error);
     }
   };
-  console.log(shippingCost)
   return (
     <main className={styles.main}>
       <Helmet>
