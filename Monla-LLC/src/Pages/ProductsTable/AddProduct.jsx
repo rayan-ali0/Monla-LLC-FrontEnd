@@ -129,7 +129,7 @@ export default function AddProduct() {
         }))
         setYears(yearsData)
       }
-      console.log(error)
+      // console.log(error)
     }
     catch (error) {
       console.error("Error:", error);
@@ -266,12 +266,12 @@ export default function AddProduct() {
       model: null,
       year:null
     });
-    // setModels([])
-    // setYears([])
+    setModels([])
+    setYears([])
     fetchModels(selectedOption.value)
   }
   else if(inputName==="model"){
-    // setYears([])
+    setYears([])
     setAddedProduct({
       ...addedProduct,
       [inputName]: selectedOption.value,
@@ -302,6 +302,26 @@ export default function AddProduct() {
 
     console.log(addedProduct)
   }
+
+
+  const getModelLabelById = (modelId) => {
+    const foundModel = models.find((model) => model.value === modelId);
+  
+    // If the model is found, return its label; otherwise, return null or handle it accordingly
+    return foundModel ? foundModel.label : null;
+  };
+
+  
+  const getYearLabelById = (yearId) => {
+    const foundYear = years.find((year) => year.value === yearId);
+  
+    return foundYear ? foundYear.label : null;
+  };
+  const getBrandLabelById = (brandId) => {
+    const foundBrand = brands.find((brand) => brand.value === brandId);
+  
+    return foundBrand ? foundBrand.label : null;
+  };
 
   /************************************* */
 
@@ -441,7 +461,9 @@ export default function AddProduct() {
       <div className={!displayForm ? style.form2 : style.formDisplay}>
 
 <Autocomplete
-          value={addedProduct.brand|| ''}
+          // value={addedProduct.brand|| ''}
+          // getBrandLabelById
+          value={addedProduct.brand?getBrandLabelById(addedProduct.brand):""}
 
   className={style.inputs}
   disablePortal
@@ -464,6 +486,7 @@ export default function AddProduct() {
 
 <Autocomplete
     // value={(action === "Edit" && product) ? { label: product.model.name, value: product.model._id } : null}
+    value={addedProduct.model?getModelLabelById(addedProduct.model):""}
     // value={addedProduct.model|| ''}
 
   className={style.inputs}
@@ -487,6 +510,8 @@ export default function AddProduct() {
 
 <Autocomplete
           // value={addedProduct.year|| ''}
+          // value={addedProduct.year?addedProduct.year:""}
+          value={addedProduct.year?getYearLabelById(addedProduct.year):""}
 
             // value={(action === "Edit" && product) ? { label: product.year.value.join('-'), value: product.year._id } : null}
   className={style.inputs}
