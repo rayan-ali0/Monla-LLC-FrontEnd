@@ -4,7 +4,7 @@ import axios from 'axios'
 import producImage from '../../assets/images/backgorundImage.png'
 import bin from "../../assets/bin.png"
 import cross from '../../assets/icons/cross.png'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import emptyCart from '../../assets/images/emptyCart.png'
 const Cart = () => {
     const navigate=useNavigate()
@@ -122,22 +122,21 @@ else{
         {arr.map(item=>
             <section key={item._id} className={`${style.cartRow} ${style.cartLine}`}>
             <span className={style.image} onClick={()=>viewAgain(item)}>
-                {/* <img src={producImage} /> */}
                 <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`} />
 
                 </span>
             <div className={style.styleDiv}>
-                <span className={`${style.productHolder}`}> {item.title}</span>
-                <span className={style.custmWidth}>${item.price}</span>
+                <span className={`${style.productHolder}`}><b className={style.boldTitle}>Title:</b> {item.title}</span>
+                <span className={style.custmWidth}> <b className={style.boldTitle}>Price:</b>${item.price}</span>
                 <div className={` ${style.qtyWidth}`}>
                     <div className={`${style.quantity__to__buy1}`}>
-                        <span className={style.decrease1}  onClick={()=>decreaseOne(item)}>{idsArr[item._id]==1?<img src={cross} className={style.crossIcon}/>:"-"}</span>
+                        <span className={style.decrease1}  onClick={()=>decreaseOne(item)}>{" "+idsArr[item._id]==1?<img src={cross} className={style.crossIcon}/>:"-"}</span>
                         <span className={style.number1}>{idsArr[item._id]}</span>
                         <span className={style.increase1} onClick={()=>increaseOne(item)}>+</span>
                     </div>
                 </div>
     
-                <span className={style.custmWidth}>${idsArr[item._id]*item.price}</span>
+                <span className={style.custmWidth}><b className={style.boldTitle}>Total Price:</b>${" "+idsArr[item._id]*item.price}</span>
             </div>
             <span className={style.removeIcon} onClick={()=>removeFromCart(item)}><img src={bin} className={style.binIcon} /></span> {/**6 */}
         </section>
@@ -153,7 +152,10 @@ else{
                 </div>
 
                 <section className={`${style.checkRow} ${style.cartLine}`}>
-                    <span className={`${style.shopBtn} ${style.cartBtns}`}>Return To Shop</span>
+                    <Link className={`${style.shopBtn} ${style.cartBtns}`} to='/product'>
+                    <span >Return To Shop</span>
+                    </Link>
+
                     <span><b>Total Cart :</b>${totalPrice}</span>
                     <span className={`${style.checkBtn} ${style.cartBtns}`} onClick={goToCheckout}>Checkout</span>
                 </section>
