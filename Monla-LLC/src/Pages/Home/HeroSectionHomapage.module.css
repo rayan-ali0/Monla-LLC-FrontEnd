@@ -77,11 +77,12 @@
         background-color: transparent;
 
     }
-@media (max-width: 720px) {
-    /* .content{
-        width: 100%;
-    } */
+@media (max-width: 784px) {
+    .backgroundImage {
+
+  height : 659px;
     
+}
 }
 @media (max-width: 1086px) {
     /* .button {

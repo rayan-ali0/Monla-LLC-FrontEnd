@@ -75,9 +75,24 @@ import Styles from './sectionproduct.module.css';
 import heart from '../../assets/Images/heart.png';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+
 const ProductCarthome = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const serviceVariants={
+    initial:{
+        y:50,
+        opacity:0,
+    },
+    animate:{
+        y:0,
+        opacity:1,
+        transition:{
+            duration:1,
+            staggerChildren:0.2
+        },
+    },
+  }
 
   const handleAddTocart = () => {
     // Navigate to the services page
@@ -103,6 +118,8 @@ const ProductCarthome = () => {
   }
 
   return (
+    <div>
+                    <motion.h2 className={Styles.titleproduct} variants={serviceVariants}>Explore below our best seller</motion.h2>
     <div className={Styles.productlinewrapper}>
         <div className={Styles.productlinecontainer}>
           
@@ -120,6 +137,7 @@ const ProductCarthome = () => {
           <button className={Styles.btn} onClick={handleAddTocart} >ADD TO CART</button>
         </motion.div>
       ))}
+    </div>
     </div>
     </div>
   );
