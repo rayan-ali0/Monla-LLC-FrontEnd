@@ -23,13 +23,19 @@ import Profile from "../Components/Profile/Profile.jsx";
 import DashProfile from '../Components/DashProfile/DashProfile.jsx'
 import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
 import Overview from "../Pages/Overview/Overview.jsx";
+import ConfirmationPage from "../Pages/confimationOrder/confimeOrder.jsx";
 import YearsTable from "../Pages/YearTable/yearTable.jsx";
 import User from '../Pages/UserTable/UserTable.jsx'
 import Productstable from "../Pages/ProductsTable/ProductsTable.jsx";
 import AddProduct from "../Pages/ProductsTable/AddProduct.jsx";
 import EditProduct from "../Pages/ProductsTable/EditProduct.jsx";
-import BrandsTable from "../Pages/BrandTable/BrandTable.jsx";
 
+import BrandsTable from "../Pages/BrandTable/BrandTable.jsx";
+import ShippingsTable from "../Pages/ShippingTable/shippingtable.jsx";
+import ContactsTable from "../Pages/ContactTable/contactTable.jsx";
+import OrdersTable from "../Pages/tableOrder/tableOrder.jsx";
+import ServicesTable from "../Pages/ServicesTable/serviceTable.jsx";
+import UserTable from "../Pages/UserTable/UserTable.jsx";
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
   return (
@@ -38,12 +44,18 @@ const Router = () => {
         <Routes>
           <Route element={<Layout />} >
           <Route path="/" element={<Home />} />
+          <Route index path="/confirme" element={<ConfirmationPage/>} />
           <Route path="/product" element={<Products />} />
           <Route index path="/services" element={<Services />} />
             <Route index path="/contact" element={<Contact />} />
             <Route index path="/cart" element={<Cart />} />
             {/* <Route index path="/summary" element={<Summary />} /> */}
             <Route index path="/profile" element={<Profile />}></Route>
+            <Route index path="/summary" element={<Summary />} />
+            <Route index path="/profile" element={<Profile />}>
+
+            </Route>
+          
 
           </Route>
           <Route path="/signup" element={<Signup />} />
@@ -66,21 +78,35 @@ const Router = () => {
             }>
             <Route path="/dashboard" element={<Dashboard />} >
               <Route path="category" index element={< CategoryTable/>} />
-              <Route path='user' index element={<User />} />
-              <Route path="" index element={< Overview />} />
-              <Route path="yeardash" index element={< YearsTable />} />
               <Route path="profile" index element={<DashProfile />} />
               <Route path="Product/Add" index element={< AddProduct/>} />
               <Route path="Product/Edit" index element={< EditProduct/>} />
               <Route path="Products" element={<Productstable/>}/>
-              <Route path="brand" element={<BrandsTable/>}/>
-              <Route path="year" element={<YearsTable/>}/>
-              <Route  path="model" element={<ModelsTable/>} />
+
+              <Route path="overview" index element={< Overview />} />
+              <Route path="Year" index element={< YearsTable />} />
+              <Route path="Model" index element={< ModelsTable />} />
+              <Route path="Brand" index element={< BrandsTable />} />
+              <Route path="Shipping" index element={<ShippingsTable/>} />
+              <Route path="contact" index element={<ContactsTable/>} />
+              <Route path="Orders" index element={<OrdersTable/>} />
+              <Route path="Services" index element={<ServicesTable/>} />
+              <Route path="User" index element={<UserTable/>} />
 
             </Route>
           </Route> 
 
-        </Routes>
+
+
+
+
+
+
+
+
+            </Routes>
+          {/* </Route> */}
+        {/* </Routes> */}
       </BrowserRouter>
     </div>
   );

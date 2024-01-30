@@ -4,7 +4,7 @@
     display: flex;
     gap: 4rem;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .serviceCard {
@@ -21,7 +21,7 @@
 
 }
 .title {
-    font-size: 25px;}
+    font-size: 30px;}
 
 .viewMoreButton {
     margin: 15px auto;
@@ -34,6 +34,8 @@
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
+    border: 1px solid #1E5DBC;
+    transition: 0.2s;
 }
 
 .viewMoreButton:hover {
@@ -105,6 +107,6 @@
 }
 @media (min-width:1211px){
     .title {
-        font-size: 25px;}
+        font-size: 30px;}
         
 }

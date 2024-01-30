@@ -6,6 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./shipping.module.css";
 import ShippingAddForm from "./addshipping";
 import EditShippingForm from "./editshipping";
+import { Helmet } from "react-helmet-async";
 
 export default function ShippingsTable() {
   const [rows, setRows] = useState([]);
@@ -71,8 +72,14 @@ export default function ShippingsTable() {
   ];
 
   return (
-    <div style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Shippings</h1>
+    <div>
+    <Helmet>
+    <title>Shipping</title>
+    <meta name="Shipping" content="Shipping table" />
+  </Helmet>
+    <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>   
+       <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}> Shipping Table</h1>
+       <section>
       <button
         className={styles.btnAdd}
         style={{
@@ -88,6 +95,8 @@ export default function ShippingsTable() {
       >
         Add
       </button>
+      </section>
+      <section>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -151,10 +160,14 @@ export default function ShippingsTable() {
             },
           }}
         />
+        </section>
+        <section>
       {isShippingFormOpen && (
         <EditShippingForm shipping={selectedShipping} onClose={() => setIsShippingFormOpen(false)} />
       )}
       {isAddFormOpen && <ShippingAddForm onClose={handleAddFormClose} />}
+      </section>
+      </main>
     </div>
   );
 }

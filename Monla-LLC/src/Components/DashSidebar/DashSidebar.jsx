@@ -28,8 +28,8 @@ import CategoryIcon from '@mui/icons-material/Category';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PublicIcon from '@mui/icons-material/Public';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ModelsTable from '../../Pages/dashTableModel/TabelModel';
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -117,17 +117,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 const menuItems = [
-  { text: '', color:"white",icon: <DashboardIcon /> },
-  { text: 'user', icon: <PeopleIcon /> },
-  { text: 'Store', icon: <StoreIcon /> },
-  { text: 'Receipt', icon: <ReceiptIcon /> },
-  { text: 'Branding Watermark', icon: <BrandingWatermarkIcon /> },
+  { text: 'overview', color:"white",icon: <DashboardIcon /> },
+  { text: 'Orders', icon: <ShoppingCartIcon /> },
+  { text: 'Products', icon: <StoreIcon /> },
+  { text: 'User', icon: <PeopleIcon /> },
+  { text: 'Services', icon: <ReceiptIcon /> },
   { text: 'category', icon: <CategoryIcon /> },
-  { text: 'Model Training', icon: <ModelTrainingIcon /> },
-  { text: 'Date Range', icon: <DateRangeIcon /> },
-  { text: 'Shopping Cart', icon: <ShoppingCartIcon /> },
-  { text: 'Public', icon: <PublicIcon /> },
-  { text: 'Local Shipping', icon: <LocalShippingIcon /> },
+  { text: 'Brand', icon: <BrandingWatermarkIcon /> },
+  { text: 'Model ', icon: <ModelTrainingIcon /> },
+  { text: 'Year', icon: <DateRangeIcon /> },
+  { text: 'contact', icon: <MailOutlineIcon /> },
+  { text: 'Shipping', icon: <LocalShippingIcon /> },
 ];
 
 export default function MiniDrawer() {

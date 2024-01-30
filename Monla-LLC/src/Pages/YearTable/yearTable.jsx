@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import YearForm from '../YearTable/yeartableedit';
 import YearAddForm from '../YearTable/yeartableadd';
 import styles from '../YearTable/tableyear.module.css';
+import { Helmet } from "react-helmet-async";
 
 
 export default function YearsTable() {
@@ -92,8 +93,15 @@ export default function YearsTable() {
   ];
 
   return (
-    <div style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Diet plans</h1>
+    <div>
+    <Helmet>
+    <title>Year</title>
+    <meta name="year" content="year table" />
+  </Helmet>
+    <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>Years Table</h1>
+      <section>
+
       <button
         className={styles.btnAdd}
         style={{
@@ -109,6 +117,9 @@ export default function YearsTable() {
       >
         Add
       </button>
+      </section>
+      <section>
+
       <DataGrid
         rows={rows} 
         columns={columns}
@@ -172,9 +183,18 @@ export default function YearsTable() {
           },
         }}
       />
+      </section>
+      <section>
+
       {isYearFormOpen && <YearForm year={selectedYear} onClose={() => setIsYearFormOpen(false)} allModels={allModels} />}
       {isAddFormOpen && <YearAddForm onClose={handleAddFormClose} allModels={allModels} />}
+      </section>
+      <section>
+
       <ToastContainer />
+      </section>
+
+    </main>
     </div>
   );
 }

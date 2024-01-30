@@ -28,10 +28,10 @@ const HeroSectionHomepage = () => {
         <motion.div className={HeroSectionHomepageCss.content} variants={textVariants} initial="initial" animate="animate">
           {/* Main title */}
           <motion.h1 className={HeroSectionHomepageCss.title} variants={textVariants}>
-   Rent A Car & Travel <span className={HeroSectionHomepageCss.spann}>Endless</span>
+          DRIVE IN STYLE & REPAIR WITH <span className={HeroSectionHomepageCss.spann}> EASE</span>
           </motion.h1>
-          <motion.h2 className={HeroSectionHomepageCss.Title} variants={textVariants}>No reservation costs. Great rates.
-Find What You Need actually.</motion.h2>
+          <motion.h2 className={HeroSectionHomepageCss.Title} variants={textVariants}>
+            Cruise in Confidence. Unbeatable Prices. Discover All Your Car Essentials Right Here.</motion.h2>
           
           {/* Button linking to the contact page */}
           <motion.a href="/contmotion.act" className={HeroSectionHomepageCss.button} >

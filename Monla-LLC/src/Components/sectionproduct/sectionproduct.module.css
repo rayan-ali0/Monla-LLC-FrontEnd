@@ -12,6 +12,11 @@
     
     /* Add margin to create space between cards */
 }
+.titleproduct {
+    font-size: 30px;
+    height: 6vh;
+    margin: 17px 0;
+}
 
 .container:hover {
     transform: scale(1.06);

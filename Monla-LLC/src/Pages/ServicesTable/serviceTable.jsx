@@ -6,6 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditServiceForm from "./EditServiceForm";
 import ServiceAddForm from "./AddServiceForm";
 import styles from "./Service.module.css";
+import { Helmet } from "react-helmet-async";
 
 export default function ServicesTable() {
   const [rows, setRows] = useState([]);
@@ -82,8 +83,14 @@ export default function ServicesTable() {
   ];
 
   return (
-    <div style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Services</h1>
+    <div>
+    <Helmet>
+    <title>Services</title>
+    <meta name="Services" content="Services table" />
+  </Helmet>
+    <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}> Services Table</h1>
+      <section>
       <button
         className={styles.btnAdd}
         style={{
@@ -99,6 +106,8 @@ export default function ServicesTable() {
       >
         Add
       </button>
+      </section>
+      <section>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -162,12 +171,15 @@ export default function ServicesTable() {
             },
           }}
         />
+        </section>
+        <section>
       {isServiceFormOpen && (
         <EditServiceForm service={selectedService} onClose={() => setIsServiceFormOpen(false)} />
       )}
       {isAddFormOpen && <ServiceAddForm onClose={handleAddFormClose} />}
-
+      </section>
       {/* Add necessary components like ToastContainer */}
+      </main>
     </div>
   );
 }

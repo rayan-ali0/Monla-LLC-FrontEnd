@@ -141,7 +141,6 @@ useEffect(()=>{
             alignItems: "center",
             color: "white",
             // color: 'blue',
-            display:"none"
 
           },
           "& .MuiButtonBase-root": {

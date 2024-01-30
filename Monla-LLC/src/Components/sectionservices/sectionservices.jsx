@@ -49,7 +49,7 @@ const ServicesSection = () => {
             <motion.div className={styles.servicesContainer} variants={serviceVariants}>
                 {services.slice(0, 3).map(service => (
                     <motion.div key={service._id} className={styles.serviceCard} variants={serviceVariants}>
-                        <motion.img src={`http://localhost:5000/${service.image}`} alt={service.title} variants={serviceVariants} />
+                        <motion.img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${service.image}`} alt={service.title} variants={serviceVariants} />
                         <motion.h3 variants={serviceVariants}>{service.title}</motion.h3>
                     </motion.div>
                 ))}
