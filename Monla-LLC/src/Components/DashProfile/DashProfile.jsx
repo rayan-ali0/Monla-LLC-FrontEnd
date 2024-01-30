@@ -178,8 +178,14 @@ if (newPassword || verifyPassword) {
             type={showPassword2 ? "text" : "password"}
             name="password"
             id="newPassword"
+<<<<<<< HEAD
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
+=======
+            value={formData.password}
+            // onChange={(e) => setNewPassword(e.target.value)}
+            onChange={handleInputChange}
+>>>>>>> Rachwan-Newest
           />
           <img
             src={showPassword2 ? hide : eye}

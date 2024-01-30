@@ -66,7 +66,6 @@ const Router = () => {
               <Route path='user' index element={<User />} />
               <Route path="" index element={< Overview />} />
               <Route path="yeardash" index element={< YearsTable />} />
-
               <Route path="profile" index element={<DashProfile />} />
             </Route>
           </Route>
