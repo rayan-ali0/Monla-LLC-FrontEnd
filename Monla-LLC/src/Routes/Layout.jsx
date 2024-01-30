@@ -8,7 +8,9 @@ export default function Layout() {
     <>
     <Header/>
     <Outlet />
+    <div style={{marginTop:"2rem"}}>
     <Footer />
+    </div>
     </>
   )
 }

@@ -27,8 +27,15 @@
 .PagBtn{
     width: 4rem;
     height: 4rem;
-  
-
+}
+.searchh{
+  display: flex;
+  justify-content: space-between;
+  width: 94%;
+  align-items: center;
+  /* margin-left: 2rem; */
+  flex-wrap: wrap;
+  /* margin-bottom: 2rem; */
 }
 .nav{
   width: 100%;
