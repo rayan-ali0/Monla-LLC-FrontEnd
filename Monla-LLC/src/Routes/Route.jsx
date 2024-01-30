@@ -22,10 +22,13 @@ import ModelsTable from "../Pages/dashTableModel/TabelModel.jsx";
 import Profile from "../Components/Profile/Profile.jsx";
 import DashProfile from '../Components/DashProfile/DashProfile.jsx'
 import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
-import MiniDrawer from "../Components/DashSidebar/DashSidebar.jsx";
 import Overview from "../Pages/Overview/Overview.jsx";
 import YearsTable from "../Pages/YearTable/yearTable.jsx";
 import User from '../Pages/UserTable/UserTable.jsx'
+import Productstable from "../Pages/ProductsTable/ProductsTable.jsx";
+import AddProduct from "../Pages/ProductsTable/AddProduct.jsx";
+import EditProduct from "../Pages/ProductsTable/EditProduct.jsx";
+import BrandsTable from "../Pages/BrandTable/BrandTable.jsx";
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
@@ -57,7 +60,7 @@ const Router = () => {
           <Route
             element={
               <ProtectedRoute
-                isAllowed={user && user.role === "admin"}
+                isAllowed={user && user.role === "admin" }
                 redirectPath="/unauthorized"
               />
             }>
@@ -67,8 +70,16 @@ const Router = () => {
               <Route path="" index element={< Overview />} />
               <Route path="yeardash" index element={< YearsTable />} />
               <Route path="profile" index element={<DashProfile />} />
+              <Route path="Product/Add" index element={< AddProduct/>} />
+              <Route path="Product/Edit" index element={< EditProduct/>} />
+              <Route path="Products" element={<Productstable/>}/>
+              <Route path="brand" element={<BrandsTable/>}/>
+              <Route path="year" element={<YearsTable/>}/>
+              <Route  path="model" element={<ModelsTable/>} />
+
             </Route>
-          </Route>
+          </Route> 
+
         </Routes>
       </BrowserRouter>
     </div>

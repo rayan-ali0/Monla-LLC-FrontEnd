@@ -1,0 +1,11 @@
+.overviewHolder{
+
+    height: 90vh;
+    width: 85%;
+    margin: 0 auto;
+    background-color: var(--first-blue-color);
+padding: 3em;
+display: flex;
+flex-direction: column;
+gap:3em
+}

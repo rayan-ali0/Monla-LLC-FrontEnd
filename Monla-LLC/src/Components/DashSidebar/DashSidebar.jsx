@@ -39,6 +39,8 @@ import { NavLink, useLocation } from "react-router-dom";
 // import Styles from "./DashSidebar.module.css"
 import "./DashSidebar.css"
 import YearsTable from '../../Pages/YearTable/yearTable';
+import Productstable from '../../Pages/ProductsTable/ProductsTable';
+import AddEditProduct from '../../Pages/ProductsTable/AddProduct.jsx'
 import BrandsTable from '../../Pages/BrandTable/BrandTable';
 import ServicesTable from '../../Pages/ServicesTable/serviceTable';
 import ContactsTable from '../../Pages/ContactTable/contactTable';
@@ -210,10 +212,10 @@ export default function MiniDrawer() {
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-    <DrawerHeader />
-{/* <YearsTable/>     */}
-   
+   {/* <Productstable/> */}
+   {/* <AddEditProduct/> */}
       </Box>
+    <DrawerHeader />
     </Box>
   );
 }
