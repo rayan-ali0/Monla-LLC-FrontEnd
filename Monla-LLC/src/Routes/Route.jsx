@@ -78,6 +78,13 @@ const Router = () => {
             }> */}
             <Route path="/dashboard" element={<Dashboard />} >
               <Route path="category" index element={< CategoryTable/>} />
+              <Route path='user' index element={<User />} />
+              <Route path="" index element={< Overview />} />
+              <Route path="yeardash" index element={< YearsTable />} />
+              <Route path="model" index element={< ModelsTable/>} />
+
+
+
               <Route path="profile" index element={<DashProfile />} />
               <Route path="Product/Add" index element={< AddProduct/>} />
               <Route path="Product/Edit" index element={< EditProduct/>} />
