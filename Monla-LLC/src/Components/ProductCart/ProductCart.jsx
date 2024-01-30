@@ -20,16 +20,16 @@ animate:{
 const ProductCart = ({ item, single__product = false }) => {
 
   return (
-    <motion.div  className={ single__product? Styles.single__container: Styles.container}whileHover={{opacity:0.7}} variants={variant} initial="initial"  animate="animate">
+    <motion.div  className={ single__product? Styles.single__container: Styles.container}whileHover={{scale:1.001, opacity:0.8}} variants={variant} initial="initial"  animate="animate">
         <img src={heart} className={Styles.heart} alt="" />
       <div>
         <img className={Styles.image} src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`} alt="" />
       </div>
       <div className={Styles.text}>
-        <h2 className={Styles.price}>{item.price}</h2>
         <p className={Styles.title}>{item.title}</p>
-        <p className={Styles.desc}>{item.desc}</p>
+        <p className={Styles.desc}>{item.description}</p>
       </div>
+        <h2 className={Styles.price}>${item.price}</h2>
       <button className={Styles.btn}>ADD TO CART</button>
     </motion.div>
     

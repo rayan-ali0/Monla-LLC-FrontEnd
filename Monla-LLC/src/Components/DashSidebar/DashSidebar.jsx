@@ -32,18 +32,12 @@ import PublicIcon from '@mui/icons-material/Public';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ModelsTable from '../../Pages/dashTableModel/TabelModel';
 import { NavLink, useLocation } from "react-router-dom";
-
-
-
-
-// import Styles from "./DashSidebar.module.css"
 import "./DashSidebar.css"
-import YearsTable from '../../Pages/YearTable/yearTable';
-import BrandsTable from '../../Pages/BrandTable/BrandTable';
-import ServicesTable from '../../Pages/ServicesTable/serviceTable';
-import ContactsTable from '../../Pages/ContactTable/contactTable';
-import ShippingsTable from '../../Pages/ShippingTable/shippingtable';
-import OrdersTable from '../../Pages/tableOrder/tableOrder';
+import { useContext } from 'react';
+// import Styles from "./DashSidebar.module.css"
+import { UserContext} from "../../UserContext/UserContext"
+
+
 
 const drawerWidth = 240;
 
@@ -130,9 +124,16 @@ const menuItems = [
 
 export default function MiniDrawer() {
   const location = useLocation();
-
+  const { user } =useContext(UserContext)
+  
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  
+//   const activeMenuItem = menuItems.find((menuItem) =>
+//   location.pathname.toLowerCase().includes(menuItem.text.toLowerCase())
+// );
+
+  const lastSegment = location.pathname.split('/').filter(Boolean).pop();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -161,7 +162,7 @@ export default function MiniDrawer() {
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{display:"flex", justifyContent:"space-between" ,alignItems:"center",width:"100%", margin:"1rem" }}>
             <div className="profile">
-              <h3>Welcome Back</h3>
+              <h3>Welcome {user.name}</h3>
             </div>
             <div>
             Dashboard
@@ -170,8 +171,8 @@ export default function MiniDrawer() {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader sx={{backgroundColor:"#163357", fontSize:"20px"}} >
-          <h2 style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100%",fontSize:"20px", fontWeight:"1000",color:"white" }}>heyyy</h2>
+        <DrawerHeader sx={{backgroundColor:"#163357", height:"4.4rem"}} >
+          <h2 style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100%",fontSize:"25px", fontWeight:"1200",color:"white" }}>{lastSegment || 'Unknown Page'}</h2>
           <IconButton onClick={handleDrawerClose} sx={{color:"white"}}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>

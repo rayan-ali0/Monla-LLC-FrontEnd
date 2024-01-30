@@ -38,7 +38,7 @@ export default function OAuth({ signup }) {
           toast.success(`Hello ${data.data.data.name}!!`);
           navigate("/", { replace: true });
           
-          console.log(data.data)
+          // console.log(data.data)
           // console.log(data.data.token)
 
         } else {

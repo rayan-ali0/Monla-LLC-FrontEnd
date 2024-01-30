@@ -1,14 +1,19 @@
 import React from 'react'
 import Styles from "./ProductNav.module.css"
 import { useState } from 'react';
+// import Autocomplete from "@mui/material/Autocomplete";
 
-const ProductNav = () => {
+
+
+
+const ProductNav = ({searchTerm, setSearchTerm, onSearch,}) => {
     const [selectedBrand, setSelectedBrand] = useState('');
     const [selectedModule, setSelectedModule] = useState('');
     const [selectedYear, setSelectedYear] = useState('');
     const handleBrandChange = (event) => {
         setSelectedBrand(event.target.value);
       };
+      // console.log(data)
       const handleModuleChange = (event) => {
         setSelectedModule(event.target.value);
       };
@@ -16,9 +21,17 @@ const ProductNav = () => {
         setSelectedYear(event.target.value);
       };
 
+      const handleSearch = () => {
+        onSearch(); // Pass the search term to the parent component
+      };
+    
+
   return (
     <div className={Styles.container}>
-        <h2 className={Styles.h2}>Search: </h2>
+        <h2 className={Styles.h2}>Filter by </h2>
+
+        
+     
       <select className={Styles.input} id="brandSelect" name="brands" value={selectedBrand} onChange={handleBrandChange}>
         <option value="" className={Styles.option}>Select a brand</option>
         <option value="Bmw" className={Styles.option}>BMW</option>
