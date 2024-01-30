@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 export default function Productstable() {
   const [rows, setRows] = useState([]);
 
-const navigate=useNavigate()
+  const navigate = useNavigate()
 
   const fetchProducts = async () => {
     try {
@@ -35,7 +35,7 @@ const navigate=useNavigate()
 
       // Log the response and update the rows
       console.log('Product deleted:', response.data);
-      if(response){
+      if (response) {
         toast.success("Product deleted successfuly")
         fetchProducts()
       }
@@ -46,26 +46,29 @@ const navigate=useNavigate()
   };
 
   const columns = [
-    { field: 'image', headerName: 'Image', width: 100,renderCell:(params)=>(
+    {
+      field: 'image', headerName: 'Image', width: 100, renderCell: (params) => (
         <img src={`${import.meta.env.VITE_REACT_APP_PATH}/${params.value}`}
-        style={{
-          width:60,height:60
-        }}/>
-    )
-    } ,
+          style={{
+            width: 60, height: 60
+          }} />
+      )
+    },
 
     { field: 'SKU', headerName: 'SKU', width: 200 },
-    { field: 'title', headerName: 'Title', width: 200 ,
-    renderCell: (params) => {
-   
+    {
+      field: 'title', headerName: 'Title', width: 200,
+      renderCell: (params) => {
+
         return (
-        <div style={{  maxHeight: '100%',
-        overflowX: 'scroll', 
-        WebkitOverflowScrolling: 'touch', 
-      
-        }}>
-           <style>
-                  {`
+          <div style={{
+            maxHeight: '100%',
+            overflowX: 'scroll',
+            WebkitOverflowScrolling: 'touch',
+
+          }}>
+            <style>
+              {`
                     ::-webkit-scrollbar {
                       width: 1px;
                     }
@@ -78,25 +81,29 @@ const navigate=useNavigate()
                       background-color: transparent;
                     }
                   `}
-                </style>
-                  {params.value}
-                </div>)}},
+            </style>
+            {params.value}
+          </div>)
+      }
+    },
     { field: 'description', headerName: 'Description', width: 200 },
     { field: 'price', headerName: 'Price', width: 100 },
     { field: 'stock', headerName: 'Stock', width: 100 },
     { field: 'origin', headerName: 'Origin', width: 200 },
-    { field: 'category', headerName: 'Category', width: 200 , 
-    renderCell: (params) => {
-      if (params.value) {
-if(params.row.volume && params.row.volume!==0){
-return (
-  <div style={{  maxHeight: '100%',
-  overflowX: 'scroll', 
-  WebkitOverflowScrolling: 'touch', 
+    {
+      field: 'category', headerName: 'Category', width: 200,
+      renderCell: (params) => {
+        if (params.value) {
+          if (params.row.volume && params.row.volume !== 0) {
+            return (
+              <div style={{
+                maxHeight: '100%',
+                overflowX: 'scroll',
+                WebkitOverflowScrolling: 'touch',
 
-  }}>
-     <style>
-            {`
+              }}>
+                <style>
+                  {`
               ::-webkit-scrollbar {
                 width: 1px;
               }
@@ -109,30 +116,32 @@ return (
                 background-color: transparent;
               }
             `}
-          </style>
-            {params.value.title +"-"+params.row.volume}
-          </div>
-)
-}
-else{
-  return params.value.title
-}
+                </style>
+                {params.value.title + "-" + params.row.volume}
+              </div>
+            )
+          }
+          else {
+            return params.value.title
+          }
+        }
+        return ''; // or handle it differently based on your requirements
       }
-      return ''; // or handle it differently based on your requirements
-    }
-  
-  },
-  { field: 'car', headerName: 'Car Details', width: 200 , 
-  renderCell: (params) => {
-   
-    if  (params.row.brand){
-      return (
-      <div style={{  maxHeight: '100%',
-      overflowX: 'scroll', 
-      WebkitOverflowScrolling: 'touch', 
-    
-      }}>
-         <style>
+
+    },
+    {
+      field: 'car', headerName: 'Car Details', width: 200,
+      renderCell: (params) => {
+
+        if (params.row.brand) {
+          return (
+            <div style={{
+              maxHeight: '100%',
+              overflowX: 'scroll',
+              WebkitOverflowScrolling: 'touch',
+
+            }}>
+              <style>
                 {`
                   ::-webkit-scrollbar {
                     width: 1px;
@@ -147,32 +156,33 @@ else{
                   }
                 `}
               </style>
-                {params.row.brand?.brand +"-"+params.row.model?.name+"-"+params.row.year?.value.join(',')}
-              </div>)
-    
-      // return params.row.brand?.brand +"-"+params.row.model?.name+"-"+params.row.year?.value.join(',') 
+              {params.row.brand?.brand + "-" + params.row.model?.name + "-" + params.row.year?.value.join(',')}
+            </div>)
 
-    }
-    else{
-return "..."
-    }
-   
+          // return params.row.brand?.brand +"-"+params.row.model?.name+"-"+params.row.year?.value.join(',') 
 
+        }
+        else {
+          return "..."
+        }
 
 
-  }
 
-},
-    { field: 'createdAt', headerName: 'Created At', width: 200 , 
-    renderCell: (params) => {
-      // Check if value is present before splitting
-      if (params.value) {
-        return params.value.split('T')[0];
+
       }
-      return ''; // or handle it differently based on your requirements
-    }
-  
-  },
+
+    },
+    {
+      field: 'createdAt', headerName: 'Created At', width: 200,
+      renderCell: (params) => {
+        // Check if value is present before splitting
+        if (params.value) {
+          return params.value.split('T')[0];
+        }
+        return ''; // or handle it differently based on your requirements
+      }
+
+    },
     // { field: 'updatedAt', headerName: 'Updated At', width: 200 },
     {
       field: 'actions',
@@ -194,24 +204,24 @@ return "..."
 
 
   const handleEditClick = (product) => {
-    navigate('/dashboard/Product/Edit',{state:{product}})
+    navigate('/dashboard/Product/Edit', { state: { product } })
 
   };
 
-  const handleAddClick=()=>{
+  const handleAddClick = () => {
     navigate('/dashboard/Product/Add')
   }
   return (
-    <div style={{ width: "95%",  margin: "auto", height: "80vh",marginTop:"2rem"}}>
-            <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>Products</h1>
+    <div style={{ width: "95%", margin: "auto", height: "80vh", marginTop: "2rem" }}>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>Products</h1>
       <button
         className={styles.btnAdd}
-   
+
         onClick={handleAddClick}
       >
         Add
       </button>
-   
+
       <DataGrid
         rows={rows ? rows : []}
         columns={columns}
@@ -219,18 +229,13 @@ return "..."
         pageSize={5}
         getRowId={(row) => row._id}
         rowsPerPageOptions={[5, 10, 20]}
-        // components={{
-        //   Toolbar: CustomToolbar,
-        // }}
+
         sx={{
           color: "#0a213d",
-          // border:"none",
-          // paddingTop: "1rem",
-          height:"90%",
+          height: "90%",
           border: "1px solid white",
           padding: "20px",
           borderRadius: "10px",
-          //   borderRadius: "17px",
           "& .MuiDataGrid-root": {
             backgroundColor: "white",
           },
@@ -276,8 +281,6 @@ return "..."
           },
         }}
       />
-      {/* {isOrderFormOpen && <EditOrderForm order={selectedOrder} onClose={() => setIsOrderFormOpen(false)} />} */}
-
       <ToastContainer />
     </div>
   );

@@ -18,11 +18,9 @@ export default function EditProduct() {
   const navigate = useNavigate()
   const location = useLocation()
   const { product } = location.state ? location.state : { product: null }
-  console.log(product)
   const [editedProduct, setEditedProduct] = useState({})
   const [displayVolume, setDisplayVolume] = useState(false)
   const [displayForm, setDisplayForm] = useState(false)
-  const [categories, setCategories] = useState([])
   const [brands, setBrands] = useState([])
   const [models, setModels] = useState([])
   const [years, setYears] = useState([])
@@ -57,25 +55,25 @@ export default function EditProduct() {
   }, [])
 
   /*******************FETCHING****************** */
-const refetch=async(id)=>{
-  try {
-    const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/${id}`)
-    if (res) {
-      const productGet=res.data
-      setEditedProduct({
-        ...productGet,
-        category: productGet.category ? productGet.category._id : null,
-        volume: productGet.volume && productGet.volume !== 0 ? productGet.volume : 0,
-        brand: productGet.brand ? {"label":productGet.brand.brand,"value":productGet.brand._id}: null,
-        model: productGet.model ? {"label":productGet.model.name,"value":productGet.model._id} : null,
-        year: productGet.year ? {"label":productGet.year.value.join('-'),"value":productGet.year._id} : null,
-      });
+  const refetch = async (id) => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/${id}`)
+      if (res) {
+        const productGet = res.data
+        setEditedProduct({
+          ...productGet,
+          category: productGet.category ? productGet.category._id : null,
+          volume: productGet.volume && productGet.volume !== 0 ? productGet.volume : 0,
+          brand: productGet.brand ? { "label": productGet.brand.brand, "value": productGet.brand._id } : null,
+          model: productGet.model ? { "label": productGet.model.name, "value": productGet.model._id } : null,
+          year: productGet.year ? { "label": productGet.year.value.join('-'), "value": productGet.year._id } : null,
+        });
+      }
+    }
+    catch (error) {
+      toast.error("Error fetching Brands, Please try Again!")
     }
   }
-  catch (error) {
-    toast.error("Error fetching Brands, Please try Again!")
-  }
-}
 
   const fetchBrands = async () => {
     try {
@@ -134,7 +132,7 @@ const refetch=async(id)=>{
 
 
   const editProduct = async () => {
-  
+
     const simplifiedProduct = {
       ...editedProduct,
       volume: (editedProduct.volume && editedProduct.volume !== 0) ? editedProduct.volume : 0,
@@ -142,7 +140,7 @@ const refetch=async(id)=>{
       model: editedProduct.model ? editedProduct.model.value : null,
       year: editedProduct.year ? editedProduct.year.value : null,
     };
-  
+
 
     try {
       const res = await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/update`, simplifiedProduct,
@@ -170,21 +168,20 @@ const refetch=async(id)=>{
   }
 
   useEffect(() => {
-    // fetchCategories()
     fetchBrands()
   }, [])
 
 
   const handleEdit = (e, selectedOption, inputName) => {
     if (selectedOption) {
-console.log(selectedOption)
+      console.log(selectedOption)
 
       if (inputName === "brand") {
         setEditedProduct({
           ...editedProduct,
-          brand: {"label":selectedOption.label,"value":selectedOption.value},
+          brand: { "label": selectedOption.label, "value": selectedOption.value },
           model: null,
-          year:null
+          year: null
 
         });
         fetchModels(selectedOption.value)
@@ -192,7 +189,7 @@ console.log(selectedOption)
       else if (inputName === "model") {
         setEditedProduct({
           ...editedProduct,
-          model: {"label":selectedOption.label,"value":selectedOption.value},
+          model: { "label": selectedOption.label, "value": selectedOption.value },
           volume: null
         });
         fetchYears(selectedOption.value)
@@ -200,7 +197,7 @@ console.log(selectedOption)
       else if (inputName === "year") {
         setEditedProduct({
           ...editedProduct,
-          year: {"label":selectedOption.label,"value":selectedOption.value},
+          year: { "label": selectedOption.label, "value": selectedOption.value },
           volume: null
         });
       }
@@ -271,7 +268,7 @@ console.log(selectedOption)
 
   return (
     <div className={style.addProductPage}>
-            <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }} className={style.editTitle}>Edit Product</h1>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }} className={style.editTitle}>Edit Product</h1>
 
       <div className={style.form1}>
 
@@ -335,11 +332,6 @@ console.log(selectedOption)
 
 
 
-
-
-
-
-
         <div className={!displayForm ? style.form2 : style.formDisplay}>
 
           <Autocomplete
@@ -357,10 +349,7 @@ console.log(selectedOption)
             )}
             renderOption={(props, option) => (
               <li {...props}>
-                {/* {console.log("option:",option)}
-                {console.log("option.label:", option.label)} */}
-               {option.label}
-               
+                {option.label}
               </li>
             )}
           />
@@ -380,14 +369,14 @@ console.log(selectedOption)
             )}
             renderOption={(props, option) => (
               <li {...props}>
-                  {option.label}
+                {option.label}
 
               </li>
             )}
           />
 
           <Autocomplete
-            value={editedProduct && editedProduct.year ? { label: editedProduct.year.label, value: editedProduct.year.value} : null}
+            value={editedProduct && editedProduct.year ? { label: editedProduct.year.label, value: editedProduct.year.value } : null}
 
             className={style.inputs}
             disablePortal
@@ -401,9 +390,9 @@ console.log(selectedOption)
             onChange={(e, option) => handleEdit(e, option, "year")}
             renderOption={(props, option) => (
               <li {...props}>
-   
-                  {option.label}
-                
+
+                {option.label}
+
               </li>
             )}
           />
@@ -427,7 +416,7 @@ console.log(selectedOption)
             backgroundColor: '#C62507',
             color: 'white',
             '&:hover': {
-              backgroundColor: '#a5250e', 
+              backgroundColor: '#a5250e',
             },
           }}
           onClick={editProduct}
