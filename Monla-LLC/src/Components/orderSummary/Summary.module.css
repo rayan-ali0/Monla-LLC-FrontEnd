@@ -1,6 +1,6 @@
 .summaryHolder {
-height: 650px;
-overflow: hidden;
+  max-height: 650px;
+  overflow: hidden;
   padding: 20px;
   box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.05),
     -2px -2px 4px 0px rgba(0, 0, 0, 0.05);
@@ -21,8 +21,10 @@ overflow: hidden;
 }
 
 .cartItems {
-  overflow-y: scroll;
-  height: 62%;
+  /* overflow-y: scroll;
+  height: 62%; */
+  overflow-y: auto;
+  max-height: 62%;
   margin: 0;
   border-top: 1px solid var(--red-color);
   border-bottom: 1px solid var(--red-color);
@@ -66,7 +68,7 @@ overflow: hidden;
 }
 
 @media (max-width: 767px) {
-    .summaryTitle {
-        font-size: 20px;
-    }
+  .summaryTitle {
+    font-size: 20px;
+  }
 }
