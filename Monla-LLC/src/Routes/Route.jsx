@@ -20,6 +20,7 @@ import Layout from "./Layout.jsx";
 import Checkout from "../Pages/Checkout/Checkout.jsx";
 import ModelsTable from "../Pages/dashTableModel/TabelModel.jsx";
 import Profile from "../Components/Profile/Profile.jsx";
+import DashProfile from '../Components/DashProfile/DashProfile.jsx'
 import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
 import MiniDrawer from "../Components/DashSidebar/DashSidebar.jsx";
 import Overview from "../Pages/Overview/Overview.jsx";
@@ -38,7 +39,7 @@ const Router = () => {
           <Route index path="/services" element={<Services />} />
             <Route index path="/contact" element={<Contact />} />
             <Route index path="/cart" element={<Cart />} />
-            <Route index path="/summary" element={<Summary />} />
+            {/* <Route index path="/summary" element={<Summary />} /> */}
             <Route index path="/profile" element={<Profile />}></Route>
 
           </Route>
@@ -65,7 +66,7 @@ const Router = () => {
               <Route path='user' index element={<User />} />
               <Route path="" index element={< Overview />} />
               <Route path="yeardash" index element={< YearsTable />} />
-
+              <Route path="profile" index element={<DashProfile />} />
             </Route>
           </Route>
         </Routes>

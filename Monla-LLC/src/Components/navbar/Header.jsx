@@ -29,8 +29,8 @@ const Header = () => {
 
   const logout = async () => {
     try {
-      // console.log("before")
-       const action = await axios.post('http://localhost:5000/logout',{},{withCredentials:true});
+      console.log("before")
+      const action = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/logout`,{},{withCredentials:true});
       if(action) {
         localStorage.removeItem('token')
         setUser(null);

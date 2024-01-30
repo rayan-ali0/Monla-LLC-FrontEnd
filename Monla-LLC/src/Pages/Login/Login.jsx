@@ -20,7 +20,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-// console.log(user)
   // Regex validations
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^.{8,}$/;

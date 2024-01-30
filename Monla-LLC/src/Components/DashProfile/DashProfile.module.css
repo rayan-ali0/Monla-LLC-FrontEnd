@@ -1,0 +1,134 @@
+.main {
+  margin: 25px;
+  padding: 25px;
+  color: white;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+.input {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 60%;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  position: relative;
+}
+.input .icon {
+  width: 25px;
+  position: absolute;
+  z-index: 22;
+  top: 50%;
+  transform: translateY(20%);
+  color: var(--white-color, #fff);
+  right: 12.5px;
+  cursor: pointer;
+}
+.main .input:last-child {
+  margin-bottom: 0;
+}
+.input label {
+  color: white;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+.input input {
+  padding: 10px 50px 10px 15px;
+  border-radius: 3px;
+  width: 100%;
+  font-size: 18px;
+  position: relative;
+}
+.input input:focus {
+  outline: none;
+}
+.uploadButtonInput {
+  padding: 10px;
+  border-radius: 6px;
+  border: 0.5px solid var(--red-color);
+  width: 84%;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+.uploadButtonInput:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.input .uploadButton {
+  padding: 3px 4px 3px 5px;
+  border: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #c1c1c1;
+  background-color: #212528;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.uploadButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.buttons {
+  margin-top: 30px;
+}
+.submit {
+  background-color: #0A213D;
+  color: white;
+  padding: 10px 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid white;
+}
+.reset {
+  margin-right: 15px;
+  padding: 10px 12px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.error {
+  display: block;
+  color: var(--red-color);
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+@media (max-width: 992px) {
+  .input {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .input label {
+    font-size: 16px;
+  }
+  .input input {
+    /* width: 60%; */
+    font-size: 14px;
+  }
+  .submit {
+    padding: 7px 12px;
+    font-size: 15px;
+  }
+  .reset {
+    padding: 0px 11px;
+    font-size: 13px;
+    margin-right: 10px;
+  }
+  .input .uploadButton {
+    font-size: 16px;
+  }
+}
