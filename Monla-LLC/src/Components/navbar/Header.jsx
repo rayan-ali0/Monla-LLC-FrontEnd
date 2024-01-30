@@ -29,7 +29,7 @@ const Header = () => {
   const logout = async () => {
     try {
       console.log("before")
-      const action = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/logout`,{},{withCredentials:true});
+      const action = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/logout`,{},{withCredentials:true});
       if(action) {
         setUser(null);
         toast.success("Logout successful!", {
