@@ -39,6 +39,8 @@
 }
 .desc{
     opacity: 0.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .title{
     font-size: 18px;;

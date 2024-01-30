@@ -1,3 +1,6 @@
+.wrapper{
+  overflow-x: auto;
+}
 .container {
     display: grid;
     grid-auto-flow: column;
@@ -7,8 +10,10 @@
     overscroll-behavior-inline: contain;
     padding: 10px;
     font-size: 15px;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    /* align-items: center; */
+    /* width: 100vw; */
+    /* width: 100%; */
 
 
   
@@ -43,36 +48,37 @@
     justify-content: center;
     align-items:center;
     cursor: pointer;
-    transition: transform 0.3s ease; 
+    /* transition: transform 0.3s ease;  */
     
   }
-  .category:hover{
+  /* .category:hover{
     transform: scale(1.08);
     transition: transform 0.3s ease;
-}
+} */
   
   @media screen and (max-width: 600px) {
     .container {
-      grid-auto-columns: 20%; /* Adjust the percentage or other styles as needed for smaller screens */
+      grid-auto-columns: 20%;
+      
     }
   }
   @media screen and (max-width: 900px) {
     .container {
-      grid-auto-columns: 20%; /* Adjust the percentage or other styles as needed for smaller screens */
+      grid-auto-columns: 20%;
     }
   }
   @media screen and (max-width: 1280px) {
     .container {
-      grid-auto-columns: 17%; /* Adjust the percentage or other styles as needed for smaller screens */
+      grid-auto-columns: 17%;
     }
   }
   @media screen and (max-width: 750px) {
     .container {
-      grid-auto-columns: 25%; /* Adjust the percentage or other styles as needed for smaller screens */
+      grid-auto-columns: 25%;
     }
   }
   @media screen and (max-width: 470px) {
     .container {
-      grid-auto-columns: 40%; /* Adjust the percentage or other styles as needed for smaller screens */
+      grid-auto-columns: 40%;
     }
   }
