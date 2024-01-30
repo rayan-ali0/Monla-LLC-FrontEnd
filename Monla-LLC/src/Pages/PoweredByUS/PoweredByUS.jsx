@@ -2,10 +2,22 @@ import React from "react";
 import styles from "./PoweredByUS.module.css";
 import { Link } from "react-router-dom";
 import rachwan from "../../assets/developers/rachwan-harb.jpg";
+import { Helmet } from "react-helmet-async";
 
 const PoweredByUS = () => {
   return (
     <main className={`container ${styles.main}`}>
+      <Helmet>
+        <title>Powered by Us - Showcase of Talented Developers</title>
+        <meta
+          name="description"
+          content="Explore profiles of talented developers powered by their unique skills and achievements. Connect with skilled professionals in the tech industry."
+        />
+        <meta
+          name="keywords"
+          content="Powered by Us, developers, showcase, skills, achievements, tech industry"
+        />
+      </Helmet>
       <div className={styles.wrapper}>
         <div className={styles.imageContainer}>
           <img src={rachwan} alt="Rachwan Harb" className={styles.image} />
@@ -13,7 +25,9 @@ const PoweredByUS = () => {
         <div className={styles.content}>
           <h1 className={styles.title}>Rachwan Harb</h1>
           <div className={styles.emailWrapper}>
-            <Link to={"mailto:rachwan.harb2023@gmail.com"} className={styles.email}>
+            <Link
+              to={"mailto:rachwan.harb2023@gmail.com"}
+              className={styles.email}>
               <span>rachwan.harb2023@gmail.com</span>
             </Link>
           </div>
@@ -41,7 +55,9 @@ const PoweredByUS = () => {
         <div className={styles.content}>
           <h1 className={styles.title}>Rachwan Harb</h1>
           <div className={styles.emailWrapper}>
-            <Link to={"mailto:rachwan.harb2023@gmail.com"} className={styles.email}>
+            <Link
+              to={"mailto:rachwan.harb2023@gmail.com"}
+              className={styles.email}>
               <span>rachwan.harb2023@gmail.com</span>
             </Link>
           </div>
@@ -69,7 +85,9 @@ const PoweredByUS = () => {
         <div className={styles.content}>
           <h1 className={styles.title}>Rachwan Harb</h1>
           <div className={styles.emailWrapper}>
-            <Link to={"mailto:rachwan.harb2023@gmail.com"} className={styles.email}>
+            <Link
+              to={"mailto:rachwan.harb2023@gmail.com"}
+              className={styles.email}>
               <span>rachwan.harb2023@gmail.com</span>
             </Link>
           </div>
@@ -97,7 +115,9 @@ const PoweredByUS = () => {
         <div className={styles.content}>
           <h1 className={styles.title}>Rachwan Harb</h1>
           <div className={styles.emailWrapper}>
-            <Link to={"mailto:rachwan.harb2023@gmail.com"} className={styles.email}>
+            <Link
+              to={"mailto:rachwan.harb2023@gmail.com"}
+              className={styles.email}>
               <span>rachwan.harb2023@gmail.com</span>
             </Link>
           </div>
@@ -125,7 +145,9 @@ const PoweredByUS = () => {
         <div className={styles.content}>
           <h1 className={styles.title}>Rachwan Harb</h1>
           <div className={styles.emailWrapper}>
-            <Link to={"mailto:rachwan.harb2023@gmail.com"} className={styles.email}>
+            <Link
+              to={"mailto:rachwan.harb2023@gmail.com"}
+              className={styles.email}>
               <span>rachwan.harb2023@gmail.com</span>
             </Link>
           </div>

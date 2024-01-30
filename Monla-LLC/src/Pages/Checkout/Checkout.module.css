@@ -153,4 +153,13 @@ input::placeholder {
   .form__area, .order__summary {
     width: 100%;
   }
+  .form .inputs {
+    margin-bottom: 15px;
+  }
+  .form .inputs > div {
+    margin-bottom: 15px;
+  }
+  .form .inputs:not(:last-child) {
+    display: block;
+  }
 }
