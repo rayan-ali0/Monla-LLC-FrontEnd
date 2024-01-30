@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./CategoryTable.module.css";
+import styles from "../CategoryTable/CategoryTable.module.css";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 // import AddRegime from "../../components/AddRegime/AddRegime";
@@ -84,8 +84,8 @@ const api="http://localhost:5000/category/readCategory"
     setIsUpdateCategoryOpen(false)
   };
   const columns = [
-    { field: '_id', headerName: 'id', flex:1 },
-    { field: "title", headerName: "Title",flex:1 },
+    { field: '_id', headerName: 'id', width:250 },
+    { field: "title", headerName: "Title",width:250 },
     {
       field: "image",
       headerName: "Image",
@@ -199,6 +199,7 @@ Category      </h1>
           border: "1px solid white",
           padding:"20px",
           borderRadius:"10px",
+          height:"90%",
         //   borderRadius: "17px",
         // margin:"10rem",
           "& .MuiDataGrid-root": {

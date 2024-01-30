@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const SimiliarSection = ({ myItem }) => {
   const [similiarProducts, setSimilarProducts] = useState([]);
-
   useEffect(() => {
     const fetchSimilarProducts = async () => {
       try {
@@ -33,6 +32,10 @@ const SimiliarSection = ({ myItem }) => {
     }
   }, [myItem]);
 
+  const handleClick = () => {
+    window.location.reload();
+  }
+
   return (
     <section className={styles.similiar__Products__Section}>
       <div className={`container ${styles.wrapper}`}>
@@ -44,16 +47,11 @@ const SimiliarSection = ({ myItem }) => {
         </div>
         <div className={styles.similiarProducts}>
           <div className={styles.wrapper}>
-            {similiarProducts.map((product) => (
-              <div className={styles.single__product} key={product._id}>
-                <Link to={`/productdetails/${product.slug}`} state={product}>
+            {similiarProducts.map((item) => (
+              <div className={styles.single__product} key={item._id} onClick={handleClick}>
+                <Link to={`/productdetails/${item.slug}`} state={item}>
                   <ProductCart
-                    img={`${import.meta.env.VITE_REACT_APP_BACKEND}/${
-                      product.image
-                    }`}
-                    price={product.price}
-                    title={product.title}
-                    desc={product.desciption}
+                    item={item}
                     single__product={true}
                   />
                 </Link>

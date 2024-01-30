@@ -109,7 +109,9 @@ const ProductCarthome = () => {
   }
 
   return (
-    <div className={Styles.productlinecontainer}>
+    <div className={Styles.productlinewrapper}>
+        <div className={Styles.productlinecontainer}>
+          
       {products.map((product) => (
         <motion.div className={Styles.container} key={product._id} initial={{ opacity:0.1}} whileInView={{ opacity:1}} transition={{duration:0.8}}>
           <img src={heart} className={Styles.heart} alt="" />
@@ -124,6 +126,7 @@ const ProductCarthome = () => {
           <button className={Styles.btn} onClick={handleAddTocart} >ADD TO CART</button>
         </motion.div>
       ))}
+    </div>
     </div>
   );
 };

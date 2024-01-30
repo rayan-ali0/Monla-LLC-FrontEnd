@@ -6,13 +6,13 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [checkUser, setCheckUser] = useState(true);
-  // const [userUpdated, setUserserUpdated] = useState(false);
+  const [userUpdated, setUserUpdated] = useState(false);
 
   useEffect(() => {
-    if (!user) {
+    if (!user || userUpdated) {
       fetchUserData();
     }
-  }, [user]);
+  }, [user, userUpdated]);
 
   const fetchUserData = async () => {
     try {
@@ -23,8 +23,8 @@ export const UserProvider = ({ children }) => {
         { withCredentials: true }
       );
       setUser(response.data.user);
-      console.log(user)
-     
+      console.log("Fetched user data:", response.data.user); // Add this line
+      setUserUpdated(false); // Reset the flag after updating user
     } catch (err) {
       setUser(null);
       console.log(err);
@@ -39,7 +39,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, logOut, fetchUserData, checkUser }}>
+    <UserContext.Provider value={{ user, setUser, logOut, fetchUserData, checkUser, setUserUpdated }}>
       {children}
     </UserContext.Provider>
   );
