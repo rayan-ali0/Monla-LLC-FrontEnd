@@ -26,6 +26,24 @@ const DashProfile = () => {
   const nameRegex = /^[A-Za-z\s]+$/;
   const passwordRegex = /^.{8,}$/;
 
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `${import.meta.env.VITE_REACT_APP_BACKEND}/user/one/${user._id}`
+  //       );
+  //       setFormData(response.data);
+  //       console.log("response.data: ", response.data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching user data:", error);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchUserData();
+  // }, [user._id]);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -178,8 +196,9 @@ if (newPassword || verifyPassword) {
             type={showPassword2 ? "text" : "password"}
             name="password"
             id="newPassword"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            value={formData.password}
+            // onChange={(e) => setNewPassword(e.target.value)}
+            onChange={handleInputChange}
           />
           <img
             src={showPassword2 ? hide : eye}
