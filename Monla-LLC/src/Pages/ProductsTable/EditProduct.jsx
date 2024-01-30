@@ -18,10 +18,7 @@ export default function EditProduct() {
   const navigate = useNavigate()
   const location = useLocation()
   const { product } = location.state ? location.state : { product: null }
-  // console.log(product)
-
-
-  const [isAddFormOpen, setIsAddFormOpen] = useState(false);  // State for Add Form
+  console.log(product)
   const [editedProduct, setEditedProduct] = useState({})
   const [displayVolume, setDisplayVolume] = useState(false)
   const [displayForm, setDisplayForm] = useState(false)
@@ -31,29 +28,24 @@ export default function EditProduct() {
   const [years, setYears] = useState([])
 
   useEffect(() => {
-    if (product.category === "Lubricants & Additives") {
+    if (product.category.title === "Lubricants & Additives") {
       setDisplayVolume(true)
+
     }
     else {
       setDisplayForm(true)
     }
-  }, [])
+  }, [editedProduct])
 
   useEffect(() => {
     if (product) {
-      setEditedProduct({
-        ...product,
-        category: product.category ? product.category._id : null,
-        volume: product.volume && product.volume !== 0 ? product.volume : 0,
-        brand: product.brand ? {"label":product.brand.brand,"value":product.brand._id}: null,
-        model: product.model ? {"label":product.model.name,"value":product.model._id} : null,
-        year: product.year ? {"label":product.year.value.join('-'),"value":product.year._id} : null,
-      });
+
+      refetch(product._id)
     }
     else {
       console.log("no product")
     }
-  }, [product]);
+  }, []);
 
   useEffect(() => {
     console.log("editedd")
@@ -64,40 +56,26 @@ export default function EditProduct() {
     fetchBrands()
   }, [])
 
-  const handleAddModel = () => {
-    setIsAddFormOpen(true);
-  };
-  const handleAddFormClose = () => {
-    setIsAddFormOpen(false);
-  };
-
   /*******************FETCHING****************** */
-  const fetchCategories = async () => {
-    try {
-      const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/category/readCategory`)
-      if (res) {
-        // setCategories(res.data)
-        console.log(res.data)
-        const categoryData = res.data.map(category => ({
-          label: category.title,
-          value: category._id
-        }))
-        // categoryData.push({ label: "Add new" })
-        setCategories(categoryData)
-        console.log(categories)
-      }
-      else {
-        console.error("Error:", error);
-      }
-
-    }
-    catch (error) {
-      console.error("Error:", error);
-      toast.error("Error fetching Categories, Please try Again!")
+const refetch=async(id)=>{
+  try {
+    const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/${id}`)
+    if (res) {
+      const productGet=res.data
+      setEditedProduct({
+        ...productGet,
+        category: productGet.category ? productGet.category._id : null,
+        volume: productGet.volume && productGet.volume !== 0 ? productGet.volume : 0,
+        brand: productGet.brand ? {"label":productGet.brand.brand,"value":productGet.brand._id}: null,
+        model: productGet.model ? {"label":productGet.model.name,"value":productGet.model._id} : null,
+        year: productGet.year ? {"label":productGet.year.value.join('-'),"value":productGet.year._id} : null,
+      });
     }
   }
-
-
+  catch (error) {
+    toast.error("Error fetching Brands, Please try Again!")
+  }
+}
 
   const fetchBrands = async () => {
     try {
@@ -176,19 +154,17 @@ export default function EditProduct() {
       if (res) {
         if (res.status === 200) {
           toast.success("Product Edited Succesfully")
-          setDisplayVolume(false);
-          setDisplayForm(false);
+
+          refetch(product._id)
         }
         else {
           toast.error(res.data.message)
 
         }
       }
-      console.log(error)
     }
     catch (error) {
-      console.error("Error:", error);
-      toast.error("Error editing Product, Please try Again!")
+      toast.error(error.message)
     }
 
   }
@@ -203,30 +179,6 @@ export default function EditProduct() {
     if (selectedOption) {
 console.log(selectedOption)
 
-      // if (inputName === "category" && selectedOption.label === "Lubricants & Additives") {
-      //   setDisplayVolume(true)
-      //   setDisplayForm(false)
-      //   setEditedProduct({
-      //     ...editedProduct,
-      //     [inputName]: selectedOption.value,
-      //     brand: undefined,
-      //     model: undefined,
-      //     year: undefined,
-      //   });
-
-      // }
-      // else if (inputName === "category" && selectedOption.label !== "Lubricants & Additives") {
-      //   setDisplayVolume(false)
-      //   setDisplayForm(true)
-      //   setEditedProduct({
-      //     ...editedProduct,
-      //     [inputName]: selectedOption.value,
-      //     brand: null,
-      //     model: null,
-      //     year: null,
-      //   });
-      //   fetchBrands(selectedOption.value)
-      // }
       if (inputName === "brand") {
         setEditedProduct({
           ...editedProduct,
@@ -316,29 +268,11 @@ console.log(selectedOption)
 
   }
 
-  const handleAddMovie = () => {
-    // console.log('Added :');
-    navigate('/')
 
-  };
-
-  // const getCategoryTitleById = (categoryId) => {
-  //   // console.log("hiii")
-  //   // console.log(categories)
-  //   // console.log(categoryId)
-  //   for (const category of categories) {
-  //     // console.log(category)
-  //     if (category.value === categoryId) {
-  //       // console.log(category.title)
-  //       return category.label;
-  //     }
-  //   }
-  //   return null;
-  // };
-const test = "hello"
-  // console.log(getCategoryTitleById("65ae1c8b07892dfdb77df8e1"))
   return (
     <div className={style.addProductPage}>
+            <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }} className={style.editTitle}>Edit Product</h1>
+
       <div className={style.form1}>
 
         <TextField id="title" label="Title" name="title" variant="outlined" required
@@ -390,6 +324,8 @@ const test = "hello"
           <TextField id="volume" label="Volume" name="volume" type="number" variant="outlined" required
             value={editedProduct && editedProduct.volume ? editedProduct.volume : ''}
             sx={styleField}
+            onChange={handleEdit}
+
             className={style.volumeInput}
             InputProps={{
               startAdornment: <InputAdornment position="start">L</InputAdornment>,
@@ -474,10 +410,10 @@ const test = "hello"
         </div>
         <Button component="label" variant="contained" startIcon={<CloudUploadIcon />} className={style.inputs}
           sx={{
-            backgroundColor: 'white',
-            color: 'blue',
+            backgroundColor: '#C62507',
+            color: 'white',
             '&:hover': {
-              backgroundColor: 'lightgray', // Add a different color for hover effect if needed
+              backgroundColor: '#a5250e', // Add a different color for hover effect if needed
             },
           }}
           onChange={(e) => handleEdit(e, null, "image")}
@@ -488,10 +424,10 @@ const test = "hello"
         </Button>
         <Button component="label" variant="contained" startIcon={<AddIcon />} className={style.inputs}
           sx={{
-            backgroundColor: 'white',
-            color: 'blue',
+            backgroundColor: '#C62507',
+            color: 'white',
             '&:hover': {
-              backgroundColor: 'lightgray', // Add a different color for hover effect if needed
+              backgroundColor: '#a5250e', 
             },
           }}
           onClick={editProduct}
@@ -501,8 +437,6 @@ const test = "hello"
       </div>
 
 
-
-      {isAddFormOpen && <ModelAddForm onClose={handleAddFormClose} allBrands={brands} />}
     </div>
   )
 

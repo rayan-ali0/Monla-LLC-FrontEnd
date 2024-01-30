@@ -374,6 +374,8 @@ export default function AddProduct() {
 
   return (
     <div className={style.addProductPage}>
+                  <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }} className={style.editTitle}>Add Product</h1>
+
       <div className={style.form1}>
 
         <TextField id="title" label="Title" name="title" variant="outlined" required
@@ -535,10 +537,10 @@ export default function AddProduct() {
 </div>
         <Button component="label" variant="contained" startIcon={<CloudUploadIcon />} className={style.inputs}
           sx={{
-            backgroundColor: 'white',
-            color: 'blue',
+            backgroundColor: '#C62507',
+            color: 'white',
             '&:hover': {
-              backgroundColor: 'lightgray', // Add a different color for hover effect if needed
+              backgroundColor: '#a5250e', // Add a different color for hover effect if needed
             },
           }}
           onChange={(e) => handleAdd(e, null, "image")}
@@ -549,10 +551,10 @@ export default function AddProduct() {
         </Button>
         <Button component="label" variant="contained" startIcon={<AddIcon />} className={style.inputs}
           sx={{
-            backgroundColor: 'white',
-            color: 'blue',
+            backgroundColor: '#C62507',
+            color: 'white',
             '&:hover': {
-              backgroundColor: 'lightgray', // Add a different color for hover effect if needed
+              backgroundColor: '#a5250e', // Add a different color for hover effect if needed
             },
           }}
           onClick={addProduct}
