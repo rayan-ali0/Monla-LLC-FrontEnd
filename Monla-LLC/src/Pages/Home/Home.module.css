@@ -70,15 +70,6 @@ margin-left: 200px;
 }
 
    
-@media (min-width:930px) {
-    .search{
-        width: 100%;
-        padding: 0 20px;
-    }
-    .NewContainer {
-        height: 98vh;
-    }
-}
 
 
 @media (max-width:1211px) {
@@ -90,4 +81,13 @@ margin-left: 200px;
         gap: 3rem;
     }
  
+}
+@media (max-width:930px) {
+    .search{
+        width: 100%;
+        padding: 0 20px;
+    }
+    .NewContainer {
+        height: 98vh;
+    }
 }
