@@ -98,7 +98,7 @@ export default function ServicesTable() {
           marginBottom: "1rem",
           width: "7rem",
           height: "2.5rem",
-          backgroundColor: "blue",
+          backgroundColor: "#C62507",
           borderRadius: "5px",
           fontWeight: "bold",
         }}

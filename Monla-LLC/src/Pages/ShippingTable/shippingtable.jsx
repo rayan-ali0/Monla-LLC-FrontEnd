@@ -78,7 +78,7 @@ export default function ShippingsTable() {
     <meta name="Shipping" content="Shipping table" />
   </Helmet>
     <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>   
-       <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}> Shipping Table</h1>
+       <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}> Shipping Table</h1>
        <section>
       <button
         className={styles.btnAdd}
@@ -87,7 +87,7 @@ export default function ShippingsTable() {
           marginBottom: "1rem",
           width: "7rem",
           height: "2.5rem",
-          backgroundColor: "blue",
+          backgroundColor: "#C62507",
           borderRadius: "5px",
           fontWeight: "bold",
         }}
