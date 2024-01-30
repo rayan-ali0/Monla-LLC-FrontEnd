@@ -48,27 +48,39 @@ margin-left: 200px;
 .whatsappButton svg {
     color: white !important; /* Set the color of the icon to white */
 }
-@media (max-width:930px) {
+@media (max-width:768px) {
+    .NewContainer {
+            height: 98vh;
+            width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
+    }
+    @media (max-width:712px) {
+
+        .NewContainer {
+            height: 75vh;
+        }
+        }
+@media (max-width:420px) {
+    .NewContainer {
+            height: 107vh;
+         
+    }
+}
+
+   
+@media (min-width:930px) {
     .search{
         width: 100%;
         padding: 0 20px;
     }
+    .NewContainer {
+        height: 98vh;
+    }
 }
-@media (max-width:712px) {
 
-.NewContainer {
-    height: 75vh;
-}
-}
-@media (max-width:768px) {
 
-.NewContainer {
-    height: 85vh;
-    width: 100%;
-    overflow-x: hidden;
-    position: relative;
-}
-}
 @media (max-width:1211px) {
     .about{
         width: 65%;

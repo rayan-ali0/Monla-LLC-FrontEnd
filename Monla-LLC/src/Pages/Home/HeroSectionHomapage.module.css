@@ -77,30 +77,25 @@
         background-color: transparent;
 
     }
-@media (max-width: 784px) {
-    .backgroundImage {
+    @media (max-width: 930px) {
+        .backgroundImage{
+          height: 663px;
+        }
+        }
+        @media (max-width: 784px) {
+            .backgroundImage {
+        
+          height : 832px;
+            
+        }
+        }
+    @media (max-width: 420px) {
+        .backgroundImage{
+          height: 726px;
+        }
+        }
 
-  height : 659px;
-    
-}
-}
-@media (max-width: 1086px) {
-    /* .button {
-        text-align: center;
-        color: white;
-        text-decoration: none;
-        background-color: #F83739;
-        border-radius: 30px;
-        margin-top: 2rem;
-        height: 12%;
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        font-weight: 500px;
-        border: none;
-        padding: 0.5rem;
-    } */
-    
-}
+
 @media (max-width:375px) {
     .button{
         min-width: 170px;

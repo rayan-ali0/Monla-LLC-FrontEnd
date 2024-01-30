@@ -59,7 +59,7 @@
 @media screen and (max-width: 930px) {
   .container {
     grid-auto-columns: 20%;
-    margin-top: 100px;
+    margin-top: 141px;
     /* Adjust the percentage or other styles as needed for smaller screens */
   }
 }
@@ -75,6 +75,7 @@
 @media screen and (max-width: 750px) {
   .container {
     grid-auto-columns: 25%;
+  
     /* Adjust the percentage or other styles as needed for smaller screens */
   }
 }
