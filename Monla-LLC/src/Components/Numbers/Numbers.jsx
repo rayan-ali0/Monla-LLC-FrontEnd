@@ -113,13 +113,24 @@ fetchNumbers()
 <section className={style.nbHolder}>
 <div className={style.nbRow}>
     <span className={style.nbs}>
-    {numbers.totalStock?numbers.totalStock:0}
+    {numbers.productsNb?numbers.productsNb:0}
     </span>
     <span className={style.icons}>
 <img src={delivered}/>
     </span>
 </div>
 <div className={style.nbTitle}> Total Products</div>
+</section>
+<section className={style.nbHolder}>
+<div className={style.nbRow}>
+    <span className={style.nbs}>
+    {numbers.totalStock?numbers.totalStock:0}
+    </span>
+    <span className={style.icons}>
+<img src={delivered}/>
+    </span>
+</div>
+<div className={style.nbTitle}> Total Stock</div>
 </section>
 
         </main >

@@ -18,10 +18,10 @@ const navigate=useNavigate()
   const fetchProducts = async () => {
     try {
       const response = await axios.get('http://localhost:5000/product/read/all');
-      console.log('Fetched orders:', response.data);
+      console.log('Fetched products:', response.data);
       setRows(response.data);
     } catch (error) {
-      console.error('Error fetching orders:', error.response.data);
+      console.error('Error fetching products:', error.response.data);
     }
   };
 
@@ -41,10 +41,9 @@ const navigate=useNavigate()
         toast.success("Product deleted successfuly")
         fetchProducts()
       }
-      // setRows((prevRows) => prevRows.filter((row) => row._id !== orderId));
 
     } catch (error) {
-      console.error('Error deleting order:', error.response.data);
+      console.error('Error deleting product:', error.response.data);
     }
   };
 
@@ -87,7 +86,7 @@ const navigate=useNavigate()
 
 
   const handleEditClick = (product) => {
-    navigate('/dashboard/Product/Edit',{state:product})
+    navigate('/dashboard/Product/Edit',{state:{product}})
 
   };
 

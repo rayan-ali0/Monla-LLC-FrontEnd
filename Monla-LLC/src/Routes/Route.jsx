@@ -24,7 +24,10 @@ import Overview from "../Pages/Overview/Overview.jsx";
 import Productstable from "../Pages/ProductsTable/ProductsTable.jsx";
 import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
 import MiniDrawer from "../Components/DashSidebar/DashSidebar.jsx";
-import AddEditProduct from "../Pages/ProductsTable/AddEditProduct.jsx";
+import AddProduct from "../Pages/ProductsTable/AddProduct.jsx";
+import EditProduct from "../Pages/ProductsTable/EditProduct.jsx";
+import BrandsTable from "../Pages/BrandTable/BrandTable.jsx";
+import YearsTable from "../Pages/YearTable/yearTable.jsx";
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
@@ -49,7 +52,6 @@ const Router = () => {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/productdetails/:slug" element={<ProductDetails />} />
           <Route path="/productdetails" element={<ProductDetails />} />
-          <Route  path="/Table" element={<ModelsTable/>} />
           <Route path="/PP" element={<Productstable/>}/>
           {/* <Route
             element={
@@ -60,10 +62,19 @@ const Router = () => {
             }> */}
             <Route path="/dashboard" element={<Dashboard />} >
               <Route path="category" index element={< CategoryTable/>} />
-              <Route path="Product/:action" index element={< AddEditProduct/>} />
-              <Route path="Products" element={<Productstable/>}/>
+              <Route path="Product/Add" index element={< AddProduct/>} />
+              <Route path="Product/Edit" index element={< EditProduct/>} />
 
-              {/* <Route path="" index element={< Overview />} /> */}
+              <Route path="Products" element={<Productstable/>}/>
+              <Route path="brand" element={<BrandsTable/>}/>
+              <Route path="year" element={<YearsTable/>}/>
+              <Route  path="model" element={<ModelsTable/>} />
+
+
+
+
+
+              <Route path="overview" index element={< Overview />} />
 
             </Route>
           {/* </Route> */}

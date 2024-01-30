@@ -40,7 +40,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import "./DashSidebar.css"
 import YearsTable from '../../Pages/YearTable/yearTable';
 import Productstable from '../../Pages/ProductsTable/ProductsTable';
-import AddEditProduct from '../../Pages/ProductsTable/AddEditProduct.jsx'
+import AddEditProduct from '../../Pages/ProductsTable/AddProduct.jsx'
 import BrandsTable from '../../Pages/BrandTable/BrandTable';
 import ServicesTable from '../../Pages/ServicesTable/serviceTable';
 import ContactsTable from '../../Pages/ContactTable/contactTable';
