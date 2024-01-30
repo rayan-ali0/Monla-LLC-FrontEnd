@@ -117,7 +117,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 const menuItems = [
-  { text: 'overview', color:"white",icon: <DashboardIcon /> },
+  { text: '', color:"white",icon: <DashboardIcon /> },
   { text: 'Orders', icon: <ShoppingCartIcon /> },
   { text: 'Products', icon: <StoreIcon /> },
   { text: 'User', icon: <PeopleIcon /> },
