@@ -23,6 +23,12 @@ const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const productsPerPage = 12;
 
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+   
+  
+
   // const [currentPage, setCurrentPage] = useState(1);
 
   const categoryApi=`${import.meta.env.VITE_REACT_APP_BACKEND}/category/readCategory`
@@ -45,6 +51,40 @@ const Products = () => {
       }
     }
   })
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        let url = `http://localhost:5000/product/filter/By?brand=${brand}`;
+
+        if (model) {
+          url += `&model=${model}`;
+        }
+        if (year) {
+          url += `&year=${year}`;
+        }
+
+        const response = await fetch(url);
+        const data = await response.json();
+        setProducts(data);
+        setLoading(false); // Set loading to false when data is received
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    // Fetch products only if the brand is selected
+    if (brand) {
+      fetchProducts();
+    }
+  }, [brand, model, year]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (products.length === 0) {
+    return <div>No products found.</div>;
+  }
     const filteredProducts = productData?.filter((item)=>
       item.title.toLowerCase().includes(searchTerm.toLocaleLowerCase())
     )
