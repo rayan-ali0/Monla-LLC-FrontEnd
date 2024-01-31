@@ -22,7 +22,7 @@
   width: 25px;
   position: absolute;
   z-index: 22;
-  top: 50%;
+  top: 47%;
   transform: translateY(20%);
   color: var(--white-color, #fff);
   right: 12.5px;

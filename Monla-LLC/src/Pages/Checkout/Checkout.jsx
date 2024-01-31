@@ -58,7 +58,6 @@ const Checkout = () => {
       dataArr.push(product);
       idsArr.push({ productId: product._id, quantity: quantityValue });
     }
-    console.log(dataArr)
 
     setFormData({
       ...formData,
@@ -148,7 +147,12 @@ const Checkout = () => {
       if (response.data) {
         toast.success("Order created successfully!");
         setTimeout(() => {
-          navigate("/", { replace: true });
+          navigate("/confirmed", {
+            state: {
+              orderNumber: response.data.Order.orderNumber,
+              dateOfOrder: response.data.Order.createdAt,
+            },
+          });
         }, 1000);
       }
       localStorage.clear();
@@ -157,7 +161,6 @@ const Checkout = () => {
       console.error("Error:", error);
     }
   };
-  console.log(shippingCost)
   return (
     <main className={styles.main}>
       <Helmet>
