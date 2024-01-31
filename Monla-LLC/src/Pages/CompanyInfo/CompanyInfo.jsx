@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "../CompanyInfo/CompanyInfo.module.css";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import "react-toastify/dist/ReactToastify.css";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AddCompanyInfoForm from "./AddCompanyInfo";
 import EditCompanyInfoForm from "./EditCompanyInfo";
 
 const CompanyInfo = () => {
@@ -13,7 +10,6 @@ const CompanyInfo = () => {
   const [isloading, setIsLoading] = useState(true);
   const [rows, setRows] = useState([]);
   const [selectedCompanyInfo, setSelectedCompanyInfo] = useState(null);
-  const [isAddFormOpen, setIsAddFormOpen] = useState(false);
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
 
   useEffect(() => {
@@ -32,28 +28,9 @@ const CompanyInfo = () => {
     fetchCompanyInfo()
   }, [])
 
-  const handleAddClick = () => {
-    setIsAddFormOpen(true);
-  };
-
   const handleEditClick = (company) => {
     setIsEditFormOpen(true);
     setSelectedCompanyInfo(company);
-  };
-
-  const handleDeleteClick = async (companyId) => {
-    try {
-      await axios.delete(`${import.meta.env.VITE_REACT_APP_PATH}/company/${companyId}`)
-      const remainedCompanies = rows.filter((row) => row._id.toString() !== companyId)
-      setRows(remainedCompanies)
-    }
-    catch (error) {
-      console.error("Error deleting company info:", error.response.data);
-    }
-  }
-
-  const handleAddFormClose = () => {
-    setIsAddFormOpen(false);
   };
 
   const columns = [
@@ -78,12 +55,6 @@ const CompanyInfo = () => {
           >
             <EditIcon />
           </div>
-          <div
-            onClick={() => handleDeleteClick(params.row._id)}
-            style={{ cursor: "pointer" }}
-          >
-            <DeleteIcon />
-          </div>
         </div>
       ),
     },
@@ -102,22 +73,6 @@ const CompanyInfo = () => {
       <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>
         Company Infos
       </h1>
-      <button
-        className={styles.btnAdd}
-        style={{
-          color: "white",
-          marginBottom: "1rem",
-          width: "7rem",
-          height: "2.5rem",
-          backgroundColor: "blue",
-          borderRadius: "5px",
-          fontWeight: "bold",
-          cursor: "pointer",
-        }}
-        onClick={handleAddClick}
-      >
-        Add Company Info
-      </button>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -186,12 +141,6 @@ const CompanyInfo = () => {
           company={selectedCompanyInfo}
           onClose={() => setIsEditFormOpen(false)}
           // onUpdate={handleTableUpdated}
-        />
-      )}
-      {isAddFormOpen && (
-        <AddCompanyInfoForm
-          onClose={handleAddFormClose}
-          // onCreation={handleTableUpdated}
         />
       )}
     </div>
