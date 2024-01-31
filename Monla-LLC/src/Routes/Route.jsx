@@ -90,7 +90,6 @@ const Router = () => {
               <Route path="Product/Edit" index element={< EditProduct/>} />
               <Route path="Products" element={<Productstable/>}/>
 
-              <Route path="overview" index element={< Overview />} />
               <Route path="Year" index element={< YearsTable />} />
               <Route path="Model" index element={< ModelsTable />} />
               <Route path="Brand" index element={< BrandsTable />} />

@@ -10,6 +10,9 @@ import { useContext } from "react";
 import axios from 'axios';
 import { useFetchData } from "../../CustomHook/GetData";
 import {motion} from "framer-motion"
+import Avatar from '@mui/material/Avatar';
+import Profile from "../../assets/profileee.jpeg"
+
 
 
 
@@ -68,15 +71,16 @@ const Header = () => {
     // Close the mobile menu when a NavLink is clicked
     setNav(false);
   }, [location]);
-console.log(location.pathname==='/profile')
-
   return (
     // Header Container
     <header className={styles.headerContainer} >
       <motion.div className={styles.navbar} >
         {/* Logo */}
+        <NavLink to="/">
+       <div>
         <motion.img src={logo} alt="/" initial={{opacity:0, scale:0.5}} animate={{opacity:1, scale:1}} transition={{duration:0.5}} />
-
+        </div>
+        </NavLink>
         {/* Navigation Links */}
         <div className={styles.whatever}>
           <nav style={{display:"flex", gap:"2rem"}}>
@@ -114,10 +118,16 @@ console.log(location.pathname==='/profile')
               {/* NavLink for Contact Us */}
               <li >
 
-                <NavLink to='/contact' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
-                  Contact Us
-                </NavLink>
+              <NavLink to='/contact' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
+                Contact Us
+              </NavLink>
               </li>
+              {user && user.role==="admin" && ( <li >
+
+                  <NavLink to='/dashboard' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/dashboard' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
+                  dashboard                  </NavLink>
+                  </li>) }
+           
 
                 {user ? (<button onClick={logout} type="submit" className={styles.button}>
                 Logout
@@ -125,11 +135,7 @@ console.log(location.pathname==='/profile')
                   <NavLink to='/signup' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
                 SignUp
                 </NavLink></li>)}
-              
-                
-              
             
-
             </motion.ul>
           </nav>
 
@@ -141,7 +147,15 @@ console.log(location.pathname==='/profile')
           <div className={location.pathname==='/profile' || location.pathname==="/cart"?styles.cartIconBlue:styles.cartIcon} onClick={handleCartIconClick}>
             <AiOutlineShoppingCart size={25} className={styles.shopIcon} />
           </div>
+          {user &&    <NavLink to="/profile" >
+                <Avatar
+                alt="Profile Logo"
+                src={Profile}  
+                sx={{ width: 48, height: 48, cursor:"pointer" }}
+              />
+                          </NavLink>}
         </div>
+        
 
 
       
