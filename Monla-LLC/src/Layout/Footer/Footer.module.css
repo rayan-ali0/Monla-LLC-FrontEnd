@@ -150,10 +150,12 @@
     }
     
     .footerCopyright {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         font-weight: 400;
         align-self: center;
         opacity: 0.7;
         margin-bottom: 2rem;
+        width: 70%;
+        text-align: center;
     }
 }

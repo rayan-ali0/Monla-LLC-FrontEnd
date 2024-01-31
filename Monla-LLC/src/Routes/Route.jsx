@@ -36,6 +36,7 @@ import ContactsTable from "../Pages/ContactTable/contactTable.jsx";
 import OrdersTable from "../Pages/tableOrder/tableOrder.jsx";
 import ServicesTable from "../Pages/ServicesTable/serviceTable.jsx";
 import UserTable from "../Pages/UserTable/UserTable.jsx";
+import CompanyInfo from "../Pages/CompanyInfo/CompanyInfo.jsx";
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
   return (
@@ -92,6 +93,7 @@ const Router = () => {
               <Route path="Orders" index element={<OrdersTable/>} />
               <Route path="Services" index element={<ServicesTable/>} />
               <Route path="User" index element={<UserTable/>} />
+              <Route path="CompanyInfo" index element={<CompanyInfo />} />
 
             </Route>
           </Route> 

@@ -33,7 +33,7 @@ const EditUser = ({ user, onClose, onUpdate }) => {
       window.location.reload()
       onClose()
     } catch (error) {
-      console.error("Error adding user:", error.response.data.error);
+      console.error("Error editing user:", error.response.data.error);
     }
   };
 

@@ -32,6 +32,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ModelsTable from '../../Pages/dashTableModel/TabelModel';
 import { NavLink, useLocation } from "react-router-dom";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 
 
@@ -128,6 +129,7 @@ const menuItems = [
   { text: 'Year', icon: <DateRangeIcon /> },
   { text: 'contact', icon: <MailOutlineIcon /> },
   { text: 'Shipping', icon: <LocalShippingIcon /> },
+  { text: 'CompanyInfo', icon: <InfoOutlinedIcon /> }
 ];
 
 export default function MiniDrawer() {

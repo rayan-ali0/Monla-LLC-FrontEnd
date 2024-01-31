@@ -1,7 +1,7 @@
 @media only screen and (min-width: 770px) {
     .aboutusContainer {
         height: 100vh;
-        width: 90%;
+        width: 75%;
         margin: 0 auto;
         margin-top: 10rem;
         display: flex;
@@ -25,17 +25,17 @@
     }
 
     .aboutusFeaturesContentIcon {
-        height: 10rem;
-        width: 10rem;
+        height: 6.5rem;
+        width: 6.5rem;
     }
 
     .aboutusFeaturesContentTitle {
         text-transform: capitalize;
-        font-size: 4rem;
+        font-size: 2.5rem;
     }
 
     .aboutusFeaturesContentDescription {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         opacity: 0.6;
     }
 
@@ -43,6 +43,11 @@
         height: auto;
         display: flex;
         gap: 6rem;
+    }
+
+    .testimonialPicture {
+        height: 25rem;
+        width: 25rem;
     }
 
     .testimonialDescription {
