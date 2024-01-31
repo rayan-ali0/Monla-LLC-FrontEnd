@@ -74,18 +74,19 @@ const Router = () => {
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="category" index element={<CategoryTable />} />
               <Route path="profile" index element={<DashProfile />} />
-              <Route path="Product/Add" index element={<AddProduct />} />
-              <Route path="Product/Edit" index element={<EditProduct />} />
-              <Route path="Products" element={<Productstable />} />
-              <Route path="" index element={<Overview />} />
-              <Route path="Year" index element={<YearsTable />} />
-              <Route path="Model" index element={<ModelsTable />} />
-              <Route path="Brand" index element={<BrandsTable />} />
-              <Route path="Shipping" index element={<ShippingsTable />} />
-              <Route path="contact" index element={<ContactsTable />} />
-              <Route path="Orders" index element={<OrdersTable />} />
-              <Route path="Services" index element={<ServicesTable />} />
-              <Route path="user" index element={<UserTable />} />
+              <Route path="Product/Add" index element={< AddProduct/>} />
+              <Route path="Product/Edit" index element={< EditProduct/>} />
+              <Route path="Products" element={<Productstable/>}/>
+
+              <Route path="Year" index element={< YearsTable />} />
+              <Route path="Model" index element={< ModelsTable />} />
+              <Route path="Brand" index element={< BrandsTable />} />
+              <Route path="Shipping" index element={<ShippingsTable/>} />
+              <Route path="contact" index element={<ContactsTable/>} />
+              <Route path="Orders" index element={<OrdersTable/>} />
+              <Route path="Services" index element={<ServicesTable/>} />
+              <Route path="User" index element={<UserTable/>} />
+
             </Route>
           </Route>
         </Routes>

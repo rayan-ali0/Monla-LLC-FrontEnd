@@ -2,11 +2,17 @@ import React from 'react'
 import Styles from "./ProductNav.module.css"
 import { useState } from 'react';
 // import Autocomplete from "@mui/material/Autocomplete";
+import Stack from '@mui/material/Stack';
+import Autocomplete from "@mui/material/Autocomplete"
+import {  TextField } from "@mui/material"
+import { flexbox } from '@mui/system';
 
 
 
 
-const ProductNav = ({searchTerm, setSearchTerm, onSearch,}) => {
+
+
+const ProductNav = ({searchTerm, setSearchTerm, onSearch, productData, onChange}) => {
     const [selectedBrand, setSelectedBrand] = useState('');
     const [selectedModule, setSelectedModule] = useState('');
     const [selectedYear, setSelectedYear] = useState('');
@@ -28,9 +34,9 @@ const ProductNav = ({searchTerm, setSearchTerm, onSearch,}) => {
 
   return (
     <div className={Styles.container}>
-        <h2 className={Styles.h2}>Filter by </h2>
-
-        
+        {/* <h2 className={Styles.h2}>Filter by </h2> */}
+      
+        <div  className={Styles.searc}>
      
       <select className={Styles.input} id="brandSelect" name="brands" value={selectedBrand} onChange={handleBrandChange}>
         <option value="" className={Styles.option}>Select a brand</option>
@@ -54,6 +60,38 @@ const ProductNav = ({searchTerm, setSearchTerm, onSearch,}) => {
     
       </select>
       <button className={Styles.btn}>GO</button>
+    </div>
+    <div>
+        <Stack
+                    className={Styles.stack}
+                    sx={{ padding: "10px 0px" ,width:"20rem", color:"white" ,height:"3.5rem" }}
+                  >
+                    <Autocomplete
+                    sx={{backgroundColor:"white", borderRadius:"10px", height:"4rem"}}
+                      freeSolo
+                      id="free-solo-2-demo"
+                      disableClearable
+                      options={ productData && productData.map((item) => ({
+                        title: item.title,
+                      }))}
+                      getOptionLabel={(option) => option.title}
+                      renderInput={(params) => (
+                        <TextField
+                          className={`${Styles.searchInput}`}
+                          {...params}
+                          label="Search by title"
+                          InputProps={{
+                            ...params.InputProps,
+                            type: "search",
+                          }}
+                        />
+                      )}
+                      onChange={onChange}
+                    />
+                  </Stack>
+                  
+            
+            </div>
     </div>
       
 

@@ -86,12 +86,13 @@ const Products = () => {
       searchTerm={searchTerm}
       setSearchTerm={setSearchTerm}
       onSearch={handleSearch}
-      data={productData}
+      productData={productData}
+      onChange={handleSearch}
        />
       </div>
       <div className={Styles.searchh}>
         <h1 style={{fontSize:"50px", color:"#163357"}}>Products</h1>
-      <Stack
+      {/* <Stack
                     className={Styles.stack}
                     sx={{ padding: "10px 0px" ,width:"20rem"}}
                   >
@@ -116,7 +117,7 @@ const Products = () => {
                       )}
                       onChange={handleSearch}
                     />
-                  </Stack>
+                  </Stack> */}
                   </div>
       
       <div className={Styles.container}>
