@@ -47,8 +47,10 @@
 .field {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
     height: 100%;
+    align-items: center;
     color: var(--first-blue-color);
     width: 100%;
 }

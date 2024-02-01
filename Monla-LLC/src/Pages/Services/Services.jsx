@@ -49,6 +49,7 @@ const Services = () => {
                                    <div className={style.serviceDetails}>
                                         <h3 className={style.serviceTitle}>{service.title}</h3>
                                         <p className={style.serviceText}>{service.description}
+
                                         </p>
                                    </div>
                               </section>

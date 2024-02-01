@@ -65,8 +65,8 @@ const Profile = () => {
         <div className={styles.profilePage}>
             {/* <h1 className={styles.profileTitle}> My Profile</h1> */}
             <div className={styles.related__ItemP}>
-                    <div className={styles.backgroundP}></div>
-                    <h2 className={styles.titleP}>My Cart</h2>
+                    {/* <div className={styles.backgroundP}></div> */}
+                    <h2 className={styles.titleP}>My Profile</h2>
                 </div>
             <div className={styles.profileContainer}>
                 {user ? (
