@@ -12,9 +12,6 @@ import axios from 'axios'
 import emailjs from '@emailjs/browser';
 // import { styled } from "@mui/system";
 // import { makeStyles } from '@mui/styles';
-
-
-
 const Contact = () => {
   const [companyInfo, setCompanyInfo] = useState({
     email: '',
