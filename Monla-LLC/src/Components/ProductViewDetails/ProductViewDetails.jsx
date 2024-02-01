@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import benifitIcon from "../../assets/icons/Icon-return.svg";
 import styles from "./ProductViewDetails.module.css";
+import { CartContext } from "../../UserContext/CartContext";
 
 const ProductViewDetails = ({ myItem }) => {
+  const { changeCartItem } = useContext(CartContext)
   const stock = myItem.stock;
 
   const [loading, setLoading] = useState(true);
@@ -25,6 +27,7 @@ const ProductViewDetails = ({ myItem }) => {
     setTimeout(() => {
       setAddedToCart(false);
     }, 1000);
+    changeCartItem()
   };
 
   const decreaseOne = () => {
