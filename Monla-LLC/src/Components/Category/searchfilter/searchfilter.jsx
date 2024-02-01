@@ -13,22 +13,30 @@ const Searchfilter = () => {
   const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
+  const [filterState, setFilterState]= useState({})
+
+  const handleChange=(e)=>{
+
+
+    if(e.target.name==="brand"){
+      // SON.parse(e.target.value)._id
+fetchModels(e.target.value)
+    }
+    if(e.target.name==="model"){
+      fetchYears(e.target.value)
+          }
+    setFilterState((prev)=>({
+      ...prev,
+      [e.target.name]:e.target.value
+    }))
+    console.log(filterState)
+    
+  }
 
   useEffect(() => {
     fetchBrands();
   }, []);
 
-  useEffect(() => {
-    if (selectedBrand) {
-      fetchModels();
-    }
-  }, [selectedBrand]);
-
-  useEffect(() => {
-    if (selectedModel) {
-      fetchYears();
-    }
-  }, [selectedModel]);
 
   const fetchBrands = async () => {
     try {
@@ -39,18 +47,18 @@ const Searchfilter = () => {
     }
   };
 
-  const fetchModels = async () => {
+  const fetchModels = async (brandId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/model/byBrand/${selectedBrand}`);
+      const response = await axios.get(`http://localhost:5000/model/byBrand/${brandId}`);
       setModels(response.data);
     } catch (error) {
       console.error('Error fetching models:', error);
     }
   };
 
-  const fetchYears = async () => {
+  const fetchYears = async (modelId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/year/byModel/${selectedModel}`);
+      const response = await axios.get(`http://localhost:5000/year/byModel/${modelId}`);
       setYears(response.data);
     } catch (error) {
       console.error('Error fetching years:', error);
@@ -58,9 +66,7 @@ const Searchfilter = () => {
   };
 
   const handleSearch = () => {
-    // Construct the URL with selected filters
-    const url = `/product?brand=${selectedBrand}&model=${selectedModel}&year=${selectedYear}`;
-    navigate(url);
+    navigate('/product',{state:{filterState}})
   };
 
   return (
@@ -69,13 +75,15 @@ const Searchfilter = () => {
         <select
           className={Styles.input}
           id="brandSelect"
-          name="brands"
-          value={selectedBrand}
-          onChange={(e) => setSelectedBrand(e.target.value)}
+          name="brand"
+          value={filterState.model && filterState.brand.brand}
+          // onChange={(e) => setSelectedBrand(e.target.value)}
+          onChange={handleChange}
         >
           <option className={Styles.option} value=''>Select Brand</option>
           {brands.map((brand) => (
             <option key={brand._id} value={brand._id}>
+              {/* {console.log(brand)} */}
               {brand.brand}
             </option>
           ))}
@@ -85,9 +93,10 @@ const Searchfilter = () => {
         <select
           className={Styles.input}
           id="modukeSelect"
-          name="module"
-          value={selectedModel}
-          onChange={(e) => setSelectedModel(e.target.value)}
+          name="model"
+          value={ filterState.model && filterState.model.name}
+          // onChange={(e) => setSelectedModel(e.target.value)}
+          onChange={handleChange}
         >
           <option className={Styles.option} value=''>Select Model</option>
           {models.map((model) => (
@@ -101,9 +110,10 @@ const Searchfilter = () => {
         <select
           className={Styles.input}
           id="yearSelect"
-          name="Year"
-          value={selectedYear}
-          onChange={(e) => setSelectedYear(e.target.value)}
+          name="year"
+          value={ filterState.year && filterState.year.value}
+          // onChange={(e) => setSelectedYear(e.target.value)}
+          onChange={handleChange}
         >
           <option className={Styles.option} value=''>Select Year</option>
           {years.map((year) => (

@@ -153,9 +153,9 @@ const Header = () => {
           </div>
           {user &&    <NavLink to="/profile" >
                 <Avatar
-                alt="Profile Logo"
-                src={Profile}  
-                sx={{ width: 48, height: 48, cursor:"pointer" }}
+                alt={user.name}
+                src={user}  
+                sx={{ cursor:"pointer" , backgroundColor:"lightGrey" ,color:"#163357", height:"2.5rem", width:"2.5rem"}}
               />
                           </NavLink>}
         </div>

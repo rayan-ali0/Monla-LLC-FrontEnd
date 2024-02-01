@@ -71,6 +71,7 @@ const Router = () => {
               />
             }>
             <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="" index element={<Overview />} />
               <Route path="category" index element={<CategoryTable />} />
               <Route path="profile" index element={<DashProfile />} />
               <Route path="Product/Add" index element={< AddProduct/>} />
