@@ -77,6 +77,7 @@ import { Link } from 'react-router-dom';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-toastify/dist/ReactToastify.minimal.css';
+import ProductCart from '../ProductCart/ProductCart';
 const variant = {
   initial: {
     y: 20,
@@ -142,21 +143,22 @@ return (
 
         {products.map((product) => (
           <motion.div className={Styles.container} key={product._id} initial={{ opacity: 0.1 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }}>
-            <Link className={Styles.linkTo} to={`/productdetails/${product.slug}`} state={product}>
-              <div>
+            {/* <Link className={Styles.linkTo} to={`/productdetails/${product.slug}`} state={product}> */}
+              {/* <div>
               
                 <img className={Styles.image} src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${product.image}`} alt="" />
 
               </div>
               <div className={Styles.text}>
                 <p className={Styles.title}>{product.title+="dfsgsdfgsdfgsdgfsdfbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" }</p>
-              </div>
-            </Link>
-            <div className={Styles.bottomSection}>
+              </div> */}
+              <ProductCart item={product} single__product={true} state={product}/>
+            {/* </Link> */}
+            {/* <div className={Styles.bottomSection}>
               <h2 className={Styles.price}>${product.price}</h2>
               <button className={product.stock > 0 ? Styles.btn : Styles.btnSold} onClick={()=>purchase(product)}>{product.stock > 0 ? "ADD TO CART" : "SOLD OUT"}</button>
 
-            </div>
+            </div> */}
           </motion.div>
         ))}
       </div>
