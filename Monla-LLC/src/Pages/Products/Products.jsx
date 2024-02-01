@@ -23,7 +23,7 @@ const Products = () => {
   const [currentPage, setCurrentPage]=useState(1)
   const [searchTerm, setSearchTerm] = useState("");
   const productsPerPage = 12;
-const [filterState,setFilterSate]=useState(false)
+const [filterState,setFilterSate]=useState('')
   const [products, setProducts] = useState([]);
   const [selectedBrand, setselectedBrand] = useState(null);
   const [selectedModel, setselectedModel] = useState(null);
@@ -148,12 +148,6 @@ const [filteredProducts,setFilteredProducts]=useState(null)
   },[fileterdBy])
 
 
-//     const filteredProducts = productData?.filter((item)=>
-//       item.title.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-//     )
-//     .filter((item) =>
-//   selectedCategory === "" || (item.category && selectedCategory === item.category._id)
-// );
   const handlCategoryId = (categoryId) => {
     setSelectedCategory(categoryId);
     setCurrentPage(1); 
@@ -161,29 +155,34 @@ const [filteredProducts,setFilteredProducts]=useState(null)
   };
 
 
-  useEffect(()=>{
-    const filters= productData?.filter((item)=>
-    item.title.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-  )
-  setFilteredProducts(filters)
-  },[])
 
+  const handleSearch = (e) => {
+    console.log(e.target.value==="")
+    if(e.target.value===""){
 
-  const handleSearch = (event, value) => {
-    setFilterSate(true)
-    if(typeof value === "object" && value !==null){
-      setSearchTerm(value.title || "");
-    }else{
-      setSearchTerm(value || "")
+      setProducts(productData)
+    
     }
+    else{
+      setSearchTerm(e.target.value);
+
+    }
+    console.log("----------target--------------")
+console.log(e.target.value)
+console.log("----------term--------------")
 
     console.log(searchTerm)
-
-    // setCurrentPage(1);
-    // refetch();
   };
 
-  
+  useEffect(()=>{
+if(searchTerm && searchTerm!==""){
+  const filters= productData?.filter((item)=>
+  item.title.toLowerCase().includes(searchTerm.toLowerCase())
+)
+setProducts(filters)
+}
+  },[searchTerm])
+
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
 
@@ -200,9 +199,8 @@ const [filteredProducts,setFilteredProducts]=useState(null)
       {/* {console.log("-----------", fileterdBy)} */}
       <div className={Styles.nav}>
       <ProductNav
-      searchTerm={searchTerm}
       setSearchTerm={setSearchTerm}
-      onSearch={handleSearch}
+      // onSearch={handleSearch}
       fileterdByy={fileterdBy}
       productData={productData}
       setFileterdBy={setFileterdBy}

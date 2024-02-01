@@ -12,7 +12,7 @@ import axios from 'axios';
 
 
 
-const ProductNav = ({searchTerm, setSearchTerm, onSearch, productData, onChange,setProducts,products, fileterdByy, setFileterdBy}) => {
+const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts,products, fileterdByy, setFileterdBy}) => {
   const [brands, setBrands] = useState([]);
   const [module, setModels] = useState([]);
   const [year, setYears] = useState([]);
@@ -139,7 +139,7 @@ const ProductNav = ({searchTerm, setSearchTerm, onSearch, productData, onChange,
                     className={Styles.stack}
                     sx={{ padding: "10px 0px" ,width:"20rem", color:"white" ,height:"3.5rem" }}
                   >
-                    <Autocomplete
+                    {/* <Autocomplete
                     sx={{backgroundColor:"white", borderRadius:"10px", height:"4rem"}}
                       freeSolo
                       id="free-solo-2-demo"
@@ -159,8 +159,30 @@ const ProductNav = ({searchTerm, setSearchTerm, onSearch, productData, onChange,
                           }}
                         />
                       )}
-                      onChange={onChange}
-                    />
+                      onChange={(e, value) => onChange(e, value)}
+                      /> */}
+                           <TextField
+                    sx={{backgroundColor:"white", borderRadius:"10px", height:"4rem"}}
+                      freeSolo
+                      id="free-solo-2-demo"
+                      disableClearable
+                      options={ products && products.map((item) => ({
+                        title: item.title,
+                      }))}
+                      getOptionLabel={(option) => option.title}
+                      renderInput={(params) => (
+                        <TextField
+                          className={`${Styles.searchInput}`}
+                          {...params}
+                          label="Search by title"
+                          InputProps={{
+                            ...params.InputProps,
+                            type: "search",
+                          }}
+                        />
+                      )}
+                      onChange={(e, value) => onChange(e, value)}
+                      />
                   </Stack>
                   
             
