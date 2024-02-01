@@ -35,7 +35,7 @@ const HeroSectionHomepage = () => {
           
           {/* Button linking to the contact page */}
           <motion.a href="/contmotion.act" className={HeroSectionHomepageCss.button} >
-            contact us
+            Contact Us
           </motion.a>
         </motion.div>
       </div>

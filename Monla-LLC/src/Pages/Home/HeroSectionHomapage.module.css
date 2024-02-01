@@ -1,135 +1,170 @@
+.containerHero {
+    margin: 0;
+    position: relative;
+}
 
-    .containerHero {
-        margin: 0;
-        position: relative;
-    }
+.backgroundImage {
+        /* position: absolute; */
+width: 100%;
+/* top: -370px; */
+height: 730px;
+background-image: url(/src/assets/bluecar.png);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+display: flex;
+object-fit: cover;
+justify-content: flex-start;
+align-items: center;
+}
+.Title{
+    color: white;
+    font-size: 2.5vh;
+    font-weight: 500;
+    letter-spacing: 3px;
 
-    .backgroundImage {
-            /* position: absolute; */
-    width: 100%;
-    /* top: -370px; */
-    height: 730px;
-    background-image: url(/src/assets/bluecar.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+
+}
+
+.content {
+    font-size: 2vw;
+    top: 600px;
     display: flex;
-    object-fit: cover;
-    justify-content: flex-start;
-    align-items: center;
-    }
-    .Title{
-        color: white;
-        font-size: 2.5vh;
-        font-weight: 500;
-        letter-spacing: 3px;
+    flex-direction: column;
+    margin-left: 5rem;
+    width: 42%;
 
+
+
+}
+
+.title {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    height: 75%;
+    width: 100%;
+    letter-spacing: 3px;
+
+}
+
+.spann {
+    font-weight: 800px;
+    text-transform: uppercase;
+    color: #C62507;
+}
+
+.button {
+    width: fit-content;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    background-color: #C62507;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    margin-top: 2rem;
+    height: 11%;
+    font-size: 16px;
+    font-weight: 400px;
+    padding: 10px 36px;
+    transition: all .4s ease;
+}
+.button:hover{
+    color: #F83739 ;
+    border: 1px solid #F3494A;
+    background-color: transparent;
+
+}
+@media (max-width: 930px) {
+    .backgroundImage{
+      height: 695px;
+    }
+    }
+    /* @media (max-width: 784px) {
+        .backgroundImage {
     
+      height : 832px;
+        
+    }
+    } */
+@media (max-width: 420px) {
+    .backgroundImage{
+      height: 726px;
+
+    }
+    .button {
+min-width: 196px;      
+        font-size: 17px;
+  
+    }
     }
 
-    .content {
-        font-size: 2vw;
-        top: 600px;
-        display: flex;
-        flex-direction: column;
-        margin-left: 5rem;
-        width: 42%;
 
+@media (max-width:375px) {
+.button{
+    min-width: 170px;
+    height: 3rem; 
+font-size: 15px;   }
+.title{
+    font-size: 25px;
+}
+.Title {
+    font-size: 2.4vh;
+   
+}
+}
+@media (max-width:280px) {
+.button{
+    min-width: 176px;
+height: 3rem;
+font-size: 16px;
+margin-left: -2.1rem;
+}
+.Title{
+    color: white;
+    font-size: 3.5vh;
+    font-weight: 500;
+    letter-spacing: 0px;
+    /* gap: 0; */
+    line-height: 30px;
+}
 
-    
+.content{
+    font-size: 1.5vh;
+
+}
+    .backgroundImage{
+      height: 896px;
+
     }
+}
+/* @media (min-width:281px) {
+.backgroundImage{
+height: 938px;
+}
+} */
 
-    .title {
-        font-weight: 600;
+
+
+
+@media (max-width:390px) {
+    .title{
+        font-weight: 800;
         text-transform: uppercase;
         color: #FFFFFF;
         height: 75%;
         width: 100%;
         letter-spacing: 3px;
-
+        font-size: 28px;
+        line-height: 33px;
+        margin-bottom: 1rem;
     }
-
-    .spann {
-        font-weight: 800px;
-        text-transform: uppercase;
-        color: #C62507;
-    }
-
-    .button {
-        width: fit-content;
-        text-align: center;
-        color: white;
-        text-decoration: none;
-        background-color: #C62507;
-        border: 1px solid transparent;
-        border-radius: 7px;
-        margin-top: 2rem;
-        height: 11%;
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        font-weight: 400px;
-        padding: 10px 36px;
-        transition: all .4s ease;
-    }
-    .button:hover{
-        color: #F83739 ;
-        border: 1px solid #F3494A;
-        background-color: transparent;
-
-    }
-@media (max-width: 784px) {
-    .backgroundImage {
-
-  height : 659px;
-    
-}
-}
-@media (max-width: 1086px) {
-    /* .button {
-        text-align: center;
-        color: white;
-        text-decoration: none;
-        background-color: #F83739;
-        border-radius: 30px;
-        margin-top: 2rem;
-        height: 12%;
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        font-weight: 500px;
-        border: none;
-        padding: 0.5rem;
-    } */
-    
-}
-@media (max-width:375px) {
-    .button{
-        min-width: 170px;
-        height: 3rem; 
-    font-size: 15px;   }
-    .title{
-        font-size: 25px;
-    }
-    .Title {
-        font-size: 2.4vh;
-       
-    }
-}
-@media (max-width:280px) {
-    .button{
-        min-width: 150px;
-        height: 2rem; 
-    font-size: 10px;   }
-    .Title{
-        color: white;
-        font-size: 3.5vh;
-        font-weight: 500;
-        letter-spacing: 0px;
-        /* gap: 0; */
-        line-height: 30px;
-    }
-   
-    .content{
-        font-size: 1.5vh;
-
-    }
+   .content{
+    width: 88%;
+    margin-left: 20px;
+   }
+   .Title{
+    font-size: 2vh;
+   }
+ 
 }

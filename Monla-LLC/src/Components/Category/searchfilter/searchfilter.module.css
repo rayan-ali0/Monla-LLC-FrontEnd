@@ -4,7 +4,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 30px;
+    /* padding: 1rem 30px; */
+    padding: 20px;
     background-color: white;
     border-radius: 23px;
     gap: 2rem;
@@ -78,3 +79,4 @@
         align-items: center;
     }
 }
+
