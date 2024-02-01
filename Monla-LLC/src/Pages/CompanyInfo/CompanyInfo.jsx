@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import "react-toastify/dist/ReactToastify.css";
-import EditIcon from "@mui/icons-material/Edit";
-import EditCompanyInfoForm from "./EditCompanyInfo";
+import style from '../../Components/DashProfile/DashProfile.module.css'
 
 const CompanyInfo = () => {
 
   const [isloading, setIsLoading] = useState(true);
   const [rows, setRows] = useState([]);
-  const [selectedCompanyInfo, setSelectedCompanyInfo] = useState(null);
-  const [isEditFormOpen, setIsEditFormOpen] = useState(false);
+
+  const [formData, setFromData] = useState({
+    name: "",
+    email: "",
+    number: "",
+    whatsapp: "",
+    location: "",
+    facebook: ""
+  });
 
   useEffect(() => {
     const fetchCompanyInfo = async () => {
@@ -19,6 +24,14 @@ const CompanyInfo = () => {
         console.log(response);
         setRows(response.data);
         setIsLoading(false);
+        response.data ? setFromData({
+          name: rows[0].name,
+          email: rows[0].email,
+          number: rows[0].number,
+          whatsapp: rows[0].whatsapp,
+          location: rows[0].location,
+          facebook: rows[0].facebook
+      }) : console.error("Error")
       }
       catch (error) {
         console.error(error);
@@ -28,128 +41,120 @@ const CompanyInfo = () => {
     fetchCompanyInfo()
   }, [])
 
-  const handleEditClick = (company) => {
-    setIsEditFormOpen(true);
-    setSelectedCompanyInfo(company);
-  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFromData({
+        ...formData,
+        [name]: value
+    })
+  }
 
-  const columns = [
-    { field: "_id", headerName: "ID", flex: 1 },
-    { field: "name", headerName: "Name", flex: 1 },
-    { field: "email", headerName: "Email", flex: 1 },
-    { field: "number", headerName: "Number", flex: 1 },
-    { field: "whatsapp", headerName: "Whatsapp", flex: 1 },
-    { field: "location", headerName: "Location", flex: 1 },
-    { field: "facebook", headerName: "Facebook", flex: 1 },
-    { field: "instagram", headerName: "Instagram", flex: 1 },
-    { field: "tiktok", headerName: "TikTok", flex: 1 },
-    {
-      field: "actions",
-      headerName: "Actions",
-      flex: 1,
-      renderCell: (params) => (
-        <div style={{ display: "flex" }}>
-          <div
-            onClick={() => handleEditClick(params.row)}
-            style={{ cursor: "pointer" }}
-          >
-            <EditIcon />
-          </div>
-        </div>
-      ),
-    },
-  ];
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+        const response = await axios.put(`${import.meta.env.VITE_REACT_APP_PATH}/company/${rows[0]._id}`, formData)
+        console.log("Company Info edited:", response.data)
+        window.location.reload()
+        onClose()
+    }
+    catch (error) {
+        console.error("Error editing company info:", error.response.data.error);
+      }
+  }
 
   return (
-    <div
-      style={{
-        width: "90%",
-        float: "left",
-        margin: "auto",
-        height: "650px",
-        marginBottom: "7rem",
-      }}
-    >
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>
-        Company Infos
-      </h1>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pagination
-        pageSize={5}
-        getRowId={(row) => row._id}
-        rowsPerPageOptions={[5, 10, 20]}
-        components={{
-          Toolbar: CustomToolbar,
-        }}
-        sx={{
-          color: "#0a213d",
-          // border:"none",
-          paddingTop: "1rem",
-          border: "1px solid white",
-          padding: "20px",
-          borderRadius: "10px",
-          //   borderRadius: "17px",
-          "& .MuiDataGrid-root": {
-            backgroundColor: "white",
-          },
-          "& .MuiDataGrid-columnHeader": {
-            // Background color of column headers
-            color: "white",
-            fontFamily: "Outfit",
-            fontSize: "19px",
-            // Text color of column headers
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "1px solid #ccc", // Border between cells
-            color: "white",
-            fontSize: "17px",
-            // Text color of cells
-          },
-          "& .MuiTablePagination-root": {
-            color: "white", // Text color of pagination
-          },
-          "& .MuiDataGrid-toolbar": {
-            color: "white",
-            backgroundColor: "white", // Background color of the toolbar
-          },
-          "& .MuiDataGrid-toolbarContainer": {
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            color: "white",
-            // color: 'blue',
-          },
-          "& .MuiButtonBase-root": {
-            color: "white", // Text color for buttons in the toolbar
-          },
-          "& .MuiPaginationItem-icon": {
-            color: "white", // Color of pagination icons
-          },
-          "& .MuiSvgIcon-root": {
-            color: "white",
-          },
-          "& .MuiDataGrid-row , & .MuiDataGrid-cell": {
-            maxHeight: "80px !important",
-            height: "80px !important",
-          },
-        }}
-      />
-      {isEditFormOpen && (
-        <EditCompanyInfoForm
-          company={selectedCompanyInfo}
-          onClose={() => setIsEditFormOpen(false)}
-          // onUpdate={handleTableUpdated}
-        />
-      )}
-    </div>
+    <main className={style.main}>
+      <form
+        className={style.form}
+        encType="multipart/form-data"
+        onSubmit={handleSubmit}>
+        {/* Display existing user info */}
+        <div className={style.input}>
+          <label htmlFor="nameLabel" className={style.label}>
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="nameLabel"
+            value={formData.name}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className={style.input}>
+          <label htmlFor="emailLabel" className={style.label}>
+            Email
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="emailLabel"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className={style.input}>
+          <label htmlFor="numberLabel" className={style.label}>
+            Number
+          </label>
+          <input
+            type="number"
+            name="number"
+            id="numberLabel"
+            value={formData.number}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className={style.input}>
+          <label htmlFor="whatsappLabel" className={style.label}>
+            Whatsapp
+          </label>
+          <input
+            type="text"
+            name="whatsapp"
+            id="whatsappLabel"
+            value={formData.whatsapp}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className={style.input}>
+          <label htmlFor="locationLabel" className={style.label}>
+            Location
+          </label>
+          <input
+            type="text"
+            name="location"
+            id="locationLabel"
+            value={formData.location}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className={style.input}>
+          <label htmlFor="facebookLabel" className={style.label}>
+            Facebook
+          </label>
+          <input
+            type="text"
+            name="facebook"
+            id="facebookLabel"
+            value={formData.facebook}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className={style.buttons}>
+          <button type="submit" className={style.submit}>
+            Update Info
+          </button>
+        </div>
+      </form>
+    </main>
   )
 }
-const CustomToolbar = () => {
-  return (
-    <GridToolbar>{/* Add any custom elements or styling here */}</GridToolbar>
-  );
-};
 
 export default CompanyInfo
