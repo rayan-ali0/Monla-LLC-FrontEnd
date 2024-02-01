@@ -6,6 +6,7 @@ import logo from '../../assets/images/logo.svg';
 import { AiOutlineMenu, AiOutlineClose, AiOutlineShoppingCart } from 'react-icons/ai';
 import { NavLink, useLocation ,useNavigate} from "react-router-dom";
 import { UserContext } from "../../UserContext/UserContext";
+import { CartContext } from "../../UserContext/CartContext";
 import { useContext } from "react";
 import axios from 'axios';
 import { useFetchData } from "../../CustomHook/GetData";
@@ -20,6 +21,9 @@ const Header = () => {
   // const api=`http://localhost:5000/logout`
   // const {data, } =useFetchData(api)
   const {user, setUser}=useContext(UserContext)
+  const { cartItemCount } = useContext(CartContext)
+  
+  console.log(cartItemCount)
   const [nav, setNav] = useState({
     isOpen: false,
     isCartOpen: false,
@@ -144,7 +148,7 @@ const Header = () => {
           </div>
 
           {/* Cart Icon */}
-          <div className={location.pathname==='/profile' || location.pathname==="/cart"?styles.cartIconBlue:styles.cartIcon} onClick={handleCartIconClick}>
+          <div className={`${location.pathname==='/profile' || location.pathname==="/cart"?styles.cartIconBlue:styles.cartIcon} ${styles.count}`} onClick={handleCartIconClick} count={cartItemCount}>
             <AiOutlineShoppingCart size={25} className={styles.shopIcon} />
           </div>
           {user &&    <NavLink to="/profile" >

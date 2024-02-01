@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import style from './Cart.module.css'
 import axios from 'axios'
 import producImage from '../../assets/images/backgorundImage.png'
@@ -6,7 +6,9 @@ import bin from "../../assets/bin.png"
 import cross from '../../assets/icons/cross.png'
 import { Link, useNavigate } from "react-router-dom";
 import emptyCart from '../../assets/images/emptyCart.png'
+import { CartContext } from "../../UserContext/CartContext";
 const Cart = () => {
+    const { changeCartItem } = useContext(CartContext)
     const navigate=useNavigate()
 
     const [arr, setArr] = useState([]);
@@ -50,6 +52,7 @@ const Cart = () => {
 if(storedQuantity===1){
     localStorage.removeItem(JSON.stringify(product));
     fetchDataFromLocalStorage()
+    changeCartItem()
 }
 else{
     localStorage.setItem(JSON.stringify(product), JSON.stringify(storedQuantity-1));
@@ -77,6 +80,7 @@ else{
       const removeFromCart=(product)=>{
         localStorage.removeItem(JSON.stringify(product));
         fetchDataFromLocalStorage()
+        changeCartItem()
       }
 
       const viewAgain=(product)=>{

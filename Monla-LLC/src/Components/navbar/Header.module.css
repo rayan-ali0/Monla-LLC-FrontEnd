@@ -106,6 +106,26 @@ color:white
   cursor: pointer;
 }
 
+.count {
+  position: relative;
+}
+.count::after {
+  content: attr(count);
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: white;
+  background-color: red;
+  top: -10px;
+  left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+}
+
 .menuItem.activeNavItem:after {
   width: 100%;
   background-color:  rgb(207, 96, 96);
