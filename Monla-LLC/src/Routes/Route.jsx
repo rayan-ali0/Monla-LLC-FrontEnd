@@ -60,8 +60,6 @@ const Router = () => {
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="/checkout" element={<Checkout />} />
-          {/* <Route path="/productdetails/:slug" element={<ProductDetails />} /> */}
-          {/* <Route path="/productdetails" element={<ProductDetails />} /> */}
           <Route path="/about" element={<Aboutus />} />
           <Route path="/developers" element={<PoweredByUS />} />
 
