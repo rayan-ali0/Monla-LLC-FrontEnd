@@ -6,11 +6,10 @@ import { UserContext } from "../../UserContext/UserContext.jsx";
 import axios from 'axios';
 
 const Profile = () => {
-    const { user, fetchUserData } = useContext(UserContext)
+    const { user, fetchUserData ,setUser} = useContext(UserContext)
     const [userData, setUserData] = useState(user)
-    const [fieldEdited, setFieldEdited] = useState()
     const [dataUpdated, setDataUpdated] = useState({})
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [editLoading, setEditLoading] = useState(false)
 
     const handleChange = (e) => {
@@ -18,42 +17,24 @@ const Profile = () => {
             ...prevdata,
             [e.target.name]: e.target.value
         }))
+        console.log(dataUpdated)
     };
 
     useEffect(() => {
-        // Fetch user data when the user state changes
-        fetchUserData();
-    }, [])
+        setDataUpdated(user)
+        console.log("datat",dataUpdated)
+    }, [user])
 
-console.log(userData)
-    const fetchUser = async () => {
-        try {
-            const res = await axios.get(`http://localhost:5000/user/${user._id}`)
-            if (res) {
-                console.log(res.data)
-                setUserData(res.data)
-                setLoading(false)
-            }
-            else {
-                toast.error("Error fetching your Profile Data!");
-                console.log(res.data.message)
-                setLoading(false)
-            }
-        }
-        catch (error) {
-            console.log("Catching an error while Fetching your profile" + error.message)
-            setLoading(false)
-        }
-    }
 
-    const updateProfile = async (name, value) => {
+    const updateProfile = async () => {
         setEditLoading(true)
         try {
-            const res = await axios.put(`http://localhost:5000/user/${userData._id}`, dataUpdated)
+            const res = await axios.put(`http://localhost:5000/user/${user._id}`, dataUpdated,{
+                withCredentials:true
+            })
             if (res) {
                 console.log(res.data)
                 setUserData(res.data)
-                // console.log(userData)
                 setEditLoading(false)
                 fetchUserData()
 
@@ -82,10 +63,13 @@ console.log(userData)
 
     return (
         <div className={styles.profilePage}>
-            <h1 className={styles.profileTitle}> My Profile</h1>
-
+            {/* <h1 className={styles.profileTitle}> My Profile</h1> */}
+            <div className={styles.related__ItemP}>
+                    {/* <div className={styles.backgroundP}></div> */}
+                    <h2 className={styles.titleP}>My Profile</h2>
+                </div>
             <div className={styles.profileContainer}>
-                {!loading ? (
+                {user ? (
                     <>
 
                         <div className={styles.inputHolder}>
@@ -97,7 +81,7 @@ console.log(userData)
                                     autoFocus
                                     className={styles.textField}
                                     name="name"
-                                    defaultValue={userData.name ? userData.name : "N/A"}
+                                    defaultValue={user.name ? user.name : "N/A"}
                                 />
 
                             </label>
@@ -113,26 +97,12 @@ console.log(userData)
                                     autoFocus
                                     className={styles.textField}
                                     name="email"
-                                    defaultValue={userData.email}
+                                    defaultValue={user.email}
 
                                 />
 
                             </label>
 
-                        </div>
-
-                        <div className={styles.inputHolder}>
-                            <label className={styles.field}>
-                                <span className={styles.labelText}>Password</span>
-                                <input
-                                    type="password"
-                                    onChange={handleChange}
-                                    autoFocus
-                                    className={styles.textField}
-                                    name="password"
-                                />
-
-                            </label>
                         </div>
 
                         <div className={styles.inputHolder}>
@@ -144,7 +114,7 @@ console.log(userData)
                                     autoFocus
                                     className={styles.textField}
                                     name="number"
-                                    defaultValue={userData.number ? userData.number : "N/A"}
+                                    defaultValue={user.number ? user.number : "N/A"}
 
                                 />
 
@@ -160,13 +130,26 @@ console.log(userData)
                                     onChange={handleChange}
                                     className={`${styles.textField} ${styles.fieldWidth}`}
                                     name="address"
-                                    defaultValue={userData.address ? userData.address : "N/A"}
+                                    defaultValue={user.address ? user.address : "N/A"}
                                     // rows={4}
                                     // cols={50}
                                 />
 
                             </label>
 
+                        </div>
+                        <div className={styles.inputHolder}>
+                            <label className={styles.field}>
+                                <span className={styles.labelText}>Password</span>
+                                <input
+                                    type="password"
+                                    onChange={handleChange}
+                                    autoFocus
+                                    className={styles.textField}
+                                    name="password"
+                                />
+
+                            </label>
                         </div>
                         <div className={`${styles.inputHolder} ${styles.btnHolder}`}>
                             <span onClick={updateProfile} className={styles.editBtn}>

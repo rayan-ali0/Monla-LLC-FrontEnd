@@ -198,6 +198,9 @@
 
 .shopBtn {
   border: 1px solid rgba(0, 0, 0, 0.50);
+  text-decoration: none;
+color: var(--first-blue-color);
+
 }
 
 .shopBtn:hover {

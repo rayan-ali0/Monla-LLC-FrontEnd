@@ -74,6 +74,11 @@ const ServiceAddForm = ({ onClose }) => {
                         fullWidth
                         margin="normal"
                         placeholder="Enter service description"
+                        inputProps={{
+                            maxLength: 500,
+                        }}
+                        multiline
+                        rows={4}
                     />
 
                     <input
