@@ -126,19 +126,51 @@ const Header = () => {
                 Contact
               </NavLink>
               </li>
-              {user && user.role==="admin" && ( <li >
+              {/* {user && user.role==="admin" && ( <li >
 
                   <NavLink to='/dashboard' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/dashboard' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
                   Dashboard                  </NavLink>
                   </li>) }
            
 
-              {user ? (<button onClick={logout} type="submit" className={styles.button}>
+              {user && user.role==="user" ? (<button onClick={logout} type="submit" className={styles.button}>
                 Logout
               </button>) : (<li>
                 <NavLink to='/signup' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
                   SignUp
-                </NavLink></li>)}
+                </NavLink></li>)} */}
+
+              {user ? (
+                user.role === "admin" ? (
+                  <li>
+                    <NavLink
+                      to="/dashboard"
+                      activeClassName={styles.activeLink}
+                      className={`${styles.menuItem} ${location.pathname === '/dashboard' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>
+                ) : (
+                  <button onClick={logout} type="submit" className={styles.button}>
+                    Logout
+                  </button>
+                )
+              ) : (
+                <li>
+                  <NavLink
+                    to="/signup"
+                    activeClassName={styles.activeLink}
+                    className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
+                  >
+                    SignUp
+                  </NavLink>
+                </li>
+              )}
+
+            {/* <button onClick={logout} type="submit" className={styles.button}>
+                  Logout
+                </button> */}
 
             </motion.ul>
           </nav>
