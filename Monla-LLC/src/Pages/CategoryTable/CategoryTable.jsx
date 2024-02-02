@@ -164,8 +164,8 @@ const api="http://localhost:5000/category/readCategory"
         marginBottom: "7rem",    
       }} >
 
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>
-Category      </h1>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>
+Category</h1>
       <button
         className={styles.btnAdd}
         style={{
@@ -174,13 +174,13 @@ Category      </h1>
           cursor:"pointer",
           width: "7rem",
           height: "2.5rem",
-          // backgroundColor:"black",
+          backgroundColor: "#C62507",
           borderRadius: "5px",
           fontWeight: "bold",
         }}
         onClick={handleAdd}
       >
-        Add Plan
+        Add Category
       </button>
       <DataGrid
         getRowId={(data)=>data._id}

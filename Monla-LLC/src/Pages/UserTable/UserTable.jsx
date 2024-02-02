@@ -105,7 +105,7 @@ const UserTable = () => {
         marginBottom: "7rem",
       }}
     >
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>
         Users
       </h1>
       <button

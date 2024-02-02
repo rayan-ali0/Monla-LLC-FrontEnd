@@ -99,7 +99,7 @@ export default function BrandsTable() {
       <meta name="Brand" content="Brand table" />
     </Helmet>
       <main >
-        <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Brand table</h1>
+        <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>Brand</h1>
         <section>
         <button
           className={styles.btnAdd}
@@ -114,7 +114,7 @@ export default function BrandsTable() {
           }}
           onClick={handleAddClick}
         >
-          Add
+          Add Brand
         </button>
         </section>
         <section>

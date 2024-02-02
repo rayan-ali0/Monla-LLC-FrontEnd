@@ -99,7 +99,7 @@ export default function YearsTable() {
     <meta name="year" content="year table" />
   </Helmet>
     <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
-      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>Years Table</h1>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>Years </h1>
       <section>
 
       <button
