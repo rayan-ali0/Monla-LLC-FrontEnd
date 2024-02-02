@@ -8,41 +8,55 @@ import {  TextField } from "@mui/material"
 import { flexbox } from '@mui/system';
 import axios from 'axios';
 
-
-
-
-
 const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts,products, fileterdByy, setFileterdBy}) => {
   const [brands, setBrands] = useState([]);
   const [module, setModels] = useState([]);
   const [year, setYears] = useState([]);
+  const [term, setTerm]=useState("")
 
   const handleChange = (event) => {
-    setFileterdBy((prev) => ({
+    if(event.target.name === "brand"){
+      setFileterdBy((prev) => ({
+          ...prev,
+          [event.target.name]: event.target.value,
+          model:null,
+          year:null
+        }));
+        setModels([])
+        setYears([])
+        fetchModels(event.target.value)
+    }
+    else if(event.target.name=== "model"){
+      setFileterdBy((prev) => ({
+        ...prev,
+        [event.target.name]: event.target.value,
+        year:null
+      }));
+      setYears([])
+      fetchYears(event.target.value)
+    }
+    else{
+        setFileterdBy((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
-    if(event.target.name ==="brand"){
-      fetchModels(event.target.value)
     }
-    if(event.target.name === "model"){
-      fetchYears(event.target.value)
-    }
+
   };
       // console.log(data)
 
-      const handleSearch = () => {
-        onSearch(); // Pass the search term to the parent component
-      };
+      // const handleSearch = () => {
+      //   onSearch(); // Pass the search term to the parent component
+      // };
 
       const fetchBrands = async () => {
         try {
           const response = await axios.get('http://localhost:5000/brand/readBrand');
-          console.log("--------------------------",response)
+          // console.log("--------------------------",response)
           if(response){
           setBrands(response.data);
         }else{
-          console.log("noooooooooooooooooooohggggggggghh")
+          // console.log("noooooooooooooooooooohggggggggghh")
         }
        
         } catch (error) {
@@ -74,16 +88,30 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
     
       useEffect(()=>{
         fetchBrands()
-        console.log("yoyoiouio", productData)
+        // console.log("yoyoidddddddddddddddddddddddddddddddddddddddddddddddddouio", productData)
       },[])
+      const onChangeTerm=(e)=>{
+        setTerm(e.target.value)
+      }
+      const handleSubmut=()=>{
+        if(term && term!==""){
+          const filters= productData?.filter((item)=>
+          item.title.toLowerCase().includes(term.toLowerCase())
+        )
+        setProducts(filters)
+        }
+        else{
+          setProducts(productData)
+        }
+      }
 
   return (
     <div className={Styles.container}>
         {/* <h2 className={Styles.h2}>Filter by </h2> */}
-        { console.log(brands)}
+        {/* { console.log(brands)} */}
       
         <div  className={Styles.searc}>
-        {console.log(fileterdByy)}
+        {/* {console.log(fileterdByy)} */}
         <select
           className={Styles.input}
           id="brandSelect"
@@ -155,7 +183,9 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
           height: "100%", // Set the height to cover the entire TextField
         },
       }}
-      onChange={(e) => onChange(e)}
+      // onChange={(e) => onChange(e)}
+      onChange={(e) => onChangeTerm(e)}
+
     />
                            {/* <TextField
                     sx={{backgroundColor:"white", borderRadius:"10px", height:"100%"}}
@@ -181,7 +211,7 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
                       onChange={(e, value) => onChange(e, value)}
                       /> */}
                   </Stack>
-                  <button onClick={()=>setFileterdBy({})} className={Styles.searchBtn} >Reset</button>
+                  <button onClick={handleSubmut} className={Styles.searchBtn} >Reset</button>
             
             </div>
     </div>

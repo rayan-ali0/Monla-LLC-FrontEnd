@@ -61,7 +61,7 @@ const [filteredProducts,setFilteredProducts]=useState(null)
   })
 
  const fetchProducts = async (paramdData) => {
-  console.log(paramdData)
+  // console.log(paramdData)
             try {
 
               const response= await axios.get(`http://localhost:5000/product/filter/By`,{
@@ -70,7 +70,7 @@ const [filteredProducts,setFilteredProducts]=useState(null)
 
               if(response){
                 setProducts(response.data)
-                console.log(response.data)
+                // console.log(response.data)
                 setLoading(false)
               }
 
@@ -81,26 +81,26 @@ const [filteredProducts,setFilteredProducts]=useState(null)
 
   useEffect( ()=>{
     if(location.state?.filterState){
-      console.log("stateeeee",location.state.filterState)
+      // console.log("stateeeee",location.state.filterState)
       setFileterdBy(location.state.filterState)
     }
     else{
       fetchProducts({})
     }
-    console.log("pagee",productData)
+    // console.log("pagee",productData)
   },[])
 
   useEffect( ()=>{
-
+    console.log("-------------------------------------------------------------------",fileterdBy)
     if(fileterdBy){
       fetchProducts(fileterdBy)
     }
     else{
-      // setProducts(productData)
-      fetchProducts({})
+      setProducts(productData)
+      // fetchProducts({})
       
     }
-    console.log("--------------------------",products)
+    // console.log("--------------------------",products)
   },[fileterdBy])
 
 
@@ -113,7 +113,7 @@ const [filteredProducts,setFilteredProducts]=useState(null)
 
 
   const handleSearch = (e) => {
-    console.log(e.target.value==="")
+    // console.log(e.target.value==="")
     if(e.target.value===""){
 
       setProducts(productData)
@@ -123,11 +123,11 @@ const [filteredProducts,setFilteredProducts]=useState(null)
       setSearchTerm(e.target.value);
 
     }
-    console.log("----------target--------------")
-console.log(e.target.value)
-console.log("----------term--------------")
+//     console.log("----------target--------------")
+// console.log(e.target.value)
+// console.log("----------term--------------")
 
-    console.log(searchTerm)
+//     console.log(searchTerm)
   };
 
   useEffect(()=>{
@@ -152,11 +152,11 @@ setProducts(filters)
   return (
     <div className={Styles.body}>
       
-      {/* {console.log("-----------", fileterdBy)} */}
+
       <div className={Styles.nav}>
       <ProductNav
       setSearchTerm={setSearchTerm}
-      // onSearch={handleSearch}
+
       fileterdByy={fileterdBy}
       productData={productData}
       setFileterdBy={setFileterdBy}
@@ -178,7 +178,7 @@ products={products}
        setFileterdBy={setFileterdBy}
        error={errorCategory}
        selectedCategories={selectedCategory}
-      //  onChange={handleCategoryChange}
+
       />
      
       </div>
@@ -196,7 +196,7 @@ products={products}
           products && paginatedProducts.map((item) => (
             <Link key={item.id} to={`/productdetails/${item.slug}`} state={item}>
               <ProductCart key={item.id} item={item} img={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`} />
-            // </Link>
+          </Link>
           ))
         )}
 
