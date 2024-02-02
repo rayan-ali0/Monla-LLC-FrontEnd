@@ -1,6 +1,6 @@
 import React from "react";
 import styleHero from './PageHero.module.css'
-import heroImg from '../../assets/carHero.png'
+import heroImg from '../../assets/bluecar2.jpg'
 const PageHero=({title})=>{
 
 

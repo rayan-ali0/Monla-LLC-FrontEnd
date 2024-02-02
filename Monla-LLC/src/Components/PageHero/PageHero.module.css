@@ -8,7 +8,7 @@
 .heroImage{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit:cover;
     z-index: 2;
 }
 
@@ -19,7 +19,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6 ); 
+    background: rgb(33 55 95 / 60%); 
 }
 
 .pageTitle {
