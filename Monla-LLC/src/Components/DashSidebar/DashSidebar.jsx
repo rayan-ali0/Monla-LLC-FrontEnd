@@ -124,6 +124,8 @@ const menuItems = [
   { text: 'Year', icon: <DateRangeIcon /> },
   { text: 'contact', icon: <MailOutlineIcon /> },
   { text: 'Shipping', icon: <LocalShippingIcon /> },
+  { text: 'Profile', icon: <LocalShippingIcon /> },
+  { text: 'CompanyInfo', icon: <LocalShippingIcon /> }
 ];
 
 export default function MiniDrawer() {

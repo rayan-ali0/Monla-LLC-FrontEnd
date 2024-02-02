@@ -24,6 +24,13 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .footerElementList {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
     }
     
     .footerTitleLogo {
@@ -46,6 +53,11 @@
         font-weight: 300;
         opacity: 0.9;
         width: 80%;
+        color: white;
+    }
+
+    .footerElementContentLink {
+        color: inherit;
     }
 
     .footerElementContentFirst {
@@ -57,12 +69,14 @@
         height: 70%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
     }
 
     .footerSocialMediaIcon {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         margin-left: 30%;
+        color: white;
+        opacity: 0.7;
     }
     
     .footerCopyright {
@@ -105,6 +119,12 @@
         text-align: center;
     }
 
+    .footerElementList {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+    }
+
     .footerTitleLogo {
         font-size: 2.5rem;
         font-weight: 500;
@@ -124,6 +144,11 @@
         font-size: 1.1rem;
         font-weight: 300;
         opacity: 0.8;
+        color: white;
+    }
+
+    .footerElementContentLink {
+        color: inherit;
     }
 
     .footerElementContentFirst {
@@ -134,14 +159,15 @@
         width: 90%;
         height: 70%;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
     }
 
     .footerSocialMediaIcon {
         font-size: 1.8rem;
         margin-top: 1rem;
-        opacity: 0.8;
+        opacity: 0.7;
+        color: white;
     }
 
     .footerElementLast {
@@ -150,10 +176,12 @@
     }
     
     .footerCopyright {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         font-weight: 400;
         align-self: center;
         opacity: 0.7;
         margin-bottom: 2rem;
+        width: 70%;
+        text-align: center;
     }
 }

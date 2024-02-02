@@ -47,7 +47,7 @@
     }
 
     .aboutusFeaturesContentDescription {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         opacity: 0.6;
     }
 
@@ -55,6 +55,11 @@
         height: auto;
         display: flex;
         gap: 6rem;
+    }
+
+    .testimonialPicture {
+        height: 25rem;
+        width: 25rem;
     }
 
     .testimonialDescription {

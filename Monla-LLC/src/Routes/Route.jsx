@@ -25,7 +25,6 @@ import CategoryTable from "../Pages/CategoryTable/CategoryTable.jsx";
 import Overview from "../Pages/Overview/Overview.jsx";
 import ConfirmationPage from "../Pages/confimationOrder/confimeOrder.jsx";
 import YearsTable from "../Pages/YearTable/yearTable.jsx";
-import User from "../Pages/UserTable/UserTable.jsx";
 import Productstable from "../Pages/ProductsTable/ProductsTable.jsx";
 import AddProduct from "../Pages/ProductsTable/AddProduct.jsx";
 import EditProduct from "../Pages/ProductsTable/EditProduct.jsx";
@@ -36,6 +35,7 @@ import OrdersTable from "../Pages/tableOrder/tableOrder.jsx";
 import ServicesTable from "../Pages/ServicesTable/serviceTable.jsx";
 import UserTable from "../Pages/UserTable/UserTable.jsx";
 import PoweredByUS from "../Pages/PoweredByUS/PoweredByUS.jsx";
+import CompanyInfo from '../Pages/CompanyInfo/CompanyInfo.jsx'
 
 const Router = () => {
   const { user, checkUser } = useContext(UserContext);
@@ -87,6 +87,7 @@ const Router = () => {
               <Route path="Orders" index element={<OrdersTable/>} />
               <Route path="Services" index element={<ServicesTable/>} />
               <Route path="User" index element={<UserTable/>} />
+              <Route path="CompanyInfo" index element={<CompanyInfo />} />
 
             </Route>
           </Route>
