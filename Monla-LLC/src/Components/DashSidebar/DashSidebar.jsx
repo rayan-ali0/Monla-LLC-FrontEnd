@@ -31,7 +31,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ModelsTable from '../../Pages/dashTableModel/TabelModel';
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "./DashSidebar.css"
 import { useContext } from 'react';
 // import Styles from "./DashSidebar.module.css"
@@ -188,9 +188,11 @@ export default function MiniDrawer() {
             <div className="profile">
               <h3>Welcome { user && user.name}</h3>
             </div>
-            <div>
-            Dashboard
-            </div>
+            <Link to={"/"}>
+              <h3 className='goHome'>
+                Home Page
+              </h3>
+            </Link>
           </Typography>
         </Toolbar>
       </AppBar>

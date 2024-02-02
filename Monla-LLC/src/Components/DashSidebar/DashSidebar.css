@@ -3,3 +3,12 @@
 .css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
     background-color:#163357 !important;
 }
+.goHome {
+    color: white;
+    font-size: 22px;
+    text-decoration: underline;
+    transition: .3s;
+}
+.goHome:hover {
+    color: rgb(227, 227, 227);
+}
