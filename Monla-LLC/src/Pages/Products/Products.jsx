@@ -59,62 +59,21 @@ const [filteredProducts,setFilteredProducts]=useState(null)
       }
     }
   })
-  // useEffect(() => {
-  //   const queryParams = new URLSearchParams(location.search);
-  //   const brand = queryParams.get('brand');
-  //   const model = queryParams.get('model');
-  //   const year = queryParams.get('year');
-  //   const fetchProducts = async () => {
-  //     try {
-  //       let url = `http://localhost:5000/product/filter/By?brand=${brand} `;
-
-  //       if (model) {
-  //         url += `&model=${model}`;
-  //       }
-  //       if (year) {
-  //         url += `&year=${year}`;
-  //       }
-
-  //       const response = await fetch(url);
-  //       const data = await response.json();
-  //       setProducts(data);
-  //       setLoading(false); // Set loading to false when data is received
-  //     } catch (error) {
-  //       console.error('Error fetching products:', error);
-  //     }
-  //   };
-
-  //   // Fetch products only if the brand is selected
-  //   if (brand) {
-  //     fetchProducts();
-  //   }
-  // }, [brand, model, year]);
-
 
  const fetchProducts = async (paramdData) => {
   console.log(paramdData)
             try {
-              // let url = `http://localhost:5000/product/filter/By?brand=${brand} `;
-      
-              // if (model) {
-              //   url += `&model=${model}`;
-              // }
-              // if (year) {
-              //   url += `&year=${year}`;
-              // }
 
               const response= await axios.get(`http://localhost:5000/product/filter/By`,{
                 params:paramdData
               })
-              // const response = await fetch(url,fil);
-              // const data = await response.json();
+
               if(response){
                 setProducts(response.data)
                 console.log(response.data)
                 setLoading(false)
               }
-              // setProducts(data);
-              // setLoading(false); // Set loading to false when data is received
+
             } catch (error) {
               console.error('Error fetching products:', error);
             }
@@ -124,12 +83,9 @@ const [filteredProducts,setFilteredProducts]=useState(null)
     if(location.state?.filterState){
       console.log("stateeeee",location.state.filterState)
       setFileterdBy(location.state.filterState)
-    //  fetchProducts(location.state.filterState)
     }
     else{
-      // setFileterdBy({})
       fetchProducts({})
-      // setProducts(productData)
     }
     console.log("pagee",productData)
   },[])
@@ -187,7 +143,7 @@ setProducts(filters)
   const endIndex = startIndex + productsPerPage;
 
   // // const paginatedProducts = filteredProducts && filteredProducts.slice(startIndex, endIndex);
-  // const paginatedProducts = products && products.slice(startIndex, endIndex);
+  const paginatedProducts = products && products.slice(startIndex, endIndex);
 
   const totalPages = products && Math.ceil(products.length / productsPerPage);
     // const totalPages = filteredProducts && Math.ceil(filteredProducts.length / productsPerPage);
@@ -229,15 +185,15 @@ products={products}
      
       <div className={Styles.product}>
         
-      {isProductPending && <p>Loading...</p>}
+      {loading && <p>Loading...</p>}
           {productError && <p>Error: {productError.message}</p>}
-        {products && products.length === 0 ? (
+        {products && products.length === 0 && !loading? (
           <div className={Styles.empty}>
-            <SentimentVeryDissatisfiedIcon sx={{width:"10rem", height:"10rem", color :"#163357"}} />
+            {/* <SentimentVeryDissatisfiedIcon sx={{width:"10rem", height:"10rem", color :"#163357"}} /> */}
           <h1 style={{color:"#163357", fontSize:"60px"}}>No Products Found</h1>
           </div>
         ) : (
-          products && products.map((item) => (
+          products && paginatedProducts.map((item) => (
             <Link key={item.id} to={`/productdetails/${item.slug}`} state={item}>
               <ProductCart key={item.id} item={item} img={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`} />
             </Link>

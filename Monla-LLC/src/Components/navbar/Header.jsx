@@ -10,7 +10,7 @@ import { CartContext } from "../../UserContext/CartContext";
 import { useContext } from "react";
 import axios from 'axios';
 import { useFetchData } from "../../CustomHook/GetData";
-import {motion} from "framer-motion"
+// import {motion} from "framer-motion"
 import Avatar from '@mui/material/Avatar';
 import Profile from "../../assets/profileee.jpeg"
 
@@ -78,17 +78,17 @@ const Header = () => {
   return (
     // Header Container
     <header className={styles.headerContainer} >
-      <motion.div className={styles.navbar} >
+      <div className={styles.navbar} >
         {/* Logo */}
         <NavLink to="/">
        <div>
-        <motion.img src={logo} alt="/" initial={{opacity:0, scale:0.5}} animate={{opacity:1, scale:1}} transition={{duration:0.5}} />
+        <img src={logo} alt="/"  />
         </div>
         </NavLink>
         {/* Navigation Links */}
         <div className={styles.whatever}>
           <nav style={{display:"flex", gap:"2rem"}}>
-            <motion.ul className={nav ? [styles.menu, styles.active].join(' ') : [styles.menu]} initial={{opacity:0, scale:0.5}} animate={{opacity:1, scale:1}} transition={{duration:0.5}}>
+            <ul className={nav ? [styles.menu, styles.active].join(' ') : [styles.menu]} initial={{opacity:0, scale:0.5}} animate={{opacity:1, scale:1}} transition={{duration:0.5}}>
               {/* NavLink for Home */}
               <li>
                 <NavLink to='/' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`} >
@@ -140,7 +140,7 @@ const Header = () => {
                 SignUp
                 </NavLink></li>)}
             
-            </motion.ul>
+            </ul>
           </nav>
 
           <div onClick={() => setNav(!nav)} className={location.pathname==="/profile"|| location.pathname==="/cart"? styles.mobile_btn_blue:styles.mobile_btn}>
@@ -163,7 +163,7 @@ const Header = () => {
 
 
       
-      </motion.div>
+      </div>
     </header>
 
     

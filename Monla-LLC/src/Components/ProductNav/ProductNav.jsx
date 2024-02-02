@@ -131,16 +131,34 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
             </option>
           ))}
         </select>
-      <button onClick={()=>setFileterdBy({})} className={Styles.btn} >RESET</button>
+      <button onClick={()=>setFileterdBy({})} className={Styles.btn} >Reset</button>
     </div>
-    <div>
+    <div className={Styles.searchh} >
       
         <Stack
                     className={Styles.stack}
-                    sx={{ padding: "10px 0px" ,width:"20rem", color:"white" ,height:"3.5rem" }}
+                   
                   >
-                    {/* <Autocomplete
-                    sx={{backgroundColor:"white", borderRadius:"10px", height:"4rem"}}
+                        <TextField
+      sx={{
+        backgroundColor: "white",
+        borderRadius: "10px",
+        height: "100%", // Adjust the height as needed
+      }}
+      disableClearable
+      label="Search by title"
+      InputProps={{
+        type: "search",
+      }}
+      inputProps={{
+        style: {
+          height: "100%", // Set the height to cover the entire TextField
+        },
+      }}
+      onChange={(e) => onChange(e)}
+    />
+                           {/* <TextField
+                    sx={{backgroundColor:"white", borderRadius:"10px", height:"100%"}}
                       freeSolo
                       id="free-solo-2-demo"
                       disableClearable
@@ -151,6 +169,7 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
                       renderInput={(params) => (
                         <TextField
                           className={`${Styles.searchInput}`}
+                          sx={{backgroundColor:"white", borderRadius:"10px", height:"100%"}}
                           {...params}
                           label="Search by title"
                           InputProps={{
@@ -161,30 +180,8 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
                       )}
                       onChange={(e, value) => onChange(e, value)}
                       /> */}
-                           <TextField
-                    sx={{backgroundColor:"white", borderRadius:"10px", height:"4rem"}}
-                      freeSolo
-                      id="free-solo-2-demo"
-                      disableClearable
-                      options={ products && products.map((item) => ({
-                        title: item.title,
-                      }))}
-                      getOptionLabel={(option) => option.title}
-                      renderInput={(params) => (
-                        <TextField
-                          className={`${Styles.searchInput}`}
-                          {...params}
-                          label="Search by title"
-                          InputProps={{
-                            ...params.InputProps,
-                            type: "search",
-                          }}
-                        />
-                      )}
-                      onChange={(e, value) => onChange(e, value)}
-                      />
                   </Stack>
-                  
+                  <button onClick={()=>setFileterdBy({})} className={Styles.searchBtn} >Reset</button>
             
             </div>
     </div>
