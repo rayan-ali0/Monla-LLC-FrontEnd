@@ -31,12 +31,16 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ModelsTable from '../../Pages/dashTableModel/TabelModel';
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "./DashSidebar.css"
 import { useContext } from 'react';
 // import Styles from "./DashSidebar.module.css"
 import { UserContext} from "../../UserContext/UserContext"
-
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.minimal.css";
+import axios from 'axios';
 
 
 const drawerWidth = 240;
@@ -123,8 +127,9 @@ const menuItems = [
 ];
 
 export default function MiniDrawer() {
+  const navigate = useNavigate();
   const location = useLocation();
-  const { user } =useContext(UserContext)
+  const { user, setUser } =useContext(UserContext)
   
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -141,6 +146,25 @@ export default function MiniDrawer() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  // Logout
+  const logout = async () => {
+    try {
+      const action = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/logout`, {}, { withCredentials: true });
+      if (action) {
+        localStorage.removeItem('token')
+        setUser(null);
+        toast.success("Logout successful!"
+        );
+        setTimeout(() => {
+          navigate("/", { replace: true });
+        }, 1000);
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("An unexpected error occurred. Please try again.");
+    }
   };
 
   return (
@@ -164,9 +188,11 @@ export default function MiniDrawer() {
             <div className="profile">
               <h3>Welcome { user && user.name}</h3>
             </div>
-            <div>
-            Dashboard
-            </div>
+            <Link to={"/"}>
+              <h3 className='goHome'>
+                Home Page
+              </h3>
+            </Link>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -209,6 +235,30 @@ export default function MiniDrawer() {
             );
           })}
         </List>
+
+        {/* This is for the logout */}
+        <ListItem onClick={logout} disablePadding sx={{ display: 'block', marginTop: "10px", paddingTop: "10px", borderTop:"1px solid white"}}>
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              justifyContent: open ? 'initial' : 'center',
+              px: 2.5,
+              color:"white"
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: open ? 3 : 'auto',
+                justifyContent: 'center',
+                color:"white"
+              }}
+            >
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Logout"} sx={{ opacity: open ? 1 : 0 }} />
+          </ListItemButton>
+        </ListItem>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
    {/* <Productstable/> */}

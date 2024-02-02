@@ -81,6 +81,7 @@
   position: absolute;
   z-index: 22;
   top: 50%;
+  transform: translateY(10%);
   color: var(--white-color, #FFF);
   right: 15px;
   cursor: pointer;

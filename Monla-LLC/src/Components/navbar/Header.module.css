@@ -30,13 +30,15 @@
 
 }
 .button{
-  background-color: rgb(158, 15, 15);
-  width: 5.5rem;
+  background-color: var(--button-background-color-red);
+  width: 5rem;
   height: 2rem;
   border: none;
-  border-radius: 10px;
+  outline: none;
+  border-radius: 4px;
   color: white !important;
   cursor: pointer;
+  font-size: 14px;  
 }
 
 .menu {
@@ -45,6 +47,7 @@
   list-style: none;
   padding: 0;
   gap: 1.5rem;
+  position: relative;
 }
 
 .menu li:nth-child(5) {
@@ -60,7 +63,13 @@
   font-size: 20px;
   /* Transition the color property for smooth effect */
 }
-
+.closeMenu {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  cursor: pointer;
+  color: var(--button-background-color-red);
+}
 .white{
 color:white
 }
@@ -157,6 +166,9 @@ color:white
     padding-right: 0.5rem;
     margin-right: -0.5rem;
   }
+  .whatever {
+    gap: 1rem;
+  }
 }
 @media screen and (max-width: 768px) {
   .mobile_btn {
@@ -166,6 +178,7 @@ color:white
     right: 2.5rem;
     top: 50%;
     z-index: 10;
+    margin-left: 1rem;
   }
   .mobile_btn_blue{
     color:var(--first-blue-color);
@@ -174,6 +187,7 @@ color:white
     right: 2.5rem;
     top: 50%;
     z-index: 10;
+    margin-left: 1rem;
   }
   
   .menu {
@@ -200,13 +214,17 @@ color:white
 }
 .whatever {
   flex-direction: row-reverse;
-  gap: 1rem;
+  gap: 0;
 }
 /* Rest of your menu styles here */
 
   
-  
-
+  .cartIcon {
+    margin-left: 1rem;
+  }
+.cartIconBlue {
+  margin-left: 1rem;
+}
   .active {
     left: 0;
   }

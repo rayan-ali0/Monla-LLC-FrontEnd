@@ -90,6 +90,7 @@ const Header = () => {
           <nav style={{display:"flex", gap:"2rem"}}>
             <ul className={nav ? [styles.menu, styles.active].join(' ') : [styles.menu]} initial={{opacity:0, scale:0.5}} animate={{opacity:1, scale:1}} transition={{duration:0.5}}>
               {/* NavLink for Home */}
+            {nav ? <span className={styles.closeMenu} onClick={() => setNav(!nav)}><AiOutlineClose size={25 } /></span> : ""}
               <li>
                 <NavLink to='/' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`} >
                   Home
@@ -123,28 +124,60 @@ const Header = () => {
               <li >
 
               <NavLink to='/contact' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
-                Contact Us
+                Contact
               </NavLink>
               </li>
-              {user && user.role==="admin" && ( <li >
+              {/* {user && user.role==="admin" && ( <li >
 
                   <NavLink to='/dashboard' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/dashboard' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
-                  dashboard                  </NavLink>
+                  Dashboard                  </NavLink>
                   </li>) }
            
 
-              {user ? (<button onClick={logout} type="submit" className={styles.button}>
+              {user && user.role==="user" ? (<button onClick={logout} type="submit" className={styles.button}>
                 Logout
               </button>) : (<li>
                 <NavLink to='/signup' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
                   SignUp
-                </NavLink></li>)}
-            
+                </NavLink></li>)} */}
+
+              {user ? (
+                user.role === "admin" ? (
+                  <li>
+                    <NavLink
+                      to="/dashboard"
+                      activeClassName={styles.activeLink}
+                      className={`${styles.menuItem} ${location.pathname === '/dashboard' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>
+                ) : (
+                  <button onClick={logout} type="submit" className={styles.button}>
+                    Logout
+                  </button>
+                )
+              ) : (
+                <li>
+                  <NavLink
+                    to="/signup"
+                    activeClassName={styles.activeLink}
+                    className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
+                  >
+                    SignUp
+                  </NavLink>
+                </li>
+              )}
+
+            {/* <button onClick={logout} type="submit" className={styles.button}>
+                  Logout
+                </button> */}
+
             </ul>
           </nav>
 
           <div onClick={() => setNav(!nav)} className={location.pathname === "/profile" || location.pathname === "/cart" ? styles.mobile_btn_blue : styles.mobile_btn}>
-            {nav ? <AiOutlineClose size={25} /> : <AiOutlineMenu size={25} />}
+            {nav ? <AiOutlineMenu size={25} style={{visibility: "hidden"}} />  : <AiOutlineMenu size={25} />}
           </div>
 
           {/* Cart Icon */}
@@ -155,7 +188,7 @@ const Header = () => {
                 <Avatar
                 alt={user.name}
                 src={user}  
-                sx={{ cursor:"pointer" , backgroundColor:"lightGrey" ,color:"#163357", height:"2.5rem", width:"2.5rem"}}
+                sx={{ cursor:"pointer" , backgroundColor:"lightGrey" ,color:"#163357", height:"2.2rem", width:"2.2rem"}}
               />
                           </NavLink>}
         </div>
