@@ -194,9 +194,9 @@ products={products}
           </div>
         ) : (
           products && paginatedProducts.map((item) => (
-            <Link key={item.id} to={`/productdetails/${item.slug}`} state={item}>
+            // <Link key={item.id} to={`/productdetails/${item.slug}`} state={item}>
               <ProductCart key={item.id} item={item} img={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`} />
-          </Link>
+          // </Link>
           ))
         )}
 
