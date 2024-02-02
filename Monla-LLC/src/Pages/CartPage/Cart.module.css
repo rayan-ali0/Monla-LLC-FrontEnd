@@ -198,6 +198,9 @@
 
 .shopBtn {
   border: 1px solid rgba(0, 0, 0, 0.50);
+  text-decoration: none;
+color: var(--first-blue-color);
+
 }
 
 .shopBtn:hover {
@@ -332,7 +335,9 @@ color: #807D7E;
   border: 2px solid var(--button-background-color-red);
 }
 
-
+.boldTitle{
+  display: none;
+}
 
 @media (max-width:1400px) {
   .binIcon {
@@ -376,7 +381,10 @@ color: #807D7E;
 }
 
 @media (max-width:900px) {
-
+  .boldTitle{
+    display: inline;
+  }
+  
   .cartHeader {
     display: none;
   }
@@ -400,13 +408,17 @@ color: #807D7E;
     order: 1;
   }
 
-  .productHolder,
+  
   .custmWidth,
   .qtyWidth {
     width: 100%;
     justify-content: start;
   }
-
+.productHolder{
+  width: 100%;
+  justify-content: start;
+  align-items: start;
+}
   .cartRow {
     height: 14em;
   }
@@ -491,4 +503,29 @@ color: #807D7E;
   .textSection>h1{
     font-size: 1.3em;
   }
+}
+
+@media (max-width:390px){
+  .custmWidth
+   {
+    width: 100%;
+    /* border: 1px solid red; */
+flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+
+  }
+
+  .qtyWidth{
+    justify-content: start;
+    align-items: end;
+  }
+.productHolder{
+  width: 100%;
+  justify-content: start;
+  align-items: start;
+flex-direction: column;
+overflow: hidden;
+}
 }

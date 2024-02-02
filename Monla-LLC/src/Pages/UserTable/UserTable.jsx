@@ -105,7 +105,7 @@ const UserTable = () => {
         marginBottom: "7rem",
       }}
     >
-      <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>
         Users
       </h1>
       <button
@@ -115,7 +115,7 @@ const UserTable = () => {
           marginBottom: "1rem",
           width: "7rem",
           height: "2.5rem",
-          backgroundColor: "blue",
+          backgroundColor: "#C62507",
           borderRadius: "5px",
           fontWeight: "bold",
           cursor: "pointer",

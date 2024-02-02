@@ -45,3 +45,13 @@
   display: flex;align-items: center;
   flex-direction: column;
 }
+.category{
+  margin-bottom: 2rem;
+}
+.empty{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40rem;
+}

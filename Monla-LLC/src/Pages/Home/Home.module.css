@@ -1,7 +1,7 @@
 .NewContainer{
-    height: 93vh;
+    height: 96vh;
     width: 100%;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     position: relative;
 }
 
@@ -48,27 +48,6 @@ margin-left: 200px;
 .whatsappButton svg {
     color: white !important; /* Set the color of the icon to white */
 }
-@media (max-width:930px) {
-    .search{
-        width: 100%;
-        padding: 0 20px;
-    }
-}
-@media (max-width:712px) {
-
-.NewContainer {
-    height: 75vh;
-}
-}
-@media (max-width:768px) {
-
-.NewContainer {
-    height: 85vh;
-    width: 100%;
-    overflow-x: hidden;
-    position: relative;
-}
-}
 @media (max-width:1211px) {
     .about{
         width: 65%;
@@ -79,3 +58,56 @@ margin-left: 200px;
     }
  
 }
+@media (max-width:930px) {
+    .search{
+        width: 100%;
+        /* padding: 0 20px; */
+    }
+    /* .NewContainer {
+        height: 96vh;
+    } */
+}
+
+@media (max-width:768px) {
+    /* .NewContainer {
+            height: 98vh;
+            width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    } */
+    }
+
+    @media (max-width:712px) {
+
+        /* .NewContainer {
+            height: 97vh;
+        } */
+        }
+@media (max-width:420px) {
+    /* .NewContainer {
+            height: 107vh;
+         
+    } */
+}
+@media (min-width:281px) {
+    /* .NewContainer {
+        height: 130vh 
+         
+    } */
+}
+@media (max-width:280px) {
+    /* .NewContainer {
+        height: 159vh 
+         
+    } */
+}
+
+
+
+/* @media (min-width:931px) {
+ 
+    .NewContainer {
+        height: 104vh;
+    }
+} */
+

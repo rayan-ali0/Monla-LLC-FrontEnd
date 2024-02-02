@@ -81,13 +81,32 @@ const EditServiceForm = ({ service, onClose }) => {
                     />
 
                     {/* Use TextareaAutosize for the description */}
-                    <TextareaAutosize
-                        minRows={3}
-                        placeholder="Description"
+                    {/* <TextareaAutosize
+                        // minRows={3} 
+                        // placeholder="Description"
+                        // name="description"
+                        // value={formData.description}
+                        // onChange={handleChange}
+                        style={{ width: '100%', minHeight: '80px', marginTop: '10px', padding: '8px', fontSize: '16px' }}
+                        inputProps={{
+                            maxLength: 500,
+                        }}
+                    /> */}
+                      <TextField
+                        label="Description"
+                        type="text"
                         name="description"
                         value={formData.description}
                         onChange={handleChange}
+                        fullWidth
                         style={{ width: '100%', minHeight: '80px', marginTop: '10px', padding: '8px', fontSize: '16px' }}
+                        margin="normal"
+                        placeholder="Description"
+                        inputProps={{
+                            maxLength: 500,
+                        }}
+                        multiline
+                        rows={5}
                     />
 
                     {/* Input for uploading a new image */}

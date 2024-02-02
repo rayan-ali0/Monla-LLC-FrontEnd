@@ -1,11 +1,17 @@
 .headerContainer{
   display: flex;
   justify-content: center;
-  background-color:transparent;
   position: absolute;
   top: 0;
   z-index: 2;
   width: 100%;
+}
+.headerTransparent{
+  background-color:transparent;
+
+}
+.headerBule{
+  background-color: var(--first-blue-color);
 }
 .whatever {
   display: flex;
@@ -104,6 +110,26 @@ color:white
   align-items: center;
   color: var(--first-blue-color);
   cursor: pointer;
+}
+
+.count {
+  position: relative;
+}
+.count::after {
+  content: attr(count);
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: white;
+  background-color: red;
+  top: -10px;
+  left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
 }
 
 .menuItem.activeNavItem:after {

@@ -1,0 +1,16 @@
+.btnAdd{
+    color: white;
+    margin-bottom: 1.5rem;
+    width: 9rem;
+    height: 2.80rem;
+    background-color: #C62507;
+    border-radius: 5px;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: #a5250e 0.3s ease;
+}
+
+.btnAdd:hover{
+background-color: #a5250e;
+}

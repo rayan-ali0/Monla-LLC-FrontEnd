@@ -1,9 +1,19 @@
+.aboutusContainer {
+    height: 100vh;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+    margin-bottom: 30rem;
+}
 @media only screen and (min-width: 770px) {
     .aboutusContainer {
         height: 100vh;
-        width: 75%;
+        width: 80%;
         margin: 0 auto;
-        margin-top: 10rem;
+        margin-top: 4rem;
         display: flex;
         flex-direction: column;
         gap: 10rem;
@@ -14,9 +24,12 @@
         height: 50%;
         display: flex;
         gap: 4rem;
+        justify-content: space-between;
     }
 
     .aboutusFeaturesContent {
+     width: 100%; 
+     max-width: 500px; 
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -25,13 +38,12 @@
     }
 
     .aboutusFeaturesContentIcon {
-        height: 6.5rem;
-        width: 6.5rem;
+        width: 5rem;
     }
 
     .aboutusFeaturesContentTitle {
         text-transform: capitalize;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .aboutusFeaturesContentDescription {
@@ -58,7 +70,7 @@
     }
 
     .testimonialDescriptionIcon {
-        font-size:7rem;
+        font-size:5rem;
         margin-top: 1rem;
         color: #324BC2;
     }

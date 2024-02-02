@@ -16,13 +16,9 @@ import { useLocation } from 'react-router-dom';
 
 export default function AddProduct() {
   const navigate = useNavigate()
-  const location=useLocation()
-  const {action}=useParams()
-  const {product}=location.state?location.state:{product:null}
-  console.log(action)
-  console.log(product)
+  const location = useLocation()
+  // const {product}=location.state?location.state:{product:null}
 
-  const [isAddFormOpen, setIsAddFormOpen] = useState(false);  // State for Add Form
   const [categories, setCategories] = useState([])
   const [displayVolume, setDisplayVolume] = useState(false)
   const [displayForm, setDisplayForm] = useState(false)
@@ -36,37 +32,27 @@ export default function AddProduct() {
     price: "",
     SKU: "",
     origin: "",
-    volume:0,
+    volume: 0,
     category: "",
     brand: "",
     model: "",
-    year:'',
+    year: '',
     image: "",
   })
 
-  console.log(addedProduct)
 
-  // const handleAddModel = () => {
-  //   setIsAddFormOpen(true);
-  // };
-  const handleAddFormClose = () => {
-    setIsAddFormOpen(false);
-  };
+
 
   /*******************FETCHING****************** */
   const fetchCategories = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/category/readCategory`)
       if (res) {
-        // setCategories(res.data)
-        console.log(res.data)
         const categoryData = res.data.map(category => ({
           label: category.title,
           value: category._id
         }))
-        // categoryData.push({ label: "Add new" })
         setCategories(categoryData)
-        console.log(categories)
       }
       else {
         console.error("Error:", error);
@@ -90,7 +76,6 @@ export default function AddProduct() {
           label: brand.brand,
           value: brand._id
         }))
-        // brandData.push({ label: "Add new" })
         setBrands(brandData)
       }
     }
@@ -108,7 +93,6 @@ export default function AddProduct() {
           label: model.name,
           value: model._id
         }))
-        // modelData.push({ label: "Add new" })
         setModels(modelData)
       }
     }
@@ -118,7 +102,7 @@ export default function AddProduct() {
   }
 
 
-  const fetchYears=async(modelId)=>{
+  const fetchYears = async (modelId) => {
 
     try {
       const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/year/byModel/${modelId}`)
@@ -129,7 +113,6 @@ export default function AddProduct() {
         }))
         setYears(yearsData)
       }
-      console.log(error)
     }
     catch (error) {
       console.error("Error:", error);
@@ -139,97 +122,95 @@ export default function AddProduct() {
 
 
 
-  const addProduct=async()=>{
+  const addProduct = async () => {
 
     try {
-      // const productToSend = {};
       const productToSend = new FormData();
 
       let errorOccurred = false;
 
-      const requiredKeys = ['title', 'description', 'stock','price','SKU','origin','category','image'];
+      const requiredKeys = ['title', 'description', 'stock', 'price', 'SKU', 'origin', 'category', 'image'];
       for (const [key, value] of Object.entries(addedProduct)) {
         if (requiredKeys.includes(key)) {
-          if (value !== "" || value!==null) {
+          if (value !== "" || value !== null) {
             productToSend.append(key, value);
 
           }
-          else{
-            errorOccurred=true
+          else {
+            errorOccurred = true
             toast.error("Required Fields are empty");
             break;
           }
         }
-       else{
-       if(key==="volume"){
-        if(displayVolume){
+        else {
+          if (key === "volume") {
+            if (displayVolume) {
 
-         if(value===0){
-          toast.error("Volume is Required for this category")
-          errorOccurred=true
+              if (value === 0) {
+                toast.error("Volume is Required for this category")
+                errorOccurred = true
 
-          break;
-         }else{
-          // productToSend[key] = value;
-          productToSend.append(key, value);
+                break;
+              } else {
+                productToSend.append(key, value);
 
-         }
-         
+              }
 
-        }
-       }
-       if(key==="brand" || key==="model" || key==="year" ){
-        if(displayForm){
-        if  (value==='' || value===null){
-            toast.error("Car Fields are Required for this category") 
-            errorOccurred=true
-          break;
-          } 
-          else{
-            // productToSend[key] = value;
-            productToSend.append(key, value);
 
+            }
+          }
+          if (key === "brand" || key === "model" || key === "year") {
+            if (displayForm) {
+              if (value === '' || value === null) {
+                toast.error("Car Fields are Required for this category")
+                errorOccurred = true
+                break;
+              }
+              else {
+                // productToSend[key] = value;
+                productToSend.append(key, value);
+
+              }
+            }
           }
         }
-       }
+      }
+      if (!errorOccurred) {
+        console.log(productToSend)
+        const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/create`, productToSend,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+        if (res) {
+          if (res.status === 200) {
+            toast.success("Product Added Succesfully")
+            setDisplayVolume(false);
+            setDisplayForm(false);
+            setAddedProduct({
+              title: "",
+              description: 0,
+              stock: "",
+              price: "",
+              SKU: "",
+              origin: "",
+              volume: 0,
+              category: "",
+              brand: "",
+              model: "",
+              year: '',
+              image: "",
+            })
+          }
+
+        }
+        else {
+          toast.error(res.data.message)
+        }
       }
     }
-    if(!errorOccurred){
-      console.log(productToSend)
-      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/create`,productToSend ,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      if (res) {
-       if(res.status===200){
-        toast.success("Product Added Succesfully")
-        setDisplayVolume(false);
-        setDisplayForm(false);
-        setAddedProduct({
-          title: "",
-          description: 0,
-          stock: "",
-          price: "",
-          SKU: "",
-          origin: "",
-          volume:0,
-          category: "",
-          brand: "",
-          model: "",
-          year:'',
-          image: "",
-        })
-    }
-     
-       }
-       else{
-        toast.error(res.data.message)
-       }
-      }
-    }
-    catch(error) {
+    catch (error) {
       console.error("Error:", error);
       toast.error("Error Adding Product, Please try Again!")
     }
@@ -259,29 +240,29 @@ export default function AddProduct() {
         setDisplayForm(true)
         fetchBrands(selectedOption.value)
       }
-  else if(inputName==="brand"){
-    setAddedProduct({
-      ...addedProduct,
-      [inputName]: selectedOption.value,
-      model: null,
-      year:null
-    });
-    // setModels([])
-    // setYears([])
-    fetchModels(selectedOption.value)
-  }
-  else if(inputName==="model"){
-    // setYears([])
-    setAddedProduct({
-      ...addedProduct,
-      [inputName]: selectedOption.value,
+      else if (inputName === "brand") {
+        setAddedProduct({
+          ...addedProduct,
+          [inputName]: selectedOption.value,
+          model: null,
+          year: null
+        });
+        setModels([])
+        setYears([])
+        fetchModels(selectedOption.value)
+      }
+      else if (inputName === "model") {
+        setYears([])
+        setAddedProduct({
+          ...addedProduct,
+          [inputName]: selectedOption.value,
 
-      year:null
-    });
-    fetchYears(selectedOption.value)
+          year: null
+        });
+        fetchYears(selectedOption.value)
 
 
-  }
+      }
     }
     else if (!selectedOption && inputName) {
       if (inputName === "image") {
@@ -302,6 +283,26 @@ export default function AddProduct() {
 
     console.log(addedProduct)
   }
+
+
+  const getModelLabelById = (modelId) => {
+    const foundModel = models.find((model) => model.value === modelId);
+
+    // If the model is found, return its label; otherwise, return null or handle it accordingly
+    return foundModel ? foundModel.label : null;
+  };
+
+
+  const getYearLabelById = (yearId) => {
+    const foundYear = years.find((year) => year.value === yearId);
+
+    return foundYear ? foundYear.label : null;
+  };
+  const getBrandLabelById = (brandId) => {
+    const foundBrand = brands.find((brand) => brand.value === brandId);
+
+    return foundBrand ? foundBrand.label : null;
+  };
 
   /************************************* */
 
@@ -346,26 +347,23 @@ export default function AddProduct() {
 
   }
 
-  const handleAddMovie = () => {
-    console.log('Added :');
-    navigate('/')
-
-  };
 
   return (
     <div className={style.addProductPage}>
+      <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }} className={style.editTitle}>Add Product</h1>
+
       <div className={style.form1}>
 
         <TextField id="title" label="Title" name="title" variant="outlined" required
           onChange={handleAdd}
-          defaultValue={addedProduct.title|| ''}
+          defaultValue={addedProduct.title || ''}
 
           sx={styleField} className={style.inputs} />
 
         <TextField id="description" label="Description" name="description" variant="outlined" required
           onChange={handleAdd}
           // defaultValue={action==="Edit"?product?.description:''}
-          value={addedProduct.description|| ''}
+          value={addedProduct.description || ''}
 
           sx={styleField} className={style.inputs} />
 
@@ -375,32 +373,31 @@ export default function AddProduct() {
           }}
           onChange={handleAdd}
           // defaultValue={action==="Edit"?product?.price:''}
-          defaultValue={addedProduct.price|| 0}
+          defaultValue={addedProduct.price || 0}
 
         />
         <TextField id="SKU" label="SKU" name="SKU" variant="outlined" required
           onChange={handleAdd}
           // defaultValue={action==="Edit"?product?.SKU:''}
-          value={addedProduct.SKU|| ''}
+          value={addedProduct.SKU || ''}
 
           sx={styleField} className={style.inputs} />
         <TextField id="stock" label="Stock" name="stock" type="number" variant="outlined" required
           onChange={handleAdd}
-          value={addedProduct.stock|| ''}
+          value={addedProduct.stock || ''}
 
           sx={styleField} className={style.inputs} />
         <TextField id="origin" label="Origin" name="origin" variant="outlined" required
           onChange={handleAdd}
           // defaultValue={action==="Edit"?product?.origin:''}
-          value={addedProduct.origin|| ''}
+          value={addedProduct.origin || ''}
 
           sx={styleField} className={style.inputs} />
 
         <Autocomplete
-                  // defaultValue={addedProduct.category|| ''}
-
-                  // defaultValue={action==="Edit"&&product.category}
-                  // value={(action === "Edit" && product) ? { label: product.category.title, value: product.category._id } : null}
+          // defaultValue={addedProduct.category|| ''}
+          // defaultValue={action==="Edit"&&product.category}
+          // value={(action === "Edit" && product) ? { label: product.category.title, value: product.category._id } : null}
           className={style.inputs}
           disablePortal
           id="combo-box-demo"
@@ -425,9 +422,9 @@ export default function AddProduct() {
 
 
           <TextField id="volume" label="Volume" name="volume" type="number" variant="outlined" required
-          // defaultValue={action==="Edit"&&product.volume?product.volume:''}
-          value={addedProduct.volume|| 0}
-          onChange={handleAdd}
+            // defaultValue={action==="Edit"&&product.volume?product.volume:''}
+            value={addedProduct.volume || 0}
+            onChange={handleAdd}
 
             sx={styleField}
             className={style.volumeInput}
@@ -438,82 +435,82 @@ export default function AddProduct() {
         </div>
 
 
-      <div className={!displayForm ? style.form2 : style.formDisplay}>
+        <div className={!displayForm ? style.form2 : style.formDisplay}>
 
-<Autocomplete
-          value={addedProduct.brand|| ''}
+          <Autocomplete
 
-  className={style.inputs}
-  disablePortal
-  disableClearable
-  id="combo-box-demo"
-  options={brands}
-  sx={styleField}
-  onChange={(e, option) => handleAdd(e, option, "brand")}
-  renderInput={(params) => (
-    <TextField {...params} label="Brand" />
-  )}
-  renderOption={(props, option) => (
-    <li {...props}>
-      {
-        option.label
-      }
-    </li>
-  )}
-/>
+            value={addedProduct.brand ? getBrandLabelById(addedProduct.brand) : ""}
 
-<Autocomplete
-    // value={(action === "Edit" && product) ? { label: product.model.name, value: product.model._id } : null}
-    // value={addedProduct.model|| ''}
+            className={style.inputs}
+            disablePortal
+            disableClearable
+            id="combo-box-demo"
+            options={brands}
+            sx={styleField}
+            onChange={(e, option) => handleAdd(e, option, "brand")}
+            renderInput={(params) => (
+              <TextField {...params} label="Brand" />
+            )}
+            renderOption={(props, option) => (
+              <li {...props}>
+                {
+                  option.label
+                }
+              </li>
+            )}
+          />
 
-  className={style.inputs}
-  disablePortal
-  disableClearable
-  id="combo-box-demo"
-  options={models}
-  sx={styleField}
-  onChange={(e, option) => handleAdd(e, option, "model")}
-  renderInput={(params) => (
-    <TextField {...params} label="Model" />
-  )}
-  renderOption={(props, option) => (
-    <li {...props}>
-      {
-        option.label
-      }
-    </li>
-  )}
-/>
+          <Autocomplete
+            // value={(action === "Edit" && product) ? { label: product.model.name, value: product.model._id } : null}
+            value={addedProduct.model ? getModelLabelById(addedProduct.model) : ""}
 
-<Autocomplete
-          // value={addedProduct.year|| ''}
+            className={style.inputs}
+            disablePortal
+            disableClearable
+            id="combo-box-demo"
+            options={models}
+            sx={styleField}
+            onChange={(e, option) => handleAdd(e, option, "model")}
+            renderInput={(params) => (
+              <TextField {...params} label="Model" />
+            )}
+            renderOption={(props, option) => (
+              <li {...props}>
+                {
+                  option.label
+                }
+              </li>
+            )}
+          />
 
+          <Autocomplete
+            value={addedProduct.year ? getYearLabelById(addedProduct.year) : ""}
             // value={(action === "Edit" && product) ? { label: product.year.value.join('-'), value: product.year._id } : null}
-  className={style.inputs}
-  disablePortal
-  disableClearable
-  id="combo-box-demo"
-  options={years}
-  sx={styleField}
-  renderInput={(params) => (
-    <TextField {...params} label="Year" />
-  )}
-  onChange={(e, option) => handleAdd(e, option, "year")}
-  renderOption={(props, option) => (
-    <li {...props}>
-      {
-        option.label
-      }
-    </li>
-  )}
-/>
-</div>
+            className={style.inputs}
+            disablePortal
+            disableClearable
+            id="combo-box-demo"
+            options={years}
+            sx={styleField}
+            renderInput={(params) => (
+              <TextField {...params} label="Year" />
+            )}
+            onChange={(e, option) => handleAdd(e, option, "year")}
+            renderOption={(props, option) => (
+              <li {...props}>
+                {
+                  option.label
+                }
+              </li>
+            )}
+          />
+        </div>
         <Button component="label" variant="contained" startIcon={<CloudUploadIcon />} className={style.inputs}
           sx={{
-            backgroundColor: 'white',
-            color: 'blue',
+            backgroundColor: '#C62507',
+            color: 'white',
             '&:hover': {
-              backgroundColor: 'lightgray', // Add a different color for hover effect if needed
+              backgroundColor: '#a5250e',
             },
           }}
           onChange={(e) => handleAdd(e, null, "image")}
@@ -524,10 +521,10 @@ export default function AddProduct() {
         </Button>
         <Button component="label" variant="contained" startIcon={<AddIcon />} className={style.inputs}
           sx={{
-            backgroundColor: 'white',
-            color: 'blue',
+            backgroundColor: '#C62507',
+            color: 'white',
             '&:hover': {
-              backgroundColor: 'lightgray', // Add a different color for hover effect if needed
+              backgroundColor: '#a5250e',
             },
           }}
           onClick={addProduct}
@@ -536,7 +533,6 @@ export default function AddProduct() {
         </Button>
       </div>
 
-      {isAddFormOpen && <ModelAddForm onClose={handleAddFormClose} allBrands={brands} />}
     </div>
   )
 

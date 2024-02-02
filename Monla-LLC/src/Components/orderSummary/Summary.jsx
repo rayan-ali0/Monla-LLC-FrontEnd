@@ -33,7 +33,7 @@ const Summary = ({ products, totalPrice, shipping, idsArr }) => {
 
       <div className={style.cartCosts}>
         <section className={style.summaryRow}>
-          <span>Total ({products.length || 0} items)</span>
+          <span>Total ({products.length === 1? "1 item": `${products.length} items`})</span>
           <span>${totalPrice}</span>
         </section>
         <section className={style.summaryRow}>
@@ -42,7 +42,7 @@ const Summary = ({ products, totalPrice, shipping, idsArr }) => {
         </section>
         <section className={style.summaryRow}>
           <span>Total</span>
-          <span>${totalPrice + shipping}</span>
+          <span>${(totalPrice + shipping).toFixed(2)}</span>
         </section>
       </div>
     </div>
@@ -50,61 +50,3 @@ const Summary = ({ products, totalPrice, shipping, idsArr }) => {
 };
 
 export default Summary;
-
-{
-  /* <section className={`${style.summaryRow} ${style.cartLine}`}>
-          <span className={style.rowD}>
-            <img src={testImg}></img>Product Title
-          </span>
-          <span>$18</span>
-        </section>
-
-        <section className={`${style.summaryRow} ${style.cartLine}`}>
-          <span className={style.rowD}>
-            <img src={testImg}></img>Product Title
-          </span>
-          <span>$18</span>
-        </section>
-        <section className={`${style.summaryRow} ${style.cartLine}`}>
-          <span className={style.rowD}>
-            <img src={testImg}></img>Product Title
-          </span>
-          <span>$18</span>
-        </section>
-        <section className={`${style.summaryRow} ${style.cartLine}`}>
-          <span className={style.rowD}>
-            <img src={testImg}></img>Product Title
-          </span>
-          <span>$18</span>
-        </section>
-        <section className={`${style.summaryRow} ${style.cartLine}`}>
-          <span className={style.rowD}>
-            <img src={testImg}></img>Product Title
-          </span>
-          <span>$18</span>
-        </section>
-        <section className={`${style.summaryRow} ${style.cartLine}`}>
-          <span className={style.rowD}>
-            <img src={testImg}></img>Product Title
-          </span>
-          <span>$18</span>
-        </section>
-        <section className={`${style.summaryRow} ${style.cartLine}`}>
-          <span className={style.rowD}>
-            <img src={testImg}></img>Product Title
-          </span>
-          <span>$18</span>
-        </section>
-        <section className={`${style.summaryRow} ${style.cartLine}`}>
-          <span className={style.rowD}>
-            <img src={testImg}></img>Product Title
-          </span>
-          <span>$18</span>
-        </section>
-        <section className={`${style.summaryRow} ${style.cartLine}`}>
-          <span className={style.rowD}>
-            <img src={testImg}></img>Product Title
-          </span>
-          <span>$18</span>
-        </section> */
-}

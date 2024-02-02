@@ -5,13 +5,17 @@
  /* width: 100%; */
  padding: 1.8em;
  display: flex;
+ flex-direction: column;
+}
+.editTitle{
+    width: 70%;
+    margin: 0 auto;
+
 }
 
 .form1 , .formDisplay{
-/* border: 1px solid white; */
 align-items: center;
 margin: 0 auto;
-/* border: 1px solid red; */
 
 
 }
@@ -66,7 +70,13 @@ gap:1em
         display: flex;
         flex-direction: column;
         height: 100%;
+        width: 100%;
+    
+    }
+    .editTitle{
         width: 95%;
+        margin: 0 auto;
+        font-size: 20;
     
     }
 }

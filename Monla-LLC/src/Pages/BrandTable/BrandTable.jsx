@@ -15,21 +15,8 @@ export default function BrandsTable() {
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [isAddFormOpen, setIsAddFormOpen] = useState(false);
     const [isBrandFormOpen, setIsBrandFormOpen] = useState(false);
-    const [allCategories, setAllCategories] = useState([]);
 
-    useEffect(() => {
-      // Fetch all categories when the component mounts
-      const fetchCategories = async () => {
-        try {
-          const response = await axios.get('http://localhost:5000/category/readCategory');
-          setAllCategories(response.data);
-        } catch (error) {
-          console.error('Error fetching categories:', error.response.data);
-        }
-      };
   
-      fetchCategories();
-    }, []); // Empty dependency array ensures the effect runs only once on mount
   
 
     const fetchBrands = async () => {
@@ -72,12 +59,7 @@ export default function BrandsTable() {
     const columns = [
         { field: '_id', headerName: 'ID', flex: 1 },
         { field: 'brand', headerName: 'Brand', flex: 1, editable: true },
-        { 
-          field: 'categoryId', 
-          headerName: 'Category Name', 
-          flex: 1, 
-          valueGetter: (params) => params.row.categoryId ? params.row.categoryId.title : 'N/A',
-        },
+   
         { 
           field: 'image', 
           headerName: 'Image', 
@@ -104,13 +86,20 @@ export default function BrandsTable() {
       
   
     return (
-      <div>
-      <Helmet>
+      <div
+      style={{
+        width: "90%",
+        float: "left",
+        margin: "auto",
+        height: "650px",
+        marginBottom: "7rem",    
+      }} >  
+          <Helmet>
       <title>Brand</title>
       <meta name="Brand" content="Brand table" />
     </Helmet>
-      <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
-        <h1 style={{ fontSize: 45, fontWeight: "bold", marginBottom: 30 }}>Brand table</h1>
+      <main >
+        <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>Brand</h1>
         <section>
         <button
           className={styles.btnAdd}
@@ -119,13 +108,13 @@ export default function BrandsTable() {
             marginBottom: "1rem",
             width: "7rem",
             height: "2.5rem",
-            backgroundColor: "blue",
+            backgroundColor: "#C62507",
             borderRadius: "5px",
             fontWeight: "bold",
           }}
           onClick={handleAddClick}
         >
-          Add
+          Add Brand
         </button>
         </section>
         <section>
@@ -146,10 +135,12 @@ export default function BrandsTable() {
             border: "1px solid white",
             padding:"20px",
             borderRadius:"10px",
+            height:"650px",
           //   borderRadius: "17px",
             "& .MuiDataGrid-root": {
               backgroundColor: "white",
             },
+
             "& .MuiDataGrid-columnHeader": {
               // Background color of column headers
               color: "white",
@@ -194,8 +185,8 @@ export default function BrandsTable() {
         />
         </section>
         <section>
-      {isBrandFormOpen && <EditBrandForm brand={selectedBrand} onClose={() => setIsBrandFormOpen(false)} allCategories={allCategories} />}
-        {isAddFormOpen && <BrandAddForm onClose={handleAddFormClose} allCategories={allCategories}/>}
+      {isBrandFormOpen && <EditBrandForm brand={selectedBrand} onClose={() => setIsBrandFormOpen(false)}  />}
+        {isAddFormOpen && <BrandAddForm onClose={handleAddFormClose} />}
         </section>
         <section>
         <ToastContainer />

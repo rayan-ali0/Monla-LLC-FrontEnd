@@ -117,7 +117,7 @@ export default function OrdersTable() {
   </Helmet>
     <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
       <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>
-      Orders Table      </h1>
+      Orders </h1>
       <section>
       <DataGrid
         rows={rows}
@@ -136,6 +136,7 @@ export default function OrdersTable() {
           border: "1px solid white",
           padding: "20px",
           borderRadius: "10px",
+          height:"650px",
           //   borderRadius: "17px",
           "& .MuiDataGrid-root": {
             backgroundColor: "white",

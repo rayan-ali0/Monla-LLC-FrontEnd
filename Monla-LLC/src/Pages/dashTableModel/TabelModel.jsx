@@ -112,7 +112,7 @@ const columns = [
   </Helmet>
     <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
       <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>
-      Model Table      </h1>
+      Model</h1>
       <section>
       <button
         className={styles.btnAdd}
@@ -121,7 +121,7 @@ const columns = [
           marginBottom: "1rem",
           width: "7rem",
           height: "2.5rem",
-          backgroundColor:"blue",
+          backgroundColor: "#C62507",
           borderRadius: "5px",
           fontWeight: "bold",
         }}
@@ -146,6 +146,7 @@ const columns = [
           // border:"none",
           paddingTop: "1rem",
           border: "1px solid white",
+          height:"650px",
           padding:"20px",
           borderRadius:"10px",
         //   borderRadius: "17px",
