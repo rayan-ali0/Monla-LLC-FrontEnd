@@ -14,7 +14,7 @@ export default function ShippingsTable() {
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
   const [isShippingFormOpen, setIsShippingFormOpen] = useState(false);
 
-  useEffect(() => {
+ 
     const fetchShippings = async () => {
       try {
         const response = await axios.get("http://localhost:5000/shipping/all");
@@ -23,7 +23,7 @@ export default function ShippingsTable() {
         console.error("Error fetching shippings:", error.response.data);
       }
     };
-
+    useEffect(() => {
     fetchShippings();
   }, []);
 
@@ -164,9 +164,9 @@ export default function ShippingsTable() {
         </section>
         <section>
       {isShippingFormOpen && (
-        <EditShippingForm shipping={selectedShipping} onClose={() => setIsShippingFormOpen(false)} />
+        <EditShippingForm shipping={selectedShipping} onClose={() => setIsShippingFormOpen(false)} fetchUpdatedData={fetchShippings} />
       )}
-      {isAddFormOpen && <ShippingAddForm onClose={handleAddFormClose} />}
+      {isAddFormOpen && <ShippingAddForm onClose={handleAddFormClose} fetchUpdatedData={fetchShippings} />}
       </section>
       </main>
     </div>

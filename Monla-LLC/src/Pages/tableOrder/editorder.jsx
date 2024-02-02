@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import { Input } from '@mui/material';
 
-const EditOrderForm = ({ order, onClose }) => {
+const EditOrderForm = ({ order, onClose,fetchUpdatedData }) => {
     const [formData, setFormData] = useState({
         status: order.status || '',
     });
@@ -39,7 +39,7 @@ const EditOrderForm = ({ order, onClose }) => {
             const response = await axios.patch(`http://localhost:5000/order/update/${order._id}`, {
                 status: formData.status,
             });
-
+            fetchUpdatedData();
             console.log('Order updated:', response.data);
 
             // Close the form after successful update

@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import { Input } from '@mui/material';
 
-const YearAddForm = ({ onClose, allModels }) => {
+const YearAddForm = ({ onClose, allModels, fetchUpdatedData }) => {
     const [formData, setFormData] = useState({
       value: '',  // This should be a string to hold the input value
       modelId: '',
@@ -40,7 +40,7 @@ const YearAddForm = ({ onClose, allModels }) => {
         });
   
         console.log('Year added:', response.data);
-  
+        fetchUpdatedData();
         // Close the form after successful add
         onClose();
       } catch (error) {

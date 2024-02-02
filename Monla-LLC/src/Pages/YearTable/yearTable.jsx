@@ -187,8 +187,8 @@ export default function YearsTable() {
       </section>
       <section>
 
-      {isYearFormOpen && <YearForm year={selectedYear} onClose={() => setIsYearFormOpen(false)} allModels={allModels} />}
-      {isAddFormOpen && <YearAddForm onClose={handleAddFormClose} allModels={allModels} />}
+      {isYearFormOpen && <YearForm year={selectedYear} onClose={() => setIsYearFormOpen(false)} allModels={allModels} fetchUpdatedData={fetchYears} />}
+      {isAddFormOpen && <YearAddForm onClose={handleAddFormClose} allModels={allModels}  fetchUpdatedData={fetchYears}/>}
       </section>
       <section>
 

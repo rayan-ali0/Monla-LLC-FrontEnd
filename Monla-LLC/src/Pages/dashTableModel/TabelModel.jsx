@@ -197,8 +197,8 @@ const columns = [
       /> 
       </section>
       <section>
- {isModelFormOpen && <ModelForm model={selectedModel} onClose={() => setIsModelFormOpen(false)} allBrands={allBrands} />}
-      {isAddFormOpen && <ModelAddForm onClose={handleAddFormClose} allBrands={allBrands} />}
+ {isModelFormOpen && <ModelForm model={selectedModel} onClose={() => setIsModelFormOpen(false)} allBrands={allBrands}   fetchUpdatedData={fetchModels}/>}
+      {isAddFormOpen && <ModelAddForm onClose={handleAddFormClose} allBrands={allBrands}  fetchUpdatedData={fetchModels}/>}
       </section>
       <section>
       <ToastContainer />

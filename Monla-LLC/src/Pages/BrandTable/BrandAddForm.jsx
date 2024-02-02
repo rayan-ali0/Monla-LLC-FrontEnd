@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import { Input } from '@mui/material';
 
-const BrandAddForm = ({ onClose, allCategories }) => {
+const BrandAddForm = ({ onClose, fetchUpdatedData }) => {
     const [formData, setFormData] = useState({
         name: '',
         image: null,
@@ -40,6 +40,7 @@ const BrandAddForm = ({ onClose, allCategories }) => {
             formDataToSend.append('image', formData.image);
 
             const response = await axios.post('http://localhost:5000/brand/addBrand', formDataToSend);
+            fetchUpdatedData();
 
             console.log('Brand added:', response.data);
 

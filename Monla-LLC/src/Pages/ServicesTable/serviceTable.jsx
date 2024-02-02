@@ -14,7 +14,6 @@ export default function ServicesTable() {
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
   const [isServiceFormOpen, setIsServiceFormOpen] = useState(false);
 
-  useEffect(() => {
     const fetchServices = async () => {
       try {
         const response = await axios.get("http://localhost:5000/service/read/all");
@@ -22,10 +21,11 @@ export default function ServicesTable() {
       } catch (error) {
         console.error("Error fetching services:", error.response.data);
       }
-    };
+    }
 
-    fetchServices();
-  }, []);
+    useEffect(() => {
+      fetchServices();
+    }, []);
 
   const handleEditClick = (service) => {
     setIsServiceFormOpen(true);
@@ -175,9 +175,9 @@ export default function ServicesTable() {
         </section>
         <section>
       {isServiceFormOpen && (
-        <EditServiceForm service={selectedService} onClose={() => setIsServiceFormOpen(false)} />
+        <EditServiceForm service={selectedService} onClose={() => setIsServiceFormOpen(false)}  fetchUpdatedData={fetchServices} />
       )}
-      {isAddFormOpen && <ServiceAddForm onClose={handleAddFormClose} />}
+      {isAddFormOpen && <ServiceAddForm onClose={handleAddFormClose}  fetchUpdatedData={fetchServices} />}
       </section>
       {/* Add necessary components like ToastContainer */}
       </main>

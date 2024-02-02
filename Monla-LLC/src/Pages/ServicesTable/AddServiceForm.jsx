@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Input } from '@mui/material';
 
-const ServiceAddForm = ({ onClose }) => {
+const ServiceAddForm = ({ onClose ,fetchUpdatedData}) => {
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -40,7 +40,7 @@ const ServiceAddForm = ({ onClose }) => {
             const response = await axios.post('http://localhost:5000/service/create', formDataToSend);
 
             console.log('Service added:', response.data);
-
+            fetchUpdatedData();
             // Close the form after successful add
             onClose();
         } catch (error) {

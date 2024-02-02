@@ -251,7 +251,7 @@ Category</h1>
       {isAddCategoryOpen && (
         <CategoryAdd
         onClose={handleAddFormClose}
-        />
+              />
       )}
       {isUpdateCategoryOpen && (
         < UpdateCategory

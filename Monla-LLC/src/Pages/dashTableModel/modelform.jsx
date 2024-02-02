@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import { Input } from '@mui/material';
 
-const ModelForm = ({ model, onClose, allBrands }) => {
+const ModelForm = ({ model, onClose, allBrands,fetchUpdatedData }) => {
   const [formData, setFormData] = useState({
     name: '',
     brandId: '',
@@ -38,7 +38,7 @@ const ModelForm = ({ model, onClose, allBrands }) => {
     try {
       const response = await axios.put(`http://localhost:5000/model/${model._id}`, formData);
       console.log('Model updated:', response.data);
-
+      fetchUpdatedData();
       // Close the form after successful update
       onClose();
     } catch (error) {
