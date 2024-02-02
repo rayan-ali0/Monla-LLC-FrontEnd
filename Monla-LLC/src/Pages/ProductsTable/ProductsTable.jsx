@@ -212,14 +212,22 @@ export default function Productstable() {
     navigate('/dashboard/Product/Add')
   }
   return (
-    <div style={{ width: "95%", margin: "auto", height: "80vh", marginTop: "2rem" }}>
+    <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
       <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>Products</h1>
       <button
         className={styles.btnAdd}
-
+        style={{
+          color: "white",
+          marginBottom: "1rem",
+          width: "7rem",
+          height: "2.5rem",
+          backgroundColor: "#C62507",
+          borderRadius: "5px",
+          fontWeight: "bold",
+        }}
         onClick={handleAddClick}
       >
-        Add
+        Add 
       </button>
 
       <DataGrid
@@ -282,7 +290,7 @@ export default function Productstable() {
         }}
       />
       <ToastContainer />
-    </div>
+      </main>
   );
 }
 

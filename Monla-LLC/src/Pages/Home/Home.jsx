@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import HeroSectionHomepage from './HeroSectionHomepage'
 import Style from "./Home.module.css"
 import Searchfilter from '../../Components/Category/searchfilter/searchfilter'
@@ -10,11 +10,27 @@ import { FaWhatsapp } from 'react-icons/fa'; // Import WhatsApp icon
 import { Helmet } from 'react-helmet';
 import ProductCart from '../../Components/ProductCart/ProductCart'
 import ProductCarthome from '../../Components/sectionproduct/sectionProduct'
+import axios from 'axios'
 
 
 
 const Home = () => {
+  const [companyInfo, setCompanyInfo] = useState({
+    whatsapp: '',
 
+  });
+  useEffect(() => {
+    const fetchCompanyInfo = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/company/`);
+        setCompanyInfo(res.data);
+      } catch (error) {
+        console.error('Error fetching company information:', error.message);
+      }
+    };
+  
+    fetchCompanyInfo();
+  }, []);
 
   return (
     <div>
@@ -61,7 +77,7 @@ const Home = () => {
       </div>
       <div className={Style.whatsappButton}>
         <a
-          href="https://wa.me/03228280"
+          href={`https://wa.me/${companyInfo.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
         >

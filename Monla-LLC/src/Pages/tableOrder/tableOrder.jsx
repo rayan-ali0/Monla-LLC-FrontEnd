@@ -117,7 +117,7 @@ export default function OrdersTable() {
   </Helmet>
     <main style={{ width: "90%", float: "left", margin: "auto", height: "650px", marginBottom: "7rem" }}>
       <h1 style={{ fontSize: 30, fontWeight: "bold", marginBottom: 30 }}>
-      Orders Table      </h1>
+      Orders </h1>
       <section>
       <DataGrid
         rows={rows}
