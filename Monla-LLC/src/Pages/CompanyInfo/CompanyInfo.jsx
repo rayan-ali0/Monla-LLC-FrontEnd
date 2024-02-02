@@ -25,12 +25,12 @@ const CompanyInfo = () => {
         setRows(response.data);
         setIsLoading(false);
         response.data ? setFromData({
-          name: rows[0].name,
-          email: rows[0].email,
-          number: rows[0].number,
-          whatsapp: rows[0].whatsapp,
-          location: rows[0].location,
-          facebook: rows[0].facebook
+          name: rows.name,
+          email: rows.email,
+          number: rows.number,
+          whatsapp: rows.whatsapp,
+          location: rows.location,
+          facebook: rows.facebook
       }) : console.error("Error")
       }
       catch (error) {
@@ -52,7 +52,7 @@ const CompanyInfo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-        const response = await axios.put(`${import.meta.env.VITE_REACT_APP_PATH}/company/${rows[0]._id}`, formData)
+        const response = await axios.put(`${import.meta.env.VITE_REACT_APP_PATH}/company/${rows._id}`, formData)
         console.log("Company Info edited:", response.data)
         window.location.reload()
         onClose()

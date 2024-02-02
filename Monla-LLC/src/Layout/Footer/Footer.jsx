@@ -21,10 +21,11 @@ const Footer = () => {
     const fetchCompanyInfo = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_REACT_APP_PATH}/company/`
+          `${import.meta.env.VITE_REACT_APP_PATH}/company/`, {withCredentials: true}
         );
         console.log(response);
         setCompanyInfos(response.data);
+        console.log(response.data)
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -46,63 +47,64 @@ const Footer = () => {
           <p
             className={`${style.footerElementContent} ${style.footerElementContentFirst}`}
           >
-            {companyInfos[0].location}
+            {companyInfos.location}
           </p>
-          <p className={style.footerElementContent}>{companyInfos[0].email}</p>
-          <p className={style.footerElementContent}>{companyInfos[0].number}</p>
+          <p className={style.footerElementContent}>{companyInfos.email}</p>
+          <p className={style.footerElementContent}>{companyInfos.number}</p>
         </div>
         <div className={style.footerElement}>
           <h2 className={style.footerElementTitle}>Account</h2>
-          <Link
-            className={`${style.footerElementContent} ${style.footerElementContentFirst}`}
-            to={DashProfile}
-          >
-            My Account
-          </Link>
-          <Link className={style.footerElementContent} to={Register}>
-            LogiRegister
-          </Link>
-          <Link className={style.footerElementContent} to={Cart}>
-            Cart
-          </Link>
-          <Link className={style.footerElementContent} to={Products}>
-            Shop
-          </Link>
+          <ul className={style.footerElementList}>
+            <li className={`${style.footerElementContent} ${style.footerElementContentFirst}`}><Link
+             className={style.footerElementContentLink}
+              to={DashProfile}
+            >
+              My Account
+            </Link></li>
+            <li className={style.footerElementContent}><Link className={style.footerElementContentLink} to={Register}>
+              Login/Register
+            </Link></li>
+            <li className={style.footerElementContent}><Link className={style.footerElementContentLink} to={Cart}>
+              Cart
+            </Link></li>
+            <li className={style.footerElementContent}><Link className={style.footerElementContentLink} to={Products}>
+              Shop
+            </Link></li>
+          </ul>
         </div>
         <div className={style.footerElement}>
           <h2 className={style.footerElementTitle}>Quick Links</h2>
-          <Link
-            className={`${style.footerElementContent} ${style.footerElementContentFirst}`}
+          <ul className={style.footerElementList}>
+          <li className={`${style.footerElementContent} ${style.footerElementContentFirst}`}><Link
             to={Services}
+            className={style.footerElementContentLink}
           >
             Services
-          </Link>
-          <Link className={style.footerElementContent} to={AboutUs}>
+          </Link></li>
+          <li className={style.footerElementContent}><Link className={style.footerElementContent} to={AboutUs}>
             About us
-          </Link>
-          <Link className={style.footerElementContent} to={ContactUs}>
+          </Link></li>
+          <li className={style.footerElementContent}><Link className={style.footerElementContent} to={ContactUs}>
             Send a message
-          </Link>
-          <Link
+          </Link></li>
+          <li className={style.footerElementContent}><Link
             className={style.footerElementContent}
             to="https://wa.me/03228280"
             target="_blank"
             rel="noopener noreferrer"
           >
             Whatsapp
-          </Link>
+          </Link></li>
+          </ul>
         </div>
         <div className={`${style.footerElement} ${style.footerElementLast}`}>
           <h2 className={style.footerElementTitle}>Keep In Touch</h2>
           <div className={style.footerSocialMedia}>
-            <Link to={companyInfos[0].facebook}>
+            <Link to={companyInfos.facebook}>
               <FaFacebookF className={style.footerSocialMediaIcon} />
             </Link>
-            <Link to={companyInfos[0].instagram}>
+            <Link to={companyInfos.instagram}>
               <FaInstagram className={style.footerSocialMediaIcon} />
-            </Link>
-            <Link to={companyInfos[0].tiktok}>
-              <FaTiktok className={style.footerSocialMediaIcon} />
             </Link>
           </div>
         </div>
