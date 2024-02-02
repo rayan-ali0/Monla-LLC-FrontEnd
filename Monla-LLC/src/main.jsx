@@ -9,7 +9,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import ReactGA from 'react-ga4'
 
 
-ReactGA.initialize("G-Y09EZVPTZ0");
+ReactGA.initialize("G-WDBCGCY2WG");
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>

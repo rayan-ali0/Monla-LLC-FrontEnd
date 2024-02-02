@@ -65,7 +65,7 @@ const Contact = () => {
       toast.error('Invalid email format!!')
       return;
     }
-    if (/^\d{8}$/.test(Phone)) {
+    if (!/^\d{8}$/.test(Phone)) {
       toast.error('Phone number must be 8 digits of numbers!');
       return;
     }
@@ -75,7 +75,7 @@ const Contact = () => {
       if (res) {
         console.log(res.data)
 
-        emailjs.sendForm('service_a1ici9n', 'template_c9ol4x8', form.current, 'xIFwmGqn0WceR1X-b')
+        emailjs.sendForm('service_fah0jhk', 'template_r2xrond', form.current, 'cyuF78ALk60AZl7zO')
           .then((result) => {
             console.log(result.text);
             console.log("Message send");
