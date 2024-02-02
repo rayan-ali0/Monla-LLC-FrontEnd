@@ -76,7 +76,8 @@ const Header = () => {
 
   return (
     // Header Container
-    <header className={styles.headerContainer} >
+    // <header className={styles.headerContainer} >
+    <header className={`${styles.headerContainer} ${location.pathname.startsWith('/productdetails')?styles.headerBule:styles.headerTransparent}`} >
       <div className={styles.navbar} >
         {/* Logo */}
         <NavLink to="/">
