@@ -77,7 +77,7 @@ const ProductViewDetails = ({ myItem }) => {
                 <pre>
                   Year:{" "}
                   <span>
-                    {/* {myItem.year.value[0]} - {myItem.year.value[1]} */}
+                    {myItem.year.value[0]} - {myItem.year.value[1]}
                   </span>
                 </pre>
               </div>
