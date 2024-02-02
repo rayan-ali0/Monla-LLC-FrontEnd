@@ -8,7 +8,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { Input } from '@mui/material';
 import TextField from '@mui/material/TextField'; 
 
-const EditShippingForm = ({ shipping, onClose }) => {
+const EditShippingForm = ({ shipping, onClose ,fetchUpdatedData}) => {
     const [formData, setFormData] = useState({
         location: '',
         message: '',
@@ -42,7 +42,7 @@ const EditShippingForm = ({ shipping, onClose }) => {
             const response = await axios.put(`http://localhost:5000/shipping/${shipping._id}`, formData);
     
             console.log('Shipping updated:', response.data);
-    
+            fetchUpdatedData();
             // Close the form after successful update
             onClose();
         } catch (error) {

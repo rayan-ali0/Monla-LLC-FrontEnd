@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-const EditBrandForm = ({ brand, onClose }) => {
+const EditBrandForm = ({ brand, onClose,fetchUpdatedData }) => {
     const [formData, setFormData] = useState({
         name: '',
         image: null,
@@ -44,6 +44,10 @@ const EditBrandForm = ({ brand, onClose }) => {
             formDataToSend.append('image', formData.image);
 
             const response = await axios.put(`http://localhost:5000/brand/${brand._id}`, formDataToSend);
+                  // Fetch updated data after successful addition
+      fetchUpdatedData();
+
+
 
             console.log('Brand updated:', response.data);
 

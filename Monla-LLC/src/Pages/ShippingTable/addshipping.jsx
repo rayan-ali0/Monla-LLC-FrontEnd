@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-const ShippingAddForm = ({ onClose }) => {
+const ShippingAddForm = ({ onClose,fetchUpdatedData }) => {
     const [formData, setFormData] = useState({
         location: '',
         message: '',
@@ -27,7 +27,7 @@ const ShippingAddForm = ({ onClose }) => {
             const response = await axios.post('http://localhost:5000/shipping/create', formData);
 
             console.log('Shipping added:', response.data);
-
+            fetchUpdatedData();
             // Close the form after successful add
             onClose();
         } catch (error) {

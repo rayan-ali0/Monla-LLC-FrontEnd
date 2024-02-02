@@ -36,12 +36,13 @@ export default function BrandsTable() {
     const handleEditClick = (brand) => {
         setIsBrandFormOpen(true);
         setSelectedBrand(brand); // Set the selected brand in the state
+
       };
       
   
     const handleDeleteClick = async (brandId) => {
       try {
-        await axios.delete(`http://localhost:5000/brand/${brandId}`);
+        await axios.delete(`http://localhost:5000/brand/delete/${brandId}`);
         fetchBrands();
       } catch (error) {
         console.error('Error deleting brand:', error.response.data);
@@ -185,8 +186,10 @@ export default function BrandsTable() {
         />
         </section>
         <section>
-      {isBrandFormOpen && <EditBrandForm brand={selectedBrand} onClose={() => setIsBrandFormOpen(false)}  />}
-        {isAddFormOpen && <BrandAddForm onClose={handleAddFormClose} />}
+      {isBrandFormOpen && <EditBrandForm brand={selectedBrand} onClose={() => setIsBrandFormOpen(false)}   fetchUpdatedData={fetchBrands} // Pass the function to fetch updated data
+ />}
+        {isAddFormOpen && <BrandAddForm onClose={handleAddFormClose}    fetchUpdatedData={fetchBrands} // Pass the function to fetch updated data
+ />}
         </section>
         <section>
         <ToastContainer />

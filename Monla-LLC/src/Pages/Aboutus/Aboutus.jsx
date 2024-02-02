@@ -33,7 +33,13 @@ const Aboutus = () => {
           <img src={Testimon} className={style.testimonialPicture} />
           <article className={style.testimonialDescription}>
             <VscFeedback className={style.testimonialDescriptionIcon} />
-            <p className={style.testimonialDescriptionText}>Monla stands as a leading force in the automotive industry, specializing in the sale and repair of cutting-edge car AC system products. With a team of experts whose unique skills form the backbone of our success, we take pride in delivering top-quality solutions. Our commitment to excellence has established us as a standout in the automotive climate control sector. At Monla, we envision and strive towards creating unparalleled driving experiences by ensuring comfort and reliability on every journey.</p>
+            <p className={style.testimonialDescriptionText}>Welcome to Al-Monla Air Conditioning and HVAC Systems,
+             a family-owned business founded in 1974 by Abdallah Al-Monla in Mina, 
+             Tripoli, Lebanon. Renowned for our exceptional service and expertise in automotive air conditioning and HVAC systems,
+              we have grown to earn a sterling reputation across Lebanon. Today, led by the next generation, 
+              we continue to combine skill and precision, ensuring optimal climate management for your vehicle.
+               Our expansion into automotive parts sales further cements our commitment to enhancing your driving experience with reliability and comfort.
+                Trust in our dedicated team of experts for unparalleled workmanship and customer satisfaction in every interaction.</p>
           </article>
         </section>
       </main>

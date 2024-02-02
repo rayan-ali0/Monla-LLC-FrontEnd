@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import { Input } from '@mui/material';
 
-const YearForm = ({ year, onClose, allModels }) => {
+const YearForm = ({ year, onClose, allModels , fetchUpdatedData}) => {
     const [formData, setFormData] = useState({
         value: [],
         modelId: '',
@@ -41,7 +41,7 @@ const YearForm = ({ year, onClose, allModels }) => {
         try {
             const response = await axios.put(`http://localhost:5000/year/${year._id}`, formData);
             console.log('Year updated:', response.data);
-
+            fetchUpdatedData();
             // Close the form after successful update
             onClose();
         } catch (error) {

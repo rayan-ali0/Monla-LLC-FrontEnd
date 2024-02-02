@@ -9,7 +9,7 @@ import { Input } from '@mui/material';
 import TextField from '@mui/material/TextField';  // Add this import
 
 
-const EditServiceForm = ({ service, onClose }) => {
+const EditServiceForm = ({ service, onClose ,fetchUpdatedData}) => {
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -55,7 +55,7 @@ const EditServiceForm = ({ service, onClose }) => {
             const response = await axios.put('http://localhost:5000/service/update', formDataToSend);
     
             console.log('Service updated:', response.data);
-    
+            fetchUpdatedData();
             // Close the form after successful update
             onClose();
         } catch (error) {

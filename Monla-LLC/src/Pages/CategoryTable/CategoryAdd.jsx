@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import { Input } from '@mui/material';
 
-const CategoryAdd = ({ onClose }) => {
+const CategoryAdd = ({ onClose}) => {
   const [formData, setFormData] = useState({
     title: '',
     image:null

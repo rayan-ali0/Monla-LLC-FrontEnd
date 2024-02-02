@@ -16,7 +16,7 @@ export default function OrdersTable() {
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
-  useEffect(() => {
+ 
     // Fetch all orders when the component mounts
     const fetchOrders = async () => {
       try {
@@ -27,7 +27,7 @@ export default function OrdersTable() {
         console.error('Error fetching orders:', error.response.data);
       }
     };
-
+    useEffect(() => {
     fetchOrders();
   }, []);
 
@@ -185,7 +185,7 @@ export default function OrdersTable() {
       />
       </section>
       <section>
-      {isOrderFormOpen && <EditOrderForm order={selectedOrder} onClose={() => setIsOrderFormOpen(false)} />}
+      {isOrderFormOpen && <EditOrderForm order={selectedOrder} onClose={() => setIsOrderFormOpen(false)} fetchUpdatedData={fetchOrders} />}
       </section>
       <ToastContainer />
       </main>
