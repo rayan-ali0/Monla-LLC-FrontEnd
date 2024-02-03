@@ -28,9 +28,10 @@ import CategoryIcon from '@mui/icons-material/Category';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import ModelsTable from '../../Pages/dashTableModel/TabelModel';
+import PersonIcon from '@mui/icons-material/Person';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import BusinessIcon from '@mui/icons-material/Business';
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./DashSidebar.css"
 import { useContext } from 'react';
@@ -124,8 +125,8 @@ const menuItems = [
   { text: 'Year', icon: <DateRangeIcon /> },
   { text: 'contact', icon: <MailOutlineIcon /> },
   { text: 'Shipping', icon: <LocalShippingIcon /> },
-  { text: 'Profile', icon: <LocalShippingIcon /> },
-  { text: 'CompanyInfo', icon: <LocalShippingIcon /> }
+  { text: 'Profile', icon: <PersonIcon />   },
+  { text: 'CompanyInfo', icon: <BusinessIcon /> }
 ];
 
 export default function MiniDrawer() {
