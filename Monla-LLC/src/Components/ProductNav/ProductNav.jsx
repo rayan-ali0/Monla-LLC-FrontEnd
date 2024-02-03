@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import Styles from "./ProductNav.module.css"
+import "./ProductNav.css"
 import { useState } from 'react';
 // import Autocomplete from "@mui/material/Autocomplete";
 import Stack from '@mui/material/Stack';
 import Autocomplete from "@mui/material/Autocomplete"
 import {  TextField } from "@mui/material"
-import { flexbox } from '@mui/system';
+import { flexbox, style } from '@mui/system';
 import axios from 'axios';
+import search from '../../assets/icons/search.png'
 
 const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts,products, fileterdByy, setFileterdBy}) => {
   const [brands, setBrands] = useState([]);
@@ -109,7 +111,7 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
     <div className={Styles.container}>
         {/* <h2 className={Styles.h2}>Filter by </h2> */}
         {/* { console.log(brands)} */}
-      
+      <div className={Styles.newWrapper}>
         <div  className={Styles.searc}>
         {/* {console.log(fileterdByy)} */}
         <select
@@ -145,7 +147,7 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
           ))}
         </select>
         <select
-          className={Styles.input}
+          className={`${Styles.input} ${Styles.yearInput}`}
           id="yearSelect"
           name="year"
           // value={ filterState.year && filterState.year.value}
@@ -170,8 +172,8 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
                         <TextField
       sx={{
         backgroundColor: "white",
-        borderRadius: "10px",
-        height: "100%", // Adjust the height as needed
+        borderRadius: "4px 0 0 4px",
+        height: "45px", // Adjust the height as needed
       }}
       disableClearable
       label="Search by title"
@@ -211,8 +213,11 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
                       onChange={(e, value) => onChange(e, value)}
                       /> */}
                   </Stack>
-                  <button onClick={handleSubmut} className={Styles.searchBtn} >Reset</button>
+                  <button onClick={handleSubmut} className={Styles.searchBtn} >
+                    <img src={search} alt="Search Icon" className={Styles.searchIcon}/>
+                  </button>
             
+            </div>
             </div>
     </div>
       

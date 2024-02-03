@@ -54,7 +54,7 @@ const ProductCart = ({ item, single__product = false }) => {
           <img className={Styles.image} src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`} alt="" />
         </div>
         <div className={Styles.text}>
-          <p className={Styles.title}>{item.title+"ndjdjdj djdjdjd djdjjfdjffffffffffffffffffffffffffffffffffndjdjdj djdjdjd djdjjfdjffffffffffffffffffffffffffffffffffffffffffHelloHElloHEllodj"}</p>
+          <p className={Styles.title}>{item.title}</p>
           {/* <p className={Styles.desc}>{item.description}</p> */}
         </div>
       </Link>

@@ -1,0 +1,22 @@
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-radius: 4px 0 0 4px !important;
+}
+.css-1g24dm6-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 0 14px !important;
+  height: 45px !important;
+}
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  top: -4px !important;
+}
+.css-1j8frl8-MuiFormControl-root-MuiTextField-root {
+  height: 45px !important;
+}
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  height: 45px !important;
+}
+.container {
+  width: initial;
+}
+.css-nen11g-MuiStack-root {
+  flex: 1 !important;
+}

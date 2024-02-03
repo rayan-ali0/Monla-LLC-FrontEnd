@@ -166,7 +166,7 @@ products={products}
       />
       </div>
       <div className={Styles.searchh}>
-        <h1 style={{fontSize:"50px", color:"#163357"}}>Products</h1>
+        <h1 className={Styles.title}>Products</h1>
       </div>
       
       <div className={Styles.container}>
