@@ -4,20 +4,25 @@ import styles from "./ProductViewDetails.module.css";
 import { CartContext } from "../../UserContext/CartContext";
 
 const ProductViewDetails = ({ myItem }) => {
-  const { changeCartItem } = useContext(CartContext)
+  const { changeCartItem } = useContext(CartContext);
   const stock = myItem.stock;
-
+  console.log(myItem);
   const [loading, setLoading] = useState(true);
   const [addedToCart, setAddedToCart] = useState(false);
 
   const [count, setCount] = useState(0);
 
-  const storedQuantity = JSON.parse(localStorage.getItem(JSON.stringify(myItem))) || 0;
+  const storedQuantity =
+    JSON.parse(localStorage.getItem(JSON.stringify(myItem))) || 0;
   const [max, setMax] = useState(myItem.stock - storedQuantity);
 
   const updateStock = async () => {
-    const storedQuantity = JSON.parse(localStorage.getItem(JSON.stringify(myItem))) || 0;
-    localStorage.setItem(JSON.stringify(myItem), JSON.stringify(storedQuantity + count));
+    const storedQuantity =
+      JSON.parse(localStorage.getItem(JSON.stringify(myItem))) || 0;
+    localStorage.setItem(
+      JSON.stringify(myItem),
+      JSON.stringify(storedQuantity + count)
+    );
     const quantity = JSON.parse(localStorage.getItem(JSON.stringify(myItem)));
 
     setMax(stock - quantity);
@@ -27,7 +32,7 @@ const ProductViewDetails = ({ myItem }) => {
     setTimeout(() => {
       setAddedToCart(false);
     }, 1000);
-    changeCartItem()
+    changeCartItem();
   };
 
   const decreaseOne = () => {
@@ -62,25 +67,35 @@ const ProductViewDetails = ({ myItem }) => {
             <p className={styles.price}>${myItem.price}</p>
             <div className={styles.description}>{myItem.description}</div>
             <div className={styles.details}>
-              <div className={styles.brand}>
-                <pre>
-                  Brand: <span>{myItem.brand.brand}</span>
-                </pre>
-                {"  "}
-              </div>
-              <div className={styles.model}>
-                <pre>
-                  Model: <span>{myItem.model.name}</span>
-                </pre>
-              </div>
-              <div className={styles.year}>
-                <pre>
-                  Year:{" "}
-                  <span>
-                    {myItem.year.value[0]} - {myItem.year.value[1]}
-                  </span>
-                </pre>
-              </div>
+              {myItem.volume ? (
+                <div className={styles.oil}>
+                  <pre>
+                    Volume: <span>{myItem.volume}</span>
+                  </pre>
+                </div>
+              ) : (
+                <>
+                  <div className={styles.brand}>
+                    <pre>
+                      Brand: <span>{myItem.brand.brand}</span>
+                    </pre>
+                    {"  "}
+                  </div>
+                  <div className={styles.model}>
+                    <pre>
+                      Model: <span>{myItem.model.name}</span>
+                    </pre>
+                  </div>
+                  <div className={styles.year}>
+                    <pre>
+                      Year:{" "}
+                      <span>
+                        {myItem.year.value[0]} - {myItem.year.value[1]}
+                      </span>
+                    </pre>
+                  </div>
+                </>
+              )}
             </div>
             <div
               className={styles.purchase__buttons}
