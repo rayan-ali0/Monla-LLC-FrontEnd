@@ -23,9 +23,7 @@ const Footer = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_REACT_APP_PATH}/company/`, {withCredentials: true}
         );
-        console.log(response);
         setCompanyInfos(response.data);
-        console.log(response.data)
         setIsLoading(false);
       } catch (error) {
         console.error(error);

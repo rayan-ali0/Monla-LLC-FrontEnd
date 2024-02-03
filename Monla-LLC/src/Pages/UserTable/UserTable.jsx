@@ -22,7 +22,6 @@ const UserTable = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_REACT_APP_PATH}/user/all`
         );
-        console.log(response);
         setRows(response.data);
         setIsLoading(false);
       } catch (error) {

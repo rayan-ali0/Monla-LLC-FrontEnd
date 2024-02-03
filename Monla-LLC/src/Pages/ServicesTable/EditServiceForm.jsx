@@ -4,8 +4,6 @@ import axios from 'axios';
 import Dialog from '@mui/material/Dialog';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-import { Input } from '@mui/material';
 import TextField from '@mui/material/TextField';  // Add this import
 
 
@@ -18,7 +16,6 @@ const EditServiceForm = ({ service, onClose ,fetchUpdatedData}) => {
 
     useEffect(() => {
         if (service) {
-            console.log('Service data:', service);
             setFormData({
                 title: service.title || '',
                 description: service.description || '',
@@ -54,7 +51,6 @@ const EditServiceForm = ({ service, onClose ,fetchUpdatedData}) => {
     
             const response = await axios.put('http://localhost:5000/service/update', formDataToSend);
     
-            console.log('Service updated:', response.data);
             fetchUpdatedData();
             // Close the form after successful update
             onClose();
@@ -80,18 +76,7 @@ const EditServiceForm = ({ service, onClose ,fetchUpdatedData}) => {
                         margin="normal"
                     />
 
-                    {/* Use TextareaAutosize for the description */}
-                    {/* <TextareaAutosize
-                        // minRows={3} 
-                        // placeholder="Description"
-                        // name="description"
-                        // value={formData.description}
-                        // onChange={handleChange}
-                        style={{ width: '100%', minHeight: '80px', marginTop: '10px', padding: '8px', fontSize: '16px' }}
-                        inputProps={{
-                            maxLength: 500,
-                        }}
-                    /> */}
+              
                       <TextField
                         label="Description"
                         type="text"

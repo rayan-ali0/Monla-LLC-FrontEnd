@@ -49,7 +49,6 @@ const EditBrandForm = ({ brand, onClose,fetchUpdatedData }) => {
 
 
 
-            console.log('Brand updated:', response.data);
 
             onClose();
         } catch (error) {

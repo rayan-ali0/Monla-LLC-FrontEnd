@@ -39,7 +39,7 @@ const YearAddForm = ({ onClose, allModels, fetchUpdatedData }) => {
           value: formattedValue,
         });
   
-        console.log('Year added:', response.data);
+
         fetchUpdatedData();
         // Close the form after successful add
         onClose();

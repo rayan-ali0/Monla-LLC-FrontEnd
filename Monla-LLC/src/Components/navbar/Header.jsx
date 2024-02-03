@@ -23,7 +23,6 @@ const Header = () => {
   const {user, setUser}=useContext(UserContext)
   const { cartItemCount } = useContext(CartContext)
   
-  console.log(cartItemCount)
   const [nav, setNav] = useState({
     isOpen: false,
     isCartOpen: false,
@@ -37,7 +36,6 @@ const Header = () => {
 
   const logout = async () => {
     try {
-      console.log("before")
       const action = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/logout`, {}, { withCredentials: true });
       if (action) {
         localStorage.removeItem('token')
@@ -92,14 +90,14 @@ const Header = () => {
               {/* NavLink for Home */}
             {nav ? <span className={styles.closeMenu} onClick={() => setNav(!nav)}><AiOutlineClose size={25 } /></span> : ""}
               <li>
-                <NavLink to='/' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`} >
+                <NavLink to='/' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`} >
                   Home
                 </NavLink>
               </li>
 
               {/* NavLink for Services */}
               <li >
-                <NavLink to='/services' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/services' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
+                <NavLink to='/services' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/services' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
                   Services
                 </NavLink>
               </li>
@@ -107,7 +105,7 @@ const Header = () => {
               {/* NavLink for Product page */}
               <li >
 
-                <NavLink to='/product' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/product' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
+                <NavLink to='/product' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/product' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
                   Products
                 </NavLink>
               </li>
@@ -115,7 +113,7 @@ const Header = () => {
               {/* NavLink for About Us */}
               <li >
 
-                <NavLink to='/about' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/about' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
+                <NavLink to='/about' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/about' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
                   About
                 </NavLink>
               </li>
@@ -123,7 +121,7 @@ const Header = () => {
               {/* NavLink for Contact Us */}
               <li >
 
-              <NavLink to='/contact' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
+              <NavLink to='/contact' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
                 Contact
               </NavLink>
               </li>
@@ -146,7 +144,7 @@ const Header = () => {
                   <li>
                     <NavLink
                       to="/dashboard"
-                      activeClassName={styles.activeLink}
+                      activeclassname={styles.activeLink}
                       className={`${styles.menuItem} ${location.pathname === '/dashboard' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
                     >
                       Dashboard
@@ -161,7 +159,7 @@ const Header = () => {
                 <li>
                   <NavLink
                     to="/signup"
-                    activeClassName={styles.activeLink}
+                    activeclassname={styles.activeLink}
                     className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
                   >
                     SignUp

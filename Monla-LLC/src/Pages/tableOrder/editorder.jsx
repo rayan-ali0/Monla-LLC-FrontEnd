@@ -16,7 +16,6 @@ const EditOrderForm = ({ order, onClose,fetchUpdatedData }) => {
 
     useEffect(() => {
         if (order) {
-            console.log('Order data:', order);
             setFormData({
                 status: order.status || '',
             });
@@ -40,7 +39,6 @@ const EditOrderForm = ({ order, onClose,fetchUpdatedData }) => {
                 status: formData.status,
             });
             fetchUpdatedData();
-            console.log('Order updated:', response.data);
 
             // Close the form after successful update
             onClose();

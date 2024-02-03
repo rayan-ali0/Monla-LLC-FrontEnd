@@ -40,7 +40,6 @@ const YearForm = ({ year, onClose, allModels , fetchUpdatedData}) => {
 
         try {
             const response = await axios.put(`http://localhost:5000/year/${year._id}`, formData);
-            console.log('Year updated:', response.data);
             fetchUpdatedData();
             // Close the form after successful update
             onClose();

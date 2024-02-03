@@ -8,9 +8,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
-
-
 import EditOrderForm from "./editorder";
+/* eslint-disable react/jsx-key */
+
 export default function OrdersTable() {
   const [rows, setRows] = useState([]);
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
@@ -21,7 +21,6 @@ export default function OrdersTable() {
     const fetchOrders = async () => {
       try {
         const response = await axios.get('http://localhost:5000/order/read');
-        console.log('Fetched orders:', response.data.Orders);
         setRows(response.data.Orders);
       } catch (error) {
         console.error('Error fetching orders:', error.response.data);
@@ -34,30 +33,30 @@ export default function OrdersTable() {
 
   const handleDeleteClick = async (orderId, orderStatus) => {
     try {
-      // Check if the order status is not "delivered" or "rejected"
-      if (orderStatus !== "delivered" && orderStatus !== "rejected") {
-        toast.error("You can only delete delivered or rejected orders.", {
-          position: "top-right",
-          autoClose: 3000, // Close the notification after 3 seconds
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        return;
-      }
+        // Check if the order status is not "delivered" or "rejected"
+        if (orderStatus !== "delivered" && orderStatus !== "rejected") {
+            toast.error("You can only delete delivered or rejected orders.", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return;
+        }
 
-      // Make axios delete request
-      const response = await axios.delete(`http://localhost:5000/order/delete/${orderId}`);
+        // Make axios delete request
+        const response = await axios.delete(`http://localhost:5000/order/delete/${orderId}`);
 
-      // Log the response and update the rows
-      console.log('Order deleted:', response.data);
-      setRows((prevRows) => prevRows.filter((row) => row._id !== orderId));
+        // Log the response and update the rows
+        setRows((prevRows) => prevRows.filter((row) => row._id !== orderId));
     } catch (error) {
-      console.error('Error deleting order:', error.response.data);
+        console.error('Error deleting order:', error.response.data);
     }
-  };
+};
+
 
   const columns = [
     { field: '_id', headerName: 'ID', flex: 1 },
@@ -74,13 +73,16 @@ export default function OrdersTable() {
       headerName: 'Products Ordered',
       flex: 1,
       renderCell: (params) => (
-        <div>
+        <div key={params.row._id}>
           {params.row.productsOrdered.map((product) => (
             <div key={product.productId}>{`${product.quantity} x ${product.productId}`}</div>
           ))}
         </div>
       ),
     },
+    
+    
+    
     { field: 'userId', headerName: 'User ID', flex: 1 },
     { field: 'shippingId', headerName: 'Shipping ID', flex: 1 },
     { field: 'createdAt', headerName: 'Created At', flex: 1 },

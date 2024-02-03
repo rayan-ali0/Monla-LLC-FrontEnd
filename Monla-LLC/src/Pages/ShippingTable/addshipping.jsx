@@ -26,7 +26,6 @@ const ShippingAddForm = ({ onClose,fetchUpdatedData }) => {
         try {
             const response = await axios.post('http://localhost:5000/shipping/create', formData);
 
-            console.log('Shipping added:', response.data);
             fetchUpdatedData();
             // Close the form after successful add
             onClose();

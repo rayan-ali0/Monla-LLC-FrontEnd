@@ -17,7 +17,6 @@ const EditShippingForm = ({ shipping, onClose ,fetchUpdatedData}) => {
 
     useEffect(() => {
         if (shipping) {
-            console.log('Shipping data:', shipping);
             setFormData({
                 location: shipping.location || '',
                 message: shipping.message || '',
@@ -41,7 +40,6 @@ const EditShippingForm = ({ shipping, onClose ,fetchUpdatedData}) => {
         try {
             const response = await axios.put(`http://localhost:5000/shipping/${shipping._id}`, formData);
     
-            console.log('Shipping updated:', response.data);
             fetchUpdatedData();
             // Close the form after successful update
             onClose();

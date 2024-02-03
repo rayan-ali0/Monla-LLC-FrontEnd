@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from "../CategoryTable/CategoryTable.module.css";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-// import AddRegime from "../../components/AddRegime/AddRegime";
-// import UpdateRegime from "../../components/UpdateRegime/UpdateRegime";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFetchData } from "../../CustomHook/GetData";
@@ -31,7 +29,7 @@ const api="http://localhost:5000/category/readCategory"
   });
 
  
-// console.log(item)
+
   const handleSubmit = async () => {
     try {
       const formDataToSend = new FormData();
@@ -45,12 +43,11 @@ const api="http://localhost:5000/category/readCategory"
       );
 
       setItem((prevItems) => [...prevItems, response.data.data]);
-      // console.log("aaaaaaaaaaaaaaaaaaaa"+response.data.data)
 
+      
       setFormData({
         title: "",
         description: "",
-        // image: null
       });
       toast.success("Regime plan added successfully", {
         position: "top-right",
@@ -61,22 +58,20 @@ const api="http://localhost:5000/category/readCategory"
         draggable: true,
       });
 
-      // console.log("DATAAA" + response.data);
+
+
     } catch (error) {
       console.log(error.message);
     }
   };
 
   useEffect(() => {
-    // fetchRegime();
-    // handleSubmit();
-    // handleDeletee();
+   
   }, []);
 
   const handleEdit=(category)=>{
     setIsUpdateCategoryOpen(true)
     setSelectedCategory(category);
-    console.log("clicked")
   }
 
   const handleAddFormClose = () => {
@@ -116,21 +111,14 @@ const api="http://localhost:5000/category/readCategory"
     },
   ];
 
-  // const handleEditt = (rowId) => {
-  //   console.log(`Edit clicked for item with ID: ${rowId}`);
-  //   setIsUpdateRegimeOpen(true)
-  //   const selectedRow= item.find((row)=>row.id===rowId)
-  //   setItem(selectedRow)
-  // };
+ 
 
   const handleDeletee = async (id) => {
     try {
-      console.log("Deleting item with ID:", id);
       const response = await axios.delete(
         `http://localhost:5000/category/deleteCategory/${id}`,
       );
   
-        console.log("category plan deleted successfully");
         toast.success("category plan deleted successfully", {
           position: "top-right",
           autoClose: 3000,
@@ -259,25 +247,9 @@ Category</h1>
         category={selectedCategory}
         data={data}
 
-        // data={data}
         />
       )}
-      {/* {isAddRegimeOpen && (
-        <AddRegime
-          formData={formData}
-          setFormData={setFormData}
-          onClose={() => setIsAddRegimeOpen(false)}
-          handleSubmit={handleSubmit}
-        />
-      )} */}
-      {/* {isUpdateRegimeOpen && (
-        <UpdateRegime
-          initialItem={item}
-          setItem={setItem}
-          onClose={() => setIsUpdateRegimeOpen(false)}
-          handleUpdates={handleUpdates}
-        />
-      )} */}
+    
       <ToastContainer />
     </div>
   );

@@ -5,9 +5,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
 import { Input } from '@mui/material';
 
 const CategoryAdd = ({ onClose}) => {
@@ -47,8 +44,8 @@ const CategoryAdd = ({ onClose}) => {
       formDataToSend.append("image", formData.image)
 
       const response = await axios.post('http://localhost:5000/category/addCategory', formDataToSend);
-      console.log('Model added:', response.data);
 
+      
       // Close the form after successful add
       onClose();
     } catch (error) {

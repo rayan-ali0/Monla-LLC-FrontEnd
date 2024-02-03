@@ -21,7 +21,6 @@ export default function YearsTable() {
   const fetchYears = async () => {
     try {
       const response = await axios.get('http://localhost:5000/year/allyear');
-      console.log('Fetched years:', response.data);
       setRows(response.data);
     } catch (error) {
       console.error('Error fetching years:', error.response.data);
@@ -31,7 +30,6 @@ export default function YearsTable() {
   const fetchAllModels = async () => {
     try {
       const response = await axios.get('http://localhost:5000/model/allmodel');
-      console.log('Fetched models:', response.data);
       setAllModels(response.data);
     } catch (error) {
       console.error('Error fetching models:', error.response.data);
