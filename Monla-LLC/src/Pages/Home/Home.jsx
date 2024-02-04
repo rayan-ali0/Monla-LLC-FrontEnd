@@ -34,7 +34,7 @@ const Home = () => {
 
   return (
     <div>
-      <Helmet>
+     <Helmet>
         <title>Al Monla</title>
         <meta name="description" content="Explore high-quality car AC products, repair services, and maintenance solutions. We specialize in providing reliable and efficient air conditioning solutions for your vehicles." />
         <script type="application/ld+json">
@@ -45,37 +45,36 @@ const Home = () => {
               "name": "Al Monla",
               "description": "Specializing in car AC products, repair services, and maintenance solutions.",
               "image": "URL_TO_YOUR_LOGO_IMAGE",
-             
             }
           `}
         </script>
       </Helmet>
-      <div className={Style.newColor}>
-        <div className={`conatiner ${Style.NewContainer}`}>
+      <main className={Style.newColor}>
+        <section className={`conatiner ${Style.NewContainer}`}>
 
           <HeroSectionHomepage />
           <Searchfilter />
 
-        </div>
+        </section>
 
 
 
 
-        <div className={Style.search}>
+        <section className={Style.search}>
           <Brand />
           <ProductCarthome />
-        </div>
-      </div>
+        </section>
+      </main>
 
-      <div className={Style.about}>
+      <section className={Style.about}>
         <Aboutus
           title="About us"
           description="Car repairs and maintenance can be expensive and no one wants to have to pay to repair damage caused by shoddy repair service. When you bring your car into our auto shop, you won’t have to worry because our staff is comprised of ASE certified technicians who are committed to making sure you have a safe dependable car."
           imageUrl={carImage}
         />
         <ServicesSection />
-      </div>
-      <div className={Style.whatsappButton}>
+        </section>
+      <aside className={Style.whatsappButton}>
         <a
           href={`https://wa.me/${companyInfo.whatsapp}`}
           target="_blank"
@@ -83,7 +82,7 @@ const Home = () => {
         >
           <FaWhatsapp size={40} />
         </a>
-      </div>
+      </aside >
     </div>
   )
 }

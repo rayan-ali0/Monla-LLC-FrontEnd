@@ -37,7 +37,6 @@ const ModelForm = ({ model, onClose, allBrands,fetchUpdatedData }) => {
 
     try {
       const response = await axios.put(`http://localhost:5000/model/${model._id}`, formData);
-      console.log('Model updated:', response.data);
       fetchUpdatedData();
       // Close the form after successful update
       onClose();

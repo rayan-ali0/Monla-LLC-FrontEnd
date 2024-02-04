@@ -5,11 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-import { Input } from '@mui/material';
+
 
 const BrandAddForm = ({ onClose, fetchUpdatedData }) => {
     const [formData, setFormData] = useState({
@@ -42,7 +38,6 @@ const BrandAddForm = ({ onClose, fetchUpdatedData }) => {
             const response = await axios.post('http://localhost:5000/brand/addBrand', formDataToSend);
             fetchUpdatedData();
 
-            console.log('Brand added:', response.data);
 
             // Close the form after successful add
             onClose();

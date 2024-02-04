@@ -35,7 +35,6 @@ const ModelAddForm = ({ onClose, allBrands ,fetchUpdatedData}) => {
 
     try {
       const response = await axios.post('http://localhost:5000/model/create', formData);
-      console.log('Model added:', response.data);
       fetchUpdatedData();
 
       // Close the form after successful add

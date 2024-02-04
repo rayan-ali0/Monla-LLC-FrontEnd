@@ -5,11 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import { Input } from '@mui/material';
+
 
 const UpdateCategory = ({ category, onClose ,data}) => {
     const [formData, setFormData] = useState({
@@ -19,7 +15,6 @@ const UpdateCategory = ({ category, onClose ,data}) => {
 
     useEffect(() => {
         if (category) {
-            // console.log('Category data:', category);
             setFormData({
                 title: category.title || '',
             });
@@ -52,7 +47,6 @@ const UpdateCategory = ({ category, onClose ,data}) => {
 
             const response = await axios.put(`http://localhost:5000/category/updateCategory/${category._id}`, formDataToSend);
 
-            console.log('Category updated:', response.data);
 
             // Close the form after successful update
             onClose();

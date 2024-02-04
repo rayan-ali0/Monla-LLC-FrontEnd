@@ -22,7 +22,6 @@ export default function BrandsTable() {
     const fetchBrands = async () => {
       try {
         const response = await axios.get('http://localhost:5000/brand/readBrand');
-        console.log('Fetched brands:', response.data);
         setRows(response.data);
       } catch (error) {
         console.error('Error fetching brands:', error.response.data);

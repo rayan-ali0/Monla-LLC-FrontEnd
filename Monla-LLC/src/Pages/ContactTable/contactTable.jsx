@@ -11,7 +11,7 @@ export default function ContactsTable() {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/contact/all");
+        const response = await axios.get("http://localhost:5000/contact");
         setContacts(response.data);
       } catch (error) {
         console.error("Error fetching contacts:", error.response.data);
