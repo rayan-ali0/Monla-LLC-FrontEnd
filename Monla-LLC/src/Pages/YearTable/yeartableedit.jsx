@@ -39,8 +39,7 @@ const YearForm = ({ year, onClose, allModels , fetchUpdatedData}) => {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:5000/year/${year._id}`, formData);
-            console.log('Year updated:', response.data);
+            const response = await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND}/year/${year._id}`, formData);
             fetchUpdatedData();
             // Close the form after successful update
             onClose();

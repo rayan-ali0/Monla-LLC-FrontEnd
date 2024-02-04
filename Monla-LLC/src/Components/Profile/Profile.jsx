@@ -61,7 +61,6 @@ const Profile = () => {
 
     // Validate new password and verify password
     if (formData.password !== "" || verifyPassword !== "") {
-      console.log(formData.password);
       if (formData.password == "") {
         toast.error("Enter your new password.");
         return;
@@ -106,7 +105,6 @@ const Profile = () => {
       if (error.response.status === 401) {
         toast.error("Your old password is not correct.");
       } else {
-        console.error(error);
         toast.error("Error updating user data.");
       }
     }

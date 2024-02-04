@@ -98,7 +98,6 @@ const DashProfile = () => {
       if (error.response.status === 401) {
         toast.error("Your old password is not correct.");
       } else {
-        console.error(error);
         toast.error("Error updating user data.");
       }
     }

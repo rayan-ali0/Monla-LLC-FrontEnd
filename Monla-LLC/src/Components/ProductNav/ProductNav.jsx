@@ -2,15 +2,12 @@ import React, { useEffect } from 'react'
 import Styles from "./ProductNav.module.css"
 import "./ProductNav.css"
 import { useState } from 'react';
-// import Autocomplete from "@mui/material/Autocomplete";
 import Stack from '@mui/material/Stack';
-import Autocomplete from "@mui/material/Autocomplete"
 import {  TextField } from "@mui/material"
-import { flexbox, style } from '@mui/system';
 import axios from 'axios';
 import search from '../../assets/icons/search.png'
 
-const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts,products, fileterdByy, setFileterdBy}) => {
+const ProductNav = ({  productData,setProducts, setFileterdBy}) => {
   const [brands, setBrands] = useState([]);
   const [module, setModels] = useState([]);
   const [year, setYears] = useState([]);
@@ -45,20 +42,14 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
     }
 
   };
-      // console.log(data)
 
-      // const handleSearch = () => {
-      //   onSearch(); // Pass the search term to the parent component
-      // };
 
       const fetchBrands = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/brand/readBrand');
-          // console.log("--------------------------",response)
+          const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/brand/readBrand`);
           if(response){
           setBrands(response.data);
         }else{
-          // console.log("noooooooooooooooooooohggggggggghh")
         }
        
         } catch (error) {
@@ -68,7 +59,7 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
     
       const fetchModels = async (brandId) => {
         try {
-          const response = await axios.get(`http://localhost:5000/model/byBrand/${brandId}`);
+          const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/model/byBrand/${brandId}`);
           if(response){
           setModels(response.data);
           }
@@ -79,7 +70,7 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
     
       const fetchYears = async (modelId) => {
         try {
-          const response = await axios.get(`http://localhost:5000/year/byModel/${modelId}`);
+          const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/year/byModel/${modelId}`);
           if(response){
           setYears(response.data);
           }
@@ -90,7 +81,6 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
     
       useEffect(()=>{
         fetchBrands()
-        // console.log("yoyoidddddddddddddddddddddddddddddddddddddddddddddddddouio", productData)
       },[])
       const onChangeTerm=(e)=>{
         setTerm(e.target.value)
@@ -109,24 +99,18 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
 
   return (
     <div className={Styles.container}>
-        {/* <h2 className={Styles.h2}>Filter by </h2> */}
-        {/* { console.log(brands)} */}
       <div className={Styles.newWrapper}>
         <div  className={Styles.searc}>
-        {/* {console.log(fileterdByy)} */}
         <select
           className={Styles.input}
           id="brandSelect"
           name="brand"
-          // value={fileterdByy.brand && fileterdByy.brand}
-          // onChange={(e) => setSelectedBrand(e.target.value)}
           onChange={handleChange}
         >
          
           <option className={Styles.option} value=''>Select Brand</option>
           {brands.map((brand) => (
             <option key={brand._id} value={brand._id}>
-              {/* {console.log(brand)} */}
               {brand.brand}
             </option>
           ))}
@@ -135,8 +119,6 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
           className={Styles.input}
           id="modukeSelect"
           name="model"
-          // value={ filterState.model && filterState.model.name}
-          // onChange={(e) => setSelectedModel(e.target.value)}
           onChange={handleChange}
         >
           <option className={Styles.option} value=''>Select Model</option>
@@ -150,8 +132,6 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
           className={`${Styles.input} ${Styles.yearInput}`}
           id="yearSelect"
           name="year"
-          // value={ filterState.year && filterState.year.value}
-          // onChange={(e) => setSelectedYear(e.target.value)}
           onChange={handleChange}
         >
           <option className={Styles.option} value=''>Select Year</option>
@@ -185,33 +165,9 @@ const ProductNav = ({ setSearchTerm, onSearch, productData, onChange,setProducts
           height: "100%", // Set the height to cover the entire TextField
         },
       }}
-      // onChange={(e) => onChange(e)}
       onChange={(e) => onChangeTerm(e)}
 
     />
-                           {/* <TextField
-                    sx={{backgroundColor:"white", borderRadius:"10px", height:"100%"}}
-                      freeSolo
-                      id="free-solo-2-demo"
-                      disableClearable
-                      options={ products && products.map((item) => ({
-                        title: item.title,
-                      }))}
-                      getOptionLabel={(option) => option.title}
-                      renderInput={(params) => (
-                        <TextField
-                          className={`${Styles.searchInput}`}
-                          sx={{backgroundColor:"white", borderRadius:"10px", height:"100%"}}
-                          {...params}
-                          label="Search by title"
-                          InputProps={{
-                            ...params.InputProps,
-                            type: "search",
-                          }}
-                        />
-                      )}
-                      onChange={(e, value) => onChange(e, value)}
-                      /> */}
                   </Stack>
                   <button onClick={handleSubmut} className={Styles.searchBtn} >
                     <img src={search} alt="Search Icon" className={Styles.searchIcon}/>

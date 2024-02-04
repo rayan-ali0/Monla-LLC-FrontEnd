@@ -34,14 +34,12 @@ const YearAddForm = ({ onClose, allModels, fetchUpdatedData }) => {
           .map((year) => parseInt(year.trim(), 10))
           .filter((year) => !isNaN(year));
   
-        const response = await axios.post('http://localhost:5000/year/create', {
+        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/year/create`, {
           ...formData,
           value: formattedValue,
         });
   
-        console.log('Year added:', response.data);
         fetchUpdatedData();
-        // Close the form after successful add
         onClose();
       } catch (error) {
         console.error('Error adding year:', error.response.data.error);

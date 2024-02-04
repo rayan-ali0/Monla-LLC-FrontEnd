@@ -4,7 +4,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding: 1rem 30px; */
     padding: 20px;
     background-color: white;
     border-radius: 23px;
@@ -74,8 +73,7 @@
 }
 @media (max-width: 768px) {
     .container {
-        /* flex-direction: column; */
-        /* height: 240px; */
+
         align-items: center;
     }
 }

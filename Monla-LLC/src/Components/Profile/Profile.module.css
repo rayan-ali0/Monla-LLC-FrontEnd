@@ -77,7 +77,6 @@
   margin: 0 auto;
   align-items: end;
   width: 90%;
-  /* height: 8em; */
   z-index: 1;
 }
 
@@ -98,7 +97,6 @@
   height: auto;
   padding: 8px;
   border-radius: 5px;
-  /* cursor: pointer; */
   z-index: 3;
 }
 

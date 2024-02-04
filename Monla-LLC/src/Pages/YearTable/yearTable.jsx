@@ -20,8 +20,7 @@ export default function YearsTable() {
 
   const fetchYears = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/year/allyear');
-      console.log('Fetched years:', response.data);
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/year/allyear`);
       setRows(response.data);
     } catch (error) {
       console.error('Error fetching years:', error.response.data);
@@ -30,8 +29,7 @@ export default function YearsTable() {
   
   const fetchAllModels = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/model/allmodel');
-      console.log('Fetched models:', response.data);
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/model/allmodel`);
       setAllModels(response.data);
     } catch (error) {
       console.error('Error fetching models:', error.response.data);
@@ -51,7 +49,7 @@ export default function YearsTable() {
 
   const handleDeleteClick = async (yearId) => {
     try {
-      await axios.delete(`http://localhost:5000/year/${yearId}`);
+      await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND}/year/${yearId}`);
       fetchYears();
     } catch (error) {
       console.error('Error deleting year:', error.response.data);

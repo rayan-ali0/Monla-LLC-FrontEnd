@@ -28,7 +28,6 @@ const ProductCart = ({ item, single__product = false }) => {
 
   const purchase = () => {
     const storedQuantity = JSON.parse(localStorage.getItem(JSON.stringify(item))) || 0;
-    console.log(storedQuantity)
     
    if(storedQuantity===item.stock){
       toast.error("No More to Add!")
@@ -48,14 +47,12 @@ const ProductCart = ({ item, single__product = false }) => {
   }
   return (
     <motion.div className={single__product ? Styles.single__container : Styles.container} whileHover={{ scale: 1.001, opacity: 0.8 }} variants={variant} initial="initial" animate="animate">
-      {/* <img src={heart} className={Styles.heart} alt="" /> */}
       <Link className={Styles.linkTo} to={`/productdetails/${item.slug}`}  state={item}>
         <div>
           <img className={Styles.image} src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`} alt="" />
         </div>
         <div className={Styles.text}>
           <p className={Styles.title}>{item.title}</p>
-          {/* <p className={Styles.desc}>{item.description}</p> */}
         </div>
       </Link>
       <div className={Styles.bottomSection}>

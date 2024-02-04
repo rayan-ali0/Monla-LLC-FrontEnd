@@ -29,7 +29,6 @@ const EditUser = ({ user, onClose, onUpdate }) => {
         `${import.meta.env.VITE_REACT_APP_PATH}/user/${user._id}`,
         formData
       );
-      console.log("User added:", response.data)
       window.location.reload()
       onClose()
     } catch (error) {

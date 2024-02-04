@@ -6,8 +6,6 @@
   border: 1px solid white;
   padding: 20px;
   border-radius: 20px;
-  /* background-color: var(--first-blue-color); */
-  /* height:12em; */
   width: 100%;
   display: flex;
   margin: 0 auto;
@@ -23,7 +21,6 @@
   border: none;
 }
 .nbRow {
-  /* border: 1px solid pink; */
   height: 40%;
   display: flex;
   justify-content: space-between;
@@ -37,7 +34,6 @@
 
 .icons {
   background-color: grey;
-  /* border: 1px solid red; */
   height: 90%;
   width: 3em;
   border-radius: 10px;

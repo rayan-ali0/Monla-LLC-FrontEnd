@@ -51,7 +51,6 @@ const Contact = () => {
     setErrorMessage()
     const { name, value } = e.target
     setFormData({ ...formData, [name]: value })
-    console.log(formData)
   }
 
   const submitForm = async (e) => {
@@ -73,14 +72,11 @@ const Contact = () => {
     try {
       const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/contact/create`, formData)
       if (res) {
-        console.log(res.data)
 
         emailjs.sendForm('service_fah0jhk', 'template_r2xrond', form.current, 'cyuF78ALk60AZl7zO')
           .then((result) => {
-            console.log(result.text);
             console.log("Message send");
           }, (error) => {
-            console.log(error.text);
             console.log("Message Failed");
           });
 
@@ -91,12 +87,11 @@ const Contact = () => {
           Phone: '',
           message: ''
         })
-        console.log(formData)
       }
       else {
         toast.error("Your message isn't received.Please try Again!");
 
-        console.log("Error sending your message" + error.message)
+        // console.log("Error sending your message" + error.message)
       }
     }
     catch (error) {
@@ -105,7 +100,7 @@ const Contact = () => {
     }
   }
   useEffect(() => {
-    console.log("Form data after setting:", formData);
+    // console.log("Form data after setting:", formData);
   }, [formData]);
 
   const styleField = {

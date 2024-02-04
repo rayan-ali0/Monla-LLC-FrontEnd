@@ -13,7 +13,6 @@ const Services = () => {
           try {
                const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/service/read/all`)
                if (res) {
-                    console.log(res.data)
                     setServices(res.data)
                     setLoading(false)
                }
@@ -44,7 +43,7 @@ const Services = () => {
                          (services.map((service, index) => (
                               <section key={index} className={style.service}>
                                    <div className={style.serviceImage}>
-                                        <img src={`http://localhost:5000/${service.image}`} alt="serviceImage" />
+                                        <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${service.image}`} alt="serviceImage" />
                                    </div>
                                    <div className={style.serviceDetails}>
                                         <h3 className={style.serviceTitle}>{service.title}</h3>

@@ -10,16 +10,12 @@ const Searchfilter = () => {
   const [brands, setBrands] = useState([]);
   const [models, setModels] = useState([]);
   const [years, setYears] = useState([]);
-  const [selectedBrand, setSelectedBrand] = useState('');
-  const [selectedModel, setSelectedModel] = useState('');
-  const [selectedYear, setSelectedYear] = useState('');
   const [filterState, setFilterState]= useState({})
 
   const handleChange=(e)=>{
 
 
     if(e.target.name==="brand"){
-      // SON.parse(e.target.value)._id
 fetchModels(e.target.value)
     }
     if(e.target.name==="model"){
@@ -29,7 +25,7 @@ fetchModels(e.target.value)
       ...prev,
       [e.target.name]:e.target.value
     }))
-    console.log(filterState)
+
     
   }
 
@@ -40,7 +36,7 @@ fetchModels(e.target.value)
 
   const fetchBrands = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/brand/readBrand');
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/brand/readBrand`);
       setBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error);
@@ -49,7 +45,7 @@ fetchModels(e.target.value)
 
   const fetchModels = async (brandId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/model/byBrand/${brandId}`);
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/model/byBrand/${brandId}`);
       setModels(response.data);
     } catch (error) {
       console.error('Error fetching models:', error);
@@ -58,7 +54,7 @@ fetchModels(e.target.value)
 
   const fetchYears = async (modelId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/year/byModel/${modelId}`);
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/year/byModel/${modelId}`);
       setYears(response.data);
     } catch (error) {
       console.error('Error fetching years:', error);
@@ -77,13 +73,11 @@ fetchModels(e.target.value)
           id="brandSelect"
           name="brand"
           value={filterState.model && filterState.brand.brand}
-          // onChange={(e) => setSelectedBrand(e.target.value)}
           onChange={handleChange}
         >
           <option className={Styles.option} value=''>Select Brand</option>
           {brands.map((brand) => (
             <option key={brand._id} value={brand._id}>
-              {/* {console.log(brand)} */}
               {brand.brand}
             </option>
           ))}
@@ -95,7 +89,6 @@ fetchModels(e.target.value)
           id="modukeSelect"
           name="model"
           value={ filterState.model && filterState.model.name}
-          // onChange={(e) => setSelectedModel(e.target.value)}
           onChange={handleChange}
         >
           <option className={Styles.option} value=''>Select Model</option>
@@ -112,7 +105,6 @@ fetchModels(e.target.value)
           id="yearSelect"
           name="year"
           value={ filterState.year && filterState.year.value}
-          // onChange={(e) => setSelectedYear(e.target.value)}
           onChange={handleChange}
         >
           <option className={Styles.option} value=''>Select Year</option>

@@ -21,8 +21,6 @@
 }
 
 .cartItems {
-  /* overflow-y: scroll;
-  height: 62%; */
   overflow-y: auto;
   max-height: 62%;
   margin: 0;

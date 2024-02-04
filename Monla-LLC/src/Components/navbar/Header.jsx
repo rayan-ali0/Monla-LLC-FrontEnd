@@ -9,22 +9,16 @@ import { UserContext } from "../../UserContext/UserContext";
 import { CartContext } from "../../UserContext/CartContext";
 import { useContext } from "react";
 import axios from 'axios';
-import { useFetchData } from "../../CustomHook/GetData";
-// import {motion} from "framer-motion"
 import Avatar from '@mui/material/Avatar';
-import Profile from "../../assets/profileee.jpeg"
 
 
 
 
 const Header = () => {
-  // const api=`http://localhost:5000/logout`
-  // const {data, } =useFetchData(api)
+
   const {user, setUser}=useContext(UserContext)
   const { cartItemCount } = useContext(CartContext)
-  
-  console.log(cartItemCount)
-  const [nav, setNav] = useState({
+    const [nav, setNav] = useState({
     isOpen: false,
     isCartOpen: false,
   });
@@ -37,7 +31,6 @@ const Header = () => {
 
   const logout = async () => {
     try {
-      console.log("before")
       const action = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/logout`, {}, { withCredentials: true });
       if (action) {
         localStorage.removeItem('token')
@@ -53,7 +46,6 @@ const Header = () => {
 
       }
     } catch (error) {
-      console.error("Logout error:", error);
       toast.error("An unexpected error occurred. Please try again.", {
         position: "top-center",
         autoClose: 3000,
@@ -127,19 +119,7 @@ const Header = () => {
                 Contact
               </NavLink>
               </li>
-              {/* {user && user.role==="admin" && ( <li >
 
-                  <NavLink to='/dashboard' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/dashboard' ? styles.activeNavItem : ''} ${location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
-                  Dashboard                  </NavLink>
-                  </li>) }
-           
-
-              {user && user.role==="user" ? (<button onClick={logout} type="submit" className={styles.button}>
-                Logout
-              </button>) : (<li>
-                <NavLink to='/signup' activeClassName={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''} ${location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
-                  SignUp
-                </NavLink></li>)} */}
 
               {user ? (
                 user.role === "admin" ? (
@@ -168,11 +148,6 @@ const Header = () => {
                   </NavLink>
                 </li>
               )}
-
-            {/* <button onClick={logout} type="submit" className={styles.button}>
-                  Logout
-                </button> */}
-
             </ul>
           </nav>
 

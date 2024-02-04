@@ -23,7 +23,6 @@ export const UserProvider = ({ children }) => {
         { withCredentials: true }
       );
       setUser(response.data.user);
-      console.log("Fetched user data:", response.data.user); // Add this line
       setUserUpdated(false); // Reset the flag after updating user
     } catch (err) {
       setUser(null);

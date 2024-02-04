@@ -11,13 +11,6 @@
     padding: 10px;
     font-size: 15px;
     justify-content: space-between;
-    /* align-items: center; */
-    /* width: 100vw; */
-    /* width: 100%; */
-
-
-  
-    /* Hide scrollbar */
     scrollbar-width: thin;
     scrollbar-color: black black;
   }
@@ -48,13 +41,9 @@
     justify-content: center;
     align-items:center;
     cursor: pointer;
-    /* transition: transform 0.3s ease;  */
     
   }
-  /* .category:hover{
-    transform: scale(1.08);
-    transition: transform 0.3s ease;
-} */
+
   
   @media screen and (max-width: 600px) {
     .container {

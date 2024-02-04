@@ -47,7 +47,6 @@
 }
 .imageContainer {
   overflow: hidden;
-  /* border-radius: 50%; */
   height: 250px;
   width: 250px;
   border-radius: 5px;
@@ -81,13 +80,11 @@
   display: block;
   margin-bottom: 10px;
 }
-.links {
-}
+
 .links a {
   display: inline-block;
 }
-.links a:first-child {
-}
+
 .links a:nth-child(2) {
   margin-left: 10px;
 }

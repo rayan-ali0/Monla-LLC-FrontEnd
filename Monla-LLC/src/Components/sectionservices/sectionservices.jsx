@@ -26,14 +26,13 @@ const ServicesSection = () => {
     const navigate = useNavigate();
 
   const handleViewMoreClick = () => {
-    // Navigate to the services page
     navigate('/services');
   };
     
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/service/read/all');
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/service/read/all`);
                 setServices(response.data);
             } catch (error) {
                 console.error('Error fetching services:', error.message);

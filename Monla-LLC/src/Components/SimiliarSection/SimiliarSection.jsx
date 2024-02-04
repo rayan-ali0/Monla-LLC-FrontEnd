@@ -9,13 +9,18 @@ const SimiliarSection = ({ myItem }) => {
   useEffect(() => {
     const fetchSimilarProducts = async () => {
       try {
+        const paramsItem={
+          category: myItem.category._id,
+
+        }
+        if(myItem.brand){
+          paramsItem.brand=myItem.brand._id
+
+        }
         const response = await axios.get(
           `${import.meta.env.VITE_REACT_APP_BACKEND}/product/related/five`,
           {
-            params: {
-              category: myItem.category.title,
-              brand: myItem.brand.brand,
-            },
+            params: paramsItem
           }
         );
 
@@ -27,14 +32,14 @@ const SimiliarSection = ({ myItem }) => {
       }
     };
 
-    if (myItem.brand && myItem.brand.brand) {
+    // if (myItem.brand && myItem.brand.brand) {
       fetchSimilarProducts();
-    }
+    // }
   }, [myItem]);
 
-  const handleClick = () => {
-    window.location.reload();
-  }
+  // const handleClick = () => {
+  //   window.location.reload();
+  // }
 
   return (
     <section className={styles.similiar__Products__Section}>
@@ -48,13 +53,15 @@ const SimiliarSection = ({ myItem }) => {
         <div className={styles.similiarProducts}>
           <div className={styles.wrapper}>
             {similiarProducts.map((item) => (
-              <div className={styles.single__product} key={item._id} onClick={handleClick}>
-                <Link to={`/productdetails/${item.slug}`} state={item}>
+              // <div className={styles.single__product} key={item._id} onClick={handleClick}>
+              <div className={styles.single__product} key={item._id}>
+
+                {/* <Link to={`/productdetails/${item.slug}`} state={item}> */}
                   <ProductCart
                     item={item}
                     single__product={true}
                   />
-                </Link>
+                {/* </Link> */}
               </div>
             ))}
           </div>

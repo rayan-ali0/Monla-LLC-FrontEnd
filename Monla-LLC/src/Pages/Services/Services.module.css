@@ -62,7 +62,6 @@
     font-size: 1.3em;
     padding-right: 0.5em;
     width: 95%;
-    /* overflow-y: auto; */
     height: 100%;
 }
 
@@ -78,11 +77,6 @@
 /* Handle */
 .serviceText::-webkit-scrollbar-thumb {
     background: var(--second-grey-color);
-}
-
-/* Handle on hover */
-.serviceText::-webkit-scrollbar-thumb:hover {
-    /* background: var(--button-background-hover-color); */
 }
 
 .serviceTitle {

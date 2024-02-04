@@ -6,8 +6,6 @@ import { CartContext } from "../../UserContext/CartContext";
 const ProductViewDetails = ({ myItem }) => {
   const { changeCartItem } = useContext(CartContext);
   const stock = myItem.stock;
-  console.log(myItem);
-  const [loading, setLoading] = useState(true);
   const [addedToCart, setAddedToCart] = useState(false);
 
   const [count, setCount] = useState(0);

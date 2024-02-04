@@ -30,7 +30,6 @@ const AddUser = ({ onClose, onCreation }) => {
       const response = await axios.post(
         `${import.meta.env.VITE_REACT_APP_PATH}/user/register`, formData
       )
-      console.log("User added:", response.data)
       window.location.reload()
       onClose()
     } catch (error) {

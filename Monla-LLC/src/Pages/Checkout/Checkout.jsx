@@ -74,7 +74,6 @@ const Checkout = () => {
     const selectedLocationObject = data.find(
       (location) => location._id === selectedId,
     );
-    console.log(formData);
     setFormData({
       ...formData,
       shippingId: selectedId,

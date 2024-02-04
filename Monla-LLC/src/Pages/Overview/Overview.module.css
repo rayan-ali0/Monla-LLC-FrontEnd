@@ -1,26 +1,14 @@
 .overviewHolder {
-  /* height: 90vh;
-    width: 85%;
-    margin: 0 auto;
-    background-color: var(--first-blue-color);
-padding: 3em;
-display: flex;
-flex-direction: column;
-gap:3em */
 
   height: 90vh;
-  /* width: 85%; */
   margin: 0 auto;
-  /* background-color: var(--first-blue-color); */
-  /* padding: 3em; */
   display: flex;
   flex-direction: column;
   gap: 3em;
   padding: 3rem 0;
   width: 90%;
   float: left;
-  /* margin: auto auto 7rem; */
-  /* height: 650px; */
+
 }
 @media (max-width: 992px) {
   .overviewHolder {

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import styles from './Recents.module.css'
 import axios from "axios"
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,7 +15,7 @@ const Recents=()=>{
 
     const fetchRecents = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/order/recents/all')
+          const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/order/recents/all`)
           if(response){
             setRows(response.data);
 
@@ -26,13 +25,10 @@ const Recents=()=>{
         }
       };
       const columns = [
-        // { field: '_id', headerName: 'ID', flex: 1 },
         { field: 'orderNumber', headerName: 'Number', flex: 1 },
         { field: 'userName', headerName: 'User Name', flex: 1 },
-        // { field: 'userEmail', headerName: 'User Email', flex: 1 },
         { field: 'userPhone', headerName: 'User Phone', flex: 1 },
         { field: 'address', headerName: 'Address', flex: 1 },
-        // { field: 'deliverDate', headerName: 'Delivery Date', flex: 1 },
         { field: 'status', headerName: 'Status', flex: 1 },
         { field: 'total', headerName: 'Total', flex: 1 },
         {
@@ -47,13 +43,10 @@ const Recents=()=>{
             </div>
           ),
         },
-        // { field: 'userId', headerName: 'User ID', flex: 1 },
         { field: 'shippingId', headerName: 'Shipping ID', flex: 1 ,
     renderCell:(params)=>(
         params.row.shippingId.location
     )},
-        // { field: 'createdAt', headerName: 'Created At', flex: 1 },
-        // { field: 'updatedAt', headerName: 'Updated At', flex: 1 },
         {
           field: 'actions',
           headerName: 'Actions',
@@ -83,32 +76,26 @@ useEffect(()=>{
     <div
       style={{
         width: "100%",
-        // float: "left",
         margin: "auto",
         height: "100%",
-        // marginBottom: "7rem",
      
       }}
     > 
       <DataGrid
         rows={rows} 
         columns={columns}
-        // pagination
-        // pageSize={5}
+
                 getRowId={(row) => row._id}
-        // rowsPerPageOptions={[5, 10, 20]}
         components={{
           Toolbar: CustomToolbar,
         }}
         sx={{
             overflow: "hidden",
           color: "#0a213d",
-          // border:"none",
-        //   paddingTop: "1rem",
+      
           border: "1px solid white",
           padding:"20px",
           borderRadius:"10px",
-        //   borderRadius: "17px",
           "& .MuiDataGrid-root": {
             backgroundColor: "white",
             display:"none"
@@ -127,7 +114,6 @@ useEffect(()=>{
             // Text color of cells
           },
           "& .MuiTablePagination-root": {
-            // color: "white", // Text color of pagination
             display:"none"
           },
           "& .MuiDataGrid-toolbar": {
@@ -145,7 +131,6 @@ useEffect(()=>{
           },
           "& .MuiButtonBase-root": {
             color: "white", // Text color for buttons in the toolbar
-            // display:"none"
           },
           "& .MuiPaginationItem-icon": {
             color: "white", // Color of pagination icons
@@ -158,7 +143,6 @@ useEffect(()=>{
             maxHeight: "75px !important",
             height: "80px !important",
             padding:"0",
-            // overflow:"hidden",
 
           },
           "& .MuiDataGrid-row:last-child .MuiDataGrid-cell": {

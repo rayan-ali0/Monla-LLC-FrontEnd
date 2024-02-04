@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 const ProductDetails = () => {
   const location = useLocation();
   const myItem = location.state && location.state;
-
   return (
     <main className={styles.main}>
       <ProductViewDetails myItem={myItem}/>
