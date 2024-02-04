@@ -1,3 +1,4 @@
+import Loading from "../Loading/Loading";
 import Styles from "./Category.module.css"
 import { motion } from "framer-motion"
 
@@ -12,7 +13,7 @@ export const Category = ({data, error, loading:categoryLoading,onChange, selecte
             <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`}  className={Styles.image}/>
            <h3 className={Styles.h3}>{item.title}</h3>
             </motion.div>
-            ))): <h1> Loading</h1>}
+            ))): <Loading />}
             {error && <p>Error: {error.message}</p>}
       
    

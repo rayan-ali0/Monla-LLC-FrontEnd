@@ -10,6 +10,7 @@ import { useQuery } from "react-query"
 import axios from "axios"
 import { PaginationItem, TextField } from "@mui/material"
 import { useLocation } from 'react-router-dom';
+import Loading from "../../Components/Loading/Loading"
 
 
 const Products = () => {
@@ -54,11 +55,8 @@ const Products = () => {
                 params:paramdData
               })
 
-              if(response){
-                setProducts(response.data)
-                setLoading(false)
-              }
-
+              setLoading(false)
+              setProducts(response.data)
             } catch (error) {
               console.error('Error fetching products:', error);
             }
@@ -156,7 +154,7 @@ products={products}
      
       <div className={Styles.product}>
         
-      {loading && <p>Loading...</p>}
+      {loading && <Loading />}
           {productError && <p>Error: {productError.message}</p>}
         {products && products.length === 0 && !loading? (
           <div className={Styles.empty}>

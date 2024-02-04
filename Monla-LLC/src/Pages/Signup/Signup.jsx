@@ -10,7 +10,26 @@ import hide from "../../assets/icons/hide.png";
 import { UserContext } from "../../UserContext/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet-async';
+
+
+const variants={
+  initial:{
+      y:50,
+      opacity:0,
+  },
+  animate:{
+      y:0,
+      opacity:1,
+      transition:{
+          duration:0.7,
+          staggerChildren:0.1
+      },
+  },
+}
+
+
 
 
 const Signup = () => {
@@ -103,69 +122,72 @@ const Signup = () => {
       <meta name="description" content="Effortlessly join our platform by signing up today. Experience personalized services tailored just for you. Create your account now for exclusive benefits!" />
       <meta name="keywords" content="signup, registration, user account" />
     </Helmet>
-    <main className={styles.main}>
-      <div className={styles.content__wrapper}>
-        <div className={styles.content}>
-          <div className={styles.info}>
-            <div className={styles.logo}>
+    <motion.main className={styles.main} >
+      <motion.div className={styles.content__wrapper} variants={variants}>
+        <motion.div className={styles.content} variants={variants} initial="initial" animate="animate">
+          <motion.div className={styles.info} variants={variants}>
+            <motion.div className={styles.logo} variants={variants}>
               {/* <img src={eye} alt="" /> */}
-            </div>
-            <h1 className={styles.title}>Sign up</h1>
-            <p className={styles.slogan}>Enter your details to create your account.</p>
-          </div>
-          <form onSubmit={handleSubmit} action="" className={styles.form} encType="multipart/form-data">
-            <div className={styles.input__wrapper}>
+            </motion.div>
+            <motion.h1 className={styles.title} variants={variants}>Sign up</motion.h1>
+            <motion.p className={styles.slogan} variants={variants}>Enter your details to create your account.</motion.p>
+          </motion.div>
+          <motion.form onSubmit={handleSubmit} variants={variants} action="" className={styles.form} encType="multipart/form-data">
+            <motion.div className={styles.input__wrapper} variants={variants}>
               <label htmlFor="na">Name*</label>
-              <input 
+              <motion.input 
+              variants={variants}
               type="text" 
               id="na"
               name="name"
               value={formData.name} 
               onChange={handleInputChange} 
               required/>
-            </div>
-            <div className={styles.input__wrapper}>
+            </motion.div>
+            <motion.div className={styles.input__wrapper} variants={variants}>
               <label htmlFor="em">Email*</label>
-              <input 
+              <motion.input
+              variants={variants} 
               type="email"
               id="em"                   
               name="email"
               value={formData.email} 
               onChange={handleInputChange} 
               required/>
-            </div>
-            <div className={`${styles.input__wrapper} ${styles.pass__input}`}>
+            </motion.div>
+            <motion.div variants={variants} className={`${styles.input__wrapper} ${styles.pass__input}`}>
               <label htmlFor="pass">Password*</label>
-              <input
+              <motion.input
+              variants={variants}
                 id="pass"
                 type={showPassword ? "text" : "password"}
                 name="password"
                 onChange={handleInputChange}
                 value={formData.password}
                 required/>
-                <img
+                <motion.img
                   src={showPassword ? hide : eye}
                   className={styles.icon}
                   alt="Hide and Show an Eye"
                   onClick={visiblePassword}
                 />
-            </div>
-            <input type="submit" value={"Sign up"} className={styles.submit__button} onClick={handleSubmit}/>
-            <div className={styles.login__text}>
+            </motion.div>
+            <motion.input variants={variants} type="submit" value={"Sign up"} className={styles.submit__button} onClick={handleSubmit}/>
+            <motion.div variants={variants} className={styles.login__text}>
               Already have an account?
               <Link to={"/login"} className={styles.login__link}>Login</Link>
-            </div>
-            <div className={styles.or__hr} >
+            </motion.div>
+            <motion.div variants={variants} className={styles.or__hr} >
               <hr/>
-              <span className={styles.or__wrapper}>or</span>
-            </div>
-            <div className={styles.oauth}>
+              <motion.span variants={variants} className={styles.or__wrapper}>or</motion.span>
+            </motion.div>
+            <motion.div variants={variants} className={styles.oauth}>
               <OAuth signup={true} />
-            </div>
-          </form>
-        </div>
-      </div>
-    </main>
+            </motion.div>
+          </motion.form>
+        </motion.div>
+      </motion.div>
+    </motion.main>
     </>
   );
 };

@@ -4,6 +4,25 @@ import { Helmet } from "react-helmet-async";
 import PageHero from '../../Components/PageHero/PageHero'
 import axios from 'axios'
 import support from '../../assets/HelmetIcons/support.png'
+import Loading from '../../Components/Loading/Loading';
+import { motion } from 'framer-motion';
+
+const variants={
+     initial:{
+         y:50,
+         opacity:0,
+     },
+     animate:{
+         y:0,
+         opacity:1,
+         transition:{
+             duration:1,
+             staggerChildren:0.2
+         },
+     },
+   }
+
+
 const Services = () => {
      const [services, setServices] = useState([])
      const [loading, setLoading] = useState(true)
@@ -28,7 +47,7 @@ const Services = () => {
      }, [])
 
      return (
-          <main className={style.serviceHolder}>
+          <motion.main className={style.serviceHolder} variants={variants}>
                <Helmet>
                     <meta charSet="utf-8" />
                     <title>Services</title>
@@ -38,30 +57,27 @@ const Services = () => {
 
                </Helmet>
                <PageHero title={"Our Services"} />
-               <div className={style.servicePage}>
-                    {!loading ?
-                         (services.map((service, index) => (
-                              <section key={index} className={style.service}>
-                                   <div className={style.serviceImage}>
-                                        <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${service.image}`} alt="serviceImage" />
-                                   </div>
-                                   <div className={style.serviceDetails}>
-                                        <h3 className={style.serviceTitle}>{service.title}</h3>
-                                        <p className={style.serviceText}>{service.description}
+               <motion.div className={style.servicePage} variants={variants} initial="initial" animate="animate">
+                    
+                        { services.map((service, index) => (
+                              <motion.section key={index} className={style.service} variants={variants}>
+                                   <motion.div className={style.serviceImage} variants={variants} >
+                                        <motion.img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${service.image}`} alt="serviceImage" />
+                                   </motion.div>
+                                   <motion.div className={style.serviceDetails} variants={variants}>
+                                        <motion.h3 className={style.serviceTitle} variants={variants}>{service.title}</motion.h3>
+                                        <motion.p className={style.serviceText}>{service.description}
 
-                                        </p>
-                                   </div>
-                              </section>
+                                        </motion.p>
+                                   </motion.div>
+                              </motion.section>
 
-                         )))
-                         :
-                         (
-                              <h1>loading....</h1>
-                         )
+                         ))}
 
-                    }
-               </div>
-          </main>
+                    
+               </motion.div>
+               {loading && <Loading />}
+          </motion.main>
      )
 }
 

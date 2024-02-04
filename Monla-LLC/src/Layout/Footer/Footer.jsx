@@ -4,7 +4,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { FaTiktok } from "react-icons/fa";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import DashProfile from "../../Components/DashProfile/DashProfile";
 import Register from "../../Pages/Login/Login";
 import Cart from "../../Pages/CartPage/Cart";
@@ -14,6 +14,7 @@ import AboutUs from "../../Pages/Aboutus/Aboutus";
 import ContactUs from "../../Pages/Contact/ContactUs";
 
 const Footer = () => {
+  const navigate= useNavigate()
   const [isloading, setIsLoading] = useState(true);
   const [companyInfos, setCompanyInfos] = useState([]);
 
@@ -108,7 +109,7 @@ const Footer = () => {
         </div>
       </div>
       <h3 className={style.footerCopyright}>
-        Copyright , All rights reserved | Powered By : <u>Codi Team</u>
+        Copyright , All rights reserved | Powered By : <u><NavLink to="/developers" style={{color:"white"}}>Codi Team</NavLink></u>
       </h3>
     </footer>
   );

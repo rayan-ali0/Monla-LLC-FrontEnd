@@ -12,6 +12,23 @@ import axios from 'axios'
 import emailjs from '@emailjs/browser';
 import { Helmet } from "react-helmet-async";
 import phone from '../../assets/HelmetIcons/phone.png'
+import { motion } from 'framer-motion';
+
+const variants={
+  initial:{
+      y:50,
+      opacity:0,
+  },
+  animate:{
+      y:0,
+      opacity:1,
+      transition:{
+          duration:1,
+          staggerChildren:0.2
+      },
+  },
+}
+
 
 
 // import { styled } from "@mui/system";
@@ -136,9 +153,9 @@ const Contact = () => {
 
       </Helmet>
       <PageHero title={"Contact Us"} />
-      <main className={style.contactPage}>
-        <div className={style.contactHolder}>
-          <form ref={form} onSubmit={submitForm} className={style.contactForm}>
+      <motion.main className={style.contactPage} variants={variants} initial="initial" animate="animate">
+        <motion.div className={style.contactHolder} variants={variants}>
+          <motion.form ref={form} onSubmit={submitForm} className={style.contactForm} variants={variants}>
             <TextField id="name" label="Your Name" name="Name" variant="outlined" value={formData.Name} required onChange={handleInputChange} sx={styleField}
             />
             <TextField id="email" label="Your Email" name="Email" placeholder='Ex: email@gmail.com' value={formData.Email} type="email" variant="outlined" required onChange={handleInputChange} sx={styleField}
@@ -149,30 +166,30 @@ const Contact = () => {
               sx={styleField}
 
             />
-            <button className={style.customButton} onClick={submitForm}>Send Message</button>
-          </form>
+            <motion.button variants={variants} className={style.customButton} onClick={submitForm}>Send Message</motion.button>
+          </motion.form>
 
-          <section className={style.contactDetails}>
-            <h1>Get In Touch</h1>
-            <p >
+          <motion.section  variants={variants} className={style.contactDetails}>
+            <motion.h1 variants={variants}>Get In Touch</motion.h1>
+            <motion.p  variants={variants}>
               Get in touch with us for all your automotive needs – we're here to assist you with top-notch car products and services!
-            </p>
-            <article className={style.contactInfo}>
-              <h2>Contact Info</h2>
-              <span className={style.contactData}> <img src={phoneIcon} className={style.icons} />{companyInfo.number}
-              </span>
-              <span className={style.contactData}><img src={emailIcon} className={style.icons} />{companyInfo.email}
-              </span>
-              <span className={style.contactData}> <img src={locationIcon} className={style.icons} /> {companyInfo.location}
-              </span>
-            </article>
-          </section>
-        </div>
-        <section className={style.mapContainer}>
+            </motion.p>
+            <motion.article variants={variants} className={style.contactInfo}>
+              <motion.h2 variants={variants}>Contact Info</motion.h2>
+              <motion.span  variants={variants}className={style.contactData}> <img src={phoneIcon} className={style.icons} />{companyInfo.number}
+              </motion.span>
+              <motion.span variants={variants} className={style.contactData}><img src={emailIcon} className={style.icons} />{companyInfo.email}
+              </motion.span>
+              <motion.span variants={variants} className={style.contactData}> <img src={locationIcon} className={style.icons} /> {companyInfo.location}
+              </motion.span>
+            </motion.article>
+          </motion.section>
+        </motion.div>
+        <motion.section variants={variants} className={style.mapContainer}>
           <iframe src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3291.0623947624654!2d35.83170947632839!3d34.42517019794592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1521f753d40da92f%3A0x723d4dccaedbd7d5!2z2YXYpNiz2LPYqSDZiNiz2YrZhSDYudio2K_Yp9mE2YTZhyDYp9mE2YXZhtmE2Kc!5e0!3m2!1sen!2slb!4v1705354764491!5m2!1sen!2slb`}
             className={style.map} height="450" style={{ border: "0" }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </section>
-      </main>
+        </motion.section>
+      </motion.main>
     </>
 
   )
