@@ -288,7 +288,7 @@ export default function EditProduct() {
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
           onChange={handleEdit}
-          value={product?.price}
+          defaultValue={product?.price}
 
         />
         <TextField id="SKU" label="SKU" name="SKU" variant="outlined" required
