@@ -16,7 +16,6 @@ const EditOrderForm = ({ order, onClose,fetchUpdatedData }) => {
 
     useEffect(() => {
         if (order) {
-            console.log('Order data:', order);
             setFormData({
                 status: order.status || '',
             });
@@ -36,11 +35,10 @@ const EditOrderForm = ({ order, onClose,fetchUpdatedData }) => {
         e.preventDefault();
 
         try {
-            const response = await axios.patch(`http://localhost:5000/order/update/${order._id}`, {
+            const response = await axios.patch(`${import.meta.env.VITE_REACT_APP_BACKEND}/order/update/${order._id}`, {
                 status: formData.status,
             });
             fetchUpdatedData();
-            console.log('Order updated:', response.data);
 
             // Close the form after successful update
             onClose();

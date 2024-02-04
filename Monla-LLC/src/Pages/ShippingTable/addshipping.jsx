@@ -24,15 +24,11 @@ const ShippingAddForm = ({ onClose,fetchUpdatedData }) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/shipping/create', formData);
-
-            console.log('Shipping added:', response.data);
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/shipping/create`, formData);
             fetchUpdatedData();
-            // Close the form after successful add
             onClose();
         } catch (error) {
             console.error('Error adding shipping:', error.response.data.error);
-            // Handle error (show error message, etc.)
         }
     };
 

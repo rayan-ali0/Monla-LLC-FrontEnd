@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import style from './addProduct.module.css'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { useNavigate } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -10,14 +9,8 @@ import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import AddIcon from '@mui/icons-material/Add';
-import ModelAddForm from '../dashTableModel/modelAddForm';
-import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 
 export default function AddProduct() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  // const {product}=location.state?location.state:{product:null}
 
   const [categories, setCategories] = useState([])
   const [displayVolume, setDisplayVolume] = useState(false)
@@ -176,7 +169,6 @@ export default function AddProduct() {
         }
       }
       if (!errorOccurred) {
-        console.log(productToSend)
         const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/create`, productToSend,
           {
             headers: {
@@ -270,7 +262,6 @@ export default function AddProduct() {
           ...addedProduct,
           [inputName]: e.target.files[0],
         });
-        console.log(addedProduct)
       }
 
     }
@@ -281,7 +272,6 @@ export default function AddProduct() {
       });
     }
 
-    console.log(addedProduct)
   }
 
 
@@ -362,7 +352,6 @@ export default function AddProduct() {
 
         <TextField id="description" label="Description" name="description" variant="outlined" required
           onChange={handleAdd}
-          // defaultValue={action==="Edit"?product?.description:''}
           value={addedProduct.description || ''}
 
           sx={styleField} className={style.inputs} />
@@ -372,13 +361,11 @@ export default function AddProduct() {
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
           onChange={handleAdd}
-          // defaultValue={action==="Edit"?product?.price:''}
           defaultValue={addedProduct.price || 0}
 
         />
         <TextField id="SKU" label="SKU" name="SKU" variant="outlined" required
           onChange={handleAdd}
-          // defaultValue={action==="Edit"?product?.SKU:''}
           value={addedProduct.SKU || ''}
 
           sx={styleField} className={style.inputs} />
@@ -389,15 +376,11 @@ export default function AddProduct() {
           sx={styleField} className={style.inputs} />
         <TextField id="origin" label="Origin" name="origin" variant="outlined" required
           onChange={handleAdd}
-          // defaultValue={action==="Edit"?product?.origin:''}
           value={addedProduct.origin || ''}
 
           sx={styleField} className={style.inputs} />
 
         <Autocomplete
-          // defaultValue={addedProduct.category|| ''}
-          // defaultValue={action==="Edit"&&product.category}
-          // value={(action === "Edit" && product) ? { label: product.category.title, value: product.category._id } : null}
           className={style.inputs}
           disablePortal
           id="combo-box-demo"
@@ -422,7 +405,6 @@ export default function AddProduct() {
 
 
           <TextField id="volume" label="Volume" name="volume" type="number" variant="outlined" required
-            // defaultValue={action==="Edit"&&product.volume?product.volume:''}
             value={addedProduct.volume || 0}
             onChange={handleAdd}
 
@@ -461,7 +443,6 @@ export default function AddProduct() {
           />
 
           <Autocomplete
-            // value={(action === "Edit" && product) ? { label: product.model.name, value: product.model._id } : null}
             value={addedProduct.model ? getModelLabelById(addedProduct.model) : ""}
 
             className={style.inputs}
@@ -485,7 +466,6 @@ export default function AddProduct() {
 
           <Autocomplete
             value={addedProduct.year ? getYearLabelById(addedProduct.year) : ""}
-            // value={(action === "Edit" && product) ? { label: product.year.value.join('-'), value: product.year._id } : null}
             className={style.inputs}
             disablePortal
             disableClearable

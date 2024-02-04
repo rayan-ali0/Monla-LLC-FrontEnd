@@ -1,25 +1,26 @@
-.addProductPage{
-    /* border: 2px solid red; */
- height: 87vh;
- margin-top:2rem ;
- /* width: 100%; */
- padding: 1.8em;
- display: flex;
- flex-direction: column;
+.addProductPage {
+    height: 87vh;
+    margin-top: 2rem;
+    padding: 1.8em;
+    display: flex;
+    flex-direction: column;
 }
-.editTitle{
+
+.editTitle {
     width: 70%;
     margin: 0 auto;
 
 }
 
-.form1 , .formDisplay{
-align-items: center;
-margin: 0 auto;
+.form1,
+.formDisplay {
+    align-items: center;
+    margin: 0 auto;
 
 
 }
-.form1{
+
+.form1 {
     justify-content: space-between;
     display: flex;
     flex-direction: column;
@@ -27,56 +28,59 @@ margin: 0 auto;
     width: 70%;
 
 }
-.form2{
+
+.form2 {
     display: none;
 }
 
-.formDisplay{
-display: flex;
-justify-content: space-around;
-flex-direction: row;
-height: 10%;
-width: 80%;
-gap:1em
-
+.formDisplay {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    height: 10%;
+    width: 80%;
+    gap: 1em
 }
-.inputs{
+
+.inputs {
     width: 80%;
 }
-.volumeInput{
+
+.volumeInput {
     width: 100%;
 }
 
-.displayVolum{
+.displayVolum {
     display: none;
 }
 
 
-@media (max-width:750px){
-    .form1{
+@media (max-width:750px) {
+    .form1 {
         justify-content: space-between;
         display: flex;
         flex-direction: column;
         height: 100%;
         width: 90%;
-    
+
     }
 }
 
 
-@media (max-width:550px){
-    .form1{
+@media (max-width:550px) {
+    .form1 {
         justify-content: space-between;
         display: flex;
         flex-direction: column;
         height: 100%;
         width: 100%;
-    
+
     }
-    .editTitle{
+
+    .editTitle {
         width: 95%;
         margin: 0 auto;
         font-size: 20;
-    
+
     }
 }

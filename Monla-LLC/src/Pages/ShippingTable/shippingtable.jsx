@@ -17,7 +17,7 @@ export default function ShippingsTable() {
  
     const fetchShippings = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/shipping/all");
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/shipping/all`);
         setRows(response.data);
       } catch (error) {
         console.error("Error fetching shippings:", error.response.data);
@@ -34,7 +34,7 @@ export default function ShippingsTable() {
 
   const handleDeleteClick = async (shippingId) => {
     try {
-      await axios.delete(`http://localhost:5000/shipping/${shippingId}`);
+      await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND}/shipping/${shippingId}`);
       fetchShippings();
     } catch (error) {
       console.error("Error deleting shipping:", error.response.data);

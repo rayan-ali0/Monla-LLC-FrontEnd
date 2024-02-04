@@ -16,7 +16,7 @@ export default function ServicesTable() {
 
     const fetchServices = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/service/read/all");
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/service/read/all`);
         setRows(response.data);
       } catch (error) {
         console.error("Error fetching services:", error.response.data);
@@ -34,7 +34,7 @@ export default function ServicesTable() {
 
   const handleDeleteClick = async (serviceId) => {
     try {
-      await axios.delete(`http://localhost:5000/service/${serviceId}`);
+      await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND}/service/${serviceId}`);
       fetchServices();
     } catch (error) {
       console.error("Error deleting service:", error.response.data);
@@ -59,7 +59,7 @@ export default function ServicesTable() {
       flex: 1,
       renderCell: (params) => (
         <img
-          src={`http://localhost:5000/${params.value}`}
+          src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${params.value}`}
           alt="Service"
           style={{ width: 50, height: 50 }}
         />
@@ -120,13 +120,11 @@ export default function ServicesTable() {
         }}
         sx={{
             color: "#0a213d",
-            // border:"none",
             paddingTop: "1rem",
             border: "1px solid white",
             padding:"20px",
             borderRadius:"10px",
             height:"650px",
-          //   borderRadius: "17px",
             "& .MuiDataGrid-root": {
               backgroundColor: "white",
             },

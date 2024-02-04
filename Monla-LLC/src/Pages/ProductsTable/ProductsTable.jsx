@@ -15,8 +15,7 @@ export default function Productstable() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/product/read/all');
-      console.log('Fetched products:', response.data);
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/read/all`);
       setRows(response.data);
     } catch (error) {
       console.error('Error fetching products:', error.response.data);
@@ -31,10 +30,9 @@ export default function Productstable() {
   const handleDeleteClick = async (productId) => {
     try {
       // Make axios delete request
-      const response = await axios.delete(`http://localhost:5000/product/${productId}`);
+      const response = await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/${productId}`);
 
       // Log the response and update the rows
-      console.log('Product deleted:', response.data);
       if (response) {
         toast.success("Product deleted successfuly")
         fetchProducts()
@@ -159,8 +157,6 @@ export default function Productstable() {
               {params.row.brand?.brand + "-" + params.row.model?.name + "-" + params.row.year?.value.join(',')}
             </div>)
 
-          // return params.row.brand?.brand +"-"+params.row.model?.name+"-"+params.row.year?.value.join(',') 
-
         }
         else {
           return "..."
@@ -183,7 +179,6 @@ export default function Productstable() {
       }
 
     },
-    // { field: 'updatedAt', headerName: 'Updated At', width: 200 },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -272,7 +267,6 @@ export default function Productstable() {
             justifyContent: "space-between",
             alignItems: "center",
             color: "white",
-            // color: 'blue',
           },
           "& .MuiButtonBase-root": {
             color: "white", // Text color for buttons in the toolbar

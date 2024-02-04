@@ -37,9 +37,7 @@ const ServiceAddForm = ({ onClose ,fetchUpdatedData}) => {
             formDataToSend.append('description', formData.description);
             formDataToSend.append('image', formData.image);
 
-            const response = await axios.post('http://localhost:5000/service/create', formDataToSend);
-
-            console.log('Service added:', response.data);
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/service/create`, formDataToSend);
             fetchUpdatedData();
             // Close the form after successful add
             onClose();

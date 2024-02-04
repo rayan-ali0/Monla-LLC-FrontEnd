@@ -20,8 +20,7 @@ export default function OrdersTable() {
     // Fetch all orders when the component mounts
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/order/read');
-        console.log('Fetched orders:', response.data.Orders);
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/order/read`);
         setRows(response.data.Orders);
       } catch (error) {
         console.error('Error fetching orders:', error.response.data);
@@ -52,7 +51,6 @@ export default function OrdersTable() {
       const response = await axios.delete(`http://localhost:5000/order/delete/${orderId}`);
 
       // Log the response and update the rows
-      console.log('Order deleted:', response.data);
       setRows((prevRows) => prevRows.filter((row) => row._id !== orderId));
     } catch (error) {
       console.error('Error deleting order:', error.response.data);

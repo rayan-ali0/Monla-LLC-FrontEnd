@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import style from './addProduct.module.css'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { useNavigate } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -10,12 +9,9 @@ import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import AddIcon from '@mui/icons-material/Add';
-import ModelAddForm from '../dashTableModel/modelAddForm';
-import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 export default function EditProduct() {
-  const navigate = useNavigate()
   const location = useLocation()
   const { product } = location.state ? location.state : { product: null }
   const [editedProduct, setEditedProduct] = useState({})
@@ -44,11 +40,6 @@ export default function EditProduct() {
       console.log("no product")
     }
   }, []);
-
-  useEffect(() => {
-    console.log("editedd")
-    console.log(editedProduct)
-  }, [editedProduct]);
 
   useEffect(() => {
     fetchBrands()
@@ -85,7 +76,6 @@ export default function EditProduct() {
           value: brand._id
         }))
         setBrands(brandData)
-        console.log(brandData)
       }
     }
     catch (error) {
@@ -119,9 +109,11 @@ export default function EditProduct() {
           value: year._id
         }))
         setYears(yearsData)
-        console.log(years)
       }
-      console.log(error)
+      else{
+        console.log(error)
+
+      }
     }
     catch (error) {
       console.error("Error:", error);
@@ -174,7 +166,6 @@ export default function EditProduct() {
 
   const handleEdit = (e, selectedOption, inputName) => {
     if (selectedOption) {
-      console.log(selectedOption)
 
       if (inputName === "brand") {
         setEditedProduct({
@@ -218,7 +209,6 @@ export default function EditProduct() {
       });
     }
 
-    console.log(editedProduct)
   }
 
 
