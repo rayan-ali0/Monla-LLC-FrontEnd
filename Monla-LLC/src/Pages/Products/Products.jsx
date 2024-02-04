@@ -16,7 +16,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory]=useState("")
   const [currentPage, setCurrentPage]=useState(1)
   const [searchTerm, setSearchTerm] = useState("");
-  const productsPerPage = 12;
+  const productsPerPage = 20;
   const [products, setProducts] = useState([]);
   const [fileterdBy, setFileterdBy] = useState(null);
 
@@ -164,7 +164,8 @@ products={products}
           </div>
         ) : (
           products && paginatedProducts.map((item) => (
-              <ProductCart key={item.id} item={item} img={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`} />
+                          <ProductCart key={item.id} item={item} img={`${import.meta.env.VITE_REACT_APP_BACKEND}/${item.image}`} />
+              
           ))
         )}
 
