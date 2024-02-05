@@ -11,16 +11,12 @@ import axios from "axios";
 
 const Profile = () => {
   const { user, setUser, setUserUpdated } = useContext(UserContext);
+  console.log(user);
   const [loading, setLoading] = useState(true);
   const [editLoading, setEditLoading] = useState(false);
   const [verifyPassword, setVerifyPassword] = useState("");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    number: "",
-    password: "",
-    oldPasswordInput: "",
-  });
+  // const [newPassword, setNewPassword] = useState("");
+  const [formData, setFormData] = useState();
 
   const nameRegex = /^[A-Za-z\s]+$/;
   const passwordRegex = /^.{8,}$/;
@@ -33,56 +29,67 @@ const Profile = () => {
       ...formData,
       [name]: value,
     });
+    // if(name === 'password') {
+    //   setNewPassword(value)
+    // }
   };
 
   const handleSubmit = async (event) => {
     setEditLoading(true);
     event.preventDefault();
+    // Validate at least one field is being updated
+    if (
+      !formData.name &&
+      !formData.email &&
+      !formData.number &&
+      !formData.address &&
+      !formData.oldPasswordInput &&
+      !formData.password &&
+      !verifyPassword
+    ) {
+      toast.error("Please update at least one field.");
+      setEditLoading(false);
+      return;
+    }
 
     // Validate the form fields
     if (formData.name && !nameRegex.test(formData.name)) {
       toast.error("Please enter a valid name.");
+      setEditLoading(false);
       return;
     }
 
     if (formData.number && !numberRegex.test(formData.number)) {
-      toast.error("Please enter a valid name.");
+      toast.error("Please enter a valid number.");
+      setEditLoading(false);
       return;
     }
 
-    // Validate old password if it's provided
-    if (
-      formData.oldPasswordInput &&
-      !passwordRegex.test(formData.oldPasswordInput)
-    ) {
-      toast.error("Old password should be at least 8 characters.");
-      return;
-    }
-
-    // Validate new password and verify password
-    if (formData.password !== "" || verifyPassword !== "") {
-      if (formData.password == "") {
-        toast.error("Enter your new password.");
+    /* */
+    if (formData.oldPasswordInput) {
+      if (!passwordRegex.test(formData.oldPasswordInput)) {
+        toast.error("Old password should be at least 8 characters.");
+        setEditLoading(false);
         return;
       }
-
+      if (!(formData.password || verifyPassword)) {
+        toast.error("Enter the New and verfiy password.");
+        setEditLoading(false);
+        return;
+      }
       if (!passwordRegex.test(formData.password)) {
         toast.error("New password should be at least 8 characters.");
+        setEditLoading(false);
         return;
       }
-
-      if (verifyPassword === "") {
-        toast.error("Enter your verify password.");
-        return;
-      }
-
       if (!passwordRegex.test(verifyPassword)) {
         toast.error("Verify password should be at least 8 characters.");
+        setEditLoading(false);
         return;
       }
-
       if (formData.password !== verifyPassword) {
         toast.error("Passwords do not match.");
+        setEditLoading(false);
         return;
       }
     }
@@ -216,8 +223,7 @@ const Profile = () => {
                   type="password"
                   name="password"
                   id="newPassword"
-                //   onChange={handleInputChange}
-                  onChange={(e) => setVerifyPassword(e.target.value)}
+                  onChange={handleInputChange}
                   className={styles.textField}
                 />
               </label>
@@ -241,7 +247,9 @@ const Profile = () => {
             <div className={`${styles.inputHolder} ${styles.btnHolder}`}>
               <span onClick={handleSubmit} className={styles.editBtn}>
                 <img src={editIcon} className={styles.editPng} />{" "}
-                <span style={{marginTop: "3px"}}>{editLoading ? "loading" : "Edit"} </span>
+                <span style={{ marginTop: "3px" }}>
+                  {editLoading ? "loading" : "Edit"}{" "}
+                </span>
               </span>
             </div>
           </>

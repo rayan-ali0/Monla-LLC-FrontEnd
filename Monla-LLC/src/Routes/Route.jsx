@@ -54,7 +54,7 @@ const Router = () => {
             <Route index path="/summary" element={<Summary />} />
             <Route path="/productdetails/:slug" element={<ProductDetails />} />
             <Route path="/about" element={<Aboutus />} />
-
+            <Route path="/developers" element={<PoweredByUS />} />
           </Route>
 
           <Route path="/signup" element={<Signup />} />
@@ -62,7 +62,6 @@ const Router = () => {
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/developers" element={<PoweredByUS />} />
 
           <Route
             element={

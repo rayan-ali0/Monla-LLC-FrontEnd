@@ -16,12 +16,7 @@ const DashProfile = () => {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showPassword3, setShowPassword3] = useState(false);
-  const [formData, setFormData] = useState({
-    name: user.name,
-    email: user.email,
-    password: "",
-    oldPasswordInput: "",
-  });
+  const [formData, setFormData] = useState();
 
   const nameRegex = /^[A-Za-z\s]+$/;
   const passwordRegex = /^.{8,}$/;
@@ -39,47 +34,95 @@ const DashProfile = () => {
     event.preventDefault();
 
     // Validate the form fields
+    // if (formData.name && !nameRegex.test(formData.name)) {
+    //   toast.error("Please enter a valid name.");
+    //   return;
+    // }
+
+    // // Validate old password if it's provided
+    // if (
+    //   formData.oldPasswordInput &&
+    //   !passwordRegex.test(formData.oldPasswordInput)
+    // ) {
+    //   toast.error("Old password should be at least 8 characters.");
+    //   return;
+    // }
+
+    // // Validate new password and verify password
+    // if (newPassword !== "" || verifyPassword !== "") {
+    //   if (newPassword === "") {
+    //     toast.error("Enter your new password.");
+    //     return;
+    //   }
+
+    //   if (!passwordRegex.test(newPassword)) {
+    //     toast.error("New password should be at least 8 characters.");
+    //     return;
+    //   }
+
+    //   if (verifyPassword === "") {
+    //     toast.error("Enter your verify password.");
+    //     return;
+    //   }
+
+    //   if (!passwordRegex.test(verifyPassword)) {
+    //     toast.error("Verify password should be at least 8 characters.");
+    //     return;
+    //   }
+
+    //   if (newPassword !== verifyPassword) {
+    //     toast.error("Passwords do not match.");
+    //     return;
+    //   }
+    // }
+    if (
+      !formData.name &&
+      !formData.email &&
+      !formData.oldPasswordInput &&
+      !formData.password &&
+      !verifyPassword
+    ) {
+      toast.error("Please update at least one field.");
+      setEditLoading(false);
+      return;
+    }
+
+    // Validate the form fields
     if (formData.name && !nameRegex.test(formData.name)) {
       toast.error("Please enter a valid name.");
+      setEditLoading(false);
       return;
     }
 
-    // Validate old password if it's provided
-    if (
-      formData.oldPasswordInput &&
-      !passwordRegex.test(formData.oldPasswordInput)
-    ) {
-      toast.error("Old password should be at least 8 characters.");
-      return;
-    }
-
-    // Validate new password and verify password
-    if (newPassword !== "" || verifyPassword !== "") {
-      if (newPassword === "") {
-        toast.error("Enter your new password.");
+    /* */
+    if (formData.oldPasswordInput) {
+      if (!passwordRegex.test(formData.oldPasswordInput)) {
+        toast.error("Old password should be at least 8 characters.");
+        setEditLoading(false);
         return;
       }
-
-      if (!passwordRegex.test(newPassword)) {
+      if (!(formData.password || verifyPassword)) {
+        toast.error("Enter the New and verfiy password.");
+        setEditLoading(false);
+        return;
+      }
+      if (!passwordRegex.test(formData.password)) {
         toast.error("New password should be at least 8 characters.");
+        setEditLoading(false);
         return;
       }
-
-      if (verifyPassword === "") {
-        toast.error("Enter your verify password.");
-        return;
-      }
-
       if (!passwordRegex.test(verifyPassword)) {
         toast.error("Verify password should be at least 8 characters.");
+        setEditLoading(false);
         return;
       }
-
-      if (newPassword !== verifyPassword) {
+      if (formData.password !== verifyPassword) {
         toast.error("Passwords do not match.");
+        setEditLoading(false);
         return;
       }
     }
+
 
     try {
       const response = await axios.put(
@@ -138,8 +181,9 @@ const DashProfile = () => {
             type="text"
             name="name"
             id="nameLabel"
-            value={formData.name}
+            // value={formData.name}
             onChange={handleInputChange}
+            defaultValue={user.name}
           />
         </div>
 
@@ -151,8 +195,9 @@ const DashProfile = () => {
             type="email"
             name="email"
             id="emailLabel"
-            value={formData.email}
+            // value={formData.email}
             onChange={handleInputChange}
+            defaultValue={user.email}
             readOnly
           />
         </div>
@@ -166,7 +211,7 @@ const DashProfile = () => {
             type={showPassword1 ? "text" : "password"}
             name="oldPasswordInput"
             id="oldPasswordInput"
-            value={formData.oldPasswordInput}
+            // value={formData.oldPasswordInput}
             onChange={handleInputChange}
           />
           <img
