@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast"
 import styles from "./Header.module.css";
-import logo from '../../assets/images/logo.svg';
+// import logo from '../../assets/images/logo.svg';
 import { AiOutlineMenu, AiOutlineClose, AiOutlineShoppingCart } from 'react-icons/ai';
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../UserContext/UserContext";
@@ -74,7 +74,8 @@ const Header = () => {
         {/* Logo */}
         <NavLink to="/">
        <div>
-        <img src={logo} alt="/"  />
+{/* <img src={logo} alt="/"  />*/}  
+{/* <p>AL Monla</p>       */}
         </div>
         </NavLink>
         {/* Navigation Links */}
