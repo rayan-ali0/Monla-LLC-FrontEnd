@@ -84,14 +84,14 @@ const Header = () => {
               {/* NavLink for Home */}
             {nav ? <span className={styles.closeMenu} onClick={() => setNav(!nav)}><AiOutlineClose size={25 } /></span> : ""}
               <li>
-                <NavLink to='/' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/' ? styles.activeNavItem : ''} ${location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`} >
+                <NavLink to='/' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/' ? styles.activeNavItem : ''} ${location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`} >
                   Home
                 </NavLink>
               </li>
 
               {/* NavLink for Services */}
               <li >
-                <NavLink to='/services' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/services' ? styles.activeNavItem : ''} ${location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
+                <NavLink to='/services' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/services' ? styles.activeNavItem : ''} ${location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
                   Services
                 </NavLink>
               </li>
@@ -99,7 +99,7 @@ const Header = () => {
               {/* NavLink for Product page */}
               <li >
 
-                <NavLink to='/product' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/product' ? styles.activeNavItem : ''} ${location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
+                <NavLink to='/product' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/product' ? styles.activeNavItem : ''} ${location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
                   Products
                 </NavLink>
               </li>
@@ -107,7 +107,7 @@ const Header = () => {
               {/* NavLink for About Us */}
               <li >
 
-                <NavLink to='/about' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/about' ? styles.activeNavItem : ''} ${location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
+                <NavLink to='/about' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/about' ? styles.activeNavItem : ''} ${location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === "/cart" ? styles.blue : styles.white}`}>
                   About
                 </NavLink>
               </li>
@@ -115,7 +115,7 @@ const Header = () => {
               {/* NavLink for Contact Us */}
               <li >
 
-              <NavLink to='/contact' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''} ${location.pathname === '/developers' || location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
+              <NavLink to='/contact' activeclassname={styles.activeLink} className={`${styles.menuItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''} ${location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname==='/profile' || location.pathname==="/cart"?styles.blue:styles.white}`}>
                 Contact
               </NavLink>
               </li>
@@ -127,7 +127,7 @@ const Header = () => {
                     <NavLink
                       to="/dashboard"
                       activeclassname={styles.activeLink}
-                      className={`${styles.menuItem} ${location.pathname === '/dashboard' ? styles.activeNavItem : ''} ${location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
+                      className={`${styles.menuItem} ${location.pathname === '/dashboard' ? styles.activeNavItem : ''} ${location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
                     >
                       Dashboard
                     </NavLink>
@@ -142,7 +142,7 @@ const Header = () => {
                   <NavLink
                     to="/signup"
                     activeclassname={styles.activeLink}
-                    className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''} ${location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
+                    className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''} ${location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
                   >
                     SignUp
                   </NavLink>
@@ -151,12 +151,12 @@ const Header = () => {
             </ul>
           </nav>
 
-          <div onClick={() => setNav(!nav)} className={location.pathname === '/developers' || location.pathname === "/profile" || location.pathname === "/cart" ? styles.mobile_btn_blue : styles.mobile_btn}>
+          <div onClick={() => setNav(!nav)} className={location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname === "/profile" || location.pathname === "/cart" ? styles.mobile_btn_blue : styles.mobile_btn}>
             {nav ? <AiOutlineMenu size={25} style={{visibility: "hidden"}} />  : <AiOutlineMenu size={25} />}
           </div>
 
           {/* Cart Icon */}
-          <div className={`${location.pathname === '/developers' || location.pathname==='/profile' || location.pathname==="/cart"?styles.cartIconBlue:styles.cartIcon} ${styles.count}`} onClick={handleCartIconClick} count={cartItemCount}>
+          <div className={`${location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname==='/profile' || location.pathname==="/cart"?styles.cartIconBlue:styles.cartIcon} ${styles.count}`} onClick={handleCartIconClick} count={cartItemCount}>
             <AiOutlineShoppingCart size={25} className={styles.shopIcon} />
           </div>
           {user &&    <NavLink to="/profile" >

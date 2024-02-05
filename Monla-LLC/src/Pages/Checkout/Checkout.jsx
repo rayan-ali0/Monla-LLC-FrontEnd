@@ -80,7 +80,7 @@ const Checkout = () => {
     });
 
     if (selectedLocationObject) {
-      setLocationBoolean(true);
+      setLocationBoolean(false);
       setSelectedLocation(selectedLocationObject);
       setShippingCost(selectedLocationObject.cost)
     } else {
