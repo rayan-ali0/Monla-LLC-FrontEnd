@@ -40,7 +40,7 @@ const Brand = () => {
         <Link to={`/product?brand=${brand._id}`} key={brand._id} className={Styles.category}>
           {brand.image && <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${brand.image}`} alt={brand.brand} className={Styles.image} />}
           {!brand.image && <div className={Styles.noImage}>No Image Available</div>}
-          <h3>{brand.brand}</h3>
+          <h3 style={{color:"black"}}>{brand.brand}</h3>
         </Link>
         </motion.div>
       ))}

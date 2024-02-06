@@ -10,6 +10,10 @@
   background-color:transparent;
 
 }
+.imagee{
+  width: 180px;
+  margin-top: 1rem;
+}
 .headerBule{
   background-color: var(--first-blue-color);
 }
@@ -24,7 +28,7 @@
   align-items:center;
   justify-content: space-between;
   width: 90%;
-  height: 70px;
+  height: 90px;
   z-index: 1000;
   background-color:transparent;
 

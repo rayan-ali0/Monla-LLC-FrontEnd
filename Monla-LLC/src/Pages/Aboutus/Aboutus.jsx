@@ -48,7 +48,7 @@ const Aboutus = () => {
         <motion.section className={style.aboutusTestimonial} variants={variants}>
           <motion.img src={Testimon} className={style.testimonialPicture} variants={variants} />
           <motion.article className={style.testimonialDescription } variants={variants}>
-            <VscFeedback className={style.testimonialDescriptionIcon} variants={variants} />
+            {/* <VscFeedback className={style.testimonialDescriptionIcon} variants={variants} /> */}
             <motion.p className={style.testimonialDescriptionText} variants={variants}>Welcome to Al-Monla Air Conditioning and HVAC Systems,
              a family-owned business founded in 1974 by Abdallah Al-Monla in Mina, 
              Tripoli, Lebanon. Renowned for our exceptional service and expertise in automotive air conditioning and HVAC systems,

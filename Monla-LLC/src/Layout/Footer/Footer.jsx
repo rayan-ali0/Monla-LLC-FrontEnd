@@ -12,6 +12,7 @@ import Products from "../../Pages/Products/Products";
 import Services from "../../Pages/Services/Services";
 import AboutUs from "../../Pages/Aboutus/Aboutus";
 import ContactUs from "../../Pages/Contact/ContactUs";
+import image from "../../assets/Images/Monla.webp"
 
 const Footer = () => {
   const navigate= useNavigate()
@@ -38,8 +39,10 @@ const Footer = () => {
     <footer className={style.footerContainer}>
       <div className={style.footerContainerElements}>
         <div className={style.footerElement}>
-          <h2 className={style.footerTitleLogo}>MONLA</h2>
-          <p className={style.footerTitleContent}>Logo</p>
+          <h2 className={style.footerTitleLogo}><img  style={{width:"160px"}} src={image} /></h2>
+          <p className={style.footerTitleContent}>
+            {/* <img  style={{width:"130px"}} src={image} /> */}
+          </p>
         </div>
         <div className={style.footerElement}>
           <h2 className={style.footerElementTitle}>Support</h2>

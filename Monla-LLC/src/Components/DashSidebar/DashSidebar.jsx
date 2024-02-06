@@ -114,16 +114,16 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 const menuItems = [
-  { text: '', color:"white",icon: <DashboardIcon /> },
+  { text: 'Overview', color:"white",icon: <DashboardIcon /> },
   { text: 'Orders', icon: <ShoppingCartIcon /> },
   { text: 'Products', icon: <StoreIcon /> },
   { text: 'User', icon: <PeopleIcon /> },
   { text: 'Services', icon: <ReceiptIcon /> },
-  { text: 'category', icon: <CategoryIcon /> },
+  { text: 'Category', icon: <CategoryIcon /> },
   { text: 'Brand', icon: <BrandingWatermarkIcon /> },
   { text: 'Model ', icon: <ModelTrainingIcon /> },
   { text: 'Year', icon: <DateRangeIcon /> },
-  { text: 'contact', icon: <MailOutlineIcon /> },
+  { text: 'Contact', icon: <MailOutlineIcon /> },
   { text: 'Shipping', icon: <LocalShippingIcon /> },
   { text: 'Profile', icon: <PersonIcon />   },
   { text: 'CompanyInfo', icon: <BusinessIcon /> }
