@@ -25,16 +25,16 @@ const Recents=()=>{
         }
       };
       const columns = [
-        { field: 'orderNumber', headerName: 'Number', flex: 1 },
-        { field: 'userName', headerName: 'User Name', flex: 1 },
-        { field: 'userPhone', headerName: 'User Phone', flex: 1 },
-        { field: 'address', headerName: 'Address', flex: 1 },
-        { field: 'status', headerName: 'Status', flex: 1 },
-        { field: 'total', headerName: 'Total', flex: 1 },
+        { field: 'orderNumber', headerName: 'Number', flex: 100 },
+        { field: 'userName', headerName: 'User Name', flex: 100 },
+        { field: 'userPhone', headerName: 'User Phone', flex: 100 },
+        { field: 'address', headerName: 'Address', flex: 100 },
+        { field: 'status', headerName: 'Status', flex: 100 },
+        { field: 'total', headerName: 'Total', flex: 100 },
         {
           field: 'productsOrdered',
           headerName: 'Products Ordered',
-          flex: 1,
+          flex: 100,
           renderCell: (params) => (
             <div>
               {params.row.productsOrdered.map((product) => (
@@ -43,26 +43,10 @@ const Recents=()=>{
             </div>
           ),
         },
-        { field: 'shippingId', headerName: 'Shipping ID', flex: 1 ,
+        { field: 'shippingId', headerName: 'Shipping ID', flex: 100 ,
     renderCell:(params)=>(
         params.row.shippingId.location
-    )},
-        {
-          field: 'actions',
-          headerName: 'Actions',
-          flex: 1,
-          renderCell: (params) => (
-            <div style={{ display: "flex" }}>
-              <div onClick={() => handleEditClick(params.row)} style={{ cursor: "pointer" }}>
-                <EditIcon />
-              </div>
-              <div onClick={() => handleDeleteClick(params.row._id, params.row.status)} style={{ cursor: "pointer" }}>
-                <DeleteIcon />
-              </div>
-    
-            </div>
-          ),
-        },
+    )}
       ];
     
 

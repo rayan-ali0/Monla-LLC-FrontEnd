@@ -34,8 +34,8 @@
 
 .icons {
   background-color: grey;
-  height: 90%;
-  width: 3em;
+  height: 100%;
+  width: 2.7em;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -43,7 +43,7 @@
 }
 
 .icons img {
-  width: 70%;
+  width: 65%;
   height: 80%;
 }
 .nbTitle {
