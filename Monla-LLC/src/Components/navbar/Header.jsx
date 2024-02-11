@@ -141,11 +141,11 @@ const Header = () => {
               ) : (
                 <li>
                   <NavLink
-                    to="/signup"
+                    to="/login"
                     activeclassname={styles.activeLink}
-                    className={`${styles.menuItem} ${location.pathname === '/signup' ? styles.activeNavItem : ''} ${location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
+                    className={`${styles.menuItem} ${location.pathname === '/login' ? styles.activeNavItem : ''} ${location.pathname === '/checkout' || location.pathname === '/confirmed' || location.pathname === '/developers' || location.pathname === '/profile' || location.pathname === '/cart' ? styles.blue : styles.white}`}
                   >
-                    SignUp
+                    Sign In
                   </NavLink>
                 </li>
               )}
