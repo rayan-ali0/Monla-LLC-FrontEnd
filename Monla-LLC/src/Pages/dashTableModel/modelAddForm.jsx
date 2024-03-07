@@ -34,7 +34,7 @@ const ModelAddForm = ({ onClose, allBrands ,fetchUpdatedData}) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/model/create', formData);
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/model/create`, formData);
       fetchUpdatedData();
 
       // Close the form after successful add

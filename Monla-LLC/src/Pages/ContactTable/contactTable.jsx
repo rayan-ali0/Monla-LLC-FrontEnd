@@ -11,7 +11,7 @@ export default function ContactsTable() {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/contact");
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/contact`);
         setContacts(response.data);
       } catch (error) {
         console.error("Error fetching contacts:", error.response.data);
@@ -23,7 +23,7 @@ export default function ContactsTable() {
 
   const handleDeleteClick = async (contactId) => {
     try {
-      await axios.delete(`http://localhost:5000/contact/${contactId}`);
+      await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND}/contact/${contactId}`);
       fetchContacts(); // Refresh the contacts after deleting
     } catch (error) {
       console.error("Error deleting contact:", error.response.data);

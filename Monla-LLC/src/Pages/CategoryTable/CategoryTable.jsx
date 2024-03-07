@@ -19,7 +19,7 @@ export default function CategoryTable() {
 
 
 
-const api="http://localhost:5000/category/readCategory"
+const api=`${import.meta.env.VITE_REACT_APP_BACKEND}/category/readCategory`
   const {data,loading, error }=useFetchData(api)
 
   const [formData, setFormData] = useState({
@@ -116,7 +116,7 @@ const api="http://localhost:5000/category/readCategory"
   const handleDeletee = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/category/deleteCategory/${id}`,
+        `${import.meta.env.VITE_REACT_APP_BACKEND}/category/deleteCategory/${id}`,
       );
   
         toast.success("category plan deleted successfully", {

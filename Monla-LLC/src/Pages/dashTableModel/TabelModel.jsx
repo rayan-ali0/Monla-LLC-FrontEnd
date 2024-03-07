@@ -22,7 +22,7 @@ export default function ModelsTable() {
 
   const fetchModels = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/model/allmodel');
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/model/allmodel`);
       setRows(response.data);
     } catch (error) {
       console.error('Error fetching models:', error.response.data);
@@ -31,7 +31,7 @@ export default function ModelsTable() {
 
   const fetchAllBrands = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/brand/readBrand');
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/brand/readBrand`);
       setAllBrands(response.data);
     } catch (error) {
       console.error('Error fetching brands:', error.response.data);
@@ -51,7 +51,7 @@ export default function ModelsTable() {
 
   const handleDeleteClick = async (modelId) => {
     try {
-      await axios.delete(`http://localhost:5000/model/${modelId}`);
+      await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND}/model/${modelId}`);
       // Update the rows state or make a new API call to fetch updated data
       fetchModels();
     } catch (error) {

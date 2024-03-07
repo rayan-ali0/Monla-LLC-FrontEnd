@@ -43,7 +43,7 @@ const CategoryAdd = ({ onClose}) => {
       formDataToSend.append("title", formData.title)
       formDataToSend.append("image", formData.image)
 
-      const response = await axios.post('http://localhost:5000/category/addCategory', formDataToSend);
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/category/addCategory`, formDataToSend);
 
       
       // Close the form after successful add

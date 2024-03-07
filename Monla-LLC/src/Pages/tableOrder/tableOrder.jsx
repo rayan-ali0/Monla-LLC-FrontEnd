@@ -48,7 +48,7 @@ export default function OrdersTable() {
         }
 
         // Make axios delete request
-        const response = await axios.delete(`http://localhost:5000/order/delete/${orderId}`);
+        const response = await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND}/order/delete/${orderId}`);
 
       // Log the response and update the rows
       setRows((prevRows) => prevRows.filter((row) => row._id !== orderId));

@@ -21,7 +21,7 @@ export default function BrandsTable() {
 
     const fetchBrands = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/brand/readBrand');
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/brand/readBrand`);
         setRows(response.data);
       } catch (error) {
         console.error('Error fetching brands:', error.response.data);
@@ -41,7 +41,7 @@ export default function BrandsTable() {
   
     const handleDeleteClick = async (brandId) => {
       try {
-        await axios.delete(`http://localhost:5000/brand/delete/${brandId}`);
+        await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND}/brand/delete/${brandId}`);
         fetchBrands();
       } catch (error) {
         console.error('Error deleting brand:', error.response.data);
@@ -64,7 +64,7 @@ export default function BrandsTable() {
           field: 'image', 
           headerName: 'Image', 
           flex: 1, 
-          renderCell: (params) => <img src={`http://localhost:5000/${params.value}`}  alt="Brand" style={{ width: 50, height: 50 }} /> 
+          renderCell: (params) => <img src={`${import.meta.env.VITE_REACT_APP_BACKEND}/${params.value}`}  alt="Brand" style={{ width: 50, height: 50 }} /> 
         },
         {
           field: 'actions',

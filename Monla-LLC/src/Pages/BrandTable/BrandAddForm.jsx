@@ -35,7 +35,7 @@ const BrandAddForm = ({ onClose, fetchUpdatedData }) => {
             formDataToSend.append('name', formData.name);
             formDataToSend.append('image', formData.image);
 
-            const response = await axios.post('http://localhost:5000/brand/addBrand', formDataToSend);
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND}/brand/addBrand`, formDataToSend);
             fetchUpdatedData();
 
 

@@ -48,7 +48,7 @@ const ProductCarthome = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/product/related/five');
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND}/product/related/five`);
         const data = await response.json();
         setProducts(data.slice(0, 4)); // Limit to the first 4 products
       } catch (error) {

@@ -22,7 +22,7 @@ const Home = () => {
   useEffect(() => {
     const fetchCompanyInfo = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/company/`);
+        const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND}/company/`);
         setCompanyInfo(res.data);
       } catch (error) {
         console.error('Error fetching company information:', error.message);

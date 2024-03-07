@@ -45,7 +45,7 @@ const UpdateCategory = ({ category, onClose ,data}) => {
             formDataToSend.append('title', formData.title);
             formDataToSend.append('image', formData.image);
 
-            const response = await axios.put(`http://localhost:5000/category/updateCategory/${category._id}`, formDataToSend);
+            const response = await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND}/category/updateCategory/${category._id}`, formDataToSend);
 
 
             // Close the form after successful update

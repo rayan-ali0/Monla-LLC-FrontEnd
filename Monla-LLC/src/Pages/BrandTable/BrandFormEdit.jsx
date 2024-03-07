@@ -43,7 +43,7 @@ const EditBrandForm = ({ brand, onClose,fetchUpdatedData }) => {
             formDataToSend.append('brand', formData.name); // Use "brand" property for the name
             formDataToSend.append('image', formData.image);
 
-            const response = await axios.put(`http://localhost:5000/brand/${brand._id}`, formDataToSend);
+            const response = await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND}/brand/${brand._id}`, formDataToSend);
                   // Fetch updated data after successful addition
       fetchUpdatedData();
 
