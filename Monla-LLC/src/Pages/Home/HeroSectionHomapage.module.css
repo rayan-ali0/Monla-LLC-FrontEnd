@@ -147,7 +147,7 @@ height: 938px;
 
 
 
-@media (max-width:390px) {
+@media (max-width:500px) {
     .title{
         font-weight: 800;
         text-transform: uppercase;
@@ -165,6 +165,8 @@ height: 938px;
    }
    .Title{
     font-size: 2vh;
+    letter-spacing: 0.4px;
+    line-height: 20px;
    }
  
 }

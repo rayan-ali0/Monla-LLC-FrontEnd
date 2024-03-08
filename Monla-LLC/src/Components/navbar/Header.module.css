@@ -251,3 +251,13 @@ li {
   color: var(--main-text-color);
   text-decoration: none;
 }
+
+@media screen and (max-width: 768px) {
+
+
+  .imagee{
+    width: 110px;
+    margin-top: 0.2rem;
+  }
+  
+  }
