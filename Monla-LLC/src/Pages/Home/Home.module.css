@@ -83,11 +83,15 @@ margin-left: 200px;
             height: 97vh;
         } */
         }
-@media (max-width:420px) {
+@media (max-width:520px) {
     /* .NewContainer {
             height: 107vh;
+            
          
     } */
+    .search{
+        margin-top: 4rem;
+    }
 }
 @media (min-width:281px) {
     /* .NewContainer {

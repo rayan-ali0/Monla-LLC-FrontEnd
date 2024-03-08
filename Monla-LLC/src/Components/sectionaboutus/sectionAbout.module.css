@@ -79,6 +79,11 @@ margin-bottom: 13px;}
         font-size: 25px;
     }
 }
+@media (max-width:500px) {
+    .Aboutcontainer{
+        width: 100%;
+    }
+}
 
 /*
 767

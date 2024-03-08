@@ -130,6 +130,9 @@
     flex-direction: column-reverse;
     gap: 1em
   }
+  .contactForm{
+    width: 100%;
+  }
 
   .contactHolder>section {
     width: 100%;
